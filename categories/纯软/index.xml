@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>纯软 on cita</title>
-        <link>http://cita-777.github.io/categories/%E7%BA%AF%E8%BD%AF/</link>
-        <description>Recent content in 纯软 on cita</description>
+        <title>纯软 on cita的博客__</title>
+        <link>http://localhost:1313/categories/%E7%BA%AF%E8%BD%AF/</link>
+        <description>Recent content in 纯软 on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://cita-777.github.io/categories/%E7%BA%AF%E8%BD%AF/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Hugo搭建静态网站托管于github page(1)</title>
-        <link>http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</link>
+        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E7%BA%AF%E8%BD%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo搭建静态网站托管于Github Pages(1)</title>
+        <link>http://localhost:1313/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-pages1/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo搭建静态网站托管于github page(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>http://localhost:1313/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-pages1/</guid>
+        <description>&lt;img src="http://localhost:1313/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-pages1/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo搭建静态网站托管于Github Pages(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。&lt;/p&gt;
 &lt;h3 id=&#34;安装-hugo&#34;&gt;&lt;a href=&#34;#%e5%ae%89%e8%a3%85-hugo&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;安装 Hugo
 &lt;/h3&gt;&lt;p&gt;在ubuntu24.04 LTS环境下到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -219,7 +219,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;浏览器里访问：&lt;code&gt;http://coderzh.github.io/&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份，自行查询，目前github默认主分支为main，建议设置里改为master&lt;/p&gt;
+&lt;p&gt;注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份(git remote set-url origin &lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:cita-777/cita-777.github.io.git)，目前github默认主分支为main，建议设置里改为master&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;后续修改网页&#34;&gt;&lt;a href=&#34;#%e5%90%8e%e7%bb%ad%e4%bf%ae%e6%94%b9%e7%bd%91%e9%a1%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;后续修改网页
 &lt;/h3&gt;&lt;p&gt;对content和config进行自行随意修改后需要重新上传至github仓库同步更新。命令如下：&lt;/p&gt;

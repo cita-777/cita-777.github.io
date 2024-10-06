@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on cita</title>
-        <link>http://cita-777.github.io/post/</link>
-        <description>Recent content in Posts on cita</description>
+        <title>Posts on cita的博客__</title>
+        <link>http://localhost:1313/post/</link>
+        <description>Recent content in Posts on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://cita-777.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Hugo搭建静态网站托管于github page(1)</title>
-        <link>http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</link>
+        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(1)</title>
+        <link>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo搭建静态网站托管于github page(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</guid>
+        <description>&lt;img src="http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。&lt;/p&gt;
 &lt;h3 id=&#34;安装-hugo&#34;&gt;&lt;a href=&#34;#%e5%ae%89%e8%a3%85-hugo&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;安装 Hugo
 &lt;/h3&gt;&lt;p&gt;在ubuntu24.04 LTS环境下到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -219,7 +219,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;浏览器里访问：&lt;code&gt;http://coderzh.github.io/&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份，自行查询，目前github默认主分支为main，建议设置里改为master&lt;/p&gt;
+&lt;p&gt;注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份(git remote set-url origin &lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:cita-777/cita-777.github.io.git)，目前github默认主分支为main，建议设置里改为master&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;后续修改网页&#34;&gt;&lt;a href=&#34;#%e5%90%8e%e7%bb%ad%e4%bf%ae%e6%94%b9%e7%bd%91%e9%a1%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;后续修改网页
 &lt;/h3&gt;&lt;p&gt;对content和config进行自行随意修改后需要重新上传至github仓库同步更新。命令如下：&lt;/p&gt;
@@ -339,12 +339,377 @@
 &lt;p&gt;因为我们需要从博客仓库推送到外部 GitHub Pages 仓库，需要特定权限，要在 GitHub 账户下 &lt;code&gt;Setting - Developer setting - Personal access tokens&lt;/code&gt; 下创建一个 Token。&lt;/p&gt;</description>
         </item>
         <item>
+        <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(2)</title>
+        <link>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</link>
+        <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</guid>
+        <description>&lt;img src="http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(2)" /&gt;&lt;p&gt;上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。&lt;/p&gt;
+&lt;p&gt;Stack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features:
+Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Responsive images support
+响应式图像支持&lt;/li&gt;
+&lt;li&gt;Lazy load images 延迟加载图像&lt;/li&gt;
+&lt;li&gt;Dark mode 深色模式&lt;/li&gt;
+&lt;li&gt;Local search 本地搜索&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://photoswipe.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PhotoSwipe&lt;/a&gt; integration
+&lt;a class=&#34;link&#34; href=&#34;https://photoswipe.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;照片滑动&lt;/a&gt;集成&lt;/li&gt;
+&lt;li&gt;Archive page template 存档页面模板&lt;/li&gt;
+&lt;li&gt;Full native JavaScript, no jQuery or any other frameworks are used
+完全原生 JavaScript，不使用 jQuery 或任何其他框架&lt;/li&gt;
+&lt;li&gt;No CSS framework, keep it simple and minimal
+没有 CSS 框架，保持简单和最小化&lt;/li&gt;
+&lt;li&gt;Properly cropped thumbnails
+正确裁剪的缩略图&lt;/li&gt;
+&lt;li&gt;Subsection support 分段支持&lt;/li&gt;
+&lt;li&gt;Table of contents 目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hugo网站文件结构&#34;&gt;&lt;a href=&#34;#hugo%e7%bd%91%e7%ab%99%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Hugo网站文件结构
+&lt;/h3&gt;&lt;p&gt;网站根目录下面的文件夹目录树一般如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── archetypes                  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── default.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── hugo.yaml                 &lt;span class=&#34;c1&#34;&gt;# 网站配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── content                   &lt;span class=&#34;c1&#34;&gt;# 站点内的内容都在这里&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── categories              &lt;span class=&#34;c1&#34;&gt;# “分类”页面的首页&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── Test                &lt;span class=&#34;c1&#34;&gt;# “分类”页面下的一个分类页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── page                    &lt;span class=&#34;c1&#34;&gt;# 显示在网站主页左侧边栏菜单的选项&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── about               &lt;span class=&#34;c1&#34;&gt;# 左侧边栏菜单中的“关于”页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── archives            &lt;span class=&#34;c1&#34;&gt;# 左侧边栏菜单中的“归档”页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── links               &lt;span class=&#34;c1&#34;&gt;# 左侧边栏菜单中的“链接”页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── search              &lt;span class=&#34;c1&#34;&gt;# 左侧边栏菜单中的“搜索”页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── post                    &lt;span class=&#34;c1&#34;&gt;# 用户写的帖子都放在这里，每个子文件夹对应一个帖子&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── chinese-test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── emoji-support
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── markdown-syntax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── math-typesetting
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── placeholder-text
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       └── rich-content
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── layouts
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── LICENSE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── README.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── resources
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── _gen
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       ├── assets
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│       └── images
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── static                     &lt;span class=&#34;c1&#34;&gt;# 放用户自定义字体、用户头像、网站小图标等&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── themes                     &lt;span class=&#34;c1&#34;&gt;# 放各种主题&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── hugo-theme-stack         &lt;span class=&#34;c1&#34;&gt;# stack主题&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── archetypes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── assets               &lt;span class=&#34;c1&#34;&gt;#里面有个img存放头像图片位置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── config.yaml          &lt;span class=&#34;c1&#34;&gt;#stack主题的配置文件，优先级低于上面的网站配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── debug.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── exampleSite
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── go.mod
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── i18n                 &lt;span class=&#34;c1&#34;&gt;#多语言支持包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── images               &lt;span class=&#34;c1&#34;&gt;#网站示例的截图存放位置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── layouts
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── LICENSE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── netlify.toml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ├── README.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        └── theme.toml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;主要修改主题内和网站内的&lt;code&gt;config.yaml&lt;/code&gt;，具体含义可见&lt;a class=&#34;link&#34; href=&#34;https://stack.jimmycai.com/guide/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方手册&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;此外，上面没有显示的是网站根目录下的&lt;code&gt;private&lt;/code&gt;文件夹和&lt;code&gt;public&lt;/code&gt;文件夹。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;public&lt;/code&gt;文件夹会在运行&lt;code&gt;hugo -D&lt;/code&gt;部署网站时生成，是暴露给外界的文件夹，网站上页面的HTML文件都会由Hugo生成并放在&lt;code&gt;public&lt;/code&gt;文件夹下。&lt;code&gt;public&lt;/code&gt;文件夹内不要放置任何包含用户信息的敏感文件！&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;private&lt;/code&gt;文件夹可以由用户创建，这里我们用它来存放网站的SSL证书。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于网站根目录下各文件夹，更详细的说明可参见Hugo&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/directory-structure/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;配置文件夹config&#34;&gt;&lt;a href=&#34;#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%a4%b9config&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;配置文件夹&lt;code&gt;config&lt;/code&gt;
+&lt;/h3&gt;&lt;p&gt;Hugo支持两种配置方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一种是直接在网站根目录的&lt;code&gt;.config&lt;/code&gt;文件中配置&lt;/li&gt;
+&lt;li&gt;另一种是在网站根目录下创建&lt;code&gt;config&lt;/code&gt;文件夹，配置放在&lt;code&gt;config&lt;/code&gt;文件夹内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第二种配置方式支持将不同的配置项分开放在不同的文件中，相比第一种配置方式可以让配置项的条理更加清晰，因此我们这里选择第二种配置方式。参考配置目录结构如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;config
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  └── _default
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── config.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── languages.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── menu.en.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── menu.zh-cn.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── params.en.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── params.zh-cn.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;关于Hugo的配置，更详细的说明可参考&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/configuration/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;附录1主题内configyaml各参数简明含义&#34;&gt;&lt;a href=&#34;#%e9%99%84%e5%bd%951%e4%b8%bb%e9%a2%98%e5%86%85configyaml%e5%90%84%e5%8f%82%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;[附录1]主题内&lt;code&gt;config.yaml&lt;/code&gt;各参数简明含义
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Module (模块设置)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugoVersion&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;: 定义Hugo版本要求。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;extended&lt;/code&gt;: 设置为&lt;code&gt;true&lt;/code&gt;表示需要Hugo的扩展版本（支持SCSS和其他高级功能）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;min&lt;/code&gt;: 需要的最低Hugo版本为0.87.0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Params (参数设置)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mainSections&lt;/code&gt;: 定义主要的内容部分，这里是&lt;code&gt;post&lt;/code&gt;，也就是文章部分。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;featuredImageField&lt;/code&gt;: 文章中用于展示特色图片的字段名称，默认为&lt;code&gt;image&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rssFullContent&lt;/code&gt;: RSS中是否提供文章的完整内容，&lt;code&gt;true&lt;/code&gt;表示是。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Favicon (网站图标)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;favicon&lt;/code&gt;: 设置网站的favicon路径，如果有一个favicon.ico，可以设置为&lt;code&gt;/favicon.ico&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Footer (页脚)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;since&lt;/code&gt;: 页脚中显示的年份（通常是网站开始的年份），这个字段为空，可以填入年份，如“2024”。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;customText&lt;/code&gt;: 页脚自定义文本，当前为空，可以填写你想显示的内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Date Format (日期格式)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;published&lt;/code&gt;: 发布日期的显示格式，这里格式为&lt;code&gt;Jan 02, 2006&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lastUpdated&lt;/code&gt;: 最后更新日期的显示格式，这里包括日期和时间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Sidebar (侧边栏)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;compact&lt;/code&gt;: 是否使用紧凑布局，&lt;code&gt;false&lt;/code&gt;表示不使用紧凑布局。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;emoji&lt;/code&gt;: 表情符号，可以为空或者自定义一个表情符号显示在侧边栏上。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;subtitle&lt;/code&gt;: 侧边栏的副标题，当前为空，可以添加文字。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;avatar&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;: 头像设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;enabled&lt;/code&gt;: 是否显示头像，&lt;code&gt;true&lt;/code&gt;表示显示。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;local&lt;/code&gt;: &lt;code&gt;true&lt;/code&gt;表示头像从本地文件加载。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src&lt;/code&gt;: 头像的路径为&lt;code&gt;img/avatar.png&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Article (文章设置)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;headingAnchor&lt;/code&gt;: 设置是否在标题旁边显示锚点，&lt;code&gt;false&lt;/code&gt;表示不显示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;math&lt;/code&gt;: 是否支持数学公式，&lt;code&gt;false&lt;/code&gt;表示不支持。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;toc&lt;/code&gt;: 目录设置，&lt;code&gt;true&lt;/code&gt;表示显示文章目录。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;readingTime&lt;/code&gt;: 是否显示阅读时间，&lt;code&gt;true&lt;/code&gt;表示显示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;license&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;: 文章版权设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;enabled&lt;/code&gt;: 是否启用版权声明，&lt;code&gt;false&lt;/code&gt;表示不启用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;default&lt;/code&gt;: 默认的版权声明，当前设置为“Creative Commons BY-NC-SA 4.0”，但没有启用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Comments (评论系统)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;enabled&lt;/code&gt;: 是否启用评论，&lt;code&gt;false&lt;/code&gt;表示不启用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;provider&lt;/code&gt;: 默认评论提供者是&lt;code&gt;disqus&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;配置了多个评论系统，包括&lt;code&gt;disqusjs&lt;/code&gt;, &lt;code&gt;utterances&lt;/code&gt;, &lt;code&gt;beaudar&lt;/code&gt;, &lt;code&gt;remark42&lt;/code&gt;, &lt;code&gt;vssue&lt;/code&gt;等。每个评论系统都有自己的设置项，例如Disqus、GitHub Issues（通过utterances）、Beaudar等。这些可以根据需要选择，并填入相关参数，如API密钥、仓库名称等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Widgets (小工具)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;homepage&lt;/code&gt;: 主页上的小工具列表，当前为空，也就是说默认没有显示任何小工具。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;page&lt;/code&gt;: 页面上的小工具列表，当前为空。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OpenGraph (社交分享卡片)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;twitter&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;: 配置Twitter分享卡片。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;site&lt;/code&gt;: 填写你的Twitter用户名。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;card&lt;/code&gt;: 卡片类型，这里是&lt;code&gt;summary_large_image&lt;/code&gt;，表示大图片的分享卡片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DefaultImage (默认图片)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;opengraph&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;: 配置默认图片的设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;enabled&lt;/code&gt;: 是否启用OpenGraph图片，&lt;code&gt;false&lt;/code&gt;表示不启用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;local&lt;/code&gt;: 图片是否为本地图片，&lt;code&gt;false&lt;/code&gt;表示不是本地图片。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src&lt;/code&gt;: 默认图片的路径。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ColorScheme (颜色主题)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;toggle&lt;/code&gt;: 是否允许用户切换颜色主题（比如暗黑模式），&lt;code&gt;true&lt;/code&gt;表示启用切换功能。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;default&lt;/code&gt;: 默认颜色主题，这里是&lt;code&gt;auto&lt;/code&gt;，表示根据用户系统的设置自动切换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ImageProcessing (图片处理)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cover&lt;/code&gt;: 是否启用封面图片处理，&lt;code&gt;true&lt;/code&gt;表示启用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content&lt;/code&gt;: 是否启用内容图片处理，&lt;code&gt;true&lt;/code&gt;表示启用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;附录2官方示例提供的根目录内hugoyaml各参数简明含义&#34;&gt;&lt;a href=&#34;#%e9%99%84%e5%bd%952%e5%ae%98%e6%96%b9%e7%a4%ba%e4%be%8b%e6%8f%90%e4%be%9b%e7%9a%84%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%86%85hugoyaml%e5%90%84%e5%8f%82%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;[附录2]官方示例提供的根目录内&lt;code&gt;hugo.yaml&lt;/code&gt;各参数简明含义
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;基本信息&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;baseurl&lt;/code&gt;: 网站的基础URL。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;languageCode&lt;/code&gt;: 默认语言代码，例如&lt;code&gt;en-us&lt;/code&gt;表示英语（美国）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;theme&lt;/code&gt;: 使用的主题，在这里是&lt;code&gt;hugo-theme-stack&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;title&lt;/code&gt;: 网站的标题。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;copyright&lt;/code&gt;: 网站的版权声明。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;语言支持&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DefaultContentLanguage&lt;/code&gt;: 设置默认的语言为英语（&lt;code&gt;en&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hasCJKLanguage&lt;/code&gt;: 如果网站主要使用中文、日文或韩文等CJK（中日韩）语言，这个值应设为&lt;code&gt;true&lt;/code&gt;，用于正确处理文章摘要和字数统计。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;languages&lt;/code&gt;: 你可以为网站配置多语言支持。在这个例子中，网站支持英语（&lt;code&gt;en&lt;/code&gt;）、中文简体（&lt;code&gt;zh-cn&lt;/code&gt;）和阿拉伯语（&lt;code&gt;ar&lt;/code&gt;）。每种语言可以有独立的标题和描述。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;服务设置&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;disqus&lt;/code&gt;: 用于网站评论的服务，Disqus是一个流行的评论系统。如果要启用评论，需要更改为你自己的网站短名称。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;googleAnalytics&lt;/code&gt;: 如果你使用Google Analytics（谷歌分析）进行流量统计，可以在这里填入你的追踪ID。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;分页和永久链接&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pagination&lt;/code&gt;: 设置分页大小为3，也就是说每页显示3篇文章。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;permalinks&lt;/code&gt;: 自定义文章和页面的永久链接结构。例如，文章会显示为&lt;code&gt;/p/:slug/&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;页面参数&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;params&lt;/code&gt;: 包含各种网站布局、显示和功能的配置。比如文章是否显示数学公式、阅读时间、许可信息等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;评论功能&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;comments&lt;/code&gt;: 你可以选择不同的评论提供者（如Disqus、Utterances、Gitalk等），通过填入相关的配置信息来启用评论。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;菜单和小工具&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;menu&lt;/code&gt;: 自定义网站菜单和社交链接。这里包括GitHub和Twitter的社交图标链接。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;widgets&lt;/code&gt;: 配置主页和页面上的小工具，例如搜索栏、文章归档、标签云等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;其他配置&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;opengraph&lt;/code&gt;: 配置网站在社交平台（如Twitter）的分享卡片。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;colorScheme&lt;/code&gt;: 配置网站的颜色模式（自动、浅色或深色）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;imageProcessing&lt;/code&gt;: 图片处理选项，例如封面图片和内容图片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;相关内容&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;related&lt;/code&gt;: 配置文章之间的相关性推荐，基于标签和分类等条件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Markdown 渲染&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;markup&lt;/code&gt;: 配置如何处理Markdown内容，例如表格、代码高亮、目录等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;两篇附录仅供参考，可能有错误&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+        </item>
+        <item>
         <title>Chinese Test</title>
-        <link>http://cita-777.github.io/p/test-chinese/</link>
+        <link>http://localhost:1313/p/test-chinese/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/test-chinese/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash.jpg" alt="Featured image of post Chinese Test" /&gt;&lt;h2 id=&#34;正文测试&#34;&gt;&lt;a href=&#34;#%e6%ad%a3%e6%96%87%e6%b5%8b%e8%af%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;正文测试
+        <guid>http://localhost:1313/p/test-chinese/</guid>
+        <description>&lt;img src="http://localhost:1313/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash.jpg" alt="Featured image of post Chinese Test" /&gt;&lt;h2 id=&#34;正文测试&#34;&gt;&lt;a href=&#34;#%e6%ad%a3%e6%96%87%e6%b5%8b%e8%af%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;正文测试
 &lt;/h2&gt;&lt;p&gt;而这些并不是完全重要，更加重要的问题是， 带着这些问题，我们来审视一下学生会退会。 既然如何， 对我个人而言，学生会退会不仅仅是一个重大的事件，还可能会改变我的人生。 我们不得不面对一个非常尴尬的事实，那就是， 可是，即使是这样，学生会退会的出现仍然代表了一定的意义。 学生会退会，发生了会如何，不发生又会如何。 经过上述讨论， 生活中，若学生会退会出现了，我们就不得不考虑它出现了的事实。 学生会退会，到底应该如何实现。 这样看来， 在这种困难的抉择下，本人思来想去，寝食难安。 对我个人而言，学生会退会不仅仅是一个重大的事件，还可能会改变我的人生。 就我个人来说，学生会退会对我的意义，不能不说非常重大。 莎士比亚曾经提到过，人的一生是短的，但如果卑劣地过这一生，就太长了。这似乎解答了我的疑惑。 莫扎特说过一句富有哲理的话，谁和我一样用功，谁就会和我一样成功。这启发了我， 对我个人而言，学生会退会不仅仅是一个重大的事件，还可能会改变我的人生。 学生会退会，到底应该如何实现。 一般来说， 从这个角度来看， 这种事实对本人来说意义重大，相信对这个世界也是有一定意义的。 在这种困难的抉择下，本人思来想去，寝食难安。 了解清楚学生会退会到底是一种怎么样的存在，是解决一切问题的关键。 一般来说， 生活中，若学生会退会出现了，我们就不得不考虑它出现了的事实。 问题的关键究竟为何？ 而这些并不是完全重要，更加重要的问题是。&lt;/p&gt;
 &lt;p&gt;奥斯特洛夫斯基曾经说过，共同的事业，共同的斗争，可以使人们产生忍受一切的力量。　带着这句话，我们还要更加慎重的审视这个问题： 一般来讲，我们都必须务必慎重的考虑考虑。 既然如此， 这种事实对本人来说意义重大，相信对这个世界也是有一定意义的。 带着这些问题，我们来审视一下学生会退会。 我认为， 我认为， 在这种困难的抉择下，本人思来想去，寝食难安。 问题的关键究竟为何？ 每个人都不得不面对这些问题。 在面对这种问题时， 要想清楚，学生会退会，到底是一种怎么样的存在。 我认为， 既然如此， 每个人都不得不面对这些问题。 在面对这种问题时， 那么， 我认为， 学生会退会因何而发生。&lt;/p&gt;
 &lt;h2 id=&#34;引用&#34;&gt;&lt;a href=&#34;#%e5%bc%95%e7%94%a8&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;引用
@@ -357,10 +722,10 @@
     &gt;最暖的憂傷 - 田馥甄&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;图片&#34;&gt;&lt;a href=&#34;#%e5%9b%be%e7%89%87&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;图片
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://cita-777.github.io/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash.jpg&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash.jpg&#34;
 	width=&#34;667&#34;
 	height=&#34;1000&#34;
-	srcset=&#34;http://cita-777.github.io/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash_hu13768363498926278726.jpg 480w, http://cita-777.github.io/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash_hu13380208884366868750.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash_hu13768363498926278726.jpg 480w, http://localhost:1313/p/test-chinese/florian-klauer-nptLmg6jqDo-unsplash_hu13380208884366868750.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Photo by Florian Klauer on Unsplash&#34;
@@ -370,10 +735,10 @@
 		data-flex-grow=&#34;66&#34;
 		data-flex-basis=&#34;160px&#34;
 	
-&gt;  &lt;img src=&#34;http://cita-777.github.io/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash.jpg&#34;
+&gt;  &lt;img src=&#34;http://localhost:1313/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash.jpg&#34;
 	width=&#34;1000&#34;
 	height=&#34;667&#34;
-	srcset=&#34;http://cita-777.github.io/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash_hu1712544344331247820.jpg 480w, http://cita-777.github.io/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash_hu12475395149584884402.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash_hu1712544344331247820.jpg 480w, http://localhost:1313/p/test-chinese/luca-bravo-alS7ewQ41M8-unsplash_hu12475395149584884402.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Photo by Luca Bravo on Unsplash&#34;
@@ -384,10 +749,10 @@
 		data-flex-basis=&#34;359px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://cita-777.github.io/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash.jpg&#34;
 	width=&#34;1000&#34;
 	height=&#34;750&#34;
-	srcset=&#34;http://cita-777.github.io/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash_hu8363585391189779282.jpg 480w, http://cita-777.github.io/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash_hu15102473124145023839.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash_hu8363585391189779282.jpg 480w, http://localhost:1313/p/test-chinese/helena-hertz-wWZzXlDpMog-unsplash_hu15102473124145023839.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Photo by Helena Hertz on Unsplash&#34;
@@ -397,10 +762,10 @@
 		data-flex-grow=&#34;133&#34;
 		data-flex-basis=&#34;320px&#34;
 	
-&gt;  &lt;img src=&#34;http://cita-777.github.io/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash.jpg&#34;
+&gt;  &lt;img src=&#34;http://localhost:1313/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash.jpg&#34;
 	width=&#34;667&#34;
 	height=&#34;1000&#34;
-	srcset=&#34;http://cita-777.github.io/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash_hu15886963791847885497.jpg 480w, http://cita-777.github.io/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash_hu11726476772237334826.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash_hu15886963791847885497.jpg 480w, http://localhost:1313/p/test-chinese/hudai-gayiran-3Od_VKcDEAA-unsplash_hu11726476772237334826.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Photo by Hudai Gayiran on Unsplash&#34;
@@ -429,11 +794,11 @@
         </item>
         <item>
         <title>Markdown Syntax Guide</title>
-        <link>http://cita-777.github.io/p/markdown-syntax-guide/</link>
+        <link>http://localhost:1313/p/markdown-syntax-guide/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/markdown-syntax-guide/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+        <guid>http://localhost:1313/p/markdown-syntax-guide/</guid>
+        <description>&lt;img src="http://localhost:1313/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
 &lt;h2 id=&#34;headings&#34;&gt;&lt;a href=&#34;#headings&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Headings
 &lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
 &lt;h1 id=&#34;h1&#34;&gt;&lt;a href=&#34;#h1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H1
@@ -659,10 +1024,10 @@
         </item>
         <item>
         <title>Rich Content</title>
-        <link>http://cita-777.github.io/p/rich-content/</link>
+        <link>http://localhost:1313/p/rich-content/</link>
         <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/rich-content/</guid>
+        <guid>http://localhost:1313/p/rich-content/</guid>
         <description>&lt;p&gt;Hugo ships with several &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Built-in Shortcodes&lt;/a&gt; for rich content, along with a &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Privacy Config&lt;/a&gt; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;
@@ -759,11 +1124,11 @@
         </item>
         <item>
         <title>Placeholder Text</title>
-        <link>http://cita-777.github.io/p/placeholder-text/</link>
+        <link>http://localhost:1313/p/placeholder-text/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/placeholder-text/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
+        <guid>http://localhost:1313/p/placeholder-text/</guid>
+        <description>&lt;img src="http://localhost:1313/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
 &lt;p&gt;Redit teque digerit hominumque toris verebor lumina non cervice subde tollit usus habet Arctonque, furores quas nec ferunt. Quoque montibus nunc caluere tempus inhospita parcite confusaque translucet patri vestro qui optatis lumine cognoscere flos nubis! Fronde ipsamque patulos Dryopen deorum.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Exierant elisi ambit vivere dedere&lt;/li&gt;
@@ -790,10 +1155,10 @@
         </item>
         <item>
         <title>Math Typesetting</title>
-        <link>http://cita-777.github.io/p/math-typesetting/</link>
+        <link>http://localhost:1313/p/math-typesetting/</link>
         <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/math-typesetting/</guid>
+        <guid>http://localhost:1313/p/math-typesetting/</guid>
         <description>&lt;p&gt;Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p&gt;
 &lt;p&gt;In this example we will be using &lt;a class=&#34;link&#34; href=&#34;https://katex.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KaTeX&lt;/a&gt;&lt;/p&gt;
@@ -832,11 +1197,11 @@ $$</description>
         </item>
         <item>
         <title>Emoji Support</title>
-        <link>http://cita-777.github.io/p/emoji-support/</link>
+        <link>http://localhost:1313/p/emoji-support/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/p/emoji-support/</guid>
-        <description>&lt;img src="http://cita-777.github.io/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
+        <guid>http://localhost:1313/p/emoji-support/</guid>
+        <description>&lt;img src="http://localhost:1313/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" /&gt;&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
 &lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/functions/emojify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;

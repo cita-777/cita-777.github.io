@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on cita</title>
-        <link>http://cita-777.github.io/categories/</link>
-        <description>Recent content in Categories on cita</description>
+        <title>Categories on cita的博客__</title>
+        <link>http://localhost:1313/categories/</link>
+        <description>Recent content in Categories on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://cita-777.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>纯软</title>
-        <link>http://cita-777.github.io/categories/%E7%BA%AF%E8%BD%AF/</link>
+        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>网站</title>
+        <link>http://localhost:1313/categories/%E7%BD%91%E7%AB%99/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/categories/%E7%BA%AF%E8%BD%AF/</guid>
+        <guid>http://localhost:1313/categories/%E7%BD%91%E7%AB%99/</guid>
         <description></description>
         </item>
         <item>
         <title>Test</title>
-        <link>http://cita-777.github.io/categories/test/</link>
+        <link>http://localhost:1313/categories/test/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>http://cita-777.github.io/categories/test/</guid>
-        <description>&lt;img src="http://cita-777.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>http://localhost:1313/categories/test/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
         </item>
         
     </channel>
