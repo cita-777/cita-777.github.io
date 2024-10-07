@@ -222,7 +222,7 @@
 &lt;p&gt;注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份(git remote set-url origin &lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:cita-777/cita-777.github.io.git)，目前github默认主分支为main，建议设置里改为master&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;后续修改网页&#34;&gt;&lt;a href=&#34;#%e5%90%8e%e7%bb%ad%e4%bf%ae%e6%94%b9%e7%bd%91%e9%a1%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;后续修改网页
-&lt;/h3&gt;&lt;p&gt;对content和config进行自行随意修改后需要重新上传至github仓库同步更新。命令如下：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;对&lt;code&gt;content&lt;/code&gt;和&lt;code&gt;config&lt;/code&gt;进行自行随意修改后需要重新上传至github仓库同步更新。切记不要随意手动删除public文件让Hugo重新生成再尝试push，因为这会将public内的.git一起删除，你将需要重新配置git并且链接至远程仓库，当你使用&lt;code&gt;hugo server&lt;/code&gt;命令在本地生存并预览网站后，&lt;code&gt;Hugo&lt;/code&gt;会自动生成新的public文件，包含你对网站所作的所有新更改，而且你在&lt;code&gt;static&lt;/code&gt;文件管理资源时所进行的增加与删除，public中只会进行增加而不会删除，本意是很好的，这是一种非破坏性修改。所以如果你有用不上的资源，记得在public文件内手动删除来减少空间占用，所以你只需要朴实无华的push即可，参考命令如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -233,8 +233,8 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; cita-site &lt;span class=&#34;c1&#34;&gt;#进入网页工程文件&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo --theme&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;hugo-theme-stack --baseURL&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://cita-777.github.io/&amp;#34;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;#重新构建public文件静态网页&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server -D 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ctrl + c &lt;span class=&#34;c1&#34;&gt;#关闭本地server&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; public &lt;span class=&#34;c1&#34;&gt;#进入public文件内&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add -A &lt;span class=&#34;c1&#34;&gt;#提交all变动&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;修改/更新了xxx&amp;#34;&lt;/span&gt; 

@@ -581,7 +581,7 @@
 <p>注意必须只上传public中的所有文件，若无法使用密钥则使用ssh鉴定身份(git remote set-url origin <a class="link" href="mailto:git@github.com" >git@github.com</a>:cita-777/cita-777.github.io.git)，目前github默认主分支为main，建议设置里改为master</p>
 </blockquote>
 <h3 id="后续修改网页"><a href="#%e5%90%8e%e7%bb%ad%e4%bf%ae%e6%94%b9%e7%bd%91%e9%a1%b5" class="header-anchor"></a>后续修改网页
-</h3><p>对content和config进行自行随意修改后需要重新上传至github仓库同步更新。命令如下：</p>
+</h3><p>对<code>content</code>和<code>config</code>进行自行随意修改后需要重新上传至github仓库同步更新。切记不要随意手动删除public文件让Hugo重新生成再尝试push，因为这会将public内的.git一起删除，你将需要重新配置git并且链接至远程仓库，当你使用<code>hugo server</code>命令在本地生存并预览网站后，<code>Hugo</code>会自动生成新的public文件，包含你对网站所作的所有新更改，而且你在<code>static</code>文件管理资源时所进行的增加与删除，public中只会进行增加而不会删除，本意是很好的，这是一种非破坏性修改。所以如果你有用不上的资源，记得在public文件内手动删除来减少空间占用，所以你只需要朴实无华的push即可，参考命令如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -592,8 +592,8 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> cita-site <span class="c1">#进入网页工程文件</span>
-</span></span><span class="line"><span class="cl">hugo --theme<span class="o">=</span>hugo-theme-stack --baseURL<span class="o">=</span><span class="s2">&#34;http://cita-777.github.io/&#34;</span>  <span class="c1">#重新构建public文件静态网页</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D 
+</span></span><span class="line"><span class="cl">ctrl + c <span class="c1">#关闭本地server</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> public <span class="c1">#进入public文件内</span>
 </span></span><span class="line"><span class="cl">git add -A <span class="c1">#提交all变动</span>
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;修改/更新了xxx&#34;</span> 
