@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7566&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="#STL常用算法函数及其参数简明含义 供快速回顾（常用函数摘自HFUT ICPC讲义P21） find\n功能：在范围 [first, last) 中查找值为 val 的第一个元素。 参数： InIt first, InIt last：输入迭代器，指定搜索范围。 const T&amp; val：需要查找的值。 find_if\n">
+<title>程序设计艺术(1): 搜索</title>
+
+<link rel='canonical' href='http://localhost:7566/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="程序设计艺术(1): 搜索">
+<meta property='og:description' content="#STL常用算法函数及其参数简明含义 供快速回顾（常用函数摘自HFUT ICPC讲义P21） find\n功能：在范围 [first, last) 中查找值为 val 的第一个元素。 参数： InIt first, InIt last：输入迭代器，指定搜索范围。 const T&amp; val：需要查找的值。 find_if\n">
+<meta property='og:url' content='http://localhost:7566/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/'>
+<meta property='og:site_name' content='cita的博客__'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='搜索' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:published_time' content='2024-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:7566/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/stl.png' />
+<meta name="twitter:title" content="程序设计艺术(1): 搜索">
+<meta name="twitter:description" content="#STL常用算法函数及其参数简明含义 供快速回顾（常用函数摘自HFUT ICPC讲义P21） find\n功能：在范围 [first, last) 中查找值为 val 的第一个元素。 参数： InIt first, InIt last：输入迭代器，指定搜索范围。 const T&amp; val：需要查找的值。 find_if\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:7566/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/stl.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4365964393701153492.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">cita的博客__</a></h1>
+            <h2 class="site-description">hello world!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cita-777'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>存档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:7566/en/" >English</option>
+                                
+                                    <option value="http://localhost:7566/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#stl常用算法函数及其参数简明含义">#STL常用算法函数及其参数简明含义</a>
+      <ol>
+        <li><a href="#供快速回顾常用函数摘自hfut-icpc讲义p21">供快速回顾（常用函数摘自HFUT ICPC讲义P21）</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/stl_hu904627144269343240.png"
+                        srcset="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/stl_hu904627144269343240.png 800w, /p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/stl_hu11332598926668326364.png 1600w"
+                        width="800" 
+                        height="109" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(1): 搜索" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E4%B8%9A/" style="background-color: #2a9d8f; color: #fff;">
+                学业
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-%E6%90%9C%E7%B4%A2/">程序设计艺术(1): 搜索</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-10-18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="stl常用算法函数及其参数简明含义"><a href="#stl%e5%b8%b8%e7%94%a8%e7%ae%97%e6%b3%95%e5%87%bd%e6%95%b0%e5%8f%8a%e5%85%b6%e5%8f%82%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89" class="header-anchor"></a>#STL常用算法函数及其参数简明含义
+</h2><h3 id="供快速回顾常用函数摘自hfut-icpc讲义p21"><a href="#%e4%be%9b%e5%bf%ab%e9%80%9f%e5%9b%9e%e9%a1%be%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e6%91%98%e8%87%aahfut-icpc%e8%ae%b2%e4%b9%89p21" class="header-anchor"></a>供快速回顾（常用函数摘自HFUT ICPC讲义P21）
+</h3><ol>
+<li>
+<p><strong><code>find</code></strong></p>
+<ul>
+<li><strong>功能</strong>：在范围 <code>[first, last)</code> 中查找值为 <code>val</code> 的第一个元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器，指定搜索范围。</li>
+<li><code>const T&amp; val</code>：需要查找的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>find_if</code></strong></p>
+<ul>
+<li><strong>功能</strong>：在范围 <code>[first, last)</code> 中查找第一个满足谓词 <code>pr</code> 的元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数，返回布尔值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>count</code></strong></p>
+<ul>
+<li><strong>功能</strong>：计算范围 <code>[first, last)</code> 中等于 <code>val</code> 的元素个数。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>const T&amp; val</code>：待计数的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>count_if</code></strong></p>
+<ul>
+<li><strong>功能</strong>：计算范围 <code>[first, last)</code> 中满足谓词 <code>pr</code> 的元素个数。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>copy</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中的元素复制到 <code>x</code> 开始的位置。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器，复制的目标位置。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>swap</code></strong></p>
+<ul>
+<li><strong>功能</strong>：交换两个变量 <code>x</code> 和 <code>y</code> 的值。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>T&amp; x, T&amp; y</code>：需要交换的两个变量。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>swap_ranges</code></strong></p>
+<ul>
+<li><strong>功能</strong>：交换两个范围 <code>[first, last)</code> 和从 <code>x</code> 开始的元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt1 first, FwdIt1 last</code>：第一个范围的迭代器。</li>
+<li><code>FwdIt2 x</code>：第二个范围的起始迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>replace</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中等于 <code>vold</code> 的元素替换为 <code>vnew</code>。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>const T&amp; vold, const T&amp; vnew</code>：旧值和新值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>replace_if</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中满足谓词 <code>pr</code> 的元素替换为 <code>val</code>。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+<li><code>const T&amp; val</code>：替换的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>generate</code></strong></p>
+<ul>
+<li><strong>功能</strong>：用生成器 <code>g</code> 生成的值填充范围 <code>[first, last)</code>。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>Gen g</code>：生成器函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>generate_n</code></strong></p>
+<ul>
+<li><strong>功能</strong>：用生成器 <code>g</code> 生成的值填充从 <code>first</code> 开始的 <code>n</code> 个元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>OutIt first</code>：输出迭代器。</li>
+<li><code>Dist n</code>：生成元素的数量。</li>
+<li><code>Gen g</code>：生成器函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>remove</code></strong></p>
+<ul>
+<li><strong>功能</strong>：删除范围 <code>[first, last)</code> 中等于 <code>val</code> 的元素，并返回新范围的末尾迭代器。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>const T&amp; val</code>：需要删除的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>remove_if</code></strong></p>
+<ul>
+<li><strong>功能</strong>：删除范围 <code>[first, last)</code> 中满足谓词 <code>pr</code> 的元素，并返回新范围的末尾迭代器。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>remove_copy</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中不等于 <code>val</code> 的元素复制到 <code>x</code> 开始的地方。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器。</li>
+<li><code>const T&amp; val</code>：待删除的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>remove_copy_if</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中不满足谓词 <code>pr</code> 的元素复制到 <code>x</code> 开始的位置。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt first, InIt last</code>：输入迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unique</code></strong></p>
+<ul>
+<li><strong>功能</strong>：删除范围 <code>[first, last)</code> 中相邻的重复元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unique</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：删除范围 <code>[first, last)</code> 中相邻满足谓词 <code>pr</code> 的重复元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：输入迭代器。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>reverse</code></strong></p>
+<ul>
+<li><strong>功能</strong>：反转范围 <code>[first, last)</code> 中的元素。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>BidIt first, BidIt last</code>：双向迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>reverse_copy</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中的元素反转后复制到 <code>x</code> 开始的位置。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>BidIt first, BidIt last</code>：双向迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>partition</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将范围 <code>[first, last)</code> 中满足谓词 <code>pr</code> 的元素放在不满足谓词的元素之前。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>BidIt first, BidIt last</code>：双向迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>stable_partition</code></strong></p>
+<ul>
+<li><strong>功能</strong>：与 <code>partition</code> 类似，但保留相对顺序。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：前向迭代器。</li>
+<li><code>Pred pr</code>：一元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>sort</code></strong></p>
+<ul>
+<li><strong>功能</strong>：对范围 <code>[first, last)</code> 中的元素进行升序排序。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>RanIt first, RanIt last</code>：随机访问迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>sort</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：按照谓词 <code>pr</code> 对范围 <code>[first, last)</code> 中的元素排序。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>RanIt first, RanIt last</code>：随机访问迭代器。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>stable_sort</code></strong></p>
+<ul>
+<li><strong>功能</strong>：稳定排序范围 <code>[first, last)</code> 中的元素，保留相等元素的相对顺序。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>BidIt first, BidIt last</code>：双向迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>stable_sort</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：按照谓词 <code>pr</code> 稳定排序。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>BidIt first, BidIt last</code>：双向迭代器。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>nth_element</code></strong></p>
+<ul>
+<li><strong>功能</strong>：对范围 <code>[first, last)</code> 进行部分排序，使得 <code>nth</code> 处的元素位于其最终位置。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>RanIt first, RanIt nth, RanIt last</code>：随机访问迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>binary_search</code></strong></p>
+<ul>
+<li><strong>功能</strong>：判断范围 <code>[first, last)</code> 中是否存在值 <code>val</code>。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：前向迭代器。</li>
+<li><code>const T&amp; val</code>：要查找的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>binary_search</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：根据谓词 <code>pr</code> 判断范围 <code>[first, last)</code> 中是否存在值 <code>val</code>。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>FwdIt first, FwdIt last</code>：前</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>向迭代器。
+- <code>const T&amp; val</code>：要查找的值。
+- <code>Pred pr</code>：二元谓词函数。</p>
+<ol start="29">
+<li>
+<p><strong><code>merge</code></strong></p>
+<ul>
+<li><strong>功能</strong>：将两个已排序的范围合并到一个新的范围中。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt1 first1, InIt1 last1</code>：第一个范围的输入迭代器。</li>
+<li><code>InIt2 first2, InIt2 last2</code>：第二个范围的输入迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>merge</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：根据谓词 <code>pr</code> 将两个已排序范围合并。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>InIt1 first1, InIt1 last1</code>：第一个范围的输入迭代器。</li>
+<li><code>InIt2 first2, InIt2 last2</code>：第二个范围的输入迭代器。</li>
+<li><code>OutIt x</code>：输出迭代器。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>max</code></strong></p>
+<ul>
+<li><strong>功能</strong>：返回 <code>x</code> 和 <code>y</code> 中较大的那个。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>const T&amp; x, const T&amp; y</code>：两个待比较的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>max</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：根据谓词 <code>pr</code> 返回较大的值。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>const T&amp; x, const T&amp; y</code>：两个待比较的值。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>min</code></strong></p>
+<ul>
+<li><strong>功能</strong>：返回 <code>x</code> 和 <code>y</code> 中较小的那个。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>const T&amp; x, const T&amp; y</code>：两个待比较的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>min</code> (带谓词)</strong></p>
+<ul>
+<li><strong>功能</strong>：根据谓词 <code>pr</code> 返回较小的值。</li>
+<li><strong>参数</strong>：
+<ul>
+<li><code>const T&amp; x, const T&amp; y</code>：两个待比较的值。</li>
+<li><code>Pred pr</code>：二元谓词函数。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>仅供参考，可能有误</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%90%9C%E7%B4%A2/">搜索</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(1): STL"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(1): STL</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 cita
+    </section>
+    
+    <section class="powerby">
+        
+            Hello World <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

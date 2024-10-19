@@ -1,0 +1,1318 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>手工算法 on cita的博客__</title>
+        <link>http://localhost:1313/tags/%E6%89%8B%E5%B7%A5%E7%AE%97%E6%B3%95/</link>
+        <description>Recent content in 手工算法 on cita的博客__</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>cita</copyright>
+        <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%89%8B%E5%B7%A5%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>机器人技术(2): 典型决策树学习算法ID3</title>
+        <link>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</link>
+        <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;决策树-维基百科&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26703300&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深入浅出理解决策树算法（一）-核心思想&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26760551&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深入浅出理解决策树算法（二）-ID3算法与C4.5算法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/435152553&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深刻理解决策树-动手计算ID3算法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_43279579/article/details/116660225&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;机器学习——使用ID3算法从原理到实际举例理解决策树&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基于信息论的三种决策树算法&#34;&gt;&lt;a href=&#34;#%e5%9f%ba%e4%ba%8e%e4%bf%a1%e6%81%af%e8%ae%ba%e7%9a%84%e4%b8%89%e7%a7%8d%e5%86%b3%e7%ad%96%e6%a0%91%e7%ae%97%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;基于信息论的三种决策树算法
+&lt;/h2&gt;&lt;p&gt;划分数据集的最大原则是：&lt;code&gt;使无序的数据变的有序&lt;/code&gt;。 如果一个训练数据中有20个特征，那么选取哪个做划分依据？这就必须采用量化的方法来判断，量化划分方法有多重，其中一项就是&lt;code&gt;“信息论度量信息分类”&lt;/code&gt;。基于信息论的决策树算法有&lt;code&gt;ID3&lt;/code&gt; 、&lt;code&gt;C4.5&lt;/code&gt;和 &lt;code&gt;CART&lt;/code&gt;等算法，其中&lt;code&gt;C4.5&lt;/code&gt;和&lt;code&gt;CART&lt;/code&gt;两种算法从&lt;code&gt;ID3&lt;/code&gt;算法中衍生而来。此处仅记录&lt;code&gt;ID3&lt;/code&gt;算法。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;ID3&lt;/strong&gt;算法（Iterative Dichotomiser 3 迭代二叉树3代）是一个由&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/w/index.php?title=Ross_Quinlan&amp;amp;action=edit&amp;amp;redlink=1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Ross Quinlan&lt;/a&gt;发明的用于&lt;code&gt;决策树&lt;/code&gt;的算法。&lt;/p&gt;
+&lt;p&gt;这个算法是建立在&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%e5%a5%a5%e5%8d%a1%e5%a7%86%e5%89%83%e5%88%80&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;奥卡姆剃刀&lt;/a&gt;的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%e5%90%af%e5%8f%91%e5%bc%8f%e7%ae%97%e6%b3%95&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;启发式算法&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这个ID3算法可以归纳为以下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用所有没有使用的属性并计算与之相关的样本熵值&lt;/li&gt;
+&lt;li&gt;选取其中熵值最小的属性&lt;/li&gt;
+&lt;li&gt;生成包含该属性的节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;理论公式&#34;&gt;&lt;a href=&#34;#%e7%90%86%e8%ae%ba%e5%85%ac%e5%bc%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;理论公式
+&lt;/h3&gt;&lt;h4 id=&#34;某个分类的信息&#34;&gt;&lt;a href=&#34;#%e6%9f%90%e4%b8%aa%e5%88%86%e7%b1%bb%e7%9a%84%e4%bf%a1%e6%81%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;某个分类的信息
+&lt;/h4&gt;$$
+l(x_i) = -\log_2 P(x_i)
+$$&lt;p&gt;这里\(p(x_i)\)是选择该分类的概率。&lt;/p&gt;
+&lt;h4 id=&#34;熵&#34;&gt;&lt;a href=&#34;#%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;熵
+&lt;/h4&gt;&lt;p&gt;在信息论与概率统计中，&lt;code&gt;熵&lt;/code&gt;是表示随机变量不确定性的度量。&lt;code&gt;熵定义为信息的期望值&lt;/code&gt;，因此熵的计算方法如下：&lt;/p&gt;
+$$
+H = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
+$$&lt;p&gt;
+这里 \( n \) 是分类的数目。&lt;/p&gt;
+&lt;h4 id=&#34;经验熵&#34;&gt;&lt;a href=&#34;#%e7%bb%8f%e9%aa%8c%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;经验熵
+&lt;/h4&gt;&lt;p&gt;熵中的概率由&lt;code&gt;数据估计&lt;/code&gt;（特别是最大似然估计）得到。在 \( |D| \) 样本容量（样本个数）下，设有 \( K \) 个类 \( C_k \), \( k = 1,2,3,…,K \)，\( |C_k| \) 为属于类 \( C_k \) 的样本个数，得到其表达式如下：&lt;/p&gt;
+$$
+H(D) = -\sum_{k=1}^{K} \frac{|C_k|}{|D|} \log_2 \frac{|C_k|}{|D|}
+$$&lt;h4 id=&#34;条件熵&#34;&gt;&lt;a href=&#34;#%e6%9d%a1%e4%bb%b6%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;条件熵
+&lt;/h4&gt;&lt;p&gt;在已知随机变量 \( X \) 的条件下随机变量 \( Y \) 的不确定性，即在随机变量 \( X \) 给定的条件下随机变量 \( Y \) 的&lt;code&gt;条件熵&lt;/code&gt; \( H(Y|X) \)，定义为 \( X \) 给定条件下 \( Y \) 的&lt;code&gt;条件概率分布的熵&lt;/code&gt;对 \( X \) 的数学期望：&lt;/p&gt;
+$$
+H(Y|X) = \sum_{i=1}^{n} p_i H(Y|X=x_i)
+$$&lt;h4 id=&#34;信息增益&#34;&gt;&lt;a href=&#34;#%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;信息增益
+&lt;/h4&gt;&lt;p&gt;集合 \( D \) 的经验熵 \( H(D) \) 与特征 \( A \) 给定条件下 \( D \) 的经验条件熵 \( H(D|A) \) 之差：&lt;/p&gt;
+$$
+g(D,A) = H(D) - H(D|A)
+$$&lt;h3 id=&#34;实战第四次作业题&#34;&gt;&lt;a href=&#34;#%e5%ae%9e%e6%88%98%e7%ac%ac%e5%9b%9b%e6%ac%a1%e4%bd%9c%e4%b8%9a%e9%a2%98&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;实战(第四次作业题)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;序号&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;9&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;11&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;12&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;算法步骤&#34;&gt;&lt;a href=&#34;#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;算法步骤
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;计算数据集中决策属性“是否等待”的熵（Entropy）。&lt;/li&gt;
+&lt;li&gt;对每个特征计算其信息增益（Information Gain），选择信息增益最大的特征作为根节点。&lt;/li&gt;
+&lt;li&gt;对选中的特征划分子数据集，递归地对每个子数据集继续构造子树，直到每个子集中的样本都属于同一类别，或者没有更多特征可以用来分裂。&lt;/li&gt;
+&lt;li&gt;生成最终的决策树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;第一层计算实例&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e5%b1%82%e8%ae%a1%e7%ae%97%e5%ae%9e%e4%be%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一层计算实例
+&lt;/h4&gt;&lt;p&gt;我们首先要计算整体数据集的熵，然后逐个计算每个特征的信息增益：&lt;/p&gt;
+&lt;h5 id=&#34;整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;整体数据集经验熵计算：
+&lt;/h5&gt;&lt;p&gt;有6个样例决策为&lt;code&gt;是&lt;/code&gt;，6个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;标签&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;汇总&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;样本数&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;12&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;概率值&lt;/td&gt;
+          &lt;td&gt;6/12&lt;/td&gt;
+          &lt;td&gt;6/12&lt;/td&gt;
+          &lt;td&gt;12/12&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S) = -\left(\frac{6}{12}\log_2\frac{6}{12}\right) - \left(\frac{6}{12}\log_2\frac{6}{12}\right) = 1
+$$&lt;p&gt;经验熵计算完了，现在，我们要计算每个特征的条件熵，以及对应的信息增益，并对信息增益进行排序，选择增益最大的特征作为第一个分裂点进行分裂。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;1特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#1%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.特征“是否有其他选择”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含两个属性取值，&lt;code&gt;是&lt;/code&gt;和&lt;code&gt;否&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$$$
+Entropy(S_{否}) = -\left(\frac{4}{6}\log_2\frac{4}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.780
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{6}{12} \times 0.918 + \frac{6}{12} \times 0.780\right) ≈ 0.151
+$$&lt;p&gt;
+“&lt;strong&gt;是否有其他选择&lt;/strong&gt;”这个特征的信息增益计算结束了，现在，我们需要对其他特征应用相同的计算方法，计算出剩余每个特征的风险增益。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;2特征饿否的信息增益&#34;&gt;&lt;a href=&#34;#2%e7%89%b9%e5%be%81%e9%a5%bf%e5%90%a6%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2.特征“饿否”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含两个属性取值，&lt;code&gt;是&lt;/code&gt;和&lt;code&gt;否&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{5}{7}\log_2\frac{5}{7}\right) - \left(\frac{2}{7}\log_2\frac{2}{7}\right) ≈ 0.863
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{5}\log_2\frac{1}{5}\right) - \left(\frac{4}{5}\log_2\frac{4}{5}\right) ≈ 0.722
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 饿否) = 1 - \left(\frac{7}{12} \times 0.863 + \frac{5}{12} \times 0.722\right) ≈ 0.1958
+$$&lt;hr&gt;
+&lt;h5 id=&#34;3特征价格的信息增益&#34;&gt;&lt;a href=&#34;#3%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3.特征&amp;quot;价格”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含三个属性取值，&lt;code&gt;$&lt;/code&gt;和&lt;code&gt;$$&lt;/code&gt;和&lt;code&gt;$$$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{3}{7}\log_2\frac{3}{7}\right) - \left(\frac{4}{7}\log_2\frac{4}{7}\right) ≈ 0.985
+$$$$
+Entropy(S_{￥￥}) = -\left(\frac{2}{2}\log_2\frac{2}{2}\right) - \left(\frac{0}{2}\log_2\frac{0}{2}\right) = 0
+$$&lt;p&gt;如果类的实例数为0，而实例总数为n，则需要计算*-(0/n) .log2(0/n)，*定义&lt;strong&gt;0*log2*0=0&lt;/strong&gt;，熵只依赖于X的分布，与X的取值无关。这里，log(0）将等于-∞, 我们不能计算0次∞。这是决策树应用程序中经常出现的一种特殊情况。
+&lt;/p&gt;
+$$
+Entropy(S_{￥￥￥}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
+$$&lt;p&gt;
+信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 1 - \left(\frac{7}{12} \times 0.985 + \frac{2}{12} \times 0+\frac{3}{12} \times 0.918\right) ≈ 0.1959
+$$&lt;hr&gt;
+&lt;h5 id=&#34;4特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#4%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4.特征“餐馆类型”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含四个属性取值，&lt;code&gt;法式&lt;/code&gt;和&lt;code&gt;中餐&lt;/code&gt;和&lt;code&gt;快餐&lt;/code&gt;和&lt;code&gt;意大利式&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{法}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{中}) = -\left(\frac{1}{4}\log_2\frac{1}{4}\right) - \left(\frac{3}{4}\log_2\frac{3}{4}\right) ≈ 0.811
+$$$$
+Entropy(S_{快}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{意}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{2}{12} \times 1 + \frac{4}{12} \times 0.811 + \frac{4}{12} \times 1+ \frac{2}{12} \times 1\right) ≈ 0.063
+$$&lt;hr&gt;
+&lt;h5 id=&#34;5特征餐馆顾客人数的信息增益&#34;&gt;&lt;a href=&#34;#5%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;5.特征“餐馆顾客人数”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含三个属性取值，&lt;code&gt;无人&lt;/code&gt;和&lt;code&gt;有人&lt;/code&gt;和&lt;code&gt;客满&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{无人}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$$$
+Entropy(S_{有人}) = -\left(\frac{4}{4}\log_2\frac{4}{4}\right) - \left(\frac{0}{4}\log_2\frac{0}{4}\right) = 0
+$$$$
+Entropy(S_{客满}) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆顾客人数) = 1 - \left(\frac{2}{12} \times 0 + \frac{4}{12} \times 0+\frac{6}{12} \times 0.918\right) ≈ 0.541
+$$&lt;hr&gt;
+&lt;h5 id=&#34;6特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#6%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;6.特征“等待时间(分钟)”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含四个属性取值，&lt;code&gt;0-10&lt;/code&gt;和&lt;code&gt;10-30&lt;/code&gt;和&lt;code&gt;30-60&lt;/code&gt;和&lt;code&gt;&amp;gt;60&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{0-10}) = -\left(\frac{4}{6}\log_2\frac{4}{6}\right) - \left(\frac{2}{6}\log_2\frac{2}{6}\right) ≈ 0.918
+$$$$
+Entropy(S_{10-30}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{&gt;60}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - \left(\frac{6}{12} \times 0.918 + \frac{2}{12} \times 1 + \frac{2}{12} \times 1+ \frac{2}{12} \times 0\right) ≈ 0.2077
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第二层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%8c%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第二层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆顾客人数&lt;/td&gt;
+          &lt;td&gt;0.541&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0.2077&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.1959&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;饿否&lt;/td&gt;
+          &lt;td&gt;0.1958&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.1951&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.063&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第一层分裂的特征确定后就要根据分裂的结果，进行第二层的分裂，同第一层，也是需要计算每个子集的经验熵 + 条件熵。&lt;/p&gt;
+&lt;p&gt;数据集第一步被&lt;code&gt;餐馆顾客人数&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。&lt;/p&gt;
+&lt;p&gt;通过对所有特征的信息增益进行比较，选择信息增益最高的特征作为决策节点，继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-无人有人-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e6%97%a0%e4%ba%ba%e6%9c%89%e4%ba%ba-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-无人(有人) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;无人&lt;/code&gt;这个分支上，标签全部是no，也就是已经彻底的完成了分裂了，这个就可以作为叶子节点，无需继续分裂。在&lt;code&gt;有人&lt;/code&gt;这个分支上，标签全部是yes，这个也可以作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;该子集中有 2 个样例决策为&lt;code&gt;是&lt;/code&gt;，4 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#1%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.整体数据集经验熵计算：
+&lt;/h5&gt;$$
+Entropy(S) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$&lt;p&gt;现在我们对剩下的特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;1-特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#1-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{4}\log_2\frac{1}{4}\right) - \left(\frac{3}{4}\log_2\frac{3}{4}\right) ≈ 0.811
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 0.918 - \left(\frac{4}{6} \times 0.811 + \frac{2}{6} \times 1\right) ≈ 0.0207
+$$&lt;h5 id=&#34;2-特征饿否的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e9%a5%bf%e5%90%a6%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“饿否”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{否}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 饿否) = 0.918 - \left(\frac{4}{6} \times 1 + \frac{2}{6} \times 0\right) ≈ 0.2513
+$$&lt;h5 id=&#34;3-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{￥￥￥}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 0.918 - \left(\frac{4}{6} \times 1 + \frac{2}{6} \times 0\right) ≈ 0.2513
+$$&lt;h5 id=&#34;4-特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“餐馆类型”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{中餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{快餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{法式})=Entropy(S_{意大利式})=0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆类型) = 0.918 - \left(\frac{2}{6} \times 1 + \frac{2}{6} \times 1 + \frac{1}{6} \times 0 + \frac{1}{6} \times 0\right)≈ 0.2511
+$$&lt;h5 id=&#34;5-特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#5-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;5. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{&gt;60}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 0.918 - \left(\frac{2}{6} \times 1 + \frac{2}{6} \times 1 + \frac{2}{6} \times 0 \right) ≈ 0.2513
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第三层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%89%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第三层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;饿否&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.2511&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.0207&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第三层也是需要计算每个子集的经验熵 + 条件熵。此时前三的信息增益一致，选任意一个即可。&lt;/p&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;饿否&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。&lt;/p&gt;
+&lt;p&gt;通过对所有特征的信息增益进行比较，选择信息增益最高的特征作为决策节点，继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-否-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e5%90%a6-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-否 分支
+&lt;/h5&gt;&lt;p&gt;在否这个分支上，标签全部是no，也就是已经彻底的完成了分裂了，非常纯，这个就可以作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此子集中有 2 个样例决策为&lt;code&gt;是&lt;/code&gt;，2 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1整体数据集经验熵计算-1&#34;&gt;&lt;a href=&#34;#1%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.整体数据集经验熵计算：
+&lt;/h5&gt;&lt;p&gt;该子集的经验熵为：
+&lt;/p&gt;
+$$
+Entropy(S) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$&lt;p&gt;
+现在我们对剩余特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;2-特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{1}\log_2\frac{1}{1}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{3}{4} \times 0.918 + \frac{1}{4} \times 0\right) ≈ 0.311
+$$&lt;h5 id=&#34;2-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{2}{3}\log_2\frac{2}{3}\right) - \left(\frac{1}{3}\log_2\frac{1}{3}\right) ≈ 0.918
+$$$$
+Entropy(S_{￥￥￥}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 1 - \left(\frac{3}{4} \times 0.918 + \frac{1}{4} \times 0\right) ≈ 0.311
+$$&lt;h5 id=&#34;3-特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“餐馆类型”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{中餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{快餐}) = Entropy(S_{意大利式}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆类型) = 1 - \left(\frac{2}{4} \times 1 + \frac{1}{4} \times 0 + \frac{1}{4} \times 0\right) = 0.5
+$$&lt;h5 id=&#34;4-特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - 1 = 0
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第四层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e5%9b%9b%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第四层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.5&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.311&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;餐馆类型&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-快餐意大利式-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e5%bf%ab%e9%a4%90%e6%84%8f%e5%a4%a7%e5%88%a9%e5%bc%8f-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-快餐(意大利式) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;快餐&lt;/code&gt;个分支上，标签全部是yes，&lt;code&gt;意大利式&lt;/code&gt;分支上全是no，非常纯，作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-中餐-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e4%b8%ad%e9%a4%90-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-中餐 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此分支中有 1 个样例决策为&lt;code&gt;是&lt;/code&gt;，1 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1-整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#1-%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1. 整体数据集经验熵计算
+&lt;/h5&gt;&lt;p&gt;该子集的经验熵为：
+&lt;/p&gt;
+$$
+Entropy(S) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+现在我们对剩余特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;2-特征是否有其他选择的信息增益-1&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+因为&lt;code&gt;是否有其他选择&lt;/code&gt;没有有效的分裂，信息增益为0。&lt;/p&gt;
+&lt;h5 id=&#34;3-特征价格的信息增益-1&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+&lt;code&gt;价格&lt;/code&gt;也没有带来有效分裂，信息增益为0。&lt;/p&gt;
+&lt;h5 id=&#34;4-特征等待时间分钟的信息增益-1&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = 0
+$$&lt;p&gt;
+信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - 0 = 1
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第五层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%94%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第五层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;等待时间&lt;/code&gt;这个特征分裂成两个节点，现在需要对每个节点计算下一步的分裂特征。继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-中餐等待时间-10303060-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e4%b8%ad%e9%a4%90%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4-10303060-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-中餐|等待时间-10&lt;del&gt;30(30&lt;/del&gt;60) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;10-30&lt;/code&gt;分支上，标签全部是yes，&lt;code&gt;30-60&lt;/code&gt;分支上全是no，非常纯，无需继续分裂。&lt;/p&gt;
+&lt;p&gt;至此，最终决策树已构建。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;最终决策树结构&#34;&gt;&lt;a href=&#34;#%e6%9c%80%e7%bb%88%e5%86%b3%e7%ad%96%e6%a0%91%e7%bb%93%e6%9e%84&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;最终决策树结构
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─顾客人数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─客满
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │  └─饿否
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      ├─否-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      └─是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │          └─餐馆类型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              ├─中餐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │  └─等待时间
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │      ├─10~30-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │      └─30~60-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              ├─快餐-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              └─意大利式-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─无人-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─有人-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

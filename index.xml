@@ -7,7 +7,1887 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 21:30:04 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>机器人技术(1): 常用函数</title>
+        <link>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</link>
+        <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(1): 常用函数" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.getshell.cn/tags/robocup/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;九月大人的博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yikai-coder.github.io/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;yikai-blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ssim.robocup.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;robocup2D官网&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;robocup-2d-常用函数简明含义&#34;&gt;&lt;a href=&#34;#robocup-2d-%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;RoboCup 2D 常用函数简明含义
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数名称&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;dribble(angle, speed)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;控制球员带球移动。&lt;code&gt;angle&lt;/code&gt;表示带球方向，&lt;code&gt;speed&lt;/code&gt;表示带球速度（如&lt;code&gt;DRIBBLE_FAST&lt;/code&gt;、&lt;code&gt;DRIBBLE_SLOW&lt;/code&gt;等）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;kickTo(targetPosition, speed)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;球员向目标位置（&lt;code&gt;targetPosition&lt;/code&gt;）踢球，&lt;code&gt;speed&lt;/code&gt;指定踢球的速度。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;leadingPass(teammate, power)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;向最近的队友传球，&lt;code&gt;teammate&lt;/code&gt;是要传球的目标队友，&lt;code&gt;power&lt;/code&gt;表示传球力度。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getNrInSetInCircle(set, circle)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;计算指定半径的圆圈内（&lt;code&gt;circle&lt;/code&gt;）特定对象集合（&lt;code&gt;set&lt;/code&gt;，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getClosestInSetTo(set, position)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取距离指定位置（&lt;code&gt;position&lt;/code&gt;）最近的特定对象集合（&lt;code&gt;set&lt;/code&gt;）中的对象，例如找到离当前球员最近的队友或对手。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isOpponentAtAngle(angleMin, angleMax)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getGlobalPosition(object)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取场上某个对象（球员、对手、球等）的全局坐标位置（&lt;code&gt;X, Y&lt;/code&gt;坐标）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getBallPos()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取球的当前位置坐标。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;moveToPos(position, speed)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;移动球员到指定的&lt;code&gt;position&lt;/code&gt;（坐标位置），并以&lt;code&gt;speed&lt;/code&gt;指定的速度执行移动。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isBallKickable()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断当前球是否在球员的控制范围内（即球员是否可以踢球）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;kickBallCloseToBody(angle)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;控制球员以指定的&lt;code&gt;angle&lt;/code&gt;（角度）把球围绕身体转动。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;intercept(timeout)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;尝试在指定时间内抢断球（通常用在防守场景）。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;turnNeckToObject(object)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;让球员将头（视角）转向指定的&lt;code&gt;object&lt;/code&gt;（如球或对方球员），通常用于跟踪球的位置。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getPlayerNumber()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getTeammateNumber()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getPosOpponentGoal()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取对方球门的位置，通常用于判断进攻方向或射门目标。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;shootToGoalex(object)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;指定球员向对方球门射门，通常由接近球门的前锋使用。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getBallSpeedMax()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取当前球员能踢球的最大速度。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getDirection()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isInTheirPenaltyArea(position)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;putCommandInQueue(command)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;将指令（&lt;code&gt;command&lt;/code&gt;）放入执行队列，确保该操作能够在下一次循环中执行。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Circle(center, radius)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;创建一个以&lt;code&gt;center&lt;/code&gt;为中心，&lt;code&gt;radius&lt;/code&gt;为半径的圆，用于计算范围内的球员数量或球的距离。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;Line::makeLineFromPositionAndAngle(position, angle)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;根据给定的&lt;code&gt;position&lt;/code&gt;和&lt;code&gt;angle&lt;/code&gt;生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isOffsideUs()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断是否处于本方越位模式，适用于进攻方的越位规则判断。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isCornerKickUs()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断是否处于本方角球模式。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;isOwnSideOpponentMost()&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;getSecondClosestInSetTo(set, object)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;获取距离指定&lt;code&gt;object&lt;/code&gt;最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>机器人技术(2): 典型决策树学习算法ID3</title>
+        <link>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</link>
+        <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;决策树-维基百科&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26703300&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深入浅出理解决策树算法（一）-核心思想&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26760551&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深入浅出理解决策树算法（二）-ID3算法与C4.5算法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/435152553&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;深刻理解决策树-动手计算ID3算法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_43279579/article/details/116660225&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;机器学习——使用ID3算法从原理到实际举例理解决策树&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基于信息论的三种决策树算法&#34;&gt;&lt;a href=&#34;#%e5%9f%ba%e4%ba%8e%e4%bf%a1%e6%81%af%e8%ae%ba%e7%9a%84%e4%b8%89%e7%a7%8d%e5%86%b3%e7%ad%96%e6%a0%91%e7%ae%97%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;基于信息论的三种决策树算法
+&lt;/h2&gt;&lt;p&gt;划分数据集的最大原则是：&lt;code&gt;使无序的数据变的有序&lt;/code&gt;。 如果一个训练数据中有20个特征，那么选取哪个做划分依据？这就必须采用量化的方法来判断，量化划分方法有多重，其中一项就是&lt;code&gt;“信息论度量信息分类”&lt;/code&gt;。基于信息论的决策树算法有&lt;code&gt;ID3&lt;/code&gt; 、&lt;code&gt;C4.5&lt;/code&gt;和 &lt;code&gt;CART&lt;/code&gt;等算法，其中&lt;code&gt;C4.5&lt;/code&gt;和&lt;code&gt;CART&lt;/code&gt;两种算法从&lt;code&gt;ID3&lt;/code&gt;算法中衍生而来。此处仅记录&lt;code&gt;ID3&lt;/code&gt;算法。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;ID3&lt;/strong&gt;算法（Iterative Dichotomiser 3 迭代二叉树3代）是一个由&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/w/index.php?title=Ross_Quinlan&amp;amp;action=edit&amp;amp;redlink=1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Ross Quinlan&lt;/a&gt;发明的用于&lt;code&gt;决策树&lt;/code&gt;的算法。&lt;/p&gt;
+&lt;p&gt;这个算法是建立在&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%e5%a5%a5%e5%8d%a1%e5%a7%86%e5%89%83%e5%88%80&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;奥卡姆剃刀&lt;/a&gt;的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%e5%90%af%e5%8f%91%e5%bc%8f%e7%ae%97%e6%b3%95&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;启发式算法&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这个ID3算法可以归纳为以下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用所有没有使用的属性并计算与之相关的样本熵值&lt;/li&gt;
+&lt;li&gt;选取其中熵值最小的属性&lt;/li&gt;
+&lt;li&gt;生成包含该属性的节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;理论公式&#34;&gt;&lt;a href=&#34;#%e7%90%86%e8%ae%ba%e5%85%ac%e5%bc%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;理论公式
+&lt;/h3&gt;&lt;h4 id=&#34;某个分类的信息&#34;&gt;&lt;a href=&#34;#%e6%9f%90%e4%b8%aa%e5%88%86%e7%b1%bb%e7%9a%84%e4%bf%a1%e6%81%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;某个分类的信息
+&lt;/h4&gt;$$
+l(x_i) = -\log_2 P(x_i)
+$$&lt;p&gt;这里\(p(x_i)\)是选择该分类的概率。&lt;/p&gt;
+&lt;h4 id=&#34;熵&#34;&gt;&lt;a href=&#34;#%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;熵
+&lt;/h4&gt;&lt;p&gt;在信息论与概率统计中，&lt;code&gt;熵&lt;/code&gt;是表示随机变量不确定性的度量。&lt;code&gt;熵定义为信息的期望值&lt;/code&gt;，因此熵的计算方法如下：&lt;/p&gt;
+$$
+H = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
+$$&lt;p&gt;
+这里 \( n \) 是分类的数目。&lt;/p&gt;
+&lt;h4 id=&#34;经验熵&#34;&gt;&lt;a href=&#34;#%e7%bb%8f%e9%aa%8c%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;经验熵
+&lt;/h4&gt;&lt;p&gt;熵中的概率由&lt;code&gt;数据估计&lt;/code&gt;（特别是最大似然估计）得到。在 \( |D| \) 样本容量（样本个数）下，设有 \( K \) 个类 \( C_k \), \( k = 1,2,3,…,K \)，\( |C_k| \) 为属于类 \( C_k \) 的样本个数，得到其表达式如下：&lt;/p&gt;
+$$
+H(D) = -\sum_{k=1}^{K} \frac{|C_k|}{|D|} \log_2 \frac{|C_k|}{|D|}
+$$&lt;h4 id=&#34;条件熵&#34;&gt;&lt;a href=&#34;#%e6%9d%a1%e4%bb%b6%e7%86%b5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;条件熵
+&lt;/h4&gt;&lt;p&gt;在已知随机变量 \( X \) 的条件下随机变量 \( Y \) 的不确定性，即在随机变量 \( X \) 给定的条件下随机变量 \( Y \) 的&lt;code&gt;条件熵&lt;/code&gt; \( H(Y|X) \)，定义为 \( X \) 给定条件下 \( Y \) 的&lt;code&gt;条件概率分布的熵&lt;/code&gt;对 \( X \) 的数学期望：&lt;/p&gt;
+$$
+H(Y|X) = \sum_{i=1}^{n} p_i H(Y|X=x_i)
+$$&lt;h4 id=&#34;信息增益&#34;&gt;&lt;a href=&#34;#%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;信息增益
+&lt;/h4&gt;&lt;p&gt;集合 \( D \) 的经验熵 \( H(D) \) 与特征 \( A \) 给定条件下 \( D \) 的经验条件熵 \( H(D|A) \) 之差：&lt;/p&gt;
+$$
+g(D,A) = H(D) - H(D|A)
+$$&lt;h3 id=&#34;实战第四次作业题&#34;&gt;&lt;a href=&#34;#%e5%ae%9e%e6%88%98%e7%ac%ac%e5%9b%9b%e6%ac%a1%e4%bd%9c%e4%b8%9a%e9%a2%98&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;实战(第四次作业题)
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;序号&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;9&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;11&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;12&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;算法步骤&#34;&gt;&lt;a href=&#34;#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;算法步骤
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;计算数据集中决策属性“是否等待”的熵（Entropy）。&lt;/li&gt;
+&lt;li&gt;对每个特征计算其信息增益（Information Gain），选择信息增益最大的特征作为根节点。&lt;/li&gt;
+&lt;li&gt;对选中的特征划分子数据集，递归地对每个子数据集继续构造子树，直到每个子集中的样本都属于同一类别，或者没有更多特征可以用来分裂。&lt;/li&gt;
+&lt;li&gt;生成最终的决策树。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;第一层计算实例&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e5%b1%82%e8%ae%a1%e7%ae%97%e5%ae%9e%e4%be%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一层计算实例
+&lt;/h4&gt;&lt;p&gt;我们首先要计算整体数据集的熵，然后逐个计算每个特征的信息增益：&lt;/p&gt;
+&lt;h5 id=&#34;整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;整体数据集经验熵计算：
+&lt;/h5&gt;&lt;p&gt;有6个样例决策为&lt;code&gt;是&lt;/code&gt;，6个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;标签&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;汇总&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;样本数&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;12&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;概率值&lt;/td&gt;
+          &lt;td&gt;6/12&lt;/td&gt;
+          &lt;td&gt;6/12&lt;/td&gt;
+          &lt;td&gt;12/12&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S) = -\left(\frac{6}{12}\log_2\frac{6}{12}\right) - \left(\frac{6}{12}\log_2\frac{6}{12}\right) = 1
+$$&lt;p&gt;经验熵计算完了，现在，我们要计算每个特征的条件熵，以及对应的信息增益，并对信息增益进行排序，选择增益最大的特征作为第一个分裂点进行分裂。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;1特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#1%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.特征“是否有其他选择”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含两个属性取值，&lt;code&gt;是&lt;/code&gt;和&lt;code&gt;否&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$$$
+Entropy(S_{否}) = -\left(\frac{4}{6}\log_2\frac{4}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.780
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{6}{12} \times 0.918 + \frac{6}{12} \times 0.780\right) ≈ 0.151
+$$&lt;p&gt;
+“&lt;strong&gt;是否有其他选择&lt;/strong&gt;”这个特征的信息增益计算结束了，现在，我们需要对其他特征应用相同的计算方法，计算出剩余每个特征的风险增益。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;2特征饿否的信息增益&#34;&gt;&lt;a href=&#34;#2%e7%89%b9%e5%be%81%e9%a5%bf%e5%90%a6%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2.特征“饿否”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含两个属性取值，&lt;code&gt;是&lt;/code&gt;和&lt;code&gt;否&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{5}{7}\log_2\frac{5}{7}\right) - \left(\frac{2}{7}\log_2\frac{2}{7}\right) ≈ 0.863
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{5}\log_2\frac{1}{5}\right) - \left(\frac{4}{5}\log_2\frac{4}{5}\right) ≈ 0.722
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 饿否) = 1 - \left(\frac{7}{12} \times 0.863 + \frac{5}{12} \times 0.722\right) ≈ 0.1958
+$$&lt;hr&gt;
+&lt;h5 id=&#34;3特征价格的信息增益&#34;&gt;&lt;a href=&#34;#3%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3.特征&amp;quot;价格”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含三个属性取值，&lt;code&gt;$&lt;/code&gt;和&lt;code&gt;$$&lt;/code&gt;和&lt;code&gt;$$$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{3}{7}\log_2\frac{3}{7}\right) - \left(\frac{4}{7}\log_2\frac{4}{7}\right) ≈ 0.985
+$$$$
+Entropy(S_{￥￥}) = -\left(\frac{2}{2}\log_2\frac{2}{2}\right) - \left(\frac{0}{2}\log_2\frac{0}{2}\right) = 0
+$$&lt;p&gt;如果类的实例数为0，而实例总数为n，则需要计算*-(0/n) .log2(0/n)，*定义&lt;strong&gt;0*log2*0=0&lt;/strong&gt;，熵只依赖于X的分布，与X的取值无关。这里，log(0）将等于-∞, 我们不能计算0次∞。这是决策树应用程序中经常出现的一种特殊情况。
+&lt;/p&gt;
+$$
+Entropy(S_{￥￥￥}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
+$$&lt;p&gt;
+信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 1 - \left(\frac{7}{12} \times 0.985 + \frac{2}{12} \times 0+\frac{3}{12} \times 0.918\right) ≈ 0.1959
+$$&lt;hr&gt;
+&lt;h5 id=&#34;4特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#4%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4.特征“餐馆类型”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含四个属性取值，&lt;code&gt;法式&lt;/code&gt;和&lt;code&gt;中餐&lt;/code&gt;和&lt;code&gt;快餐&lt;/code&gt;和&lt;code&gt;意大利式&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{法}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{中}) = -\left(\frac{1}{4}\log_2\frac{1}{4}\right) - \left(\frac{3}{4}\log_2\frac{3}{4}\right) ≈ 0.811
+$$$$
+Entropy(S_{快}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{意}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{2}{12} \times 1 + \frac{4}{12} \times 0.811 + \frac{4}{12} \times 1+ \frac{2}{12} \times 1\right) ≈ 0.063
+$$&lt;hr&gt;
+&lt;h5 id=&#34;5特征餐馆顾客人数的信息增益&#34;&gt;&lt;a href=&#34;#5%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;5.特征“餐馆顾客人数”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含三个属性取值，&lt;code&gt;无人&lt;/code&gt;和&lt;code&gt;有人&lt;/code&gt;和&lt;code&gt;客满&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;无人&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;有人&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{无人}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$$$
+Entropy(S_{有人}) = -\left(\frac{4}{4}\log_2\frac{4}{4}\right) - \left(\frac{0}{4}\log_2\frac{0}{4}\right) = 0
+$$$$
+Entropy(S_{客满}) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆顾客人数) = 1 - \left(\frac{2}{12} \times 0 + \frac{4}{12} \times 0+\frac{6}{12} \times 0.918\right) ≈ 0.541
+$$&lt;hr&gt;
+&lt;h5 id=&#34;6特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#6%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;6.特征“等待时间(分钟)”的信息增益：
+&lt;/h5&gt;&lt;p&gt;这个特征包含四个属性取值，&lt;code&gt;0-10&lt;/code&gt;和&lt;code&gt;10-30&lt;/code&gt;和&lt;code&gt;30-60&lt;/code&gt;和&lt;code&gt;&amp;gt;60&lt;/code&gt;。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0-10&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+$$
+Entropy(S_{0-10}) = -\left(\frac{4}{6}\log_2\frac{4}{6}\right) - \left(\frac{2}{6}\log_2\frac{2}{6}\right) ≈ 0.918
+$$$$
+Entropy(S_{10-30}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{&gt;60}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益计算：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - \left(\frac{6}{12} \times 0.918 + \frac{2}{12} \times 1 + \frac{2}{12} \times 1+ \frac{2}{12} \times 0\right) ≈ 0.2077
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第二层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%8c%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第二层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆顾客人数&lt;/td&gt;
+          &lt;td&gt;0.541&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0.2077&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.1959&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;饿否&lt;/td&gt;
+          &lt;td&gt;0.1958&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.1951&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.063&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第一层分裂的特征确定后就要根据分裂的结果，进行第二层的分裂，同第一层，也是需要计算每个子集的经验熵 + 条件熵。&lt;/p&gt;
+&lt;p&gt;数据集第一步被&lt;code&gt;餐馆顾客人数&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。&lt;/p&gt;
+&lt;p&gt;通过对所有特征的信息增益进行比较，选择信息增益最高的特征作为决策节点，继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-无人有人-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e6%97%a0%e4%ba%ba%e6%9c%89%e4%ba%ba-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-无人(有人) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;无人&lt;/code&gt;这个分支上，标签全部是no，也就是已经彻底的完成了分裂了，这个就可以作为叶子节点，无需继续分裂。在&lt;code&gt;有人&lt;/code&gt;这个分支上，标签全部是yes，这个也可以作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;该子集中有 2 个样例决策为&lt;code&gt;是&lt;/code&gt;，4 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#1%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.整体数据集经验熵计算：
+&lt;/h5&gt;$$
+Entropy(S) = -\left(\frac{2}{6}\log_2\frac{2}{6}\right) - \left(\frac{4}{6}\log_2\frac{4}{6}\right) ≈ 0.918
+$$&lt;p&gt;现在我们对剩下的特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;1-特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#1-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{4}\log_2\frac{1}{4}\right) - \left(\frac{3}{4}\log_2\frac{3}{4}\right) ≈ 0.811
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 0.918 - \left(\frac{4}{6} \times 0.811 + \frac{2}{6} \times 1\right) ≈ 0.0207
+$$&lt;h5 id=&#34;2-特征饿否的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e9%a5%bf%e5%90%a6%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“饿否”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{否}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 饿否) = 0.918 - \left(\frac{4}{6} \times 1 + \frac{2}{6} \times 0\right) ≈ 0.2513
+$$&lt;h5 id=&#34;3-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$$$
+Entropy(S_{￥￥￥}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 0.918 - \left(\frac{4}{6} \times 1 + \frac{2}{6} \times 0\right) ≈ 0.2513
+$$&lt;h5 id=&#34;4-特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“餐馆类型”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;法式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{中餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{快餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{法式})=Entropy(S_{意大利式})=0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆类型) = 0.918 - \left(\frac{2}{6} \times 1 + \frac{2}{6} \times 1 + \frac{1}{6} \times 0 + \frac{1}{6} \times 0\right)≈ 0.2511
+$$&lt;h5 id=&#34;5-特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#5-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;5. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&amp;gt;60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{&gt;60}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 0.918 - \left(\frac{2}{6} \times 1 + \frac{2}{6} \times 1 + \frac{2}{6} \times 0 \right) ≈ 0.2513
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第三层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%89%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第三层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;饿否&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.2511&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.0207&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第三层也是需要计算每个子集的经验熵 + 条件熵。此时前三的信息增益一致，选任意一个即可。&lt;/p&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;饿否&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。&lt;/p&gt;
+&lt;p&gt;通过对所有特征的信息增益进行比较，选择信息增益最高的特征作为决策节点，继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-否-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e5%90%a6-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-否 分支
+&lt;/h5&gt;&lt;p&gt;在否这个分支上，标签全部是no，也就是已经彻底的完成了分裂了，非常纯，这个就可以作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此子集中有 2 个样例决策为&lt;code&gt;是&lt;/code&gt;，2 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1整体数据集经验熵计算-1&#34;&gt;&lt;a href=&#34;#1%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.整体数据集经验熵计算：
+&lt;/h5&gt;&lt;p&gt;该子集的经验熵为：
+&lt;/p&gt;
+$$
+Entropy(S) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+$$&lt;p&gt;
+现在我们对剩余特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;2-特征是否有其他选择的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
+$$$$
+Entropy(S_{否}) = -\left(\frac{1}{1}\log_2\frac{1}{1}\right) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 是否有其他选择) = 1 - \left(\frac{3}{4} \times 0.918 + \frac{1}{4} \times 0\right) ≈ 0.311
+$$&lt;h5 id=&#34;2-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$$$&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{2}{3}\log_2\frac{2}{3}\right) - \left(\frac{1}{3}\log_2\frac{1}{3}\right) ≈ 0.918
+$$$$
+Entropy(S_{￥￥￥}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 价格) = 1 - \left(\frac{3}{4} \times 0.918 + \frac{1}{4} \times 0\right) ≈ 0.311
+$$&lt;h5 id=&#34;3-特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“餐馆类型”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;快餐&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;意大利式&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{中餐}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$$$
+Entropy(S_{快餐}) = Entropy(S_{意大利式}) = 0
+$$&lt;p&gt;信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 餐馆类型) = 1 - \left(\frac{2}{4} \times 1 + \frac{1}{4} \times 0 + \frac{1}{4} \times 0\right) = 0.5
+$$&lt;h5 id=&#34;4-特征等待时间分钟的信息增益&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - 1 = 0
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第四层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e5%9b%9b%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第四层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;餐馆类型&lt;/td&gt;
+          &lt;td&gt;0.5&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0.311&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0.2513&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;餐馆类型&lt;/code&gt;这个特征分裂成三个节点，现在需要对每个节点计算下一步的分裂特征。继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-快餐意大利式-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e5%bf%ab%e9%a4%90%e6%84%8f%e5%a4%a7%e5%88%a9%e5%bc%8f-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-快餐(意大利式) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;快餐&lt;/code&gt;个分支上，标签全部是yes，&lt;code&gt;意大利式&lt;/code&gt;分支上全是no，非常纯，作为叶子节点，无需继续分裂。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-中餐-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e4%b8%ad%e9%a4%90-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-中餐 分支
+&lt;/h5&gt;&lt;p&gt;这个分支包含以下数据集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;餐馆顾客人数&lt;/th&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;饿否&lt;/th&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;餐馆类型&lt;/th&gt;
+          &lt;th&gt;等待时间 (分钟)&lt;/th&gt;
+          &lt;th&gt;决策：是否等待&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;客满&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;中餐&lt;/td&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此分支中有 1 个样例决策为&lt;code&gt;是&lt;/code&gt;，1 个样例决策为&lt;code&gt;否&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;1-整体数据集经验熵计算&#34;&gt;&lt;a href=&#34;#1-%e6%95%b4%e4%bd%93%e6%95%b0%e6%8d%ae%e9%9b%86%e7%bb%8f%e9%aa%8c%e7%86%b5%e8%ae%a1%e7%ae%97&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1. 整体数据集经验熵计算
+&lt;/h5&gt;&lt;p&gt;该子集的经验熵为：
+&lt;/p&gt;
+$$
+Entropy(S) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+现在我们对剩余特征重新计算信息增益。&lt;/p&gt;
+&lt;h5 id=&#34;2-特征是否有其他选择的信息增益-1&#34;&gt;&lt;a href=&#34;#2-%e7%89%b9%e5%be%81%e6%98%af%e5%90%a6%e6%9c%89%e5%85%b6%e4%bb%96%e9%80%89%e6%8b%a9%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2. 特征“是否有其他选择”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;是否有其他选择&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{是}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+因为&lt;code&gt;是否有其他选择&lt;/code&gt;没有有效的分裂，信息增益为0。&lt;/p&gt;
+&lt;h5 id=&#34;3-特征价格的信息增益-1&#34;&gt;&lt;a href=&#34;#3-%e7%89%b9%e5%be%81%e4%bb%b7%e6%a0%bc%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. 特征“价格”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;价格&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{￥}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+$$&lt;p&gt;
+&lt;code&gt;价格&lt;/code&gt;也没有带来有效分裂，信息增益为0。&lt;/p&gt;
+&lt;h5 id=&#34;4-特征等待时间分钟的信息增益-1&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“等待时间(分钟)”的信息增益
+&lt;/h5&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;等待时间(分钟)&lt;/th&gt;
+          &lt;th&gt;YES&lt;/th&gt;
+          &lt;th&gt;NO&lt;/th&gt;
+          &lt;th&gt;样本数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;10-30&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;30-60&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;计算条件熵：
+&lt;/p&gt;
+$$
+Entropy(S_{10-30}) = Entropy(S_{30-60}) = 0
+$$&lt;p&gt;
+信息增益：
+&lt;/p&gt;
+$$
+Gain(Decision, 等待时间) = 1 - 0 = 1
+$$&lt;hr&gt;
+&lt;h4 id=&#34;第五层分裂决策&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%94%e5%b1%82%e5%88%86%e8%a3%82%e5%86%b3%e7%ad%96&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第五层分裂决策
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Gain&lt;/th&gt;
+          &lt;th&gt;排名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;等待时间(分钟)&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;价格&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;是否有其他选择&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;数据集第一步被餐馆&lt;code&gt;等待时间&lt;/code&gt;这个特征分裂成两个节点，现在需要对每个节点计算下一步的分裂特征。继续对数据集进行划分，直到生成完整的决策树。&lt;/p&gt;
+&lt;h5 id=&#34;餐馆顾客人数-客满饿否-是餐馆类型-中餐等待时间-10303060-分支&#34;&gt;&lt;a href=&#34;#%e9%a4%90%e9%a6%86%e9%a1%be%e5%ae%a2%e4%ba%ba%e6%95%b0-%e5%ae%a2%e6%bb%a1%e9%a5%bf%e5%90%a6-%e6%98%af%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b-%e4%b8%ad%e9%a4%90%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4-10303060-%e5%88%86%e6%94%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;餐馆顾客人数-客满|饿否-是|餐馆类型-中餐|等待时间-10&lt;del&gt;30(30&lt;/del&gt;60) 分支
+&lt;/h5&gt;&lt;p&gt;在&lt;code&gt;10-30&lt;/code&gt;分支上，标签全部是yes，&lt;code&gt;30-60&lt;/code&gt;分支上全是no，非常纯，无需继续分裂。&lt;/p&gt;
+&lt;p&gt;至此，最终决策树已构建。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;最终决策树结构&#34;&gt;&lt;a href=&#34;#%e6%9c%80%e7%bb%88%e5%86%b3%e7%ad%96%e6%a0%91%e7%bb%93%e6%9e%84&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;最终决策树结构
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─顾客人数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─客满
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │  └─饿否
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      ├─否-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      └─是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │          └─餐馆类型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              ├─中餐
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │  └─等待时间
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │      ├─10~30-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              │      └─30~60-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              ├─快餐-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │              └─意大利式-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─无人-&amp;gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─有人-&amp;gt;yes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>程序设计艺术(1): STL</title>
+        <link>http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/</link>
+        <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/stl.png" alt="Featured image of post 程序设计艺术(1): STL" /&gt;&lt;h2 id=&#34;stl常用算法函数及其参数简明含义&#34;&gt;&lt;a href=&#34;#stl%e5%b8%b8%e7%94%a8%e7%ae%97%e6%b3%95%e5%87%bd%e6%95%b0%e5%8f%8a%e5%85%b6%e5%8f%82%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;#STL常用算法函数及其参数简明含义
+&lt;/h2&gt;&lt;h3 id=&#34;供快速回顾常用函数摘自hfut-icpc讲义p21&#34;&gt;&lt;a href=&#34;#%e4%be%9b%e5%bf%ab%e9%80%9f%e5%9b%9e%e9%a1%be%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e6%91%98%e8%87%aahfut-icpc%e8%ae%b2%e4%b9%89p21&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;供快速回顾（常用函数摘自HFUT ICPC讲义P21）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;find&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：在范围 &lt;code&gt;[first, last)&lt;/code&gt; 中查找值为 &lt;code&gt;val&lt;/code&gt; 的第一个元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器，指定搜索范围。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：需要查找的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;find_if&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：在范围 &lt;code&gt;[first, last)&lt;/code&gt; 中查找第一个满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数，返回布尔值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;count&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：计算范围 &lt;code&gt;[first, last)&lt;/code&gt; 中等于 &lt;code&gt;val&lt;/code&gt; 的元素个数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：待计数的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;count_if&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：计算范围 &lt;code&gt;[first, last)&lt;/code&gt; 中满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素个数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;copy&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素复制到 &lt;code&gt;x&lt;/code&gt; 开始的位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器，复制的目标位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;swap&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：交换两个变量 &lt;code&gt;x&lt;/code&gt; 和 &lt;code&gt;y&lt;/code&gt; 的值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;T&amp;amp; x, T&amp;amp; y&lt;/code&gt;：需要交换的两个变量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;swap_ranges&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：交换两个范围 &lt;code&gt;[first, last)&lt;/code&gt; 和从 &lt;code&gt;x&lt;/code&gt; 开始的元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt1 first, FwdIt1 last&lt;/code&gt;：第一个范围的迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FwdIt2 x&lt;/code&gt;：第二个范围的起始迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;replace&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中等于 &lt;code&gt;vold&lt;/code&gt; 的元素替换为 &lt;code&gt;vnew&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; vold, const T&amp;amp; vnew&lt;/code&gt;：旧值和新值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;replace_if&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素替换为 &lt;code&gt;val&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：替换的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;generate&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：用生成器 &lt;code&gt;g&lt;/code&gt; 生成的值填充范围 &lt;code&gt;[first, last)&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Gen g&lt;/code&gt;：生成器函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;generate_n&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：用生成器 &lt;code&gt;g&lt;/code&gt; 生成的值填充从 &lt;code&gt;first&lt;/code&gt; 开始的 &lt;code&gt;n&lt;/code&gt; 个元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;OutIt first&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Dist n&lt;/code&gt;：生成元素的数量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Gen g&lt;/code&gt;：生成器函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;remove&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：删除范围 &lt;code&gt;[first, last)&lt;/code&gt; 中等于 &lt;code&gt;val&lt;/code&gt; 的元素，并返回新范围的末尾迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：需要删除的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;remove_if&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：删除范围 &lt;code&gt;[first, last)&lt;/code&gt; 中满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素，并返回新范围的末尾迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;remove_copy&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中不等于 &lt;code&gt;val&lt;/code&gt; 的元素复制到 &lt;code&gt;x&lt;/code&gt; 开始的地方。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：待删除的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;remove_copy_if&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中不满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素复制到 &lt;code&gt;x&lt;/code&gt; 开始的位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt first, InIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;unique&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：删除范围 &lt;code&gt;[first, last)&lt;/code&gt; 中相邻的重复元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;unique&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：删除范围 &lt;code&gt;[first, last)&lt;/code&gt; 中相邻满足谓词 &lt;code&gt;pr&lt;/code&gt; 的重复元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;reverse&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：反转范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BidIt first, BidIt last&lt;/code&gt;：双向迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;reverse_copy&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素反转后复制到 &lt;code&gt;x&lt;/code&gt; 开始的位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BidIt first, BidIt last&lt;/code&gt;：双向迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;partition&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将范围 &lt;code&gt;[first, last)&lt;/code&gt; 中满足谓词 &lt;code&gt;pr&lt;/code&gt; 的元素放在不满足谓词的元素之前。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BidIt first, BidIt last&lt;/code&gt;：双向迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;stable_partition&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：与 &lt;code&gt;partition&lt;/code&gt; 类似，但保留相对顺序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：前向迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：一元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：对范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素进行升序排序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RanIt first, RanIt last&lt;/code&gt;：随机访问迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;sort&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：按照谓词 &lt;code&gt;pr&lt;/code&gt; 对范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素排序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RanIt first, RanIt last&lt;/code&gt;：随机访问迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;stable_sort&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：稳定排序范围 &lt;code&gt;[first, last)&lt;/code&gt; 中的元素，保留相等元素的相对顺序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BidIt first, BidIt last&lt;/code&gt;：双向迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;stable_sort&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：按照谓词 &lt;code&gt;pr&lt;/code&gt; 稳定排序。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BidIt first, BidIt last&lt;/code&gt;：双向迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;nth_element&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：对范围 &lt;code&gt;[first, last)&lt;/code&gt; 进行部分排序，使得 &lt;code&gt;nth&lt;/code&gt; 处的元素位于其最终位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RanIt first, RanIt nth, RanIt last&lt;/code&gt;：随机访问迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;binary_search&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：判断范围 &lt;code&gt;[first, last)&lt;/code&gt; 中是否存在值 &lt;code&gt;val&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：前向迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; val&lt;/code&gt;：要查找的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;binary_search&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：根据谓词 &lt;code&gt;pr&lt;/code&gt; 判断范围 &lt;code&gt;[first, last)&lt;/code&gt; 中是否存在值 &lt;code&gt;val&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FwdIt first, FwdIt last&lt;/code&gt;：前&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;向迭代器。
+- &lt;code&gt;const T&amp;amp; val&lt;/code&gt;：要查找的值。
+- &lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/p&gt;
+&lt;ol start=&#34;29&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;merge&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：将两个已排序的范围合并到一个新的范围中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt1 first1, InIt1 last1&lt;/code&gt;：第一个范围的输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;InIt2 first2, InIt2 last2&lt;/code&gt;：第二个范围的输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;merge&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：根据谓词 &lt;code&gt;pr&lt;/code&gt; 将两个已排序范围合并。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;InIt1 first1, InIt1 last1&lt;/code&gt;：第一个范围的输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;InIt2 first2, InIt2 last2&lt;/code&gt;：第二个范围的输入迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OutIt x&lt;/code&gt;：输出迭代器。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;max&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：返回 &lt;code&gt;x&lt;/code&gt; 和 &lt;code&gt;y&lt;/code&gt; 中较大的那个。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; x, const T&amp;amp; y&lt;/code&gt;：两个待比较的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;max&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：根据谓词 &lt;code&gt;pr&lt;/code&gt; 返回较大的值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; x, const T&amp;amp; y&lt;/code&gt;：两个待比较的值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;min&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：返回 &lt;code&gt;x&lt;/code&gt; 和 &lt;code&gt;y&lt;/code&gt; 中较小的那个。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; x, const T&amp;amp; y&lt;/code&gt;：两个待比较的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;min&lt;/code&gt; (带谓词)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;功能&lt;/strong&gt;：根据谓词 &lt;code&gt;pr&lt;/code&gt; 返回较小的值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;const T&amp;amp; x, const T&amp;amp; y&lt;/code&gt;：两个待比较的值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Pred pr&lt;/code&gt;：二元谓词函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>程序设计艺术(2): 搜索</title>
+        <link>http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/</link>
+        <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/stl.png" alt="Featured image of post 程序设计艺术(2): 搜索" /&gt;&lt;blockquote&gt;
+&lt;p&gt;仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
         <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(1)</title>
         <link>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
@@ -826,236 +2706,6 @@ Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下�
         
         <guid>http://localhost:1313/archives/</guid>
         <description></description>
-        </item>
-        <item>
-        <title>Markdown Syntax Guide</title>
-        <link>http://localhost:1313/p/markdown-syntax-guide/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/p/markdown-syntax-guide/</guid>
-        <description>&lt;img src="http://localhost:1313/p/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" /&gt;&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
-&lt;h2 id=&#34;headings&#34;&gt;&lt;a href=&#34;#headings&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Headings
-&lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
-&lt;h1 id=&#34;h1&#34;&gt;&lt;a href=&#34;#h1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H1
-&lt;/h1&gt;&lt;h2 id=&#34;h2&#34;&gt;&lt;a href=&#34;#h2&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H2
-&lt;/h2&gt;&lt;h3 id=&#34;h3&#34;&gt;&lt;a href=&#34;#h3&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H3
-&lt;/h3&gt;&lt;h4 id=&#34;h4&#34;&gt;&lt;a href=&#34;#h4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H4
-&lt;/h4&gt;&lt;h5 id=&#34;h5&#34;&gt;&lt;a href=&#34;#h5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H5
-&lt;/h5&gt;&lt;h6 id=&#34;h6&#34;&gt;&lt;a href=&#34;#h6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;H6
-&lt;/h6&gt;&lt;h2 id=&#34;paragraph&#34;&gt;&lt;a href=&#34;#paragraph&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Paragraph
-&lt;/h2&gt;&lt;p&gt;Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.&lt;/p&gt;
-&lt;p&gt;Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.&lt;/p&gt;
-&lt;h2 id=&#34;blockquotes&#34;&gt;&lt;a href=&#34;#blockquotes&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Blockquotes
-&lt;/h2&gt;&lt;p&gt;The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a &lt;code&gt;footer&lt;/code&gt; or &lt;code&gt;cite&lt;/code&gt; element, and optionally with in-line changes such as annotations and abbreviations.&lt;/p&gt;
-&lt;h4 id=&#34;blockquote-without-attribution&#34;&gt;&lt;a href=&#34;#blockquote-without-attribution&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Blockquote without attribution
-&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-&lt;strong&gt;Note&lt;/strong&gt; that you can use &lt;em&gt;Markdown syntax&lt;/em&gt; within a blockquote.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;blockquote-with-attribution&#34;&gt;&lt;a href=&#34;#blockquote-with-attribution&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Blockquote with attribution
-&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;Don&amp;rsquo;t communicate by sharing memory, share memory by communicating.&lt;br&gt;
-— &lt;cite&gt;Rob Pike&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/cite&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;tables&#34;&gt;&lt;a href=&#34;#tables&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Tables
-&lt;/h2&gt;&lt;p&gt;Tables aren&amp;rsquo;t part of the core Markdown spec, but Hugo supports supports them out-of-the-box.&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Name&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Age&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Bob&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;27&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Alice&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;23&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&#34;inline-markdown-within-tables&#34;&gt;&lt;a href=&#34;#inline-markdown-within-tables&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Inline Markdown within tables
-&lt;/h4&gt;&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Italics&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Bold&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Code&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;em&gt;italics&lt;/em&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;bold&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;code&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;A&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;B&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;C&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;D&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;E&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;F&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Proin sit amet velit nec enim imperdiet vehicula.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Ut bibendum vestibulum quam, eu egestas turpis gravida nec&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;code-blocks&#34;&gt;&lt;a href=&#34;#code-blocks&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Code Blocks
-&lt;/h2&gt;&lt;h4 id=&#34;code-block-with-backticks&#34;&gt;&lt;a href=&#34;#code-block-with-backticks&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Code block with backticks
-&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;charset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Example HTML5 Document&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Test&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;code-block-indented-with-four-spaces&#34;&gt;&lt;a href=&#34;#code-block-indented-with-four-spaces&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Code block indented with four spaces
-&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-  &amp;lt;title&amp;gt;Example HTML5 Document&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-  &amp;lt;p&amp;gt;Test&amp;lt;/p&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;code-block-with-hugos-internal-highlight-shortcode&#34;&gt;&lt;a href=&#34;#code-block-with-hugos-internal-highlight-shortcode&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Code block with Hugo&amp;rsquo;s internal highlight shortcode
-&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;charset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Example HTML5 Document&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Test&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h4 id=&#34;diff-code-block&#34;&gt;&lt;a href=&#34;#diff-code-block&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Diff code block
-&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[dependencies.bevy]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git = &amp;#34;https://github.com/bevyengine/bevy&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;- features = [&amp;#34;dynamic&amp;#34;]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gd&#34;&gt;&lt;/span&gt;&lt;span class=&#34;gi&#34;&gt;+ features = [&amp;#34;jpeg&amp;#34;, &amp;#34;dynamic&amp;#34;]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;list-types&#34;&gt;&lt;a href=&#34;#list-types&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;List Types
-&lt;/h2&gt;&lt;h4 id=&#34;ordered-list&#34;&gt;&lt;a href=&#34;#ordered-list&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Ordered List
-&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;First item&lt;/li&gt;
-&lt;li&gt;Second item&lt;/li&gt;
-&lt;li&gt;Third item&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;unordered-list&#34;&gt;&lt;a href=&#34;#unordered-list&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Unordered List
-&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;List item&lt;/li&gt;
-&lt;li&gt;Another item&lt;/li&gt;
-&lt;li&gt;And another item&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;nested-list&#34;&gt;&lt;a href=&#34;#nested-list&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Nested list
-&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;Fruit
-&lt;ul&gt;
-&lt;li&gt;Apple&lt;/li&gt;
-&lt;li&gt;Orange&lt;/li&gt;
-&lt;li&gt;Banana&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Dairy
-&lt;ul&gt;
-&lt;li&gt;Milk&lt;/li&gt;
-&lt;li&gt;Cheese&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;other-elements--abbr-sub-sup-kbd-mark&#34;&gt;&lt;a href=&#34;#other-elements--abbr-sub-sup-kbd-mark&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Other Elements — abbr, sub, sup, kbd, mark
-&lt;/h2&gt;&lt;p&gt;&lt;abbr title=&#34;Graphics Interchange Format&#34;&gt;GIF&lt;/abbr&gt; is a bitmap image format.&lt;/p&gt;
-&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
-&lt;p&gt;X&lt;sup&gt;n&lt;/sup&gt; + Y&lt;sup&gt;n&lt;/sup&gt; = Z&lt;sup&gt;n&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;Press &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;Delete&lt;/kbd&gt; to end the session.&lt;/p&gt;
-&lt;p&gt;Most &lt;mark&gt;salamanders&lt;/mark&gt; are nocturnal, and hunt for insects, worms, and other small creatures.&lt;/p&gt;
-&lt;h2 id=&#34;hyperlinked-image&#34;&gt;&lt;a href=&#34;#hyperlinked-image&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Hyperlinked image
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://google.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;&lt;img src=&#34;https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;Google&#34;
-	
-	
-&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;The above quote is excerpted from Rob Pike&amp;rsquo;s &lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=PAAkCSZUG1c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;talk&lt;/a&gt; during Gopherfest, November 18, 2015.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
         </item>
         <item>
         <title>链接</title>
