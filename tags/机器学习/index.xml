@@ -274,7 +274,7 @@ $$&lt;p&gt;信息增益计算：
 $$
 Gain(Decision, 是否有其他选择) = 1 - \left(\frac{6}{12} \times 0.918 + \frac{6}{12} \times 0.780\right) ≈ 0.151
 $$&lt;p&gt;
-“&lt;strong&gt;是否有其他选择&lt;/strong&gt;”这个特征的信息增益计算结束了，现在，我们需要对其他特征应用相同的计算方法，计算出剩余每个特征的风险增益。&lt;/p&gt;
+“&lt;strong&gt;是否有其他选择&lt;/strong&gt;”这个特征的信息增益计算结束了，现在，我们需要对其他特征应用相同的计算方法，计算出剩余每个特征的信息增益。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h5 id=&#34;2特征饿否的信息增益&#34;&gt;&lt;a href=&#34;#2%e7%89%b9%e5%be%81%e9%a5%bf%e5%90%a6%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2.特征“饿否”的信息增益：
 &lt;/h5&gt;&lt;p&gt;这个特征包含两个属性取值，&lt;code&gt;是&lt;/code&gt;和&lt;code&gt;否&lt;/code&gt;&lt;/p&gt;
@@ -344,19 +344,21 @@ $$&lt;hr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 $$
-Entropy(S_{￥}) = -\left(\frac{3}{7}\log_2\frac{3}{7}\right) - \left(\frac{4}{7}\log_2\frac{4}{7}\right) ≈ 0.985
+Entropy(S_{\$}) = -\left(\frac{3}{7}\log_2\frac{3}{7}\right) - \left(\frac{4}{7}\log_2\frac{4}{7}\right) ≈ 0.985
 $$$$
-Entropy(S_{￥￥}) = -\left(\frac{2}{2}\log_2\frac{2}{2}\right) - \left(\frac{0}{2}\log_2\frac{0}{2}\right) = 0
-$$&lt;p&gt;如果类的实例数为0，而实例总数为n，则需要计算*-(0/n) .log2(0/n)，*定义&lt;strong&gt;0*log2*0=0&lt;/strong&gt;，熵只依赖于X的分布，与X的取值无关。这里，log(0）将等于-∞, 我们不能计算0次∞。这是决策树应用程序中经常出现的一种特殊情况。
+Entropy(S_{\$$&lt;p&gt;}) = -\left(\frac{2}{2}\log_2\frac{2}{2}\right) - \left(\frac{0}{2}\log_2\frac{0}{2}\right) = 0
+$$&lt;/p&gt;
+&lt;p&gt;如果类的实例数为0，而实例总数为n，则需要计算*-(0/n) .log2(0/n)，*定义&lt;strong&gt;0*log2*0=0&lt;/strong&gt;，熵只依赖于X的分布，与X的取值无关。这里，log(0）将等于-∞, 我们不能计算0次∞。这是决策树应用程序中经常出现的一种特殊情况。
 &lt;/p&gt;
 $$
-Entropy(S_{￥￥￥}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
-$$&lt;p&gt;
+Entropy(S_{\$$&lt;p&gt;$}) = -\left(\frac{1}{3}\log_2\frac{1}{3}\right) - \left(\frac{2}{3}\log_2\frac{2}{3}\right) ≈ 0.918
+&lt;/p&gt;
+$$
 信息增益计算：
-&lt;/p&gt;
-$$
+$$&lt;p&gt;
 Gain(Decision, 价格) = 1 - \left(\frac{7}{12} \times 0.985 + \frac{2}{12} \times 0+\frac{3}{12} \times 0.918\right) ≈ 0.1959
-$$&lt;hr&gt;
+$$&lt;/p&gt;
+&lt;hr&gt;
 &lt;h5 id=&#34;4特征餐馆类型的信息增益&#34;&gt;&lt;a href=&#34;#4%e7%89%b9%e5%be%81%e9%a4%90%e9%a6%86%e7%b1%bb%e5%9e%8b%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4.特征“餐馆类型”的信息增益：
 &lt;/h5&gt;&lt;p&gt;这个特征包含四个属性取值，&lt;code&gt;法式&lt;/code&gt;和&lt;code&gt;中餐&lt;/code&gt;和&lt;code&gt;快餐&lt;/code&gt;和&lt;code&gt;意大利式&lt;/code&gt;。&lt;/p&gt;
 &lt;table&gt;
@@ -723,10 +725,11 @@ $$&lt;h5 id=&#34;3-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#3-%e7%89
 &lt;p&gt;计算条件熵：
 &lt;/p&gt;
 $$
-Entropy(S_{￥}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
+Entropy(S_{\$}) = -\left(\frac{2}{4}\log_2\frac{2}{4}\right) - \left(\frac{2}{4}\log_2\frac{2}{4}\right) = 1
 $$$$
-Entropy(S_{￥￥￥}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
-$$&lt;p&gt;信息增益：
+Entropy(S_{\$$&lt;p&gt;$}) = -\left(\frac{0}{2}\log_2\frac{0}{2}\right) - \left(\frac{2}{2}\log_2\frac{2}{2}\right) = 0
+$$&lt;/p&gt;
+&lt;p&gt;信息增益：
 &lt;/p&gt;
 $$
 Gain(Decision, 价格) = 0.918 - \left(\frac{4}{6} \times 1 + \frac{2}{6} \times 0\right) ≈ 0.2513
@@ -987,10 +990,11 @@ $$&lt;h5 id=&#34;2-特征价格的信息增益&#34;&gt;&lt;a href=&#34;#2-%e7%89
 &lt;p&gt;计算条件熵：
 &lt;/p&gt;
 $$
-Entropy(S_{￥}) = -\left(\frac{2}{3}\log_2\frac{2}{3}\right) - \left(\frac{1}{3}\log_2\frac{1}{3}\right) ≈ 0.918
+Entropy(S_{\$}) = -\left(\frac{2}{3}\log_2\frac{2}{3}\right) - \left(\frac{1}{3}\log_2\frac{1}{3}\right) ≈ 0.918
 $$$$
-Entropy(S_{￥￥￥}) = 0
-$$&lt;p&gt;信息增益：
+Entropy(S_{\$$&lt;p&gt;$}) = 0
+$$&lt;/p&gt;
+&lt;p&gt;信息增益：
 &lt;/p&gt;
 $$
 Gain(Decision, 价格) = 1 - \left(\frac{3}{4} \times 0.918 + \frac{1}{4} \times 0\right) ≈ 0.311
@@ -1201,7 +1205,7 @@ $$&lt;p&gt;
 &lt;p&gt;计算条件熵：
 &lt;/p&gt;
 $$
-Entropy(S_{￥}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
+Entropy(S_{\$}) = -\left(\frac{1}{2}\log_2\frac{1}{2}\right) - \left(\frac{1}{2}\log_2\frac{1}{2}\right) = 1
 $$&lt;p&gt;
 &lt;code&gt;价格&lt;/code&gt;也没有带来有效分裂，信息增益为0。&lt;/p&gt;
 &lt;h5 id=&#34;4-特征等待时间分钟的信息增益-1&#34;&gt;&lt;a href=&#34;#4-%e7%89%b9%e5%be%81%e7%ad%89%e5%be%85%e6%97%b6%e9%97%b4%e5%88%86%e9%92%9f%e7%9a%84%e4%bf%a1%e6%81%af%e5%a2%9e%e7%9b%8a-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;4. 特征“等待时间(分钟)”的信息增益
@@ -1308,7 +1312,8 @@ $$&lt;hr&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─有人-&amp;gt;yes
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
+&lt;/div&gt;&lt;p&gt;![](机器人决策树 P1.png)&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;仅供参考，可能有误&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
