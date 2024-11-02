@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3515&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="第一章：Python基础与快速入门 Python 是一门跨平台、开源、免费的解释型高级动态编程语言。\npython 同时支持伪编译将 Python 源程序转换为字节码来优化程序和提高运行速度。\n支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序转换为二进制可执行文件。\n">
+<title>Python语言与系统设计(1)</title>
+
+<link rel='canonical' href='http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Python语言与系统设计(1)">
+<meta property='og:description' content="第一章：Python基础与快速入门 Python 是一门跨平台、开源、免费的解释型高级动态编程语言。\npython 同时支持伪编译将 Python 源程序转换为字节码来优化程序和提高运行速度。\n支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序转换为二进制可执行文件。\n">
+<meta property='og:url' content='http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/'>
+<meta property='og:site_name' content='cita的博客__'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='python' /><meta property='article:tag' content='算法' /><meta property='article:published_time' content='2024-11-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-11-02T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
+<meta name="twitter:title" content="Python语言与系统设计(1)">
+<meta name="twitter:description" content="第一章：Python基础与快速入门 Python 是一门跨平台、开源、免费的解释型高级动态编程语言。\npython 同时支持伪编译将 Python 源程序转换为字节码来优化程序和提高运行速度。\n支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序转换为二进制可执行文件。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4365964393701153492.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">cita的博客__</a></h1>
+            <h2 class="site-description">hello world!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cita-777'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>存档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:3515/en/" >English</option>
+                                
+                                    <option value="http://localhost:3515/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#第一章python基础与快速入门">第一章：Python基础与快速入门</a></li>
+    <li><a href="#基础知识">基础知识</a>
+      <ol>
+        <li><a href="#python-对象模型">Python 对象模型</a>
+          <ol>
+            <li><a href="#字符串string">字符串（string）</a></li>
+            <li><a href="#字节串bytes">字节串（bytes）</a></li>
+            <li><a href="#主要区别">主要区别</a></li>
+            <li><a href="#转换方法">转换方法</a></li>
+          </ol>
+        </li>
+        <li><a href="#python-变量">Python 变量</a></li>
+        <li><a href="#python-的数字类型"><strong>Python 的数字类型</strong></a></li>
+        <li><a href="#字符串">字符串</a>
+          <ol>
+            <li><a href="#字符串的拼接">字符串的拼接</a></li>
+            <li><a href="#字符串的转义">字符串的转义</a></li>
+          </ol>
+        </li>
+        <li><a href="#运算符和表达式"><strong>运算符和表达式</strong></a>
+          <ol>
+            <li><a href="#加法">加法</a></li>
+            <li><a href="#乘法">乘法</a></li>
+            <li><a href="#除法">除法</a></li>
+            <li><a href="#求余">求余</a></li>
+            <li><a href="#关系型运算符">关系型运算符</a></li>
+            <li><a href="#成员测试运算符"><strong>成员测试运算符</strong></a></li>
+            <li><a href="#位运算符"><strong>位运算符</strong></a></li>
+            <li><a href="#and-or">and or</a></li>
+            <li><a href="#特殊说明"><strong>特殊说明</strong></a></li>
+          </ol>
+        </li>
+        <li><a href="#常用内置函数"><strong>常用内置函数</strong></a>
+          <ol>
+            <li><a href="#重点">重点：</a></li>
+          </ol>
+        </li>
+        <li><a href="#对象的删除">对象的删除</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/">
+                <img src="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252_hu6537573704759738930.png"
+                        srcset="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252_hu6537573704759738930.png 800w, /p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252_hu4495458052988532864.png 1600w"
+                        width="800" 
+                        height="144" 
+                        loading="lazy"
+                        alt="Featured image of post Python语言与系统设计(1)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E4%B8%9A/" style="background-color: #2a9d8f; color: #fff;">
+                学业
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/">Python语言与系统设计(1)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-11-02</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 18 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="第一章python基础与快速入门"><a href="#%e7%ac%ac%e4%b8%80%e7%ab%a0python%e5%9f%ba%e7%a1%80%e4%b8%8e%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8" class="header-anchor"></a>第一章：Python基础与快速入门
+</h2><p><strong>Python 是一门跨平台、开源、免费的解释型高级动态编程语言</strong>。</p>
+<p>python 同时支持伪编译将 Python 源程序转换为<strong>字节码</strong>来优化程序和提高运行速度。</p>
+<p>支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序<strong>转换为二进制可执行文件</strong>。</p>
+<p><strong>Python 支持命令式编程（How to do）、函数式编程（What to do），完全支持面向对象程序设计</strong></p>
+<p>注：这里所谓的命令式编程和函数式编程其实很好理解，下面的例子：</p>
+<p>命令式编程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 初始化变量  
+</span></span><span class="line"><span class="cl">count = 0  
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"># 命令式地执行一系列操作  
+</span></span><span class="line"><span class="cl">for i in range(10):  
+</span></span><span class="line"><span class="cl">    count += i  # 修改状态  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">print(count)  # 输出结果
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>函数式编程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 定义一个函数来计算两个数的和  
+</span></span><span class="line"><span class="cl">def add(a, b):  
+</span></span><span class="line"><span class="cl">    return a + b  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"># 使用这个函数来计算3和5的和  
+</span></span><span class="line"><span class="cl">result = add(3, 5)  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"># 打印结果  
+</span></span><span class="line"><span class="cl">print(result)  # 输出: 8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>胶水语言</strong>：可以把多种不同语言编写的程序融合到一起实现无缝拼接，更好地发挥不同语言和工具的优势，满足不同<strong>应用领域</strong>的需求。</p>
+<p><strong>Python 几个重要的网站：</strong></p>
+<p><a class="link" href="https://www.python.org/"  target="_blank" rel="noopener"
+    >https://www.python.org/</a></p>
+<p><a class="link" href="https://www.python.org/doc/"  target="_blank" rel="noopener"
+    >https://www.python.org/doc/</a></p>
+<p><a class="link" href="http://bugs.python.org/"  target="_blank" rel="noopener"
+    >http://bugs.python.org/</a></p>
+<p><a class="link" href="https://hackerone.com/python"  target="_blank" rel="noopener"
+    >https://hackerone.com/python</a></p>
+<p><a class="link" href="http://stackoverflow.com/questions/tagged/python"  target="_blank" rel="noopener"
+    >http://stackoverflow.com/questions/tagged/python</a></p>
+<p>这里忽略了 python 的安装与环境的配置，我使用的 Jupyter Notebook 进行 python 程序的编写。</p>
+<h2 id="基础知识"><a href="#%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86" class="header-anchor"></a>基础知识
+</h2><h3 id="python-对象模型"><a href="#python-%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b" class="header-anchor"></a>Python 对象模型
+</h3><p><strong>对象是</strong> <strong>python</strong> <strong>中****最基本的概念</strong>，在 python 中处理的一切都是对象。</p>
+<p>包含许多内置对象可直接使用，如数字、字符串、列表、del 等；</p>
+<p>非内置对象需要导入模块才能使用，如正弦函数 sin (x)，随机数产生函数 random ( ) 等。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>对象类型</strong></th>
+          <th><strong>类型名称</strong></th>
+          <th><strong>示例</strong></th>
+          <th><strong>简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>数字</strong></td>
+          <td>int, float, complex</td>
+          <td>1234, 3.14, 1.3e5, 3+4j</td>
+          <td>数字<strong>大小没有限制</strong>，内置支持复数及其运算</td>
+      </tr>
+      <tr>
+          <td><strong>字符串</strong></td>
+          <td>str</td>
+          <td>‘swfu’, “I’m student”,  ”’Python ”’, r’abc’, R’bcd’</td>
+          <td>使用单引号、双引号、三引号作为定界符，以字母 r 或 R 引导的表示原始字符串</td>
+      </tr>
+      <tr>
+          <td><strong>字节串</strong></td>
+          <td>bytes</td>
+          <td>b’hello world’</td>
+          <td>以字母 b 引导，可以使用单引号、双引号、三引号作为定界符</td>
+      </tr>
+      <tr>
+          <td><strong>列表</strong></td>
+          <td>list</td>
+          <td>[1, 2, 3]，[‘a’, ‘b’, [‘c’, 2]]</td>
+          <td>所有元素放在一对方括号中，元素之间使用逗号分隔，其中的元素可以是任意类型</td>
+      </tr>
+      <tr>
+          <td><strong>字典</strong></td>
+          <td>dict</td>
+          <td>{1:’food’ ,2:’taste’, 3:’import’}</td>
+          <td>所有元素放在一对大括号中，元素之间使用逗号分隔，<strong>元素形式为 “键</strong>**:** <strong>值”</strong></td>
+      </tr>
+      <tr>
+          <td><strong>元组</strong></td>
+          <td>tuple</td>
+          <td>(2, -5, 6), (3,)</td>
+          <td><strong>不可变</strong>，所有元素放在一对圆括号中，元素之间使用逗号分隔，<strong>如果元组中只有一个元素的话，后面的逗号不能省略</strong></td>
+      </tr>
+      <tr>
+          <td><strong>集合</strong></td>
+          <td>set frozenset</td>
+          <td>{‘a’, ‘b’, ‘c’}</td>
+          <td>所有元素放在一对大括号中，元素之间使用逗号分隔，<strong>元素不允许重复</strong> ; 另外，set 是可变的，而 frozenset 是不可变的</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="字符串string"><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2string" class="header-anchor"></a>字符串（string）
+</h4><ul>
+<li>
+<p><strong>定义</strong>：字符串是由 Unicode 字符组成的序列，用于处理文本数据。</p>
+</li>
+<li>
+<p>特性</p>
+<p>：</p>
+<ul>
+<li>可以包含各种语言的字符。</li>
+<li>不可变，即创建后不能更改其中的元素。</li>
+<li>在 Python 3 中，所有的字符串默认都是 Unicode 字符串，所以前缀 <code>u</code> 或 <code>U</code> 不再需要。不过，仍然可以通过前缀 <code>u</code> 或 <code>U</code> 来表示一个 Unicode 字符串（例如 <code>u&quot;Hello&quot;</code>），但这在 Python 3 中并不是必需的。</li>
+</ul>
+</li>
+<li>
+<p><strong>用途</strong>：字符串通常用于表示和处理人类可读的文本信息，如文字、数字、符号等。</p>
+</li>
+</ul>
+<h4 id="字节串bytes"><a href="#%e5%ad%97%e8%8a%82%e4%b8%b2bytes" class="header-anchor"></a>字节串（bytes）
+</h4><ul>
+<li>
+<p><strong>定义</strong>：字节串是由 0~255 范围内的整数（即 8 位字节）构成的序列，用于在程序中处理二进制数据。</p>
+</li>
+<li>
+<p>特性</p>
+<p>：</p>
+<ul>
+<li>可以包含 ASCII 字符或其他编码的字节。</li>
+<li>不可变，即一旦创建了一个字节串，就不能修改它。</li>
+<li>在 Python 中，可以通过前缀 <code>b</code> 或 <code>B</code> 来表示一个字节串（例如 <code>b&quot;Hello&quot;</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>用途</strong>：字节串通常用于处理非文本数据，如文件内容、网络数据、图像、音频等二进制数据。</p>
+</li>
+</ul>
+<h4 id="主要区别"><a href="#%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab" class="header-anchor"></a>主要区别
+</h4><ul>
+<li><strong>编码方式</strong>：字符串使用 Unicode 编码，可以包含任何语言的字符；而字节串使用 <code>bytes</code> 编码，通常包含 ASCII 字符或其他特定编码的字节。</li>
+<li><strong>存储与表示</strong>：字符串以文本形式存储和表示，便于人类阅读和编辑；字节串则以二进制形式存储和表示，更适合计算机处理和传输。</li>
+<li><strong>用途差异</strong>：字符串主要用于处理文本信息；而字节串则主要用于处理二进制数据，如文件读写、网络通信等场景。</li>
+</ul>
+<h4 id="转换方法"><a href="#%e8%bd%ac%e6%8d%a2%e6%96%b9%e6%b3%95" class="header-anchor"></a>转换方法
+</h4><ul>
+<li><strong>字符串转字节串</strong>：可以使用字符串的<code>.encode()</code> 方法将其编码为字节串。例如，<code>string.encode('utf-8')</code> 会将字符串 <code>string</code> 编码为 UTF-8 格式的字节串。</li>
+<li><strong>字节串转字符串</strong>：可以使用字节串的<code>.decode()</code> 方法将其解码为字符串。例如，<code>bytes_data.decode('utf-8')</code> 会将 UTF-8 格式的字节串 <code>bytes_data</code> 解码为字符串。</li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>对象类型</strong></th>
+          <th><strong>类型名称</strong></th>
+          <th><strong>示例</strong></th>
+          <th><strong>简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>布尔型</strong></td>
+          <td>bool</td>
+          <td>True, False</td>
+          <td>逻辑值，关系运算符、成员测试运算符、同一性测试运算符组成的表达式的值一般为 True 或 False</td>
+      </tr>
+      <tr>
+          <td><strong>空类型</strong></td>
+          <td>NoneType</td>
+          <td>None</td>
+          <td>空值</td>
+      </tr>
+      <tr>
+          <td><strong>异常</strong></td>
+          <td>Exception、ValueError、TypeError</td>
+          <td></td>
+          <td>Python 内置大量异常类，分别对应不同类型的异常</td>
+      </tr>
+      <tr>
+          <td><strong>文件</strong></td>
+          <td></td>
+          <td>f = open(‘data.dat’, ‘rb’)</td>
+          <td>open 是 Python 内置函数，使用指定的模式打开文件，返回文件对象</td>
+      </tr>
+      <tr>
+          <td><strong>其他可迭代对象</strong></td>
+          <td></td>
+          <td>生成器对象、range 对象、zip 对象、enumerate 对象、map 对象、filter 对象等等</td>
+          <td>具有<strong>惰性求值</strong>的特点，除 range 对象之外，其他对象中的元素只能看一次</td>
+      </tr>
+      <tr>
+          <td><strong>编程单元</strong></td>
+          <td></td>
+          <td>函数（使用 def 定义） 类（使用 class 定义） 模块（类型为 module）</td>
+          <td>类和函数都属于<strong>可调用对象</strong>，模块用来集中存放函数、类、常量或其他对象</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="python-变量"><a href="#python-%e5%8f%98%e9%87%8f" class="header-anchor"></a>Python 变量
+</h3><p><strong>在 Python 中，不需事先声明变量名及其类型，直接赋值即可创建各种类型的对象变量。这一点适用于 Python 任意类型的对象。</strong></p>
+<p>在 cpp 中，变量在声明时就需要声明变量的类型，而在 python 中则是直接给变量赋值。</p>
+<p><img src="data:image/svg&#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&#43;"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><strong>Python 属于强类型编程语言，Python 解释器会根据赋值或运算来自动推断变量类型。Python 还是一种动态类型语言，变量的类型也是可以随时变化的。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; x = 3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(type(x))       #type():查看变量类型
+</span></span><span class="line"><span class="cl">&lt;class &#39;int&#39;&gt;
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; x = &#39;Hello world.&#39;
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(type(x)) 
+</span></span><span class="line"><span class="cl">&lt;class &#39;str&#39;&gt;
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; isinstance(3, int)   #isinstance():测试对象是否是某个类型的实例
+</span></span><span class="line"><span class="cl">True
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果变量出现在赋值运算符或复合赋值运算符（例如 +=、*= 等等）的左边则表示创建变量或修改变量的值，否则表示引用该变量的值</p>
+<p><strong>字符串和元组属于不可变序列</strong>，不能通过下标的方式来修改其中的元素值，试图修改元组中元素的值时会抛出异常。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; x = (1,2,3)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; x[1] = 5
+</span></span><span class="line"><span class="cl">       Traceback (most recent call last):
+</span></span><span class="line"><span class="cl">          File &#34;&lt;pyshell#7&gt;&#34;, line 1, in &lt;module&gt;
+</span></span><span class="line"><span class="cl">             x[1] = 5
+</span></span><span class="line"><span class="cl">       TypeError: &#39;tuple&#39; object does not support item assignment
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>python 中<strong>允许多个变量指向同一个值</strong></p>
+<p><img src="data:image/svg&#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&#43;"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x = 3
+</span></span><span class="line"><span class="cl">y = x
+</span></span><span class="line"><span class="cl">print(id(x))
+</span></span><span class="line"><span class="cl">print(id(y))
+</span></span><span class="line"><span class="cl">140729233032040
+</span></span><span class="line"><span class="cl">140729233032040
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>当修改其中一个变量值后，其内存地址将会变化，但并不影响另一变量</strong></p>
+<p><img src="data:image/svg&#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&#43;"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x+=6
+</span></span><span class="line"><span class="cl">print(id(x))
+</span></span><span class="line"><span class="cl">print(id(y))
+</span></span><span class="line"><span class="cl">140729233032424
+</span></span><span class="line"><span class="cl">140729233032040
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Python 采用的是基于值的内存管理方式，如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x = 3
+</span></span><span class="line"><span class="cl">y = 3
+</span></span><span class="line"><span class="cl">print(id(x))
+</span></span><span class="line"><span class="cl">print(id(y))
+</span></span><span class="line"><span class="cl">140729233032040
+</span></span><span class="line"><span class="cl">140729233032040
+</span></span><span class="line"><span class="cl">x = [1, 1, 1, 1]
+</span></span><span class="line"><span class="cl">id(x[0]) == id(x[1])
+</span></span><span class="line"><span class="cl">True
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>变量名必须以字母或下划线开头，但以下划线开头的变量在 Python 中有特殊含义；</strong></p>
+<p><strong>变量名中不能有空格以及标点符号（括号、引号、逗号、斜线、反斜线、冒号、句号、问号等）；</strong></p>
+<p><strong>不能使用关键字作变量名，可以导入 keyword 模块后使用 print (keyword.kwlist) 查看所有 Python 关键字 (33 个)；</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import keyword
+</span></span><span class="line"><span class="cl">print(keyword.kwlist)
+</span></span><span class="line"><span class="cl">[&#39;False&#39;, &#39;None&#39;, &#39;True&#39;, &#39;and&#39;, &#39;as&#39;, &#39;assert&#39;, &#39;async&#39;, &#39;await&#39;, &#39;break&#39;, &#39;class&#39;, &#39;continue&#39;, &#39;def&#39;, &#39;del&#39;, &#39;elif&#39;, &#39;else&#39;, &#39;except&#39;, &#39;finally&#39;, &#39;for&#39;, &#39;from&#39;, &#39;global&#39;, &#39;if&#39;, &#39;import&#39;, &#39;in&#39;, &#39;is&#39;, &#39;lambda&#39;, &#39;nonlocal&#39;, &#39;not&#39;, &#39;or&#39;, &#39;pass&#39;, &#39;raise&#39;, &#39;return&#39;, &#39;try&#39;, &#39;while&#39;, &#39;with&#39;, &#39;yield&#39;]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注（下划线的含义）：</strong></p>
+<p><strong>单下划线 <code>_</code></strong>：</p>
+<ul>
+<li>在交互式环境中，<code>_</code> 表示上一个表达式的结果。</li>
+<li>在循环或迭代中，<code>_</code> 通常用作一个占位符，表示某个值会被忽略。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for _ in range(5):  
+</span></span><span class="line"><span class="cl">    print(&#34;Hello, World!&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>双下划线 <code>__</code></strong>：</p>
+<ul>
+<li>类的属性名如果以双下划线开头且不以双下划线结尾（例如，<code>__foo</code>），这会触发名称改写（name mangling）。这意味着该属性会在类被继承时通过特定的方式被重命名，以避免子类意外覆盖父类的属性。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class MyClass:  
+</span></span><span class="line"><span class="cl">    def __init__(self):  
+</span></span><span class="line"><span class="cl">        self.__secret = &#34;hidden&#34;  
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">class MySubClass(MyClass):  
+</span></span><span class="line"><span class="cl">    def __init__(self):  
+</span></span><span class="line"><span class="cl">        super().__init__()  
+</span></span><span class="line"><span class="cl">        self.__secret = &#34;not hidden&#34;  
+</span></span><span class="line"><span class="cl">        print(self._MyClass__secret)  # 访问父类的隐藏属性
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>双下划线前缀和后缀 <code>__xxx__</code></strong>：</p>
+<ul>
+<li>这种命名方式通常用于特殊方法或魔术方法（magic methods），这些方法具有特定的含义，并由 Python 解释器在特定情况下调用。例如，<code>__init__</code> 用于初始化对象，<code>__str__</code> 用于定义对象的字符串表示等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class MyClass:  
+</span></span><span class="line"><span class="cl">    def __init__(self, name):  
+</span></span><span class="line"><span class="cl">        self.name = name  
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    def __str__(self):  
+</span></span><span class="line"><span class="cl">        return f&#34;MyClass with name {self.name}&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>单下划线前缀 <code>_xxx</code></strong>：</p>
+<ul>
+<li>通常用于表示变量或方法是 “受保护的” 或 “内部使用的”，这是一种约定俗成的命名习惯，用于指示这些变量或方法不应该被类的外部直接访问。然而，这并不会引起 Python 解释器的任何强制限制，只是表明了一种使用意图。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class MyClass:  
+</span></span><span class="line"><span class="cl">    def _internal_method(self):  
+</span></span><span class="line"><span class="cl">        print(&#34;This is an internal method.&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>不建议****使用系统内置的模块名、类型名或函数名以及已导入的模块名及其成员名作变量名</strong>，这将会改变其类型和含义，可以通过 dir (<strong>builtins</strong>) 查看所有内置模块、类型和函数；</p>
+<p><strong>变量名对英文字母的****大小写敏感</strong>，例如 student 和 Student 是不同的变量。</p>
+<p><strong>Python 中的变量并不直接存储值，而是存储了值的内存地址或者引用，这也是变量类型随时可以改变的原因</strong>。</p>
+<p>赋值语句的执行过程是：首先把等号右侧表达式的值计算出来，然后在内存中寻找一个位置把值存放进去，最后创建变量并指向这个内存地址。</p>
+<p><strong>Python 具有自动内存管理功能</strong>，对于没有任何变量指向的值，Python 自动将其删除。Python 会跟踪所有的值，并自动删除不再有变量指向的值。</p>
+<p>显式<strong>使用 del 命令删除不需要的值或显式关闭不再需要访问的资源</strong>，仍是一个好的习惯，同时也是一个优秀程序员的基本素养之一。</p>
+<h3 id="python-的数字类型"><a href="#python-%e7%9a%84%e6%95%b0%e5%ad%97%e7%b1%bb%e5%9e%8b" class="header-anchor"></a><strong>Python 的数字类型</strong>
+</h3><p><strong>三类：整数类型、浮点类型与复数类型</strong></p>
+<p><strong>整数类型</strong></p>
+<p>・十进制整数如，0、-1、9、123</p>
+<p>・十六进制整数，需要 16 个数字 0、1、2、3、4、5、6、7、8、9、a、b、c、d、e、f 来表示整数，必须以 0x 开头，如 0x10、0xfa、0xabcdef</p>
+<p>・八进制整数，只需要 8 个数字 0、1、2、3、4、5、6、7 来表示整数，必须以 0o 开头，如 0o35、0o11</p>
+<p>・二进制整数，只需要 2 个数字 0、1 来表示整数，必须以 0b 开头如，0b101、0b100</p>
+<p><strong>浮点数类型：浮点数****又称小数</strong></p>
+<p>ü15.0、0.37、-11.2、1.2e2、314.15e-2</p>
+<p><strong>Python 内置支持复数类型</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; a = 3+4j
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; b = 5+6j
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; c = a+b
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; c
+</span></span><span class="line"><span class="cl">(8+10j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; c.real        #查看复数实部
+</span></span><span class="line"><span class="cl">8.0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; c.imag        #查看复数虚部
+</span></span><span class="line"><span class="cl">10.0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; a.conjugate() #返回共轭复数
+</span></span><span class="line"><span class="cl">(3-4j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; a*b           #复数乘法
+</span></span><span class="line"><span class="cl">(-9+38j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; a/b           #复数除法
+</span></span><span class="line"><span class="cl">(0.6393442622950819+0.03278688524590165j)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Python 3.6.x 开始支持在数字中间位置使用单个下划线作为分隔来提高数字的可读性，类似于数学上使用逗号作为千位分隔符。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 1_000_000
+</span></span><span class="line"><span class="cl">1000000
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 1_2_3_4
+</span></span><span class="line"><span class="cl">1234
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 1_2 + 3_4j
+</span></span><span class="line"><span class="cl">(12+34j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 1_2.3_45
+</span></span><span class="line"><span class="cl">12.345
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串"><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-anchor"></a>字符串
+</h3><p>n 用单引号、双引号或三引号界定的符号系列称为字符串</p>
+<p>n 单引号、双引号、三单引号、三双引号可以<strong>互相嵌套</strong>，用来表示复杂字符串</p>
+<p><strong>例如：</strong> <strong>‘<strong><strong>abc</strong></strong>‘<strong><strong>、</strong></strong>‘123’<strong><strong>、</strong></strong>‘<strong><strong>中国</strong></strong>‘<strong><strong>、</strong></strong>“Python”****、”’Tom said, “Let’s go””’</strong></p>
+<p><strong>字符串属于不可变序列</strong></p>
+<p>空字符串表示为” 或 “”</p>
+<p>三引号”’或””” 表示的字符串<strong>可以换行</strong>，支持排版较为复杂的字符串；三引号还可以在程序中表示较长的注释。</p>
+<h4 id="字符串的拼接"><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%8b%bc%e6%8e%a5" class="header-anchor"></a>字符串的拼接
+</h4><p><strong>字符串之间可以通过</strong> <strong>+</strong> <strong>或 * 进行连接</strong></p>
+<p>加法操作 (+) 将两个字符串连接成为一个新的字符串</p>
+<p>乘法操作 (*) 生成一个由其本身字符串重复连接而成的字符串</p>
+<p><strong>len () 函数能否返回一个字符串的长度</strong></p>
+<h4 id="字符串的转义"><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e8%bd%ac%e4%b9%89" class="header-anchor"></a>字符串的转义
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>转义字符</strong></th>
+          <th><strong>含义</strong></th>
+          <th><strong>转义字符</strong></th>
+          <th><strong>含义</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>\b</strong></td>
+          <td>退格，把光标移动到前一列位置</td>
+          <td><strong>\</strong></td>
+          <td>一个斜线 \</td>
+      </tr>
+      <tr>
+          <td><strong>\f</strong></td>
+          <td>换页符</td>
+          <td><strong>*</strong><em>’</em>*</td>
+          <td>单引号’</td>
+      </tr>
+      <tr>
+          <td><strong>\n</strong></td>
+          <td>换行符</td>
+          <td><strong>*</strong><em>”</em>*</td>
+          <td>双引号”</td>
+      </tr>
+      <tr>
+          <td><strong>\r</strong></td>
+          <td>回车</td>
+          <td><strong>\ooo</strong></td>
+          <td>3 位八进制数对应的字符</td>
+      </tr>
+      <tr>
+          <td><strong>\t</strong></td>
+          <td>水平制表符</td>
+          <td><strong>\xhh</strong></td>
+          <td>2 位十六进制数对应的字符</td>
+      </tr>
+      <tr>
+          <td><strong>\v</strong></td>
+          <td>垂直制表符</td>
+          <td>****<strong>uhhhh</strong></td>
+          <td>4 位十六进制数表示的 Unicode 字符</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>字符串界定符前面加字母 r 或 R 表示原始字符串，其中的特殊字符不 进行转义，但字符串的最后一个字符不能是 \。</strong></p>
+<p>・原始字符串主要用于正则表达式、文件路径或者 URL 的场合。</p>
+<h3 id="运算符和表达式"><a href="#%e8%bf%90%e7%ae%97%e7%ac%a6%e5%92%8c%e8%a1%a8%e8%be%be%e5%bc%8f" class="header-anchor"></a><strong>运算符和表达式</strong>
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>运算符</strong></th>
+          <th><strong>功能说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>+</strong></td>
+          <td><strong>算术加法，列表、元组、字符串合并与连接，正号</strong></td>
+      </tr>
+      <tr>
+          <td><strong>–</strong></td>
+          <td><strong>算术减法，集合差集，相反数</strong></td>
+      </tr>
+      <tr>
+          <td>*****</td>
+          <td><strong>算术乘法，序列重复</strong></td>
+      </tr>
+      <tr>
+          <td>/</td>
+          <td><strong>真除法</strong></td>
+      </tr>
+      <tr>
+          <td>//</td>
+          <td><strong>求整商，但如果操作数中有实数的话，结果为实数形式的整数</strong></td>
+      </tr>
+      <tr>
+          <td><strong>%</strong></td>
+          <td><strong>求余数，字符串格式化</strong></td>
+      </tr>
+      <tr>
+          <td>**</td>
+          <td><strong>幂运算</strong></td>
+      </tr>
+      <tr>
+          <td><strong>&lt;、&lt;=、&gt;、&gt;=、==、!=</strong></td>
+          <td><strong>（值）大小比较，集合的包含关系比较</strong></td>
+      </tr>
+      <tr>
+          <td><strong>or，and, not</strong></td>
+          <td><strong>逻辑或、逻辑与、逻辑非</strong></td>
+      </tr>
+      <tr>
+          <td><strong>in</strong></td>
+          <td><strong>成员测试</strong></td>
+      </tr>
+      <tr>
+          <td><strong>is</strong></td>
+          <td><strong>对象同一性测试，即测试是否为同一个对象或内存地址是否相同</strong></td>
+      </tr>
+      <tr>
+          <td><strong>、^、&amp;、&laquo;、&raquo;、~</strong></td>
+          <td><strong>位或、位异或、位与、左移位、右移位、位求反</strong></td>
+      </tr>
+      <tr>
+          <td><strong>&amp;、|、^、-</strong></td>
+          <td><strong>集合交集、并集、对称差集，差集</strong></td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="加法"><a href="#%e5%8a%a0%e6%b3%95" class="header-anchor"></a>加法
+</h4><p><strong>+ 运算符除了用于算术加法外</strong>，还可用于列表、元组、字符串的连接，但不支持不同类型的对象之间相加或连接。</p>
+<h4 id="乘法"><a href="#%e4%b9%98%e6%b3%95" class="header-anchor"></a>乘法
+</h4><p>***** <strong>运算符不仅可以用于<strong><strong>数值乘法</strong></strong>，还可以用于列表、字符串、元组等****类型</strong></p>
+<p>当列表、字符串或元组等类型变量与整数进行 “*” 运算时，表示对内容进行重复并返回重复后的新对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 2.0 * 3                     #浮点数与整数相乘
+</span></span><span class="line"><span class="cl">6.0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; (3+4j) * 2                  #复数与整数相乘
+</span></span><span class="line"><span class="cl">(6+8j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; (3+4j) * (3-4j)             #复数与复数相乘
+</span></span><span class="line"><span class="cl">(25+0j)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; &#34;a&#34; * 10                    #字符串重复
+</span></span><span class="line"><span class="cl">&#39;aaaaaaaaaa&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="除法"><a href="#%e9%99%a4%e6%b3%95" class="header-anchor"></a>除法
+</h4><p><strong>Python 中的除法有两种，“/” 和 “//” 分别表示除法和整除运算。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3 / 5
+</span></span><span class="line"><span class="cl">0.6
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3 // 5
+</span></span><span class="line"><span class="cl">0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3.0 / 5
+</span></span><span class="line"><span class="cl">0.6
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3.0 // 5
+</span></span><span class="line"><span class="cl">0.0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 13 // 10
+</span></span><span class="line"><span class="cl">1
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; -13 // 10
+</span></span><span class="line"><span class="cl">-2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="求余"><a href="#%e6%b1%82%e4%bd%99" class="header-anchor"></a>求余
+</h4><p>n**%** <strong>运算符除去<strong><strong>可用</strong></strong>于字符串格式化之外</strong>**，也可对<strong><strong>整数和浮点数计算余数</strong></strong>。**</p>
+<p>・由于浮点数的精确度影响，计算结果可能略有误差。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3.1 % 2
+</span></span><span class="line"><span class="cl">1.1
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 6.3 % 2.1
+</span></span><span class="line"><span class="cl">2.0999999999999996
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 6 % 2
+</span></span><span class="line"><span class="cl">0
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; -17 % 4
+</span></span><span class="line"><span class="cl">3                            #余数与%右侧的运算数符号一致
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 17 % -4
+</span></span><span class="line"><span class="cl">-3                           #(17-(-3))能被(-4)整除
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 5.7 % 4.8
+</span></span><span class="line"><span class="cl">0.9000000000000004
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关系型运算符"><a href="#%e5%85%b3%e7%b3%bb%e5%9e%8b%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-anchor"></a>关系型运算符
+</h4><p>关系运算符可以连用，一般用于同类型对象之间值的大小比较，或者测试集合之间的包含关系</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 1 &lt; 3 &lt; 5                       #等价于1 &lt; 3 and 3 &lt; 5
+</span></span><span class="line"><span class="cl">True
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; &#39;Hello&#39; &gt; &#39;world&#39;               #比较字符串大小
+</span></span><span class="line"><span class="cl">False
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; &#39;Hello&#39; &gt; 3                     #字符串和数字不能比较
+</span></span><span class="line"><span class="cl">TypeError: unorderable types: str() &gt; int()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="成员测试运算符"><a href="#%e6%88%90%e5%91%98%e6%b5%8b%e8%af%95%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-anchor"></a><strong>成员测试运算符</strong>
+</h4><p><strong>成员测试运算符 in</strong> <strong>用于****成员测试</strong></p>
+<p>・即测试一个对象是否为另一个对象的元素。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 5 in range(1, 10, 1) #range()是用来生成指定范围数字的内置函数
+</span></span><span class="line"><span class="cl">True
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; &#39;abc&#39; in &#39;abcdefg&#39;   #子字符串测试
+</span></span><span class="line"><span class="cl">True
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; for i in (3, 5, 7):  #循环，成员遍历
+</span></span><span class="line"><span class="cl">    print(i, end=&#39;\t&#39;)
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">3	 5	7	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="位运算符"><a href="#%e4%bd%8d%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-anchor"></a><strong>位运算符</strong>
+</h4><p><strong>位运算符只能用于整数</strong>，其内部执行过程为：首先将整数转换为二进制数，然后右对齐，必要的时候左侧补 0，按位进行运算，最后再把计算结果转换为十进制数字返回</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3 &lt;&lt; 2    #把3左移2位
+</span></span><span class="line"><span class="cl">12
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3 &amp; 7     #位与运算
+</span></span><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3 | 8     #位或运算
+</span></span><span class="line"><span class="cl">11
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3 ^ 5     #位异或运算
+</span></span><span class="line"><span class="cl">6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>集合的交集、并集、****对称差集</strong>等运算借助于<strong>位运算符</strong>来实现</p>
+<p>而<strong>差集</strong>则使用减号运算符实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; {1, 2, 3} | {3, 4, 5}         #并集，自动去除重复元素
+</span></span><span class="line"><span class="cl">{1, 2, 3, 4, 5}
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; {1, 2, 3} &amp; {3, 4, 5}         #交集
+</span></span><span class="line"><span class="cl">{3}
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; {1, 2, 3} ^ {3, 4, 5}         #对称差集
+</span></span><span class="line"><span class="cl">{1, 2, 4, 5}
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; {1, 2, 3} - {3, 4, 5}         #差集
+</span></span><span class="line"><span class="cl">{1, 2}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="and-or"><a href="#and-or" class="header-anchor"></a>and or
+</h4><p><strong>and</strong> <strong>和</strong> <strong>or</strong> <strong>具有<strong><strong>惰性求值</strong></strong>特点，只计算必须计算的****表达式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3&gt;5 and a&gt;3     
+</span></span><span class="line"><span class="cl">False
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，此时并没有定义变量 a，and 要两者都对返回对，而第一位的 3&gt;5 已经判断是错的了，这里直接返回错，不会再对后面的 a&gt;3 进行执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3&gt;5 or a&gt;3      
+</span></span><span class="line"><span class="cl">NameError: name &#39;a&#39; is not defined
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3&gt;5 的值为 False，所以需要计算后面表达式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3&lt;5 or a&gt;3
+</span></span><span class="line"><span class="cl">True
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3&lt;5 的值为 True，不需要计算后面表达式。这里是与 and 类似的惰性，or 只要两者中有一个是正确的，则返回正确，这里的 3&lt;5 是对的，or 的代码将不会执行。</p>
+<p>这里比较让人迷惑的是下面这个程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a = 1
+</span></span><span class="line"><span class="cl">a == 1 or (a+1) == 2
+</span></span><span class="line"><span class="cl">print(a)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里返回的结果是 1，因为 or 后面的程序没有执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3 and 5
+</span></span><span class="line"><span class="cl">5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and 是将最后一个计算的表达式的值作为整个表达式的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> 3 and 5&gt;2
+</span></span><span class="line"><span class="cl">True
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or 也类似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 1 &gt; 2 or 4
+</span></span><span class="line"><span class="cl">4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>比较特殊的是 is not，它只能返回 true 或者 false</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; 3 is not 5           
+</span></span><span class="line"><span class="cl">True
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Python 中单个任何类型的对象或常数属于合法表达式，使用运算符连接的变量和常量以及函数调用的任意组合也属于合法的表达式</strong></p>
+<h4 id="特殊说明"><a href="#%e7%89%b9%e6%ae%8a%e8%af%b4%e6%98%8e" class="header-anchor"></a><strong>特殊说明</strong>
+</h4><p><strong>逗号并不是运算符，只是一个普通分隔符</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; x = 3, 5
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; x
+</span></span><span class="line"><span class="cl">(3, 5)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; 3==3, 5
+</span></span><span class="line"><span class="cl">(True, 5)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>逗号（<code>,</code>）在 Python 中用于创建元组（tuple）。当你使用逗号分隔多个值或表达式时，Python 会将这些值或表达式组合成一个元组。</p>
+<p><strong>Python 不支持 ++ 和–运算符，虽然在形式上有时似乎可这样用，但实际上是另外的含义</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; i = 3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; ++i
+</span></span><span class="line"><span class="cl">3                       #正正得正
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; i++                 #Python不支持++运算符，语法错误
+</span></span><span class="line"><span class="cl">SyntaxError: invalid syntax
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; --i                 #负负得正
+</span></span><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; -(-i)               #与--i等价
+</span></span><span class="line"><span class="cl">3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="常用内置函数"><a href="#%e5%b8%b8%e7%94%a8%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0" class="header-anchor"></a><strong>常用内置函数</strong>
+</h3><p><strong>内置函数不需要导入任何模块即可使用</strong></p>
+<p><strong>执行下面的命令<strong><strong>可以</strong></strong>列出所有内置函数</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">dir (__builtins__)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>函数</strong></th>
+          <th><strong>功能简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>abs(x)</td>
+          <td>返回数字 x 的绝对值或复数 x 的模</td>
+      </tr>
+      <tr>
+          <td>all(iterable)</td>
+          <td>如果对于可迭代对象中所有元素 x 都等价于 True，也就是对于所有元素 x 都有 bool (x) 等于 True，则返回 True。对于空的可迭代对象也返回 True</td>
+      </tr>
+      <tr>
+          <td>any(iterable)</td>
+          <td>只要可迭代对象 iterable 中存在元素 x 使得 bool (x) 为 True，则返回 True。对于空的可迭代对象，返回 False</td>
+      </tr>
+      <tr>
+          <td>ascii(obj)</td>
+          <td>把对象转换为 ASCII 码表示形式，必要的时候使用转义字符来表示特定的字符</td>
+      </tr>
+      <tr>
+          <td>bin(x)</td>
+          <td>把整数 x 转换为二进制串表示形式</td>
+      </tr>
+      <tr>
+          <td>bool(x)</td>
+          <td>返回与 x 等价的布尔值 True 或 False</td>
+      </tr>
+      <tr>
+          <td>bytes(x)</td>
+          <td>生成字节串，或把指定对象 x 转换为字节串表示形式</td>
+      </tr>
+      <tr>
+          <td>callable(obj)</td>
+          <td>测试对象 obj 是否可调用。类和函数是可调用的，包含__call__() 方法的类的对象也是可调用的</td>
+      </tr>
+      <tr>
+          <td>compile()</td>
+          <td>用于把 Python 代码编译成可被 exec () 或 eval () 函数执行的代码对象</td>
+      </tr>
+      <tr>
+          <td>complex(real, [imag])</td>
+          <td>返回复数</td>
+      </tr>
+      <tr>
+          <td>chr(x)</td>
+          <td>返回 Unicode 编码为 x 的字符</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>函数</strong></th>
+          <th><strong>功能简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>delattr(obj, name)</td>
+          <td>删除属性，等价于 del obj.name</td>
+      </tr>
+      <tr>
+          <td>dir(obj)</td>
+          <td>返回指定对象或模块 obj 的成员列表，如果不带参数则返回当前作用域内所有标识符</td>
+      </tr>
+      <tr>
+          <td>divmod(x, y)</td>
+          <td>返回包含整商和余数的元组 ((x-x% y)/y, x% y)</td>
+      </tr>
+      <tr>
+          <td>enumerate(iterable[, start])</td>
+          <td>返回包含元素形式为 (0, iterable [0]), (1, iterable [1]), (2, iterable [2]),  … 的迭代器对象</td>
+      </tr>
+      <tr>
+          <td>eval(s[, globals[, locals]])</td>
+          <td>计算并返回字符串 s 中表达式的值</td>
+      </tr>
+      <tr>
+          <td>exec(x)</td>
+          <td>执行代码或代码对象 x</td>
+      </tr>
+      <tr>
+          <td>exit()</td>
+          <td>退出当前解释器环境</td>
+      </tr>
+      <tr>
+          <td>filter(func, seq)</td>
+          <td>返回 filter 对象，其中包含序列 seq 中使得单参数函数 func 返回值为 True 的那些元素，如果函数 func 为 None 则返回包含 seq 中等价于 True 的元素的 filter 对象</td>
+      </tr>
+      <tr>
+          <td>float(x)</td>
+          <td>把整数或字符串 x 转换为浮点数并返回</td>
+      </tr>
+      <tr>
+          <td>frozenset([x]))</td>
+          <td>创建不可变的集合对象</td>
+      </tr>
+      <tr>
+          <td>getattr(obj, name[, default])</td>
+          <td>获取对象中指定属性的值，等价于 obj.name，如果不存在指定属性则返回 default 的值，如果要访问的属性不存在并且没有指定 default 则抛出异常</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>函数</strong></th>
+          <th><strong>功能简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>globals()</td>
+          <td>返回包含当前作用域内全局变量及其值的字典</td>
+      </tr>
+      <tr>
+          <td>hasattr(obj, name)</td>
+          <td>测试对象 obj 是否具有名为 name 的成员</td>
+      </tr>
+      <tr>
+          <td>hash(x)</td>
+          <td>返回对象 x 的哈希值，如果 x 不可哈希则抛出异常</td>
+      </tr>
+      <tr>
+          <td>help(obj)</td>
+          <td>返回对象 obj 的帮助信息</td>
+      </tr>
+      <tr>
+          <td>hex(x)</td>
+          <td>把整数 x 转换为十六进制串</td>
+      </tr>
+      <tr>
+          <td>id(obj)</td>
+          <td>返回对象 obj 的标识（内存地址）</td>
+      </tr>
+      <tr>
+          <td>input ([提示])</td>
+          <td>显示提示，接收键盘输入的内容，返回字符串</td>
+      </tr>
+      <tr>
+          <td>int(x[, d])</td>
+          <td>返回实数（float）、分数（Fraction）或高精度实数（Decimal）x 的整数部分，或把 d 进制的字符串 x 转换为十进制并返回，d 默认为十进制</td>
+      </tr>
+      <tr>
+          <td>isinstance(obj, class-or-type-or-tuple)</td>
+          <td>测试对象 obj 是否属于指定类型（如果有多个类型的话需要放到元组中）的实例</td>
+      </tr>
+      <tr>
+          <td>iter(…)</td>
+          <td>返回指定对象的可迭代对象</td>
+      </tr>
+      <tr>
+          <td>len(obj)</td>
+          <td>返回对象 obj 包含的元素个数，适用于列表、元组、集合、字典、字符串以及 range 对象和其他可迭代对象</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>函数</strong></th>
+          <th><strong>功能简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>list([x])、set([x])、tuple([x])、dict([x])</td>
+          <td>把对象 x 转换为列表、集合、元组或字典并返回，或生成空列表、空集合、空元组、空字典</td>
+      </tr>
+      <tr>
+          <td>locals()</td>
+          <td>返回包含当前作用域内局部变量及其值的字典</td>
+      </tr>
+      <tr>
+          <td>map(func, *iterables)</td>
+          <td>返回包含若干函数值的 map 对象，函数 func 的参数分别来自于 iterables 指定的每个迭代对象，</td>
+      </tr>
+      <tr>
+          <td>max(x)、 min(x)</td>
+          <td>返回可迭代对象 x 中的最大值、最小值，要求 x 中的所有元素之间可比较大小，允许指定排序规则和 x 为空时返回的默认值</td>
+      </tr>
+      <tr>
+          <td>next(iterator[, default])</td>
+          <td>返回可迭代对象 x 中的下一个元素，允许指定迭代结束之后继续迭代时返回的默认值</td>
+      </tr>
+      <tr>
+          <td>oct(x)</td>
+          <td>把整数 x 转换为八进制串</td>
+      </tr>
+      <tr>
+          <td>open(name[, mode])</td>
+          <td>以指定模式 mode 打开文件 name 并返回文件对象</td>
+      </tr>
+      <tr>
+          <td>ord(x)</td>
+          <td>返回 1 个字符 x 的 Unicode 编码</td>
+      </tr>
+      <tr>
+          <td>pow(x, y, z=None)</td>
+          <td>返回 x 的 y 次方，等价于 x ** y 或 (x ** y) % z</td>
+      </tr>
+      <tr>
+          <td>print(value, …, sep=’ ‘, end=’\n’, file = sys. stdout, flush=False)</td>
+          <td>基本输出函数</td>
+      </tr>
+      <tr>
+          <td>quit()</td>
+          <td>退出当前解释器环境</td>
+      </tr>
+      <tr>
+          <td>range([start,] end [, step] )</td>
+          <td>返回 range 对象，其中包含左闭右开区间 [start,end) 内以 step 为步长的整数</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>函数</strong></th>
+          <th><strong>功能简要说明</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>repr(obj)</td>
+          <td>返回对象 obj 的规范化字符串表示形式，对于大多数对象有 eval (repr (obj))==obj</td>
+      </tr>
+      <tr>
+          <td>reversed(seq)</td>
+          <td>返回 seq（可以是列表、元组、字符串、range 以及其他可迭代对象）中所有元素逆序后的迭代器对象</td>
+      </tr>
+      <tr>
+          <td>round (x [, 小数位数])</td>
+          <td>对 x 进行四舍五入，若不指定小数位数，则返回整数</td>
+      </tr>
+      <tr>
+          <td>sorted(iterable, key=None, reverse=False)</td>
+          <td>返回排序后的列表，其中 iterable 表示要排序的序列或迭代对象，key 用来指定排序规则或依据，reverse 用来指定升序或降序。该函数不改变 iterable 内任何元素的顺序</td>
+      </tr>
+      <tr>
+          <td>str(obj)</td>
+          <td>把对象 obj 直接转换为字符串</td>
+      </tr>
+      <tr>
+          <td>sum(x, start=0)</td>
+          <td>返回序列 x 中所有元素之和，返回 start+sum (x)</td>
+      </tr>
+      <tr>
+          <td>type(obj)</td>
+          <td>返回对象 obj 的类型</td>
+      </tr>
+      <tr>
+          <td>zip(seq1 [, seq2 […]])</td>
+          <td>返回 zip 对象，其中元素为 (seq1 [i], seq2 [i], …) 形式的元组，最终结果中包含的元素个数取决于所有参数序列或可迭代对象中最短的那个</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="重点"><a href="#%e9%87%8d%e7%82%b9" class="header-anchor"></a>重点：
+</h4><p><strong>输入函数：<strong><strong>input</strong></strong>(</strong> <strong>)</strong></p>
+<p>・可输入数字、字符串和其它任意类型对象，返回结果都是字符串。</p>
+<p>**输出函数：**print () 函数进行输出。</p>
+<p><strong>bin ()、oct ()、hex () 用来将整数转换为二进制、八进制和十六进制形式，这三个函数都要求参数必须为整数。</strong></p>
+<p><strong>eval (&lt;字符串&gt;) 函数能够以 Python 表达式的方式解析并执行字符串，将返回结果输出</strong></p>
+<p><strong>range</strong>**()** <strong>语法格式为 range</strong>**([start,] end [, step] )****，<strong><strong>返回具有</strong></strong>惰性求值特点的**</p>
+<p>range 对象，其中包含左闭右开区间 [start,end) 内以 step 为步长的整数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; range(5)                      #start默认为0，step默认为1
+</span></span><span class="line"><span class="cl">    range(0, 5)
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; list(_)
+</span></span><span class="line"><span class="cl">    [0, 1, 2, 3, 4]
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; list(range(1, 10, 2))     #指定起始值和步长
+</span></span><span class="line"><span class="cl">    [1, 3, 5, 7, 9]
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; list(range(9, 0, -2))     #步长为负数时，start应比end大
+</span></span><span class="line"><span class="cl">    [9, 7, 5, 3, 1]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>ord()</strong> <strong>和</strong> <strong>chr</strong>**()** <strong>是一对功能相反的****函数：<strong><strong>ord</strong></strong>()</strong> <strong>用来返回单个字符的序数或</strong> <strong>Unicode</strong> <strong>码，而</strong> <strong>chr</strong>**()** <strong>则用来返回某序数对应的****字符</strong></p>
+<p><strong>str</strong>**()** <strong>则直接将其任意类型参数转换为字符串</strong>**。**</p>
+<p><strong>max ()、min ()、sum () 这三个内置函数分别用于计算列表、元组或其他可迭代对象中所有元素最大值、最小值以及所有元素之和</strong></p>
+<p><strong>内置函数 type () 和 isinstance () 可以判断数据类型。</strong></p>
+<p><strong>sorted () 对列表、元组、字典、集合或其他可迭代对象进行排序并返回新列表。</strong></p>
+<p><strong>zip () 函数用来把多个可迭代对象中的元素压缩到一起，返回一个可迭代的 zip 对象，其中每个元素都是包含原来的多个可迭代对象对应位置上元素的元组，如同拉拉链一样。</strong></p>
+<p>zip 函数用于将可迭代对象作为参数，将对象中对应的元素打包成一个元组，然后返回由这些元组组成的列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; x = zip(&#39;abcd&#39;, &#39;1234&#39;)
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; list(x)
+</span></span><span class="line"><span class="cl">[(&#39;a&#39;, &#39;1&#39;), (&#39;b&#39;, &#39;2&#39;), (&#39;c&#39;, &#39;3&#39;), (&#39;d&#39;, &#39;4&#39;)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>zip (*) 是解压</p>
+<p><strong>内置函数 filter () 将一个单参数函数作用到一个序列上，返回该序列中使得该函数返回值为 True 的那些元素组成的 filter 对象，如果指定函数为 None，则返回序列中等价于 True 的元素。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; seq = [&#39;foo&#39;, &#39;x41&#39;, &#39;?!&#39;, &#39;***&#39;]
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; list(filter(str.isalnum, seq))      
+</span></span><span class="line"><span class="cl">[&#39;foo&#39;, &#39;x41&#39;]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>enumerate () 函数用来枚举可迭代对象中的元素，返回可迭代的 enumerate 对象，其中每个元素都是包含索引和值的元组。</strong></p>
+<p>nmap、filter、enumerate、zip 等对象不仅具有惰性求值的特点，还有另外一个特点：访问过的元素不可再次访问。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    &gt;&gt;&gt; x = map(str, range(10))
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; list(x)
+</span></span><span class="line"><span class="cl">    [&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; list(x)
+</span></span><span class="line"><span class="cl">    []
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; x = map(str, range(10))
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; &#39;2&#39; in x
+</span></span><span class="line"><span class="cl">    True
+</span></span><span class="line"><span class="cl">    &gt;&gt;&gt; &#39;2&#39; in x
+</span></span><span class="line"><span class="cl">    False
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对象的删除"><a href="#%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%a0%e9%99%a4" class="header-anchor"></a>对象的删除
+</h3><p><strong>reversed () 对可迭代对象（生成器对象和具有惰性求值特性的 zip、map、filter、enumerate 等类似对象除外）进行翻转（首尾交换）并返回可迭代的 reversed 对象。</strong></p>
+<p><strong>Python</strong> **具有<strong><strong>自动内存管理功能</strong></strong>，**<strong>Python</strong> <strong>解释器会跟踪所有的值，一旦发现某个值不再有任何变量指向，将会自动删除该值。</strong></p>
+<p><strong>显式释放自己申请的资源是程序员的好习惯之一，也是程序员素养的重要体现之一</strong>**。<strong><strong>del</strong> <strong>命令</strong></strong>：显<strong><strong>式删除对象并解除与值之间的指向关系</strong></strong>。**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; y = 3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; z = y
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(y)
+</span></span><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; del y             #删除对象
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(y)
+</span></span><span class="line"><span class="cl">NameError: name &#39;y&#39; is not defined
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(z)
+</span></span><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; del z
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(z)
+</span></span><span class="line"><span class="cl">NameError: name &#39;z&#39; is not defined
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>del 命令无法删除元组或字符串中的元素，只可以删除整个元组或字符串 因为这两者均属于不可变序列。</p>
+<blockquote>
+<p>主要参考课堂ppt总结，仅供参考，可能有误</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">Python</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基本算法框架"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基本算法框架</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(1): STL"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(1): STL</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(2): 搜索"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(2): 搜索</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(1): 常用函数"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(1): 常用函数</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(2): 典型决策树学习算法ID3</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 cita
+    </section>
+    
+    <section class="powerby">
+        
+            Hello World <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

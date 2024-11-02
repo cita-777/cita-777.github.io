@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Hugo on cita的博客__</title>
-        <link>http://localhost:1313/tags/hugo/</link>
+        <link>http://localhost:3515/tags/hugo/</link>
         <description>Recent content in Hugo on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:3515/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(1)</title>
-        <link>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</link>
+        <link>http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</guid>
-        <description>&lt;img src="http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/</guid>
+        <description>&lt;img src="http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(1)" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。&lt;/p&gt;
 &lt;h3 id=&#34;安装-hugo&#34;&gt;&lt;a href=&#34;#%e5%ae%89%e8%a3%85-hugo&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;安装 Hugo
 &lt;/h3&gt;&lt;p&gt;在ubuntu24.04 LTS环境下到 &lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -340,11 +340,11 @@
         </item>
         <item>
         <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(2)</title>
-        <link>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</link>
+        <link>http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</guid>
-        <description>&lt;img src="http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(2)" /&gt;&lt;p&gt;上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。&lt;/p&gt;
+        <guid>http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/</guid>
+        <description>&lt;img src="http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Hugo&#43;Github Pages搭建静态网站作为个人博客(2)" /&gt;&lt;p&gt;上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。&lt;/p&gt;
 &lt;p&gt;Stack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features:
 Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：&lt;/p&gt;
 &lt;ul&gt;

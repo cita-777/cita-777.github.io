@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>RoboCup2D on cita的博客__</title>
-        <link>http://localhost:1313/tags/robocup2d/</link>
+        <link>http://localhost:3515/tags/robocup2d/</link>
         <description>Recent content in RoboCup2D on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/robocup2d/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:3515/tags/robocup2d/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>机器人技术(1): 常用函数</title>
-        <link>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</link>
+        <link>http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</link>
         <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(1): 常用函数" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
+        <guid>http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</guid>
+        <description>&lt;img src="http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(1): 常用函数" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://i.getshell.cn/tags/robocup/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;九月大人的博客&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yikai-coder.github.io/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -146,11 +146,11 @@
         </item>
         <item>
         <title>机器人技术(2): 典型决策树学习算法ID3</title>
-        <link>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</link>
+        <link>http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</link>
         <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
+        <guid>http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/</guid>
+        <description>&lt;img src="http://localhost:3515/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3" /&gt;&lt;h2 id=&#34;相关资料链接&#34;&gt;&lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;相关资料链接:
 &lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;决策树-维基百科&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/26703300&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

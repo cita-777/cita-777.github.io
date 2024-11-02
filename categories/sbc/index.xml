@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>SBC on cita的博客__</title>
-        <link>http://localhost:1313/categories/sbc/</link>
+        <link>http://localhost:3515/categories/sbc/</link>
         <description>Recent content in SBC on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>cita</copyright><atom:link href="http://localhost:1313/categories/sbc/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>cita</copyright><atom:link href="http://localhost:3515/categories/sbc/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

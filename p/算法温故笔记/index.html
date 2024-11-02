@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3515&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="动态规划（Dynamic Programming） 动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。\n">
+<title>算法温故笔记</title>
+
+<link rel='canonical' href='http://localhost:3515/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="算法温故笔记">
+<meta property='og:description' content="动态规划（Dynamic Programming） 动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。\n">
+<meta property='og:url' content='http://localhost:3515/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='cita的博客__'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:tag' content='数据结构' /><meta property='article:published_time' content='2024-10-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-26T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:3515/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl.png' />
+<meta name="twitter:title" content="算法温故笔记">
+<meta name="twitter:description" content="动态规划（Dynamic Programming） 动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:3515/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4365964393701153492.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">cita的博客__</a></h1>
+            <h2 class="site-description">hello world!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cita-777'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>存档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:3515/en/" >English</option>
+                                
+                                    <option value="http://localhost:3515/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#动态规划dynamic-programming">动态规划（Dynamic Programming）</a>
+      <ol>
+        <li><a href="#子矩阵的最大和问题">子矩阵的最大和问题</a></li>
+      </ol>
+    </li>
+    <li><a href="#回溯算法dfs">回溯算法（DFS）</a>
+      <ol>
+        <li><a href="#n皇后">N皇后</a></li>
+      </ol>
+    </li>
+    <li><a href="#广搜算法bfs">广搜算法（BFS）</a>
+      <ol>
+        <li><a href="#单向bfs">单向BFS</a></li>
+        <li><a href="#双向bfs">双向BFS</a>
+          <ol>
+            <li><a href="#解开密码锁的最少次数">解开密码锁的最少次数</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#二分查找binarysearch">二分查找（BinarySearch）</a></li>
+    <li><a href="#模拟与密码类问题">模拟与密码类问题</a>
+      <ol>
+        <li><a href="#morse-mismatches-problem">Morse Mismatches Problem</a></li>
+      </ol>
+    </li>
+    <li><a href="#总结与时空复杂度">总结与时空复杂度</a>
+      <ol>
+        <li><a href="#bfs与dfs">BFS与DFS</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/">
+                <img src="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl_hu904627144269343240.png"
+                        srcset="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl_hu904627144269343240.png 800w, /p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl_hu11332598926668326364.png 1600w"
+                        width="800" 
+                        height="109" 
+                        loading="lazy"
+                        alt="Featured image of post 算法温故笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E4%B8%9A/" style="background-color: #2a9d8f; color: #fff;">
+                学业
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/">算法温故笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-10-26</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="动态规划dynamic-programming"><a href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92dynamic-programming" class="header-anchor"></a>动态规划（Dynamic Programming）
+</h2><p><strong>动态规划问题的一般形式就是求最值</strong>。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。</p>
+<p>动态规划的核心思想就是穷举求最值，列出<strong>正确的「状态转移方程」</strong>，才能正确地穷举。而且，你需要判断算法问题是否<strong>具备「最优子结构」</strong>，是否能够通过子问题的最值得到原问题的最值。另外，动态规划问题<strong>存在「重叠子问题」</strong>。</p>
+<p>首先，<strong>明确「状态」-&gt; 明确「选择」 -&gt; 定义 <code>dp</code> 数组/函数的含义</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 自顶向下递归的动态规划</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dp</span><span class="p">(</span><span class="n">状态1</span><span class="p">,</span> <span class="n">状态2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">选择</span> <span class="ow">in</span> <span class="n">所有可能的选择</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 此时的状态已经因为做了选择而改变</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">求最值</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dp</span><span class="p">(</span><span class="n">状态1</span><span class="p">,</span> <span class="n">状态2</span><span class="p">,</span> <span class="o">...</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自底向上迭代的动态规划</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化 base case</span>
+</span></span><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">base</span> <span class="k">case</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 进行状态转移</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">状态1</span> <span class="ow">in</span> <span class="n">状态1的所有取值</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">状态2</span> <span class="ow">in</span> <span class="n">状态2的所有取值</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">状态1</span><span class="p">][</span><span class="n">状态2</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">求最值</span><span class="p">(</span><span class="n">选择1</span><span class="err">，</span><span class="n">选择2</span><span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="子矩阵的最大和问题"><a href="#%e5%ad%90%e7%9f%a9%e9%98%b5%e7%9a%84%e6%9c%80%e5%a4%a7%e5%92%8c%e9%97%ae%e9%a2%98" class="header-anchor"></a>子矩阵的最大和问题
+</h3><p>以<a class="link" href="https://leetcode.cn/problems/max-submatrix-lcci/description/"  target="_blank" rel="noopener"
+    ><strong>LeetCode面试题 17.24. 最大子矩阵</strong></a>举例</p>
+<p>给定一个正整数和负整数组成的 N × M 矩阵，编写代码找出元素总和最大的子矩阵。返回一个子矩阵左上角的行号和列号，右下角的行号和列号。若有多个满足条件的子矩阵，返回任意一个均可。</p>
+<p>我们将二维转化为一维，对于矩阵的每一列，我们将其加在一起，成为了一维上的一个数，二维矩阵的和转化为了一维数组的和，如下图。</p>
+<p><img src="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/3.jpg"
+	width="664"
+	height="415"
+	srcset="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/3_hu5053372039570125303.jpg 480w, /p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/3_hu11129662026102018451.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<p>转化为求最大子序列和之后，假设给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。我们该如何解决呢？</p>
+<p>1、<strong>状态定义</strong>：dp[i]为以nums[i]结尾的最大子序和。</p>
+<p>2、<strong>状态转移方程</strong>：对于nums[i]有两种情况:一种是和前一个位置的子序列连着。$dp[i]=dp[i-1]+nums[i]$。第二种是以自己独立门户，从自己开始$dp[i]=nums[i]$。取其中最大值,可得状态转移方程为$dp[i]=max( dp[i-1] + nums[i] , nums[i] )$。</p>
+<p>3、<strong>basecase</strong>:$dp[0]=nums[0]$。</p>
+<p>观察发现，<strong>dp[i]只与dp[i-1]和nums[i]有关</strong>，所有我们可以将空间复杂度降到<strong>O(1)</strong>
+同时对于$dp[i]=max(dp[i-1]+nums[i],nums[i])$,两种情况<strong>都加了nums[i]</strong>，只是<strong>前面多加了dp[i-1]</strong>，所有很容易推出，<strong>当dp[i-1]&lt;0时，后者大，反之前者大</strong></p>
+<p><strong>问题迎刃而解</strong>，题解如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Juncker chan 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @date: 2024.10.25
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @details: 子矩阵的最大和问题
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">getMaxMatrixSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">matrix</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">maxsum</span> <span class="o">=</span> <span class="n">INT_MIN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">dp_i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">maxRow</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">maxCol</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="n">maxCol</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//记录当前i~j行组成大矩阵的每一列的和，将二维转化为一维
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kt">int</span> <span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">;</span><span class="c1">//临时记录左上角行列坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pos</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="c1">//记录左上角和右下角最终坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">maxRow</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//以i为上边，从上而下扫描
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">b</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">maxCol</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//每次更换子矩形上边，就要清空b，重新计算每列的和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            
+</span></span><span class="line"><span class="cl">            <span class="c1">//子矩阵的下边往下移动变长，从i到maxROw-1，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">maxRow</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">                 <span class="c1">//已转换为求连续最大子序列和，一下就相当于求一次最大子序列和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">dp_i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">maxCol</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//我们只是不断增加其高，也就是下移矩阵下边，所有这个矩阵每列的和只需要加上新加的哪一行的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="n">dp_i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">dp_i</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">dp_i</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//新起一个点时保存这个点为临时左上角坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">col</span><span class="o">=</span><span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span><span class="p">(</span><span class="n">dp_i</span><span class="o">&gt;</span><span class="n">maxsum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">maxsum</span><span class="o">=</span><span class="n">dp_i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//更新最大子矩阵后更新最终左上角和右下角坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">row</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">col</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">pos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">pos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">pos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">maxsum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">matrix</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Solution</span> <span class="n">sol</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxSum</span> <span class="o">=</span> <span class="n">sol</span><span class="p">.</span><span class="n">getMaxMatrixSum</span><span class="p">(</span><span class="n">matrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;子矩阵中和的最大值是: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">maxSum</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="回溯算法dfs"><a href="#%e5%9b%9e%e6%ba%af%e7%ae%97%e6%b3%95dfs" class="header-anchor"></a>回溯算法（DFS）
+</h2><p>回溯算法就是个多叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作，算法框架如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">路径</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">满足结束条件</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">路径</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">选择</span> <span class="ow">in</span> <span class="n">选择列表</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">做选择</span>
+</span></span><span class="line"><span class="cl">        <span class="n">backtrack</span><span class="p">(</span><span class="n">路径</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">撤销选择</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>写 <code>backtrack</code> 函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集</strong>。</p>
+<h3 id="n皇后"><a href="#n%e7%9a%87%e5%90%8e" class="header-anchor"></a>N皇后
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Juncker chan 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @date: 2024.10.24
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @details: n皇后问题
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">board</span><span class="p">,</span> <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">board</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 检查列是否有皇后互相冲突
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">row</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 检查右上方是否有皇后互相冲突
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 检查左上方是否有皇后互相冲突
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">,</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 路径：board 中小于 row 的那些行都已经成功放置了皇后
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 选择列表：第 row 行的所有列都是放置皇后的选择
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 结束条件：row 超过 board 的最后一行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">backTrack</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">board</span><span class="p">,</span> <span class="kt">int</span> <span class="n">row</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 触发结束条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="n">board</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">max_col</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">max_col</span><span class="p">;</span> <span class="n">col</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isValid</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 做选择
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;Q&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">backTrack</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span> <span class="c1">// 撤销选择
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">solveNQueens</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">board</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">backTrack</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Solution</span> <span class="n">solution</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入N: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">solution</span><span class="p">.</span><span class="n">solveNQueens</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;可能解如下:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nl">arrangement</span> <span class="p">:</span> <span class="n">results</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">string</span> <span class="o">&amp;</span><span class="nl">row</span> <span class="p">:</span> <span class="n">arrangement</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">row</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>动态规划的三个需要明确的点就是「状态」「选择」和「base case」，其实就对应着走过的「路径」，当前的「选择列表」和「结束条件」。</strong></p>
+<h2 id="广搜算法bfs"><a href="#%e5%b9%bf%e6%90%9c%e7%ae%97%e6%b3%95bfs" class="header-anchor"></a>广搜算法（BFS）
+</h2><h3 id="单向bfs"><a href="#%e5%8d%95%e5%90%91bfs" class="header-anchor"></a>单向BFS
+</h3><p><strong>BFS问题的本质就是让你在一幅「图」中找到从起点 <code>start</code> 到终点 <code>target</code> 的最近距离</strong>。</p>
+<p>这个广义的描述可以有各种变体，比如走迷宫，有的格子是围墙不能走，从起点到终点的最短距离是多少，如果加上这个迷宫带「传送门」可以瞬间传送的条件呢？比如说两个单词，要求你通过某些替换，把其中一个变成另一个，每次只能替换一个字符，最少要替换几次？再比如说连连看游戏，两个方块消除的条件不仅仅是图案相同，还得保证两个方块之间的最短连线不能多于两个拐点。你玩连连看，点击两个坐标，游戏是如何判断它俩的最短连线有几个拐点的？</p>
+<p>本质上看这些问题都没有区别，就是一幅「图」，让你从一个起点，走到终点，问最短路径。<strong>这就是 BFS 的本质</strong>。</p>
+<p>算法框架如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">BFS</span><span class="p">(</span><span class="n">Node</span> <span class="n">start</span><span class="p">,</span> <span class="n">Node</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">set</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Node</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">step</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="n">Node</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">cur</span><span class="p">.</span><span class="n">adj</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果走到这里，说明在图中没有找到目标节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>BFS 的核心数据结构：<code>cur.adj()</code> 泛指 <code>cur</code> 相邻的节点，比如说二维数组中，<code>cur</code> 上下左右四面的位置就是相邻节点；<code>visited</code> 的主要作用是防止走回头路，大部分时候都是必须的，但是像一般的二叉树结构，没有子节点到父节点的指针，不会走回头路就不需要 <code>visited</code>。</p>
+<h3 id="双向bfs"><a href="#%e5%8f%8c%e5%90%91bfs" class="header-anchor"></a>双向BFS
+</h3><p><strong>传统的 BFS 框架就是从起点开始向四周扩散，遇到终点时停止；而双向 BFS 则是从起点和终点同时开始扩散，当两边有交集的时候停止。不过双向 BFS 也有局限，因为你必须知道终点在哪里</strong>，如下图：</p>
+<p><img src="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/1.jpg"
+	width="1280"
+	height="720"
+	srcset="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/1_hu14778673005640119714.jpg 480w, /p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/1_hu3871606992428410898.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/2.jpg"
+	width="1280"
+	height="720"
+	srcset="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/2_hu18301598267950239660.jpg 480w, /p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/2_hu14405365146796568331.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><strong>无论传统 BFS 还是双向 BFS，无论做不做优化，从 Big O 衡量标准来看，时间复杂度都是一样的</strong>，只能说双向 BFS 是一种 trick，算法运行的速度会相对快一点。</p>
+<h4 id="解开密码锁的最少次数"><a href="#%e8%a7%a3%e5%bc%80%e5%af%86%e7%a0%81%e9%94%81%e7%9a%84%e6%9c%80%e5%b0%91%e6%ac%a1%e6%95%b0" class="header-anchor"></a>解开密码锁的最少次数
+</h4><p><a class="link" href="https://leetcode.cn/problems/open-the-lock/solutions/843687/da-kai-zhuan-pan-suo-by-leetcode-solutio-l0xo/"  target="_blank" rel="noopener"
+    >LeetCode752.打开转盘锁</a></p>
+<p><strong>分析题目，首先要思考设计一个算法，穷举所有可能的密码组合，其次才是考虑<code>deadends</code> 和 <code>target</code> 的限制</strong>**</p>
+<p>总共有 4 个位置，每个位置可以向上转，也可以向下转，共8种可能。比如说从 <code>&quot;0000&quot;</code> 开始，转一次，可以穷举出 <code>&quot;1000&quot;, &quot;9000&quot;, &quot;0100&quot;, &quot;0900&quot;...</code> 共 8 种密码。然后，再以这 8 种密码作为基础，对每个密码再转一下，穷举出所有可能&hellip;</p>
+<p><strong>这可以抽象成一幅图，每个节点有 8 个相邻的节点</strong>，又让你求最短距离，成功转化为BFS问题。</p>
+<p>限制条件呢？只需要两个以<strong>哈希表为底层</strong>实现的<strong>无序集合</strong>记录<code>visited</code>和<code>deads</code>就可以了。</p>
+<p>题解如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">openLock</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">deadends</span><span class="p">,</span> <span class="n">string</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 记录需要跳过的死亡密码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">deads</span><span class="p">(</span><span class="n">deadends</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">deadends</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 记录已经穷举过的密码，防止走回头路
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">queue</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 从起点开始启动广度优先搜索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#34;0000&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#34;0000&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 将当前队列中的所有节点向周围扩散
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">string</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1">// 判断是否到达终点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">deads</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">cur</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">step</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将一个节点的未遍历相邻节点加入队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">string</span> <span class="n">up</span> <span class="o">=</span> <span class="n">plusOne</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">up</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">up</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">up</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">string</span> <span class="n">down</span> <span class="o">=</span> <span class="n">minusOne</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">down</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 在这里增加步数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">step</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// 如果穷举完都没找到目标密码，那就是找不到了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将 s[j] 向上拨动一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="nf">plusOne</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;9&#39;</span> <span class="o">?</span> <span class="sc">&#39;0&#39;</span> <span class="o">:</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将 s[i] 向下拨动一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="nf">minusOne</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span> <span class="o">?</span> <span class="sc">&#39;9&#39;</span> <span class="o">:</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="二分查找binarysearch"><a href="#%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%bebinarysearch" class="header-anchor"></a>二分查找（BinarySearch）
+</h2><p>最常用的二分查找场景：寻找一个数、寻找左侧边界、寻找右侧边界。以下为最基础框架：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(...)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">...</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>小细节：$left + (right - left) / 2$ 就和 $(left + right) / 2$ 的结果相同，但是有效防止了 <code>left</code> 和 <code>right</code> 太大，直接相加导致溢出的情况。</p>
+<p><strong>最基本的二分查找算法</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">因为我们初始化</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了我们的「搜索区间」是</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了</span> <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">同时也决定了</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span> <span class="err">和</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">因为我们只需找到一个</span> <span class="n">target</span> <span class="err">的索引即可</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以当</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span> <span class="err">时可以立即返回</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>寻找左侧边界的二分查找</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">因为我们初始化</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">length</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了我们的「搜索区间」是</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了</span> <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">同时也决定了</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="err">和</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">因为我们需找到</span> <span class="n">target</span> <span class="err">的最左侧索引</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以当</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span> <span class="err">时不要立即返回</span>
+</span></span><span class="line"><span class="cl"><span class="err">而要收紧右侧边界以锁定左侧边界</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>寻找右侧边界的二分查找</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">因为我们初始化</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">length</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了我们的「搜索区间」是</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以决定了</span> <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">同时也决定了</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="err">和</span> <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">因为我们需找到</span> <span class="n">target</span> <span class="err">的最右侧索引</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以当</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span> <span class="err">时不要立即返回</span>
+</span></span><span class="line"><span class="cl"><span class="err">而要收紧左侧边界以锁定右侧边界</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">又因为收紧左侧边界时必须</span> <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">所以最后无论返回</span> <span class="n">left</span> <span class="err">还是</span> <span class="n">right</span><span class="err">，必须减一</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 直接返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 直接返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">left_bound</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 别返回，锁定左侧边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断 target 是否存在于 nums 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">left</span> <span class="o">&gt;=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断一下 nums[left] 是不是 target
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span> <span class="o">?</span> <span class="nl">left</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">right_bound</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 别返回，锁定右侧边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 由于 while 的结束条件是 right == left - 1，且现在在求右边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 所以用 right 替代 left - 1 更好记
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">right</span> <span class="o">&gt;=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span> <span class="o">?</span> <span class="nl">right</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="模拟与密码类问题"><a href="#%e6%a8%a1%e6%8b%9f%e4%b8%8e%e5%af%86%e7%a0%81%e7%b1%bb%e9%97%ae%e9%a2%98" class="header-anchor"></a>模拟与密码类问题
+</h2><h3 id="morse-mismatches-problem"><a href="#morse-mismatches-problem" class="header-anchor"></a>Morse Mismatches Problem
+</h3><p><a class="link" href="https://www.luogu.com.cn/problem/UVA508"  target="_blank" rel="noopener"
+    >UVA508：<em>Morse Mismatches Problem</em></a></p>
+<p>密码题中的模拟题，题目很长其实不算难，使用两个以<strong>哈希表为底层</strong>的<strong>字典</strong>存储<strong>映射</strong>即可，注释很详细。主要流程就是逐个匹配单词计算<strong>最小差异</strong>，根据最小差异的不同<strong>if_else出各种结果</strong>就行了。</p>
+<p>题解如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author: Juncker chan 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @date: 2024.10.28
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @details: Morse Mismatches Problem
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span> <span class="n">morse_map</span><span class="p">;</span>   <span class="c1">// 字符到摩尔斯电码的映射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span> <span class="n">word_dict</span><span class="p">;</span> <span class="c1">// 单词及其摩尔斯电码表示的字典
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 计算两个摩尔斯电码字符串 morse_input 和 morse_code 之间的差异
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 如果它们完全相同，返回0；如果 morse_input 是 morse_code 的前缀，返回长度差异；否则返回 INT_MAX
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">calculate_diff</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">morse_input</span><span class="p">,</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">morse_code</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">morse_input</span> <span class="o">==</span> <span class="n">morse_code</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// 完全匹配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">morse_input</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">morse_code</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="k">return</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="c1">// 如果 `morse_input` 更长，不可能是前缀
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">morse_input</span> <span class="o">==</span> <span class="n">morse_code</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">morse_input</span><span class="p">.</span><span class="n">size</span><span class="p">()))</span> <span class="k">return</span> <span class="n">morse_code</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">morse_input</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// 前缀匹配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">INT_MAX</span><span class="p">;</span>  <span class="c1">// 没有匹配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 找到与给定摩尔斯电码 `morse_input` 最接近的匹配单词
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="nf">find_best_match</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">morse_input</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">best_match</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>   <span class="c1">// 存储最接近的匹配单词
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">min_diff</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>   <span class="c1">// 最小差异初始化为 &#34;无穷大&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">word_dict</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">word_dict</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">calculate_diff</span><span class="p">(</span><span class="n">morse_input</span><span class="p">,</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>  <span class="c1">// 计算当前摩尔斯电码的差异
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果已经发生两次完全匹配，返回 &#34;!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">diff</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">min_diff</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">best_match</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">!=</span> <span class="sc">&#39;!&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">best_match</span> <span class="o">+=</span> <span class="s">&#34;!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">best_match</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果找到更接近或相同的匹配，更新 best_match
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">diff</span> <span class="o">&lt;=</span> <span class="n">min_diff</span><span class="p">)</span> <span class="n">best_match</span> <span class="o">=</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_diff</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">min_diff</span><span class="p">);</span>  <span class="c1">// 更新最小差异
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">min_diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">best_match</span> <span class="o">+=</span> <span class="s">&#34;?&#34;</span><span class="p">;</span>  <span class="c1">// 如果不是完全匹配，追加 &#34;?&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">best_match</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">morse_code</span><span class="p">,</span> <span class="n">character</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">results</span><span class="p">;</span>  <span class="c1">// 存储结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 读取字符到摩尔斯电码的映射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">character</span> <span class="o">&amp;&amp;</span> <span class="n">character</span> <span class="o">!=</span> <span class="s">&#34;*&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">morse_code</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">morse_map</span><span class="p">[</span><span class="n">character</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">morse_code</span><span class="p">;</span>  <span class="c1">// 存储每个字符的摩尔斯电码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 构建单词及其摩尔斯电码表示的字典
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">morse_code</span> <span class="o">&amp;&amp;</span> <span class="n">morse_code</span> <span class="o">!=</span> <span class="s">&#34;*&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nl">ch</span> <span class="p">:</span> <span class="n">morse_code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">word_dict</span><span class="p">[</span><span class="n">morse_code</span><span class="p">]</span> <span class="o">+=</span> <span class="n">morse_map</span><span class="p">[</span><span class="n">ch</span><span class="p">];</span>  <span class="c1">// 将单词中的每个字符转换为摩尔斯电码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 读取摩尔斯电码输入并处理，存储结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">morse_code</span> <span class="o">&amp;&amp;</span> <span class="n">morse_code</span> <span class="o">!=</span> <span class="s">&#34;*&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">results</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">find_best_match</span><span class="p">(</span><span class="n">morse_code</span><span class="p">));</span>  <span class="c1">// 存储每个结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在输入完全读取后打印所有结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="nl">result</span> <span class="p">:</span> <span class="n">results</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结与时空复杂度"><a href="#%e6%80%bb%e7%bb%93%e4%b8%8e%e6%97%b6%e7%a9%ba%e5%a4%8d%e6%9d%82%e5%ba%a6" class="header-anchor"></a>总结与时空复杂度
+</h2><h3 id="bfs与dfs"><a href="#bfs%e4%b8%8edfs" class="header-anchor"></a>BFS与DFS
+</h3><p><strong>DFS 也可以找最短路径</strong>，但是<strong>时间复杂度</strong>相对BFS高很多。DFS 实际上是靠递归的堆栈记录走过的路径，你要找到最短路径，肯定得<strong>把二叉树中所有树杈都探索完才能对比出最短的路径</strong>有多长，而 BFS 借助队列做到<strong>一次一步「齐头并进」</strong>，是可以在不遍历完整棵树的条件下找到最短距离的。</p>
+<p><strong>BFS 可以找到最短距离，但是空间复杂度高，而 DFS 的空间复杂度较低。</strong></p>
+<p>以处理二叉树问题为例，假设给你的这个二叉树是满二叉树，节点数为 $N$，对于 DFS 算法来说，空间复杂度无非就是递归堆栈，<strong>最坏情况下顶多就是树的高度</strong>，也就是$ O(logN)$。</p>
+<p>但是你想想 BFS 算法，队列中每次都会储存着二叉树一层的节点，<strong>这样的话最坏情况下空间复杂度应该是树的最底层节点的数量，也就是</strong> $N/2$，用 Big O 表示的话也就是 $O(N)$。</p>
+<p>由此观之，BFS 还是有代价的，一般来说在找最短路径的时候使用 BFS，其他时候还是 DFS 使用得多一些（主要是递归代码好写）。</p>
+<blockquote>
+<p>仅供参考，可能有误</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF2-%E6%90%9C%E7%B4%A2/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(2): 搜索"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(2): 搜索</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(1): STL"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(1): STL</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/">
+        
+        
+            <div class="article-image">
+                <img src="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python语言与系统设计(1)"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python语言与系统设计(1)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(1): 常用函数"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(1): 常用函数</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(2): 典型决策树学习算法ID3</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 cita
+    </section>
+    
+    <section class="powerby">
+        
+            Hello World <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Python on cita的博客__</title>
+        <link>http://localhost:3515/tags/python/</link>
+        <description>Recent content in Python on cita的博客__</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>cita</copyright>
+        <lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:3515/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Python语言与系统设计(1)</title>
+        <link>http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</link>
+        <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</guid>
+        <description>&lt;img src="http://localhost:3515/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post Python语言与系统设计(1)" /&gt;&lt;h2 id=&#34;第一章python基础与快速入门&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0python%e5%9f%ba%e7%a1%80%e4%b8%8e%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一章：Python基础与快速入门
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Python 是一门跨平台、开源、免费的解释型高级动态编程语言&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;python 同时支持伪编译将 Python 源程序转换为&lt;strong&gt;字节码&lt;/strong&gt;来优化程序和提高运行速度。&lt;/p&gt;
+&lt;p&gt;支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序&lt;strong&gt;转换为二进制可执行文件&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 支持命令式编程（How to do）、函数式编程（What to do），完全支持面向对象程序设计&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注：这里所谓的命令式编程和函数式编程其实很好理解，下面的例子：&lt;/p&gt;
+&lt;p&gt;命令式编程：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 初始化变量  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;count = 0  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 命令式地执行一系列操作  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;for i in range(10):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    count += i  # 修改状态  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(count)  # 输出结果
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;函数式编程：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 定义一个函数来计算两个数的和  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;def add(a, b):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    return a + b  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 使用这个函数来计算3和5的和  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;result = add(3, 5)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 打印结果  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(result)  # 输出: 8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;胶水语言&lt;/strong&gt;：可以把多种不同语言编写的程序融合到一起实现无缝拼接，更好地发挥不同语言和工具的优势，满足不同&lt;strong&gt;应用领域&lt;/strong&gt;的需求。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 几个重要的网站：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.python.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.python.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.python.org/doc/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.python.org/doc/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://bugs.python.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://bugs.python.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hackerone.com/python&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://hackerone.com/python&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://stackoverflow.com/questions/tagged/python&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://stackoverflow.com/questions/tagged/python&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里忽略了 python 的安装与环境的配置，我使用的 Jupyter Notebook 进行 python 程序的编写。&lt;/p&gt;
+&lt;h2 id=&#34;基础知识&#34;&gt;&lt;a href=&#34;#%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;基础知识
+&lt;/h2&gt;&lt;h3 id=&#34;python-对象模型&#34;&gt;&lt;a href=&#34;#python-%e5%af%b9%e8%b1%a1%e6%a8%a1%e5%9e%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Python 对象模型
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;对象是&lt;/strong&gt; &lt;strong&gt;python&lt;/strong&gt; &lt;strong&gt;中****最基本的概念&lt;/strong&gt;，在 python 中处理的一切都是对象。&lt;/p&gt;
+&lt;p&gt;包含许多内置对象可直接使用，如数字、字符串、列表、del 等；&lt;/p&gt;
+&lt;p&gt;非内置对象需要导入模块才能使用，如正弦函数 sin (x)，随机数产生函数 random ( ) 等。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;对象类型&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;类型名称&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;数字&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;int, float, complex&lt;/td&gt;
+          &lt;td&gt;1234, 3.14, 1.3e5, 3+4j&lt;/td&gt;
+          &lt;td&gt;数字&lt;strong&gt;大小没有限制&lt;/strong&gt;，内置支持复数及其运算&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;字符串&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;str&lt;/td&gt;
+          &lt;td&gt;‘swfu’, “I’m student”,  ”’Python ”’, r’abc’, R’bcd’&lt;/td&gt;
+          &lt;td&gt;使用单引号、双引号、三引号作为定界符，以字母 r 或 R 引导的表示原始字符串&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;字节串&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;bytes&lt;/td&gt;
+          &lt;td&gt;b’hello world’&lt;/td&gt;
+          &lt;td&gt;以字母 b 引导，可以使用单引号、双引号、三引号作为定界符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;列表&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;list&lt;/td&gt;
+          &lt;td&gt;[1, 2, 3]，[‘a’, ‘b’, [‘c’, 2]]&lt;/td&gt;
+          &lt;td&gt;所有元素放在一对方括号中，元素之间使用逗号分隔，其中的元素可以是任意类型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;字典&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;dict&lt;/td&gt;
+          &lt;td&gt;{1:’food’ ,2:’taste’, 3:’import’}&lt;/td&gt;
+          &lt;td&gt;所有元素放在一对大括号中，元素之间使用逗号分隔，&lt;strong&gt;元素形式为 “键&lt;/strong&gt;**:** &lt;strong&gt;值”&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;元组&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;tuple&lt;/td&gt;
+          &lt;td&gt;(2, -5, 6), (3,)&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;不可变&lt;/strong&gt;，所有元素放在一对圆括号中，元素之间使用逗号分隔，&lt;strong&gt;如果元组中只有一个元素的话，后面的逗号不能省略&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;集合&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;set frozenset&lt;/td&gt;
+          &lt;td&gt;{‘a’, ‘b’, ‘c’}&lt;/td&gt;
+          &lt;td&gt;所有元素放在一对大括号中，元素之间使用逗号分隔，&lt;strong&gt;元素不允许重复&lt;/strong&gt; ; 另外，set 是可变的，而 frozenset 是不可变的&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;字符串string&#34;&gt;&lt;a href=&#34;#%e5%ad%97%e7%ac%a6%e4%b8%b2string&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;字符串（string）
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：字符串是由 Unicode 字符组成的序列，用于处理文本数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特性&lt;/p&gt;
+&lt;p&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以包含各种语言的字符。&lt;/li&gt;
+&lt;li&gt;不可变，即创建后不能更改其中的元素。&lt;/li&gt;
+&lt;li&gt;在 Python 3 中，所有的字符串默认都是 Unicode 字符串，所以前缀 &lt;code&gt;u&lt;/code&gt; 或 &lt;code&gt;U&lt;/code&gt; 不再需要。不过，仍然可以通过前缀 &lt;code&gt;u&lt;/code&gt; 或 &lt;code&gt;U&lt;/code&gt; 来表示一个 Unicode 字符串（例如 &lt;code&gt;u&amp;quot;Hello&amp;quot;&lt;/code&gt;），但这在 Python 3 中并不是必需的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用途&lt;/strong&gt;：字符串通常用于表示和处理人类可读的文本信息，如文字、数字、符号等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;字节串bytes&#34;&gt;&lt;a href=&#34;#%e5%ad%97%e8%8a%82%e4%b8%b2bytes&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;字节串（bytes）
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：字节串是由 0~255 范围内的整数（即 8 位字节）构成的序列，用于在程序中处理二进制数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特性&lt;/p&gt;
+&lt;p&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以包含 ASCII 字符或其他编码的字节。&lt;/li&gt;
+&lt;li&gt;不可变，即一旦创建了一个字节串，就不能修改它。&lt;/li&gt;
+&lt;li&gt;在 Python 中，可以通过前缀 &lt;code&gt;b&lt;/code&gt; 或 &lt;code&gt;B&lt;/code&gt; 来表示一个字节串（例如 &lt;code&gt;b&amp;quot;Hello&amp;quot;&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用途&lt;/strong&gt;：字节串通常用于处理非文本数据，如文件内容、网络数据、图像、音频等二进制数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;主要区别&#34;&gt;&lt;a href=&#34;#%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;主要区别
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编码方式&lt;/strong&gt;：字符串使用 Unicode 编码，可以包含任何语言的字符；而字节串使用 &lt;code&gt;bytes&lt;/code&gt; 编码，通常包含 ASCII 字符或其他特定编码的字节。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存储与表示&lt;/strong&gt;：字符串以文本形式存储和表示，便于人类阅读和编辑；字节串则以二进制形式存储和表示，更适合计算机处理和传输。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途差异&lt;/strong&gt;：字符串主要用于处理文本信息；而字节串则主要用于处理二进制数据，如文件读写、网络通信等场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;转换方法&#34;&gt;&lt;a href=&#34;#%e8%bd%ac%e6%8d%a2%e6%96%b9%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;转换方法
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;字符串转字节串&lt;/strong&gt;：可以使用字符串的&lt;code&gt;.encode()&lt;/code&gt; 方法将其编码为字节串。例如，&lt;code&gt;string.encode(&#39;utf-8&#39;)&lt;/code&gt; 会将字符串 &lt;code&gt;string&lt;/code&gt; 编码为 UTF-8 格式的字节串。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;字节串转字符串&lt;/strong&gt;：可以使用字节串的&lt;code&gt;.decode()&lt;/code&gt; 方法将其解码为字符串。例如，&lt;code&gt;bytes_data.decode(&#39;utf-8&#39;)&lt;/code&gt; 会将 UTF-8 格式的字节串 &lt;code&gt;bytes_data&lt;/code&gt; 解码为字符串。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;对象类型&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;类型名称&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;布尔型&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;bool&lt;/td&gt;
+          &lt;td&gt;True, False&lt;/td&gt;
+          &lt;td&gt;逻辑值，关系运算符、成员测试运算符、同一性测试运算符组成的表达式的值一般为 True 或 False&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;空类型&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;NoneType&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;空值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;异常&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Exception、ValueError、TypeError&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;Python 内置大量异常类，分别对应不同类型的异常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;文件&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;f = open(‘data.dat’, ‘rb’)&lt;/td&gt;
+          &lt;td&gt;open 是 Python 内置函数，使用指定的模式打开文件，返回文件对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;其他可迭代对象&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;生成器对象、range 对象、zip 对象、enumerate 对象、map 对象、filter 对象等等&lt;/td&gt;
+          &lt;td&gt;具有&lt;strong&gt;惰性求值&lt;/strong&gt;的特点，除 range 对象之外，其他对象中的元素只能看一次&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;编程单元&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;函数（使用 def 定义） 类（使用 class 定义） 模块（类型为 module）&lt;/td&gt;
+          &lt;td&gt;类和函数都属于&lt;strong&gt;可调用对象&lt;/strong&gt;，模块用来集中存放函数、类、常量或其他对象&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;python-变量&#34;&gt;&lt;a href=&#34;#python-%e5%8f%98%e9%87%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;Python 变量
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;在 Python 中，不需事先声明变量名及其类型，直接赋值即可创建各种类型的对象变量。这一点适用于 Python 任意类型的对象。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 cpp 中，变量在声明时就需要声明变量的类型，而在 python 中则是直接给变量赋值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;data:image/svg&amp;#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&amp;#43;&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 属于强类型编程语言，Python 解释器会根据赋值或运算来自动推断变量类型。Python 还是一种动态类型语言，变量的类型也是可以随时变化的。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(type(x))       #type():查看变量类型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;class &amp;#39;int&amp;#39;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x = &amp;#39;Hello world.&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(type(x)) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;class &amp;#39;str&amp;#39;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; isinstance(3, int)   #isinstance():测试对象是否是某个类型的实例
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果变量出现在赋值运算符或复合赋值运算符（例如 +=、*= 等等）的左边则表示创建变量或修改变量的值，否则表示引用该变量的值&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;字符串和元组属于不可变序列&lt;/strong&gt;，不能通过下标的方式来修改其中的元素值，试图修改元组中元素的值时会抛出异常。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x = (1,2,3)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x[1] = 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       Traceback (most recent call last):
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          File &amp;#34;&amp;lt;pyshell#7&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;             x[1] = 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       TypeError: &amp;#39;tuple&amp;#39; object does not support item assignment
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;python 中&lt;strong&gt;允许多个变量指向同一个值&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;data:image/svg&amp;#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&amp;#43;&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;x = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;y = x
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(x))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(y))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032040
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032040
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;当修改其中一个变量值后，其内存地址将会变化，但并不影响另一变量&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;data:image/svg&amp;#43;xml;base64,PCEtLUFyZ29uTG9hZGluZy0tPgo8c3ZnIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjZmZmZmZmMDAiPjxnPjwvZz4KPC9zdmc&amp;#43;&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;x+=6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(x))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(y))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032424
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032040
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Python 采用的是基于值的内存管理方式，如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;x = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;y = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(x))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(id(y))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032040
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;140729233032040
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;x = [1, 1, 1, 1]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;id(x[0]) == id(x[1])
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;变量名必须以字母或下划线开头，但以下划线开头的变量在 Python 中有特殊含义；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量名中不能有空格以及标点符号（括号、引号、逗号、斜线、反斜线、冒号、句号、问号等）；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不能使用关键字作变量名，可以导入 keyword 模块后使用 print (keyword.kwlist) 查看所有 Python 关键字 (33 个)；&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;import keyword
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(keyword.kwlist)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&amp;#39;False&amp;#39;, &amp;#39;None&amp;#39;, &amp;#39;True&amp;#39;, &amp;#39;and&amp;#39;, &amp;#39;as&amp;#39;, &amp;#39;assert&amp;#39;, &amp;#39;async&amp;#39;, &amp;#39;await&amp;#39;, &amp;#39;break&amp;#39;, &amp;#39;class&amp;#39;, &amp;#39;continue&amp;#39;, &amp;#39;def&amp;#39;, &amp;#39;del&amp;#39;, &amp;#39;elif&amp;#39;, &amp;#39;else&amp;#39;, &amp;#39;except&amp;#39;, &amp;#39;finally&amp;#39;, &amp;#39;for&amp;#39;, &amp;#39;from&amp;#39;, &amp;#39;global&amp;#39;, &amp;#39;if&amp;#39;, &amp;#39;import&amp;#39;, &amp;#39;in&amp;#39;, &amp;#39;is&amp;#39;, &amp;#39;lambda&amp;#39;, &amp;#39;nonlocal&amp;#39;, &amp;#39;not&amp;#39;, &amp;#39;or&amp;#39;, &amp;#39;pass&amp;#39;, &amp;#39;raise&amp;#39;, &amp;#39;return&amp;#39;, &amp;#39;try&amp;#39;, &amp;#39;while&amp;#39;, &amp;#39;with&amp;#39;, &amp;#39;yield&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注（下划线的含义）：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单下划线 &lt;code&gt;_&lt;/code&gt;&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在交互式环境中，&lt;code&gt;_&lt;/code&gt; 表示上一个表达式的结果。&lt;/li&gt;
+&lt;li&gt;在循环或迭代中，&lt;code&gt;_&lt;/code&gt; 通常用作一个占位符，表示某个值会被忽略。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;for _ in range(5):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    print(&amp;#34;Hello, World!&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;双下划线 &lt;code&gt;__&lt;/code&gt;&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类的属性名如果以双下划线开头且不以双下划线结尾（例如，&lt;code&gt;__foo&lt;/code&gt;），这会触发名称改写（name mangling）。这意味着该属性会在类被继承时通过特定的方式被重命名，以避免子类意外覆盖父类的属性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;class MyClass:  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    def __init__(self):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        self.__secret = &amp;#34;hidden&amp;#34;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;class MySubClass(MyClass):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    def __init__(self):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        super().__init__()  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        self.__secret = &amp;#34;not hidden&amp;#34;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        print(self._MyClass__secret)  # 访问父类的隐藏属性
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;双下划线前缀和后缀 &lt;code&gt;__xxx__&lt;/code&gt;&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这种命名方式通常用于特殊方法或魔术方法（magic methods），这些方法具有特定的含义，并由 Python 解释器在特定情况下调用。例如，&lt;code&gt;__init__&lt;/code&gt; 用于初始化对象，&lt;code&gt;__str__&lt;/code&gt; 用于定义对象的字符串表示等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;class MyClass:  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    def __init__(self, name):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        self.name = name  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    def __str__(self):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        return f&amp;#34;MyClass with name {self.name}&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;单下划线前缀 &lt;code&gt;_xxx&lt;/code&gt;&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通常用于表示变量或方法是 “受保护的” 或 “内部使用的”，这是一种约定俗成的命名习惯，用于指示这些变量或方法不应该被类的外部直接访问。然而，这并不会引起 Python 解释器的任何强制限制，只是表明了一种使用意图。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;class MyClass:  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    def _internal_method(self):  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        print(&amp;#34;This is an internal method.&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;不建议****使用系统内置的模块名、类型名或函数名以及已导入的模块名及其成员名作变量名&lt;/strong&gt;，这将会改变其类型和含义，可以通过 dir (&lt;strong&gt;builtins&lt;/strong&gt;) 查看所有内置模块、类型和函数；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量名对英文字母的****大小写敏感&lt;/strong&gt;，例如 student 和 Student 是不同的变量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 中的变量并不直接存储值，而是存储了值的内存地址或者引用，这也是变量类型随时可以改变的原因&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;赋值语句的执行过程是：首先把等号右侧表达式的值计算出来，然后在内存中寻找一个位置把值存放进去，最后创建变量并指向这个内存地址。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 具有自动内存管理功能&lt;/strong&gt;，对于没有任何变量指向的值，Python 自动将其删除。Python 会跟踪所有的值，并自动删除不再有变量指向的值。&lt;/p&gt;
+&lt;p&gt;显式&lt;strong&gt;使用 del 命令删除不需要的值或显式关闭不再需要访问的资源&lt;/strong&gt;，仍是一个好的习惯，同时也是一个优秀程序员的基本素养之一。&lt;/p&gt;
+&lt;h3 id=&#34;python-的数字类型&#34;&gt;&lt;a href=&#34;#python-%e7%9a%84%e6%95%b0%e5%ad%97%e7%b1%bb%e5%9e%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;Python 的数字类型&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;三类：整数类型、浮点类型与复数类型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;整数类型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;・十进制整数如，0、-1、9、123&lt;/p&gt;
+&lt;p&gt;・十六进制整数，需要 16 个数字 0、1、2、3、4、5、6、7、8、9、a、b、c、d、e、f 来表示整数，必须以 0x 开头，如 0x10、0xfa、0xabcdef&lt;/p&gt;
+&lt;p&gt;・八进制整数，只需要 8 个数字 0、1、2、3、4、5、6、7 来表示整数，必须以 0o 开头，如 0o35、0o11&lt;/p&gt;
+&lt;p&gt;・二进制整数，只需要 2 个数字 0、1 来表示整数，必须以 0b 开头如，0b101、0b100&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;浮点数类型：浮点数****又称小数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ü15.0、0.37、-11.2、1.2e2、314.15e-2&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 内置支持复数类型&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; a = 3+4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; b = 5+6j
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; c = a+b
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; c
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(8+10j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; c.real        #查看复数实部
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; c.imag        #查看复数虚部
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; a.conjugate() #返回共轭复数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(3-4j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; a*b           #复数乘法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(-9+38j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; a/b           #复数除法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(0.6393442622950819+0.03278688524590165j)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Python 3.6.x 开始支持在数字中间位置使用单个下划线作为分隔来提高数字的可读性，类似于数学上使用逗号作为千位分隔符。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1_000_000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1000000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1_2_3_4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1234
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1_2 + 3_4j
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(12+34j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1_2.3_45
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;12.345
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;字符串&#34;&gt;&lt;a href=&#34;#%e5%ad%97%e7%ac%a6%e4%b8%b2&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;字符串
+&lt;/h3&gt;&lt;p&gt;n 用单引号、双引号或三引号界定的符号系列称为字符串&lt;/p&gt;
+&lt;p&gt;n 单引号、双引号、三单引号、三双引号可以&lt;strong&gt;互相嵌套&lt;/strong&gt;，用来表示复杂字符串&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例如：&lt;/strong&gt; &lt;strong&gt;‘&lt;strong&gt;&lt;strong&gt;abc&lt;/strong&gt;&lt;/strong&gt;‘&lt;strong&gt;&lt;strong&gt;、&lt;/strong&gt;&lt;/strong&gt;‘123’&lt;strong&gt;&lt;strong&gt;、&lt;/strong&gt;&lt;/strong&gt;‘&lt;strong&gt;&lt;strong&gt;中国&lt;/strong&gt;&lt;/strong&gt;‘&lt;strong&gt;&lt;strong&gt;、&lt;/strong&gt;&lt;/strong&gt;“Python”****、”’Tom said, “Let’s go””’&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;字符串属于不可变序列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;空字符串表示为” 或 “”&lt;/p&gt;
+&lt;p&gt;三引号”’或””” 表示的字符串&lt;strong&gt;可以换行&lt;/strong&gt;，支持排版较为复杂的字符串；三引号还可以在程序中表示较长的注释。&lt;/p&gt;
+&lt;h4 id=&#34;字符串的拼接&#34;&gt;&lt;a href=&#34;#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%8b%bc%e6%8e%a5&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;字符串的拼接
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;字符串之间可以通过&lt;/strong&gt; &lt;strong&gt;+&lt;/strong&gt; &lt;strong&gt;或 * 进行连接&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;加法操作 (+) 将两个字符串连接成为一个新的字符串&lt;/p&gt;
+&lt;p&gt;乘法操作 (*) 生成一个由其本身字符串重复连接而成的字符串&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;len () 函数能否返回一个字符串的长度&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;字符串的转义&#34;&gt;&lt;a href=&#34;#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e8%bd%ac%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;字符串的转义
+&lt;/h4&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;转义字符&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;含义&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;转义字符&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;含义&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\b&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;退格，把光标移动到前一列位置&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;\&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;一个斜线 \&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\f&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;换页符&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;*&lt;/strong&gt;&lt;em&gt;’&lt;/em&gt;*&lt;/td&gt;
+          &lt;td&gt;单引号’&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\n&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;换行符&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;*&lt;/strong&gt;&lt;em&gt;”&lt;/em&gt;*&lt;/td&gt;
+          &lt;td&gt;双引号”&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\r&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;回车&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;\ooo&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;3 位八进制数对应的字符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\t&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;水平制表符&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;\xhh&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;2 位十六进制数对应的字符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;\v&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;垂直制表符&lt;/td&gt;
+          &lt;td&gt;****&lt;strong&gt;uhhhh&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;4 位十六进制数表示的 Unicode 字符&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;字符串界定符前面加字母 r 或 R 表示原始字符串，其中的特殊字符不 进行转义，但字符串的最后一个字符不能是 \。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;・原始字符串主要用于正则表达式、文件路径或者 URL 的场合。&lt;/p&gt;
+&lt;h3 id=&#34;运算符和表达式&#34;&gt;&lt;a href=&#34;#%e8%bf%90%e7%ae%97%e7%ac%a6%e5%92%8c%e8%a1%a8%e8%be%be%e5%bc%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;运算符和表达式&lt;/strong&gt;
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;运算符&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;+&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;算术加法，列表、元组、字符串合并与连接，正号&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;–&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;算术减法，集合差集，相反数&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;*****&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;算术乘法，序列重复&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;/&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;真除法&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;//&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;求整商，但如果操作数中有实数的话，结果为实数形式的整数&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;%&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;求余数，字符串格式化&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;**&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;幂运算&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;&amp;lt;、&amp;lt;=、&amp;gt;、&amp;gt;=、==、!=&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;（值）大小比较，集合的包含关系比较&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;or，and, not&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;逻辑或、逻辑与、逻辑非&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;in&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;成员测试&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;is&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;对象同一性测试，即测试是否为同一个对象或内存地址是否相同&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;、^、&amp;amp;、&amp;laquo;、&amp;raquo;、~&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;位或、位异或、位与、左移位、右移位、位求反&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;&amp;amp;、|、^、-&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;集合交集、并集、对称差集，差集&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;加法&#34;&gt;&lt;a href=&#34;#%e5%8a%a0%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;加法
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;+ 运算符除了用于算术加法外&lt;/strong&gt;，还可用于列表、元组、字符串的连接，但不支持不同类型的对象之间相加或连接。&lt;/p&gt;
+&lt;h4 id=&#34;乘法&#34;&gt;&lt;a href=&#34;#%e4%b9%98%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;乘法
+&lt;/h4&gt;&lt;p&gt;***** &lt;strong&gt;运算符不仅可以用于&lt;strong&gt;&lt;strong&gt;数值乘法&lt;/strong&gt;&lt;/strong&gt;，还可以用于列表、字符串、元组等****类型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当列表、字符串或元组等类型变量与整数进行 “*” 运算时，表示对内容进行重复并返回重复后的新对象。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 2.0 * 3                     #浮点数与整数相乘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; (3+4j) * 2                  #复数与整数相乘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(6+8j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; (3+4j) * (3-4j)             #复数与复数相乘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(25+0j)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#34;a&amp;#34; * 10                    #字符串重复
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#39;aaaaaaaaaa&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;除法&#34;&gt;&lt;a href=&#34;#%e9%99%a4%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;除法
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;Python 中的除法有两种，“/” 和 “//” 分别表示除法和整除运算。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 / 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0.6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 // 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3.0 / 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0.6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3.0 // 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 13 // 10
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; -13 // 10
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;求余&#34;&gt;&lt;a href=&#34;#%e6%b1%82%e4%bd%99&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;求余
+&lt;/h4&gt;&lt;p&gt;n**%** &lt;strong&gt;运算符除去&lt;strong&gt;&lt;strong&gt;可用&lt;/strong&gt;&lt;/strong&gt;于字符串格式化之外&lt;/strong&gt;**，也可对&lt;strong&gt;&lt;strong&gt;整数和浮点数计算余数&lt;/strong&gt;&lt;/strong&gt;。**&lt;/p&gt;
+&lt;p&gt;・由于浮点数的精确度影响，计算结果可能略有误差。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3.1 % 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 6.3 % 2.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.0999999999999996
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 6 % 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; -17 % 4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3                            #余数与%右侧的运算数符号一致
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 17 % -4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-3                           #(17-(-3))能被(-4)整除
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 5.7 % 4.8
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0.9000000000000004
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;关系型运算符&#34;&gt;&lt;a href=&#34;#%e5%85%b3%e7%b3%bb%e5%9e%8b%e8%bf%90%e7%ae%97%e7%ac%a6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;关系型运算符
+&lt;/h4&gt;&lt;p&gt;关系运算符可以连用，一般用于同类型对象之间值的大小比较，或者测试集合之间的包含关系&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1 &amp;lt; 3 &amp;lt; 5                       #等价于1 &amp;lt; 3 and 3 &amp;lt; 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;Hello&amp;#39; &amp;gt; &amp;#39;world&amp;#39;               #比较字符串大小
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;False
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;Hello&amp;#39; &amp;gt; 3                     #字符串和数字不能比较
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TypeError: unorderable types: str() &amp;gt; int()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;成员测试运算符&#34;&gt;&lt;a href=&#34;#%e6%88%90%e5%91%98%e6%b5%8b%e8%af%95%e8%bf%90%e7%ae%97%e7%ac%a6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;成员测试运算符&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;成员测试运算符 in&lt;/strong&gt; &lt;strong&gt;用于****成员测试&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;・即测试一个对象是否为另一个对象的元素。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 5 in range(1, 10, 1) #range()是用来生成指定范围数字的内置函数
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;abc&amp;#39; in &amp;#39;abcdefg&amp;#39;   #子字符串测试
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; for i in (3, 5, 7):  #循环，成员遍历
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    print(i, end=&amp;#39;\t&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3	 5	7	
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;位运算符&#34;&gt;&lt;a href=&#34;#%e4%bd%8d%e8%bf%90%e7%ae%97%e7%ac%a6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;位运算符&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;位运算符只能用于整数&lt;/strong&gt;，其内部执行过程为：首先将整数转换为二进制数，然后右对齐，必要的时候左侧补 0，按位进行运算，最后再把计算结果转换为十进制数字返回&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 &amp;lt;&amp;lt; 2    #把3左移2位
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;12
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 &amp;amp; 7     #位与运算
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 | 8     #位或运算
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 ^ 5     #位异或运算
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;集合的交集、并集、****对称差集&lt;/strong&gt;等运算借助于&lt;strong&gt;位运算符&lt;/strong&gt;来实现&lt;/p&gt;
+&lt;p&gt;而&lt;strong&gt;差集&lt;/strong&gt;则使用减号运算符实现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; {1, 2, 3} | {3, 4, 5}         #并集，自动去除重复元素
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{1, 2, 3, 4, 5}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; {1, 2, 3} &amp;amp; {3, 4, 5}         #交集
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{3}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; {1, 2, 3} ^ {3, 4, 5}         #对称差集
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{1, 2, 4, 5}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; {1, 2, 3} - {3, 4, 5}         #差集
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{1, 2}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;and-or&#34;&gt;&lt;a href=&#34;#and-or&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;and or
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;and&lt;/strong&gt; &lt;strong&gt;和&lt;/strong&gt; &lt;strong&gt;or&lt;/strong&gt; &lt;strong&gt;具有&lt;strong&gt;&lt;strong&gt;惰性求值&lt;/strong&gt;&lt;/strong&gt;特点，只计算必须计算的****表达式&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3&amp;gt;5 and a&amp;gt;3     
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;False
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意，此时并没有定义变量 a，and 要两者都对返回对，而第一位的 3&amp;gt;5 已经判断是错的了，这里直接返回错，不会再对后面的 a&amp;gt;3 进行执行。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3&amp;gt;5 or a&amp;gt;3      
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NameError: name &amp;#39;a&amp;#39; is not defined
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3&amp;gt;5 的值为 False，所以需要计算后面表达式。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3&amp;lt;5 or a&amp;gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3&amp;lt;5 的值为 True，不需要计算后面表达式。这里是与 and 类似的惰性，or 只要两者中有一个是正确的，则返回正确，这里的 3&amp;lt;5 是对的，or 的代码将不会执行。&lt;/p&gt;
+&lt;p&gt;这里比较让人迷惑的是下面这个程序：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a = 1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a == 1 or (a+1) == 2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;print(a)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里返回的结果是 1，因为 or 后面的程序没有执行。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 and 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and 是将最后一个计算的表达式的值作为整个表达式的值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 3 and 5&amp;gt;2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;or 也类似&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 1 &amp;gt; 2 or 4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;比较特殊的是 is not，它只能返回 true 或者 false&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3 is not 5           
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;True
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Python 中单个任何类型的对象或常数属于合法表达式，使用运算符连接的变量和常量以及函数调用的任意组合也属于合法的表达式&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;特殊说明&#34;&gt;&lt;a href=&#34;#%e7%89%b9%e6%ae%8a%e8%af%b4%e6%98%8e&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;特殊说明&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;逗号并不是运算符，只是一个普通分隔符&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x = 3, 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(3, 5)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; 3==3, 5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(True, 5)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;逗号（&lt;code&gt;,&lt;/code&gt;）在 Python 中用于创建元组（tuple）。当你使用逗号分隔多个值或表达式时，Python 会将这些值或表达式组合成一个元组。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 不支持 ++ 和–运算符，虽然在形式上有时似乎可这样用，但实际上是另外的含义&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; i = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; ++i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3                       #正正得正
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; i++                 #Python不支持++运算符，语法错误
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SyntaxError: invalid syntax
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; --i                 #负负得正
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; -(-i)               #与--i等价
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;常用内置函数&#34;&gt;&lt;a href=&#34;#%e5%b8%b8%e7%94%a8%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;常用内置函数&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;内置函数不需要导入任何模块即可使用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;执行下面的命令&lt;strong&gt;&lt;strong&gt;可以&lt;/strong&gt;&lt;/strong&gt;列出所有内置函数&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dir (__builtins__)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;abs(x)&lt;/td&gt;
+          &lt;td&gt;返回数字 x 的绝对值或复数 x 的模&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;all(iterable)&lt;/td&gt;
+          &lt;td&gt;如果对于可迭代对象中所有元素 x 都等价于 True，也就是对于所有元素 x 都有 bool (x) 等于 True，则返回 True。对于空的可迭代对象也返回 True&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;any(iterable)&lt;/td&gt;
+          &lt;td&gt;只要可迭代对象 iterable 中存在元素 x 使得 bool (x) 为 True，则返回 True。对于空的可迭代对象，返回 False&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ascii(obj)&lt;/td&gt;
+          &lt;td&gt;把对象转换为 ASCII 码表示形式，必要的时候使用转义字符来表示特定的字符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bin(x)&lt;/td&gt;
+          &lt;td&gt;把整数 x 转换为二进制串表示形式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bool(x)&lt;/td&gt;
+          &lt;td&gt;返回与 x 等价的布尔值 True 或 False&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bytes(x)&lt;/td&gt;
+          &lt;td&gt;生成字节串，或把指定对象 x 转换为字节串表示形式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;callable(obj)&lt;/td&gt;
+          &lt;td&gt;测试对象 obj 是否可调用。类和函数是可调用的，包含__call__() 方法的类的对象也是可调用的&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;compile()&lt;/td&gt;
+          &lt;td&gt;用于把 Python 代码编译成可被 exec () 或 eval () 函数执行的代码对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;complex(real, [imag])&lt;/td&gt;
+          &lt;td&gt;返回复数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;chr(x)&lt;/td&gt;
+          &lt;td&gt;返回 Unicode 编码为 x 的字符&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;delattr(obj, name)&lt;/td&gt;
+          &lt;td&gt;删除属性，等价于 del obj.name&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;dir(obj)&lt;/td&gt;
+          &lt;td&gt;返回指定对象或模块 obj 的成员列表，如果不带参数则返回当前作用域内所有标识符&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;divmod(x, y)&lt;/td&gt;
+          &lt;td&gt;返回包含整商和余数的元组 ((x-x% y)/y, x% y)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;enumerate(iterable[, start])&lt;/td&gt;
+          &lt;td&gt;返回包含元素形式为 (0, iterable [0]), (1, iterable [1]), (2, iterable [2]),  … 的迭代器对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;eval(s[, globals[, locals]])&lt;/td&gt;
+          &lt;td&gt;计算并返回字符串 s 中表达式的值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;exec(x)&lt;/td&gt;
+          &lt;td&gt;执行代码或代码对象 x&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;exit()&lt;/td&gt;
+          &lt;td&gt;退出当前解释器环境&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;filter(func, seq)&lt;/td&gt;
+          &lt;td&gt;返回 filter 对象，其中包含序列 seq 中使得单参数函数 func 返回值为 True 的那些元素，如果函数 func 为 None 则返回包含 seq 中等价于 True 的元素的 filter 对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;float(x)&lt;/td&gt;
+          &lt;td&gt;把整数或字符串 x 转换为浮点数并返回&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;frozenset([x]))&lt;/td&gt;
+          &lt;td&gt;创建不可变的集合对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;getattr(obj, name[, default])&lt;/td&gt;
+          &lt;td&gt;获取对象中指定属性的值，等价于 obj.name，如果不存在指定属性则返回 default 的值，如果要访问的属性不存在并且没有指定 default 则抛出异常&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;globals()&lt;/td&gt;
+          &lt;td&gt;返回包含当前作用域内全局变量及其值的字典&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;hasattr(obj, name)&lt;/td&gt;
+          &lt;td&gt;测试对象 obj 是否具有名为 name 的成员&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;hash(x)&lt;/td&gt;
+          &lt;td&gt;返回对象 x 的哈希值，如果 x 不可哈希则抛出异常&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;help(obj)&lt;/td&gt;
+          &lt;td&gt;返回对象 obj 的帮助信息&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;hex(x)&lt;/td&gt;
+          &lt;td&gt;把整数 x 转换为十六进制串&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;id(obj)&lt;/td&gt;
+          &lt;td&gt;返回对象 obj 的标识（内存地址）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;input ([提示])&lt;/td&gt;
+          &lt;td&gt;显示提示，接收键盘输入的内容，返回字符串&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;int(x[, d])&lt;/td&gt;
+          &lt;td&gt;返回实数（float）、分数（Fraction）或高精度实数（Decimal）x 的整数部分，或把 d 进制的字符串 x 转换为十进制并返回，d 默认为十进制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;isinstance(obj, class-or-type-or-tuple)&lt;/td&gt;
+          &lt;td&gt;测试对象 obj 是否属于指定类型（如果有多个类型的话需要放到元组中）的实例&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;iter(…)&lt;/td&gt;
+          &lt;td&gt;返回指定对象的可迭代对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;len(obj)&lt;/td&gt;
+          &lt;td&gt;返回对象 obj 包含的元素个数，适用于列表、元组、集合、字典、字符串以及 range 对象和其他可迭代对象&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;list([x])、set([x])、tuple([x])、dict([x])&lt;/td&gt;
+          &lt;td&gt;把对象 x 转换为列表、集合、元组或字典并返回，或生成空列表、空集合、空元组、空字典&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;locals()&lt;/td&gt;
+          &lt;td&gt;返回包含当前作用域内局部变量及其值的字典&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;map(func, *iterables)&lt;/td&gt;
+          &lt;td&gt;返回包含若干函数值的 map 对象，函数 func 的参数分别来自于 iterables 指定的每个迭代对象，&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;max(x)、 min(x)&lt;/td&gt;
+          &lt;td&gt;返回可迭代对象 x 中的最大值、最小值，要求 x 中的所有元素之间可比较大小，允许指定排序规则和 x 为空时返回的默认值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;next(iterator[, default])&lt;/td&gt;
+          &lt;td&gt;返回可迭代对象 x 中的下一个元素，允许指定迭代结束之后继续迭代时返回的默认值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;oct(x)&lt;/td&gt;
+          &lt;td&gt;把整数 x 转换为八进制串&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;open(name[, mode])&lt;/td&gt;
+          &lt;td&gt;以指定模式 mode 打开文件 name 并返回文件对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ord(x)&lt;/td&gt;
+          &lt;td&gt;返回 1 个字符 x 的 Unicode 编码&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;pow(x, y, z=None)&lt;/td&gt;
+          &lt;td&gt;返回 x 的 y 次方，等价于 x ** y 或 (x ** y) % z&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;print(value, …, sep=’ ‘, end=’\n’, file = sys. stdout, flush=False)&lt;/td&gt;
+          &lt;td&gt;基本输出函数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;quit()&lt;/td&gt;
+          &lt;td&gt;退出当前解释器环境&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;range([start,] end [, step] )&lt;/td&gt;
+          &lt;td&gt;返回 range 对象，其中包含左闭右开区间 [start,end) 内以 step 为步长的整数&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;函数&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;功能简要说明&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;repr(obj)&lt;/td&gt;
+          &lt;td&gt;返回对象 obj 的规范化字符串表示形式，对于大多数对象有 eval (repr (obj))==obj&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;reversed(seq)&lt;/td&gt;
+          &lt;td&gt;返回 seq（可以是列表、元组、字符串、range 以及其他可迭代对象）中所有元素逆序后的迭代器对象&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;round (x [, 小数位数])&lt;/td&gt;
+          &lt;td&gt;对 x 进行四舍五入，若不指定小数位数，则返回整数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;sorted(iterable, key=None, reverse=False)&lt;/td&gt;
+          &lt;td&gt;返回排序后的列表，其中 iterable 表示要排序的序列或迭代对象，key 用来指定排序规则或依据，reverse 用来指定升序或降序。该函数不改变 iterable 内任何元素的顺序&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;str(obj)&lt;/td&gt;
+          &lt;td&gt;把对象 obj 直接转换为字符串&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;sum(x, start=0)&lt;/td&gt;
+          &lt;td&gt;返回序列 x 中所有元素之和，返回 start+sum (x)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;type(obj)&lt;/td&gt;
+          &lt;td&gt;返回对象 obj 的类型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;zip(seq1 [, seq2 […]])&lt;/td&gt;
+          &lt;td&gt;返回 zip 对象，其中元素为 (seq1 [i], seq2 [i], …) 形式的元组，最终结果中包含的元素个数取决于所有参数序列或可迭代对象中最短的那个&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;重点&#34;&gt;&lt;a href=&#34;#%e9%87%8d%e7%82%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;重点：
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;输入函数：&lt;strong&gt;&lt;strong&gt;input&lt;/strong&gt;&lt;/strong&gt;(&lt;/strong&gt; &lt;strong&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;・可输入数字、字符串和其它任意类型对象，返回结果都是字符串。&lt;/p&gt;
+&lt;p&gt;**输出函数：**print () 函数进行输出。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;bin ()、oct ()、hex () 用来将整数转换为二进制、八进制和十六进制形式，这三个函数都要求参数必须为整数。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;eval (&amp;lt;字符串&amp;gt;) 函数能够以 Python 表达式的方式解析并执行字符串，将返回结果输出&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;range&lt;/strong&gt;**()** &lt;strong&gt;语法格式为 range&lt;/strong&gt;**([start,] end [, step] )****，&lt;strong&gt;&lt;strong&gt;返回具有&lt;/strong&gt;&lt;/strong&gt;惰性求值特点的**&lt;/p&gt;
+&lt;p&gt;range 对象，其中包含左闭右开区间 [start,end) 内以 step 为步长的整数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; range(5)                      #start默认为0，step默认为1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    range(0, 5)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; list(_)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    [0, 1, 2, 3, 4]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; list(range(1, 10, 2))     #指定起始值和步长
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    [1, 3, 5, 7, 9]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; list(range(9, 0, -2))     #步长为负数时，start应比end大
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    [9, 7, 5, 3, 1]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;ord()&lt;/strong&gt; &lt;strong&gt;和&lt;/strong&gt; &lt;strong&gt;chr&lt;/strong&gt;**()** &lt;strong&gt;是一对功能相反的****函数：&lt;strong&gt;&lt;strong&gt;ord&lt;/strong&gt;&lt;/strong&gt;()&lt;/strong&gt; &lt;strong&gt;用来返回单个字符的序数或&lt;/strong&gt; &lt;strong&gt;Unicode&lt;/strong&gt; &lt;strong&gt;码，而&lt;/strong&gt; &lt;strong&gt;chr&lt;/strong&gt;**()** &lt;strong&gt;则用来返回某序数对应的****字符&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;str&lt;/strong&gt;**()** &lt;strong&gt;则直接将其任意类型参数转换为字符串&lt;/strong&gt;**。**&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;max ()、min ()、sum () 这三个内置函数分别用于计算列表、元组或其他可迭代对象中所有元素最大值、最小值以及所有元素之和&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内置函数 type () 和 isinstance () 可以判断数据类型。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sorted () 对列表、元组、字典、集合或其他可迭代对象进行排序并返回新列表。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;zip () 函数用来把多个可迭代对象中的元素压缩到一起，返回一个可迭代的 zip 对象，其中每个元素都是包含原来的多个可迭代对象对应位置上元素的元组，如同拉拉链一样。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;zip 函数用于将可迭代对象作为参数，将对象中对应的元素打包成一个元组，然后返回由这些元组组成的列表。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; x = zip(&amp;#39;abcd&amp;#39;, &amp;#39;1234&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; list(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[(&amp;#39;a&amp;#39;, &amp;#39;1&amp;#39;), (&amp;#39;b&amp;#39;, &amp;#39;2&amp;#39;), (&amp;#39;c&amp;#39;, &amp;#39;3&amp;#39;), (&amp;#39;d&amp;#39;, &amp;#39;4&amp;#39;)]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;zip (*) 是解压&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内置函数 filter () 将一个单参数函数作用到一个序列上，返回该序列中使得该函数返回值为 True 的那些元素组成的 filter 对象，如果指定函数为 None，则返回序列中等价于 True 的元素。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; seq = [&amp;#39;foo&amp;#39;, &amp;#39;x41&amp;#39;, &amp;#39;?!&amp;#39;, &amp;#39;***&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; list(filter(str.isalnum, seq))      
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&amp;#39;foo&amp;#39;, &amp;#39;x41&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;enumerate () 函数用来枚举可迭代对象中的元素，返回可迭代的 enumerate 对象，其中每个元素都是包含索引和值的元组。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;nmap、filter、enumerate、zip 等对象不仅具有惰性求值的特点，还有另外一个特点：访问过的元素不可再次访问。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; x = map(str, range(10))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; list(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    [&amp;#39;0&amp;#39;, &amp;#39;1&amp;#39;, &amp;#39;2&amp;#39;, &amp;#39;3&amp;#39;, &amp;#39;4&amp;#39;, &amp;#39;5&amp;#39;, &amp;#39;6&amp;#39;, &amp;#39;7&amp;#39;, &amp;#39;8&amp;#39;, &amp;#39;9&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; list(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    []
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; x = map(str, range(10))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; &amp;#39;2&amp;#39; in x
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    True
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &amp;gt;&amp;gt;&amp;gt; &amp;#39;2&amp;#39; in x
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    False
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;对象的删除&#34;&gt;&lt;a href=&#34;#%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%a0%e9%99%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;对象的删除
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;reversed () 对可迭代对象（生成器对象和具有惰性求值特性的 zip、map、filter、enumerate 等类似对象除外）进行翻转（首尾交换）并返回可迭代的 reversed 对象。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python&lt;/strong&gt; **具有&lt;strong&gt;&lt;strong&gt;自动内存管理功能&lt;/strong&gt;&lt;/strong&gt;，**&lt;strong&gt;Python&lt;/strong&gt; &lt;strong&gt;解释器会跟踪所有的值，一旦发现某个值不再有任何变量指向，将会自动删除该值。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;显式释放自己申请的资源是程序员的好习惯之一，也是程序员素养的重要体现之一&lt;/strong&gt;**。&lt;strong&gt;&lt;strong&gt;del&lt;/strong&gt; &lt;strong&gt;命令&lt;/strong&gt;&lt;/strong&gt;：显&lt;strong&gt;&lt;strong&gt;式删除对象并解除与值之间的指向关系&lt;/strong&gt;&lt;/strong&gt;。**&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; y = 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; z = y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(y)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; del y             #删除对象
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(y)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NameError: name &amp;#39;y&amp;#39; is not defined
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(z)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; del z
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt;&amp;gt;&amp;gt; print(z)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NameError: name &amp;#39;z&amp;#39; is not defined
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;del 命令无法删除元组或字符串中的元素，只可以删除整个元组或字符串 因为这两者均属于不可变序列。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主要参考课堂ppt总结，仅供参考，可能有误&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
