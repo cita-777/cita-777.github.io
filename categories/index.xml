@@ -2,50 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on cita的博客__</title>
-        <link>http://localhost:3515/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in Categories on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:3515/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MCU</title>
+        <link>http://localhost:1313/categories/mcu/</link>
+        <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/mcu/</guid>
+        <description>&lt;img src="http://localhost:1313/26.jpg" alt="Featured image of post MCU" /&gt;</description>
+        </item>
+        <item>
         <title>学业</title>
-        <link>http://localhost:3515/categories/%E5%AD%A6%E4%B8%9A/</link>
+        <link>http://localhost:1313/categories/%E5%AD%A6%E4%B8%9A/</link>
         <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:3515/categories/%E5%AD%A6%E4%B8%9A/</guid>
-        <description>&lt;img src="http://localhost:3515/32.jpg" alt="Featured image of post 学业" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E5%AD%A6%E4%B8%9A/</guid>
+        <description>&lt;img src="http://localhost:1313/32.jpg" alt="Featured image of post 学业" /&gt;</description>
         </item>
         <item>
         <title>生活</title>
-        <link>http://localhost:3515/categories/%E7%94%9F%E6%B4%BB/</link>
+        <link>http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:3515/categories/%E7%94%9F%E6%B4%BB/</guid>
-        <description>&lt;img src="http://localhost:3515/29.jpg" alt="Featured image of post 生活" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/</guid>
+        <description>&lt;img src="http://localhost:1313/29.jpg" alt="Featured image of post 生活" /&gt;</description>
         </item>
         <item>
         <title>网站</title>
-        <link>http://localhost:3515/categories/%E7%BD%91%E7%AB%99/</link>
+        <link>http://localhost:1313/categories/%E7%BD%91%E7%AB%99/</link>
         <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:3515/categories/%E7%BD%91%E7%AB%99/</guid>
-        <description>&lt;img src="http://localhost:3515/categories/%E7%BD%91%E7%AB%99/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 网站" /&gt;</description>
-        </item>
-        <item>
-        <title>MCU</title>
-        <link>http://localhost:3515/categories/mcu/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:3515/categories/mcu/</guid>
-        <description>&lt;img src="http://localhost:3515/26.jpg" alt="Featured image of post MCU" /&gt;</description>
+        <guid>http://localhost:1313/categories/%E7%BD%91%E7%AB%99/</guid>
+        <description>&lt;img src="http://localhost:1313/categories/%E7%BD%91%E7%AB%99/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 网站" /&gt;</description>
         </item>
         <item>
         <title>SBC</title>
-        <link>http://localhost:3515/categories/sbc/</link>
+        <link>http://localhost:1313/categories/sbc/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:3515/categories/sbc/</guid>
-        <description>&lt;img src="http://localhost:3515/31.jpg" alt="Featured image of post SBC" /&gt;</description>
+        <guid>http://localhost:1313/categories/sbc/</guid>
+        <description>&lt;img src="http://localhost:1313/31.jpg" alt="Featured image of post SBC" /&gt;</description>
         </item>
         
     </channel>

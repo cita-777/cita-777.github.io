@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="c++基础题目（1） 题目列表 1. 以下说法中正确的是（ ）。 答案：C 选项 A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间 B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理 C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用 D. 多态性指的是对象的状态会根据运行时要求自动变化 易错解释 A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。 B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。 D. 错误。多态性指的是同一接口可以有不同的实现形式。 2. 执行以下程序后，输出的结果是（ ）。 1 2 3 4 5 6 7 8 #include &lt;iostream&gt; using namespace std; int main() { int a=4,b=5; float c=b/a; cout&lt;&lt;c&lt;&lt;endl; return 0; } 答案：D 选项 A. 1.25 B. 0 C. 1.3 D. 1 易错解释 A. 错误。b/a 是整数除法，结果为1，再转换为浮点数仍然是1.0。 B. 错误。整数除法的结果不可能是0。 C. 错误。b/a 的结果为1，而不是1.3。 3. 以下描述不正确的是（ ）。 答案：B 选项 A. break语句在一层循环体中可出现多次 B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句 C. break语句可用在循环体中，它将是执行的流程跳出本层循环 D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句 易错解释 B. 错误。break 语句不能用于跳出 if 语句，只能用于跳出循环或 switch 语句。 4. 以下描述不正确的是（ ）。** 答案：A 选项 A. 相同类型的指针之间可以相互赋值 B. 指针中存放的实际上是内存单元的地址 C. 可以在指针定义的同时对其进行初始化 易错解释 A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。 5. 以下说法中正确的是（ ）。 答案：C 选项 A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new B. C++语言只能用new和delete用于动态内存分配和释放的函数 C. 动态分配的内存空间也可以被初始化 D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间 易错解释 A. 错误。动态分配内存失败时，new 会抛出异常或返回 nullptr，但不会导致系统崩溃。 B. 错误。C++ 中除了 new 和 delete，还可以使用 malloc 和 free 进行动态内存管理。 D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。 6. 以下说法中不正确的是（ ）。 答案：C 选项 A. 构造函数可以对静态数据成员进行初始化 B. 构造函数可以重载 C. 构造函数不可以设置默认参数 D. 构造函数可以在说明类变量时自动执行 易错解释 C. 错误。构造函数可以设置默认参数，这样在创建对象时可以省略部分参数。 7. 以下说法中不正确的是（ ）。 答案：A 选项 A. 公有继承时基类中的private成员在派生类中仍是private的 B. 保护继承时基类中的public成员在派生类中是protected的 C. 公有继承时基类中的public成员在派生类中仍是public的 D. 私有继承时基类中的public成员在派生类中是private的 易错解释 A. 错误。公有继承时，基类中的 private 成员在派生类中不可访问，而不是保持 private。 8. 以下说法中不正确的是（ ）。 答案：B 选项 A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元 B. 如果类A是类B的友元，那么类B也是类A的友元 C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员 D. 友元关系不能被继承 易错解释 B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。 9. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 #include &lt;iostream&gt; using namespace std; int main() { int a=5; int *pa=&amp;a; int &amp;b=a; b++; cout&lt;&lt;(*pa)++&lt;&lt;endl; return 0; } 答案：C 选项 A. 7 B. 5 C. 6 D. 8 易错解释 A. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 B. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6。 D. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 10. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 11 12 #include &lt;iostream&gt; void fun(int x, int &amp;y) { int t=x; x=y; y=t; } int main() { int a[2]={100,142}; fun(a[1],a[0]); std::cout&lt;&lt;a[0]&lt;&lt;&#34;,&#34;&lt;&lt;a[1]&lt;&lt;std::endl; return 0; } 答案：D\n">
+<title>c&#43;&#43;基础</title>
+
+<link rel='canonical' href='http://localhost:1313/p/c-%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="c++基础">
+<meta property='og:description' content="c++基础题目（1） 题目列表 1. 以下说法中正确的是（ ）。 答案：C 选项 A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间 B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理 C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用 D. 多态性指的是对象的状态会根据运行时要求自动变化 易错解释 A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。 B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。 D. 错误。多态性指的是同一接口可以有不同的实现形式。 2. 执行以下程序后，输出的结果是（ ）。 1 2 3 4 5 6 7 8 #include &lt;iostream&gt; using namespace std; int main() { int a=4,b=5; float c=b/a; cout&lt;&lt;c&lt;&lt;endl; return 0; } 答案：D 选项 A. 1.25 B. 0 C. 1.3 D. 1 易错解释 A. 错误。b/a 是整数除法，结果为1，再转换为浮点数仍然是1.0。 B. 错误。整数除法的结果不可能是0。 C. 错误。b/a 的结果为1，而不是1.3。 3. 以下描述不正确的是（ ）。 答案：B 选项 A. break语句在一层循环体中可出现多次 B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句 C. break语句可用在循环体中，它将是执行的流程跳出本层循环 D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句 易错解释 B. 错误。break 语句不能用于跳出 if 语句，只能用于跳出循环或 switch 语句。 4. 以下描述不正确的是（ ）。** 答案：A 选项 A. 相同类型的指针之间可以相互赋值 B. 指针中存放的实际上是内存单元的地址 C. 可以在指针定义的同时对其进行初始化 易错解释 A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。 5. 以下说法中正确的是（ ）。 答案：C 选项 A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new B. C++语言只能用new和delete用于动态内存分配和释放的函数 C. 动态分配的内存空间也可以被初始化 D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间 易错解释 A. 错误。动态分配内存失败时，new 会抛出异常或返回 nullptr，但不会导致系统崩溃。 B. 错误。C++ 中除了 new 和 delete，还可以使用 malloc 和 free 进行动态内存管理。 D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。 6. 以下说法中不正确的是（ ）。 答案：C 选项 A. 构造函数可以对静态数据成员进行初始化 B. 构造函数可以重载 C. 构造函数不可以设置默认参数 D. 构造函数可以在说明类变量时自动执行 易错解释 C. 错误。构造函数可以设置默认参数，这样在创建对象时可以省略部分参数。 7. 以下说法中不正确的是（ ）。 答案：A 选项 A. 公有继承时基类中的private成员在派生类中仍是private的 B. 保护继承时基类中的public成员在派生类中是protected的 C. 公有继承时基类中的public成员在派生类中仍是public的 D. 私有继承时基类中的public成员在派生类中是private的 易错解释 A. 错误。公有继承时，基类中的 private 成员在派生类中不可访问，而不是保持 private。 8. 以下说法中不正确的是（ ）。 答案：B 选项 A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元 B. 如果类A是类B的友元，那么类B也是类A的友元 C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员 D. 友元关系不能被继承 易错解释 B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。 9. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 #include &lt;iostream&gt; using namespace std; int main() { int a=5; int *pa=&amp;a; int &amp;b=a; b++; cout&lt;&lt;(*pa)++&lt;&lt;endl; return 0; } 答案：C 选项 A. 7 B. 5 C. 6 D. 8 易错解释 A. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 B. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6。 D. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 10. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 11 12 #include &lt;iostream&gt; void fun(int x, int &amp;y) { int t=x; x=y; y=t; } int main() { int a[2]={100,142}; fun(a[1],a[0]); std::cout&lt;&lt;a[0]&lt;&lt;&#34;,&#34;&lt;&lt;a[1]&lt;&lt;std::endl; return 0; } 答案：D\n">
+<meta property='og:url' content='http://localhost:1313/p/c-%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='cita的博客__'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='基础' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:tag' content='数据结构' /><meta property='article:published_time' content='2024-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/c-%E5%9F%BA%E7%A1%80/stl.png' />
+<meta name="twitter:title" content="c++基础">
+<meta name="twitter:description" content="c++基础题目（1） 题目列表 1. 以下说法中正确的是（ ）。 答案：C 选项 A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间 B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理 C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用 D. 多态性指的是对象的状态会根据运行时要求自动变化 易错解释 A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。 B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。 D. 错误。多态性指的是同一接口可以有不同的实现形式。 2. 执行以下程序后，输出的结果是（ ）。 1 2 3 4 5 6 7 8 #include &lt;iostream&gt; using namespace std; int main() { int a=4,b=5; float c=b/a; cout&lt;&lt;c&lt;&lt;endl; return 0; } 答案：D 选项 A. 1.25 B. 0 C. 1.3 D. 1 易错解释 A. 错误。b/a 是整数除法，结果为1，再转换为浮点数仍然是1.0。 B. 错误。整数除法的结果不可能是0。 C. 错误。b/a 的结果为1，而不是1.3。 3. 以下描述不正确的是（ ）。 答案：B 选项 A. break语句在一层循环体中可出现多次 B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句 C. break语句可用在循环体中，它将是执行的流程跳出本层循环 D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句 易错解释 B. 错误。break 语句不能用于跳出 if 语句，只能用于跳出循环或 switch 语句。 4. 以下描述不正确的是（ ）。** 答案：A 选项 A. 相同类型的指针之间可以相互赋值 B. 指针中存放的实际上是内存单元的地址 C. 可以在指针定义的同时对其进行初始化 易错解释 A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。 5. 以下说法中正确的是（ ）。 答案：C 选项 A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new B. C++语言只能用new和delete用于动态内存分配和释放的函数 C. 动态分配的内存空间也可以被初始化 D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间 易错解释 A. 错误。动态分配内存失败时，new 会抛出异常或返回 nullptr，但不会导致系统崩溃。 B. 错误。C++ 中除了 new 和 delete，还可以使用 malloc 和 free 进行动态内存管理。 D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。 6. 以下说法中不正确的是（ ）。 答案：C 选项 A. 构造函数可以对静态数据成员进行初始化 B. 构造函数可以重载 C. 构造函数不可以设置默认参数 D. 构造函数可以在说明类变量时自动执行 易错解释 C. 错误。构造函数可以设置默认参数，这样在创建对象时可以省略部分参数。 7. 以下说法中不正确的是（ ）。 答案：A 选项 A. 公有继承时基类中的private成员在派生类中仍是private的 B. 保护继承时基类中的public成员在派生类中是protected的 C. 公有继承时基类中的public成员在派生类中仍是public的 D. 私有继承时基类中的public成员在派生类中是private的 易错解释 A. 错误。公有继承时，基类中的 private 成员在派生类中不可访问，而不是保持 private。 8. 以下说法中不正确的是（ ）。 答案：B 选项 A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元 B. 如果类A是类B的友元，那么类B也是类A的友元 C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员 D. 友元关系不能被继承 易错解释 B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。 9. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 #include &lt;iostream&gt; using namespace std; int main() { int a=5; int *pa=&amp;a; int &amp;b=a; b++; cout&lt;&lt;(*pa)++&lt;&lt;endl; return 0; } 答案：C 选项 A. 7 B. 5 C. 6 D. 8 易错解释 A. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 B. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6。 D. 错误。b++ 后 a 的值变为6，(*pa)++ 输出6，然后 a 的值变为7。 10. 以下程序的输出结果是（ ）。 1 2 3 4 5 6 7 8 9 10 11 12 #include &lt;iostream&gt; void fun(int x, int &amp;y) { int t=x; x=y; y=t; } int main() { int a[2]={100,142}; fun(a[1],a[0]); std::cout&lt;&lt;a[0]&lt;&lt;&#34;,&#34;&lt;&lt;a[1]&lt;&lt;std::endl; return 0; } 答案：D\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/c-%E5%9F%BA%E7%A1%80/stl.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4365964393701153492.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">cita的博客__</a></h1>
+            <h2 class="site-description">hello world!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cita-777'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>存档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#c基础题目1">c++基础题目（1）</a>
+      <ol>
+        <li><a href="#题目列表">题目列表</a>
+          <ol>
+            <li><a href="#1-以下说法中正确的是-">1. 以下说法中正确的是（ ）。</a></li>
+            <li><a href="#2-执行以下程序后输出的结果是-">2. 执行以下程序后，输出的结果是（ ）。</a></li>
+            <li><a href="#3-以下描述不正确的是-">3. 以下描述不正确的是（ ）。</a></li>
+            <li><a href="#4-以下描述不正确的是-">4. 以下描述不正确的是（ ）。**</a></li>
+            <li><a href="#5-以下说法中正确的是-">5. 以下说法中正确的是（ ）。</a></li>
+            <li><a href="#6-以下说法中不正确的是-">6. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#7-以下说法中不正确的是-">7. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#8-以下说法中不正确的是-">8. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#9-以下程序的输出结果是-">9. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#10-以下程序的输出结果是-">10. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#11-有如下说明-int-a1012345678910pa-则数值为9的表达式是-">11. 有如下说明： <code>int a[10]={1,2,3,4,5,6,7,8,9,10},*p=a;</code> 则数值为9的表达式是（ ）。</a></li>
+            <li><a href="#12-下列语句中正确的是-">12. 下列语句中，正确的是（ ）。</a></li>
+            <li><a href="#13-以下说法中正确的是-">13. 以下说法中正确的是（ ）。</a></li>
+            <li><a href="#14-执行语句序列-int-n-cinn-switchn--case-1-case-2cout5-case-3-case-4cout6break-defaultcout7--时若键盘输入1则输出结果是-">14. 执行语句序列 <code>int n; cin&gt;&gt;n; switch(n) { case 1: case 2:cout&lt;&lt;'5'; case 3: case 4:cout&lt;&lt;'6';break; default:cout&lt;&lt;'7'; }</code> 时，若键盘输入1，则输出结果是（ ）。</a></li>
+            <li><a href="#15-以下程序的输出结果是-">15. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#16-以下说法中不正确的是-">16. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#17-以下说法中不正确的是-">17. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#18-以下说法中不正确的是-">18. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#19-已知b类是a类的公有继承的派生类以下说法中不正确的是-">19. 已知：B类是A类的公有继承的派生类，以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#20-以下说法中正确的是-">20. 以下说法中正确的是（ ）。</a></li>
+            <li><a href="#21-已知int-swapint-aint-b-x10-y20-下列调用-swap-函数的语句中编译不会报错的是-">21. 已知：<code>int swap(int &amp;a,int &amp;b), x=10, y=20;</code> 下列调用 <code>swap()</code> 函数的语句中，编译不会报错的是（ ）。</a></li>
+            <li><a href="#22-void-setaa-是类a中一个成员函数的说明其中-aa-的含义是-">22. <code>void Set(A&amp;a);</code> 是类A中一个成员函数的说明，其中 <code>A&amp;a</code> 的含义是（ ）。</a></li>
+            <li><a href="#23-以下说法中不正确的是-">23. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#24-以下程序的输出结果是-">24. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#25-以下程序的输出结果是-">25. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#26-以下说法中不正确的是-">26. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#27-以下程序的输出结果是-">27. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#28-以下说法中正确的是-">28. 以下说法中正确的是（ ）。</a></li>
+            <li><a href="#29-以下说法中不正确的是-">29. 以下说法中不正确的是（ ）。</a></li>
+            <li><a href="#30-以下程序的输出结果是-">30. 以下程序的输出结果是（ ）。</a></li>
+            <li><a href="#31-下列关于c的说法中正确的是-">31. 下列关于C++的说法中，正确的是（ ）。</a></li>
+            <li><a href="#32-下列哪项关键词属于c所有但是c语言没有的">32. 下列哪项关键词属于C++所有但是C语言没有的（）。</a></li>
+            <li><a href="#33-有如下枚举类型的定义下面说法错误的是哪一项-">33. 有如下枚举类型的定义，下面说法错误的是哪一项( )。</a></li>
+            <li><a href="#34-下面所述的四段代码不能够完成遍历二叉树的是哪一项打印二叉树所有节点仅一次-">34. 下面所述的四段代码，不能够完成遍历二叉树的是哪一项（打印二叉树所有节点仅一次）（ ）。</a></li>
+            <li><a href="#35-设计一个队列以链表存储队列的元素假设队首指针为head队尾指针为tail现指针p指向的元素即将入队请写出正确的入队代码">35. 设计一个队列，以链表存储队列的元素。假设队首指针为head，队尾指针为tail，现指针p指向的元素即将入队，请写出正确的入队代码？（）</a></li>
+            <li><a href="#36-若是x为4y为9则xy的结果是-">36. 若是x为4，y为9，则(~x)^y的结果是（ ）。</a></li>
+            <li><a href="#37-下面关于c函数的说法中错误的选项是-">37. 下面关于C++函数的说法中，错误的选项是（ ）。</a></li>
+            <li><a href="#38-定义了如下所示的test1类和它的子类test2下列选项说法错误的是-">38. 定义了如下所示的test1类和它的子类test2，下列选项说法错误的是（ ）。</a></li>
+            <li><a href="#39-下列c程序实现了使用迭代器访问并输出数组vec的元素空白处应该补充的代码是-">39. 下列C++程序实现了使用迭代器访问并输出数组vec的元素，空白处应该补充的代码是（ ）。</a></li>
+            <li><a href="#40-关于下列几行c代码说法正确的是-">40. 关于下列几行C++代码，说法正确的是（ ）。</a></li>
+            <li><a href="#41-cstl的核心不包括以下哪个选项-">41. C++STL的核心不包括以下哪个选项（ ）。</a></li>
+            <li><a href="#42-关于下列c代码的时间复杂度与空间复杂度的说法正确的是-">42. 关于下列C++代码的时间复杂度与空间复杂度的说法，正确的是（ ）。</a></li>
+            <li><a href="#43-下列关于c常用标准库的一些说法错误的是哪一项">43. 下列关于C++常用标准库的一些说法，错误的是哪一项（）。</a></li>
+            <li><a href="#44-假定输入的字符串中只包含字母和号请编写程序将字符串中的前导符全部移到字符串的尾部例如字符串中的内容为abcdg移动后字符串中的内容为abcdg在编写程序时不得使用c语言提供的字符串函数输入的字符串不含空格且字符串长度不大于1000">44. 假定输入的字符串中只包含字母和@号，请编写程序，将字符串中的前导@符全部移到字符串的尾部。例如：字符串中的内容为：@@@@ab@CD@G@@@,移动后，字符串中的内容为：ab@CD@G@@@@@@@。在编写程序时，不得使用C++语言提供的字符串函数。（输入的字符串不含空格，且字符串长度不大于1000）</a></li>
+            <li><a href="#45-编写程序从键盘上输入两个正整数较大的数为m和较小的数为n根据以下公式求p的值并输出m和n为大于0且小于等于30的整数">45. 编写程序，从键盘上输入两个正整数，较大的数为m和较小的数为n,根据以下公式求P的值，并输出。(m和n为大于0且小于等于30的整数）</a></li>
+            <li><a href="#46-定义了nn的二维数组数组元素整数通过键盘输入请编写程序求出数组周边元素的和值并输出2n100">46. 定义了N×N的二维数组，数组元素（整数）通过键盘输入，请编写程序，求出数组周边元素的和值，并输出。（2&lt;=N&lt;=100)</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80/">
+                <img src="/p/c-%E5%9F%BA%E7%A1%80/stl_hu904627144269343240.png"
+                        srcset="/p/c-%E5%9F%BA%E7%A1%80/stl_hu904627144269343240.png 800w, /p/c-%E5%9F%BA%E7%A1%80/stl_hu11332598926668326364.png 1600w"
+                        width="800" 
+                        height="109" 
+                        loading="lazy"
+                        alt="Featured image of post c&#43;&#43;基础" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E4%B8%9A/" style="background-color: #2a9d8f; color: #fff;">
+                学业
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80/">c&#43;&#43;基础</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-10-18</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 15 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="c基础题目1"><a href="#c%e5%9f%ba%e7%a1%80%e9%a2%98%e7%9b%ae1" class="header-anchor"></a>c++基础题目（1）
+</h2><h3 id="题目列表"><a href="#%e9%a2%98%e7%9b%ae%e5%88%97%e8%a1%a8" class="header-anchor"></a>题目列表
+</h3><h4 id="1-以下说法中正确的是-"><a href="#1-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>1. 以下说法中正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间</li>
+<li>B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理</li>
+<li><strong>C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用</strong></li>
+<li>D. 多态性指的是对象的状态会根据运行时要求自动变化</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。</li>
+<li>B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。</li>
+<li>D. 错误。多态性指的是同一接口可以有不同的实现形式。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-执行以下程序后输出的结果是-"><a href="#2-%e6%89%a7%e8%a1%8c%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e5%90%8e%e8%be%93%e5%87%ba%e7%9a%84%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>2. 执行以下程序后，输出的结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">c</span><span class="o">=</span><span class="n">b</span><span class="o">/</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>答案</strong>：D</li>
+<li>选项
+<ul>
+<li>A. 1.25</li>
+<li>B. 0</li>
+<li>C. 1.3</li>
+<li><strong>D. 1</strong></li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>b/a</code> 是整数除法，结果为1，再转换为浮点数仍然是1.0。</li>
+<li>B. 错误。整数除法的结果不可能是0。</li>
+<li>C. 错误。<code>b/a</code> 的结果为1，而不是1.3。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-以下描述不正确的是-"><a href="#3-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>3. 以下描述不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. break语句在一层循环体中可出现多次</li>
+<li><strong>B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句</strong></li>
+<li>C. break语句可用在循环体中，它将是执行的流程跳出本层循环</li>
+<li>D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>B. 错误。<code>break</code> 语句不能用于跳出 <code>if</code> 语句，只能用于跳出循环或 <code>switch</code> 语句。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-以下描述不正确的是-"><a href="#4-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>4. 以下描述不正确的是（ ）。**
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li>A. 相同类型的指针之间可以相互赋值</li>
+<li>B. 指针中存放的实际上是内存单元的地址</li>
+<li>C. 可以在指针定义的同时对其进行初始化</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-以下说法中正确的是-"><a href="#5-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>5. 以下说法中正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new</li>
+<li>B. C++语言只能用new和delete用于动态内存分配和释放的函数</li>
+<li><strong>C. 动态分配的内存空间也可以被初始化</strong></li>
+<li>D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。动态分配内存失败时，<code>new</code> 会抛出异常或返回 <code>nullptr</code>，但不会导致系统崩溃。</li>
+<li>B. 错误。C++ 中除了 <code>new</code> 和 <code>delete</code>，还可以使用 <code>malloc</code> 和 <code>free</code> 进行动态内存管理。</li>
+<li>D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-以下说法中不正确的是-"><a href="#6-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>6. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 构造函数可以对静态数据成员进行初始化</li>
+<li>B. 构造函数可以重载</li>
+<li><strong>C. 构造函数不可以设置默认参数</strong></li>
+<li>D. 构造函数可以在说明类变量时自动执行</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 错误。构造函数可以设置默认参数，这样在创建对象时可以<strong>省略部分参数</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-以下说法中不正确的是-"><a href="#7-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>7. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li><strong>A. 公有继承时基类中的private成员在派生类中仍是private的</strong></li>
+<li>B. 保护继承时基类中的public成员在派生类中是protected的</li>
+<li>C. 公有继承时基类中的public成员在派生类中仍是public的</li>
+<li>D. 私有继承时基类中的public成员在派生类中是private的</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。公有继承时，基类中的 <code>private</code> 成员<strong>在派生类中不可访问</strong>，而不是保持 <code>private</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-以下说法中不正确的是-"><a href="#8-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>8. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元</li>
+<li><strong>B. 如果类A是类B的友元，那么类B也是类A的友元</strong></li>
+<li>C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员</li>
+<li>D. 友元关系不能被继承</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-以下程序的输出结果是-"><a href="#9-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>9. 以下程序的输出结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">pa</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="o">*</span><span class="n">pa</span><span class="p">)</span><span class="o">++&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 7</li>
+<li>B. 5</li>
+<li><strong>C. 6</strong></li>
+<li>D. 8</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>b++</code> 后 <code>a</code> 的值变为6，<code>(*pa)++</code> 输出6，然后 <code>a</code> 的值变为7。</li>
+<li>B. 错误。<code>b++</code> 后 <code>a</code> 的值变为6，<code>(*pa)++</code> 输出6。</li>
+<li>D. 错误。<code>b++</code> 后 <code>a</code> 的值变为6，<code>(*pa)++</code> 输出6，然后 <code>a</code> 的值变为7。</li>
+</ul>
+</li>
+</ul>
+<h4 id="10-以下程序的输出结果是-"><a href="#10-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>10. 以下程序的输出结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="mi">142</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fun</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;,&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><strong>答案</strong>：D</p>
+</li>
+<li>
+<p>选项</p>
+<ul>
+<li>A. 100,100</li>
+<li>B. 100,142</li>
+<li>C. 142,100</li>
+<li>D. 142,142</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<p><code>a[0]</code>变成<code>a[1]</code>，a[1]不变。</p>
+</li>
+</ul>
+<h4 id="11-有如下说明-int-a1012345678910pa-则数值为9的表达式是-"><a href="#11-%e6%9c%89%e5%a6%82%e4%b8%8b%e8%af%b4%e6%98%8e-int-a1012345678910pa-%e5%88%99%e6%95%b0%e5%80%bc%e4%b8%ba9%e7%9a%84%e8%a1%a8%e8%be%be%e5%bc%8f%e6%98%af-" class="header-anchor"></a>11. 有如下说明： <code>int a[10]={1,2,3,4,5,6,7,8,9,10},*p=a;</code> 则数值为9的表达式是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. *p+=9</li>
+<li>B. p+8</li>
+<li>*<em>C. <em>(p+8)</em></em></li>
+<li>D. *p+9</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>*p+=9</code> 会使 <code>p</code> 指向的值增加9，结果为10。</li>
+<li>B. 错误。<code>p+8</code> 返回指针，而不是值。</li>
+<li>D. 错误。<code>*p+9</code> 会使 <code>p</code> 指向的值加9，结果为10。</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-下列语句中正确的是-"><a href="#12-%e4%b8%8b%e5%88%97%e8%af%ad%e5%8f%a5%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>12. 下列语句中，正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. char Str=&ldquo;Anhui-hefei&rdquo;;</li>
+<li>*<em>B. char <em>Str=&ldquo;Anhui-hefei&rdquo;;</em></em></li>
+<li>C. char Str[10]=&ldquo;Anhui-hefei&rdquo;;</li>
+<li>D. char Str[11]=&ldquo;Anhui-hefei&rdquo;;</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>char Str=&quot;Anhui-hefei&quot;;</code> 应该使用字符数组或指针。</li>
+<li>C. 错误。<code>char Str[10]=&quot;Anhui-hefei&quot;;</code> 字符串长度超过数组长度。</li>
+<li>D. 错误。<code>char Str[11]=&quot;Anhui-hefei&quot;;</code> 字符串长度超过数组长度。</li>
+</ul>
+</li>
+</ul>
+<h4 id="13-以下说法中正确的是-"><a href="#13-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>13. 以下说法中正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 从流中获取数据的操作称为插入操作，向流中添加数据的操作称为提取操作</li>
+<li><strong>B. 与键盘、屏幕、打印机和通信端口的交互都可以通过流类来实现</strong></li>
+<li>C. 输出流有一个名为open的成员函数，其作用是生成一个新的流对象</li>
+<li>D. cin是一个预定义的输入流类</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。</li>
+<li>C. 错误。<code>open</code> 是文件流的成员函数，用于打开文件。</li>
+<li>D. 错误。<code>cin</code> 是预定义的输入流对象，而不是类。</li>
+</ul>
+</li>
+</ul>
+<h4 id="14-执行语句序列-int-n-cinn-switchn--case-1-case-2cout5-case-3-case-4cout6break-defaultcout7--时若键盘输入1则输出结果是-"><a href="#14-%e6%89%a7%e8%a1%8c%e8%af%ad%e5%8f%a5%e5%ba%8f%e5%88%97-int-n-cinn-switchn--case-1-case-2cout5-case-3-case-4cout6break-defaultcout7--%e6%97%b6%e8%8b%a5%e9%94%ae%e7%9b%98%e8%be%93%e5%85%a51%e5%88%99%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>14. 执行语句序列 <code>int n; cin&gt;&gt;n; switch(n) { case 1: case 2:cout&lt;&lt;'5'; case 3: case 4:cout&lt;&lt;'6';break; default:cout&lt;&lt;'7'; }</code> 时，若键盘输入1，则输出结果是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 5</li>
+<li>B. 6</li>
+<li><strong>C. 56</strong></li>
+<li>D. 7</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>case 1</code> 和 <code>case 2</code> 没有 <code>break</code>，会继续执行 <code>case 3</code> 和 <code>case 4</code>。</li>
+<li>B. 错误。<code>case 1</code> 和 <code>case 2</code> 没有 <code>break</code>，会继续执行 <code>case 3</code> 和 <code>case 4</code>。</li>
+<li>D. 错误。<code>case 1</code> 和 <code>case 2</code> 没有 <code>break</code>，会继续执行 <code>case 3</code> 和 <code>case 4</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="15-以下程序的输出结果是-"><a href="#15-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>15. 以下程序的输出结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="sc">&#39;*&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="p">.</span><span class="n">width</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="sc">&#39;$&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">123</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. *****123</li>
+<li><strong>B. $$$$$123</strong></li>
+<li>C. 123$$$$$</li>
+<li>D. 123*****</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>cout.fill('$')</code> 设置填充字符为 <code>$</code>。</li>
+<li>C. 错误。<code>cout.width(8)</code> 设置输出宽度为8，不足部分用 <code>$</code> 填充。</li>
+<li>D. 错误。<code>cout.fill('$')</code> 设置填充字符为 <code>$</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="16-以下说法中不正确的是-"><a href="#16-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>16. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 面向对象是从现实世界中客观存在的事物出发来构造软件系统的</li>
+<li>B. 面向对象方法中使用了一些面向过程方法中没有的概念</li>
+<li><strong>C. 面向对象方法替代了过程化程序设计方法</strong></li>
+<li>D. 面向对象程序设计方法要使用面向对象的程序设计语言</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 错误。面向对象方法并没有完全替代过程化程序设计方法，两者各有适用场景。</li>
+</ul>
+</li>
+</ul>
+<h4 id="17-以下说法中不正确的是-"><a href="#17-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>17. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li><strong>A. 使用sizeof运算符可以求得某种类型和某个变量在内存中占的字节数，不能求得某个表达式的类型在内存中所占的字节数</strong></li>
+<li>B. 没有参数的两个函数是不能重载的</li>
+<li>C. 在C++程序中，变量值是可以改变的，变量的地址值是不能改变的</li>
+<li>D. 开关语句中各个case和default出现的前后次序不影响执行结果</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>sizeof</code> 运算符可以用于求得表达式的类型在内存中所占的字节数。</li>
+</ul>
+</li>
+</ul>
+<h4 id="18-以下说法中不正确的是-"><a href="#18-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>18. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 动态联编是函数联编的一种方式，它是在运行时来选择联编函数的</li>
+<li><strong>B. 函数重载和运算符重载都属于动态联编</strong></li>
+<li>C. 动态联编又可称为动态多态性，是通过虚函数实现的</li>
+<li>D. 抽象类中至少应该有一个纯虚函数</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>B. 错误。函数重载和运算符重载属于静态联编，而不是动态联编。</li>
+</ul>
+</li>
+</ul>
+<h4 id="19-已知b类是a类的公有继承的派生类以下说法中不正确的是-"><a href="#19-%e5%b7%b2%e7%9f%a5b%e7%b1%bb%e6%98%afa%e7%b1%bb%e7%9a%84%e5%85%ac%e6%9c%89%e7%bb%a7%e6%89%bf%e7%9a%84%e6%b4%be%e7%94%9f%e7%b1%bb%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>19. 已知：B类是A类的公有继承的派生类，以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li><strong>A. A类的对象就是B类的对象</strong></li>
+<li>B. B类对象可以给A类对象赋值</li>
+<li>C. B类对象的地址值可以给A类对象指针赋值</li>
+<li>D. B类对象可以给A类对象引用赋值</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。A类的对象不是B类的对象，但B类的对象可以被视为A类的对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="20-以下说法中正确的是-"><a href="#20-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>20. 以下说法中正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 字符串常量与字符常量的区别仅表现在定义形式上的不同，一个用双撇号，另一个用单撇号</li>
+<li>B. 增1和减1运算符不仅可以作用在变量上，也可以作用在表达式上</li>
+<li><strong>C. C++程序中，通常使用const来定义符号常量，定义时必须指出类型</strong></li>
+<li>D. 关系运算符可以用来比较两个字符的大小，也可以比较两个字符串的大小</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。字符串常量和字符常量不仅在定义形式上不同，它们的类型和用途也不同。</li>
+<li>B. 错误。增1和减1运算符只能作用在变量上，不能作用在表达式上。</li>
+<li>D. 错误。关系运算符可以比较两个字符的大小，但不能直接比较两个字符串的大小，需要使用字符串比较函数。</li>
+</ul>
+</li>
+</ul>
+<h4 id="21-已知int-swapint-aint-b-x10-y20-下列调用-swap-函数的语句中编译不会报错的是-"><a href="#21-%e5%b7%b2%e7%9f%a5int-swapint-aint-b-x10-y20-%e4%b8%8b%e5%88%97%e8%b0%83%e7%94%a8-swap-%e5%87%bd%e6%95%b0%e7%9a%84%e8%af%ad%e5%8f%a5%e4%b8%ad%e7%bc%96%e8%af%91%e4%b8%8d%e4%bc%9a%e6%8a%a5%e9%94%99%e7%9a%84%e6%98%af-" class="header-anchor"></a>21. 已知：<code>int swap(int &amp;a,int &amp;b), x=10, y=20;</code> 下列调用 <code>swap()</code> 函数的语句中，编译不会报错的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. swap(&amp;x,&amp;y);</li>
+<li>B. swap(x+2,y+5);</li>
+<li><strong>C. swap(x,y);</strong></li>
+<li>D. swap(x++,++y);</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>&amp;x</code> 和 <code>&amp;y</code> 是指针，而 <code>swap</code> 函数需要引用参数。</li>
+<li>B. 错误。<code>x+2</code> 和 <code>y+5</code> 是临时表达式，不能作为引用参数。</li>
+<li>D. 错误。<code>x++</code> 和 <code>++y</code> 是带有副作用的表达式，不能作为引用参数。</li>
+</ul>
+</li>
+</ul>
+<h4 id="22-void-setaa-是类a中一个成员函数的说明其中-aa-的含义是-"><a href="#22-void-setaa-%e6%98%af%e7%b1%bba%e4%b8%ad%e4%b8%80%e4%b8%aa%e6%88%90%e5%91%98%e5%87%bd%e6%95%b0%e7%9a%84%e8%af%b4%e6%98%8e%e5%85%b6%e4%b8%ad-aa-%e7%9a%84%e5%90%ab%e4%b9%89%e6%98%af-" class="header-anchor"></a>22. <code>void Set(A&amp;a);</code> 是类A中一个成员函数的说明，其中 <code>A&amp;a</code> 的含义是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li><strong>A. 类A的对象引用a作该函数的参数</strong></li>
+<li>B. 类A的对象a的地址值作函数的参数</li>
+<li>C. 表达式变量A与变量a按位与作函数参数</li>
+<li>D. 指向类A对象指针a作函数参数</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>B. 错误。<code>A&amp;a</code> 是引用，而不是指针。</li>
+<li>C. 错误。按位与操作与函数参数无关。</li>
+<li>D. 错误。<code>A&amp;a</code> 是引用，而不是指针。</li>
+</ul>
+</li>
+</ul>
+<h4 id="23-以下说法中不正确的是-"><a href="#23-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>23. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 运算符重载是通过对已有的运算符重新定义操作功能来实现的，它是C++语言多态性的一种表现</li>
+<li><strong>B. 如果类模板的模板类型参数有多个，除第1个模板类型参数前使用关键字class，其余的模板类型参数前都不使用关键字class</strong></li>
+<li>C. 虚函数有继承性，基类中说明的虚函数只要在它的派生类中与它名字相同的，一定是虚函数</li>
+<li>D. 一个抽象类中可以包含有多个纯虚函数，一个派生类中也可以包含多个虚函数</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>B. 错误。类模板的每个模板类型参数前都可以使用 <code>class</code> 或 <code>typename</code> 关键字。</li>
+</ul>
+</li>
+</ul>
+<h4 id="24-以下程序的输出结果是-"><a href="#24-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>24. 以下程序的输出结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define MAX(x,y) (x)&gt;(y)?(x):(y)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">IN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IN</span> <span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">MAX</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 6</li>
+<li>B. 12</li>
+<li><strong>C. 8</strong></li>
+<li>D. 7</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。<code>MAX(a, b)</code> 返回4，乘以2得8。</li>
+<li>B. 错误。<code>MAX(a, b)</code> 返回4，乘以2得8。</li>
+<li>D. 错误。<code>MAX(a, b)</code> 返回4，乘以2得8。</li>
+</ul>
+</li>
+</ul>
+<h4 id="25-以下程序的输出结果是-"><a href="#25-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>25. 以下程序的输出结果是（ ）。
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 9 8 7 6</li>
+<li><strong>B. 9 8 7</strong></li>
+<li>C. 7</li>
+<li>D. 9 8 7 6 5</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。当 <code>a</code> 为5时，<code>break</code> 退出循环，不输出5。</li>
+<li>C. 错误。输出的是9、8、7。</li>
+<li>D. 错误。当 <code>a</code> 为5时，<code>break</code> 退出循环，不输出5。</li>
+</ul>
+</li>
+</ul>
+<h4 id="26-以下说法中不正确的是-"><a href="#26-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>26. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 定义派生类可用关键字class或struct</li>
+<li>B. 定义派生类时要指出派生类的类名和基类的类名</li>
+<li><strong>C. 定义派生类时一定要给出继承方式，不能默认</strong></li>
+<li>D. 定义派生类时，类体中给出派生类的成员</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 错误。在定义派生类时，如果未指定继承方式，默认为私有继承（private）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="27-以下程序的输出结果是-"><a href="#27-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>27. 以下程序的输出结果是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：A</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;bhy543kpm345&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="sc">&#39;a&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;z&#39;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li><strong>A. 543345</strong></li>
+<li>B. bhykpm</li>
+<li>C. bhy543kpm345</li>
+<li>D. bhy543</li>
+</ul>
+</li>
+</ul>
+<h4 id="28-以下说法中正确的是-"><a href="#28-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>28. 以下说法中正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. 没有返回值的函数不能设置为内联函数</li>
+<li><strong>B. 字符指针是指向字符串的指针，可以用字符串常量给字符指针赋值</strong></li>
+<li>C. 外部类变量与外部静态类变量的作用域是相同的</li>
+<li>D. 定义一个数组没有对它进行初始化，则该数组的元素值都是无意义的</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。没有返回值的函数可以设置为内联函数。</li>
+<li>C. 错误。外部类变量和外部静态类变量的作用域不同。</li>
+<li>D. 错误。未初始化的数组元素值是未定义的，但不一定无意义。</li>
+</ul>
+</li>
+</ul>
+<h4 id="29-以下说法中不正确的是-"><a href="#29-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>29. 以下说法中不正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 用来给数组进行初始化的初始值表内的数据项的个数必须小于等于数组元素个数</li>
+<li>B. C++程序中，通常使用const来定义符号常量，定义时必须指出类型</li>
+<li><strong>C. 移位运算符在移位操作中，无论左移还是右移，对移出的空位一律补0</strong></li>
+<li>D. 数组某维的大小可以用常量表达式，不可用变量名</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 错误。右移运算符在移位操作中，对于有符号数，移出的空位补符号位；对于无符号数，移出的空位补0。</li>
+</ul>
+</li>
+</ul>
+<h4 id="30-以下程序的输出结果是-"><a href="#30-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>30. 以下程序的输出结果是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：B</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>A. 9 8 7 6</li>
+<li><strong>B. 9 8 7</strong></li>
+<li>C. 7</li>
+<li>D. 9 8 7 6 5</li>
+</ul>
+</li>
+</ul>
+<h4 id="31-下列关于c的说法中正确的是-"><a href="#31-%e4%b8%8b%e5%88%97%e5%85%b3%e4%ba%8ec%e7%9a%84%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>31. 下列关于C++的说法中，正确的是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. C++对于大小写不敏感</li>
+<li>B. C++属于解释性语言</li>
+<li><strong>C. 任何合法的C语言程序都是合法的C++程序</strong></li>
+<li>D. C++支持封装与继承，但是不支持多态</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。C++是大小写敏感的。</li>
+<li>B. 错误。C++是编译型语言。</li>
+<li>D. 错误。C++支持封装、继承和多态。</li>
+</ul>
+</li>
+</ul>
+<h4 id="32-下列哪项关键词属于c所有但是c语言没有的"><a href="#32-%e4%b8%8b%e5%88%97%e5%93%aa%e9%a1%b9%e5%85%b3%e9%94%ae%e8%af%8d%e5%b1%9e%e4%ba%8ec%e6%89%80%e6%9c%89%e4%bd%86%e6%98%afc%e8%af%ad%e8%a8%80%e6%b2%a1%e6%9c%89%e7%9a%84" class="header-anchor"></a>32. 下列哪项关键词属于C++所有但是C语言没有的（）。
+</h4><ul>
+<li><strong>答案</strong>：B</li>
+<li>选项
+<ul>
+<li>A. extern</li>
+<li><strong>B. virtual</strong></li>
+<li>C. and</li>
+<li>D. goto</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. <code>extern</code> 是C和C++都有的关键字。</li>
+<li>C. <code>and</code> 是C++的别名，C语言中没有。</li>
+<li>D. <code>goto</code> 是C和C++都有的关键字。</li>
+</ul>
+</li>
+</ul>
+<h4 id="33-有如下枚举类型的定义下面说法错误的是哪一项-"><a href="#33-%e6%9c%89%e5%a6%82%e4%b8%8b%e6%9e%9a%e4%b8%be%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%ae%9a%e4%b9%89%e4%b8%8b%e9%9d%a2%e8%af%b4%e6%b3%95%e9%94%99%e8%af%af%e7%9a%84%e6%98%af%e5%93%aa%e4%b8%80%e9%a1%b9-" class="header-anchor"></a>33. 有如下枚举类型的定义，下面说法错误的是哪一项( )。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：C</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">fruit</span> <span class="p">{</span><span class="n">hotdog</span><span class="p">,</span> <span class="n">apple</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">beef</span><span class="p">,</span> <span class="n">orange</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>A. fruit c = hotdog; 则c的值为0</li>
+<li>B. fruit c = apple; 则c的值为4</li>
+<li><strong>C. fruit c = beef; 则c的值为2</strong></li>
+<li>D. fruit c = orange; 则c的值为6</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>C. 错误。<code>beef</code> 的值应该是5，因为 <code>apple</code> 被显式赋值为4，<code>beef</code> 是下一个枚举值，所以是5。</li>
+</ul>
+</li>
+</ul>
+<h4 id="34-下面所述的四段代码不能够完成遍历二叉树的是哪一项打印二叉树所有节点仅一次-"><a href="#34-%e4%b8%8b%e9%9d%a2%e6%89%80%e8%bf%b0%e7%9a%84%e5%9b%9b%e6%ae%b5%e4%bb%a3%e7%a0%81%e4%b8%8d%e8%83%bd%e5%a4%9f%e5%ae%8c%e6%88%90%e9%81%8d%e5%8e%86%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%98%af%e5%93%aa%e4%b8%80%e9%a1%b9%e6%89%93%e5%8d%b0%e4%ba%8c%e5%8f%89%e6%a0%91%e6%89%80%e6%9c%89%e8%8a%82%e7%82%b9%e4%bb%85%e4%b8%80%e6%ac%a1-" class="header-anchor"></a>34. 下面所述的四段代码，不能够完成遍历二叉树的是哪一项（打印二叉树所有节点仅一次）（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：B</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">BiTree</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">BiTree</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">BiTree</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>
+<p>A.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">traversal</span><span class="p">(</span><span class="k">struct</span> <span class="nc">BiTree</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">traversal</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">traversal</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>B.</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">traversal</span><span class="p">(</span><span class="k">struct</span> <span class="nc">BiTree</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">BiTree</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>C.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">traversal</span><span class="p">(</span><span class="k">struct</span> <span class="nc">BiTree</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">BiTree</span><span class="o">*&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">top</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">top</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">top</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>D.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">traversal</span><span class="p">(</span><span class="k">struct</span> <span class="nc">BiTree</span> <span class="o">*</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="n">BiTree</span><span class="o">*&gt;</span> <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">front</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">front</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">front</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>B. 错误。这段代码中，<code>s.pop()</code> 后再使用 <code>s.top()</code> 会导致未定义行为。</li>
+</ul>
+</li>
+</ul>
+<h4 id="35-设计一个队列以链表存储队列的元素假设队首指针为head队尾指针为tail现指针p指向的元素即将入队请写出正确的入队代码"><a href="#35-%e8%ae%be%e8%ae%a1%e4%b8%80%e4%b8%aa%e9%98%9f%e5%88%97%e4%bb%a5%e9%93%be%e8%a1%a8%e5%ad%98%e5%82%a8%e9%98%9f%e5%88%97%e7%9a%84%e5%85%83%e7%b4%a0%e5%81%87%e8%ae%be%e9%98%9f%e9%a6%96%e6%8c%87%e9%92%88%e4%b8%bahead%e9%98%9f%e5%b0%be%e6%8c%87%e9%92%88%e4%b8%batail%e7%8e%b0%e6%8c%87%e9%92%88p%e6%8c%87%e5%90%91%e7%9a%84%e5%85%83%e7%b4%a0%e5%8d%b3%e5%b0%86%e5%85%a5%e9%98%9f%e8%af%b7%e5%86%99%e5%87%ba%e6%ad%a3%e7%a1%ae%e7%9a%84%e5%85%a5%e9%98%9f%e4%bb%a3%e7%a0%81" class="header-anchor"></a>35. 设计一个队列，以链表存储队列的元素。假设队首指针为head，队尾指针为tail，现指针p指向的元素即将入队，请写出正确的入队代码？（）
+</h4><ul>
+<li><strong>答案</strong>：D</li>
+<li>选项
+<ul>
+<li>A. head = p, head = head-&gt;next;</li>
+<li>B. p-&gt;next = head-&gt;next, head = p;</li>
+<li>C. tail-&gt;next = p, tail = p;</li>
+<li><strong>D. tail-&gt;next = p, p-&gt;next = NULL, tail = p;</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="36-若是x为4y为9则xy的结果是-"><a href="#36-%e8%8b%a5%e6%98%afx%e4%b8%ba4y%e4%b8%ba9%e5%88%99xy%e7%9a%84%e7%bb%93%e6%9e%9c%e6%98%af-" class="header-anchor"></a>36. 若是x为4，y为9，则(~x)^y的结果是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 1</li>
+<li>B. 10</li>
+<li><strong>C. 13</strong></li>
+<li>D. -14</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 正确。<code>~4</code> 的二进制表示为 <code>11111101</code>（假设8位），<code>9</code> 的二进制表示为 <code>00001001</code>，两者异或结果为 <code>11110100</code>，即十进制的13。</li>
+</ul>
+</li>
+</ul>
+<h4 id="37-下面关于c函数的说法中错误的选项是-"><a href="#37-%e4%b8%8b%e9%9d%a2%e5%85%b3%e4%ba%8ec%e5%87%bd%e6%95%b0%e7%9a%84%e8%af%b4%e6%b3%95%e4%b8%ad%e9%94%99%e8%af%af%e7%9a%84%e9%80%89%e9%a1%b9%e6%98%af-" class="header-anchor"></a>37. 下面关于C++函数的说法中，错误的选项是（ ）。
+</h4><ul>
+<li><strong>答案</strong>：A</li>
+<li>选项
+<ul>
+<li><strong>A. 函数由函数名称、返回类型、参数、函数体组成，缺一不可</strong></li>
+<li>B. 函数声明时参数类型不可省，参数名称不是必要的</li>
+<li>C. 有的函数可能没有return关键字</li>
+<li>D. C++可以在定义函数时，设置默认参数值</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>A. 错误。函数可以没有参数，也可以没有返回类型（如void函数）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="38-定义了如下所示的test1类和它的子类test2下列选项说法错误的是-"><a href="#38-%e5%ae%9a%e4%b9%89%e4%ba%86%e5%a6%82%e4%b8%8b%e6%89%80%e7%a4%ba%e7%9a%84test1%e7%b1%bb%e5%92%8c%e5%ae%83%e7%9a%84%e5%ad%90%e7%b1%bbtest2%e4%b8%8b%e5%88%97%e9%80%89%e9%a1%b9%e8%af%b4%e6%b3%95%e9%94%99%e8%af%af%e7%9a%84%e6%98%af-" class="header-anchor"></a>38. 定义了如下所示的test1类和它的子类test2，下列选项说法错误的是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：C</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">test1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">language</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">grade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">test2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">test1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">gender</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">fun</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gender</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">language</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">grade</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>A. fun()函数中变量gender可以正常输出</li>
+<li>B. fun()函数中变量language可以正常输出</li>
+<li><strong>C. fun()函数中变量name可以正常输出</strong></li>
+<li>D. fun()函数中变量grade可以正常输出</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>C. 错误。<code>name</code> 是私有成员，无法在派生类中直接访问。</li>
+</ul>
+</li>
+</ul>
+<h4 id="39-下列c程序实现了使用迭代器访问并输出数组vec的元素空白处应该补充的代码是-"><a href="#39-%e4%b8%8b%e5%88%97c%e7%a8%8b%e5%ba%8f%e5%ae%9e%e7%8e%b0%e4%ba%86%e4%bd%bf%e7%94%a8%e8%bf%ad%e4%bb%a3%e5%99%a8%e8%ae%bf%e9%97%ae%e5%b9%b6%e8%be%93%e5%87%ba%e6%95%b0%e7%bb%84vec%e7%9a%84%e5%85%83%e7%b4%a0%e7%a9%ba%e7%99%bd%e5%a4%84%e5%ba%94%e8%af%a5%e8%a1%a5%e5%85%85%e7%9a%84%e4%bb%a3%e7%a0%81%e6%98%af-" class="header-anchor"></a>39. 下列C++程序实现了使用迭代器访问并输出数组vec的元素，空白处应该补充的代码是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：A</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">v</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">v</span> <span class="o">!=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 空白处
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">++</span><span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>*<em>A. std::cout &laquo; <em>v &laquo; std::endl;</em></em></li>
+<li>B. std::cout &laquo; v &laquo; std::endl;</li>
+<li>C. std::cout &laquo; &amp;v &laquo; std::endl;</li>
+<li>D. 其他选项均可以</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>A. 正确。<code>*v</code> 解引用迭代器，获取元素值。</li>
+</ul>
+</li>
+</ul>
+<h4 id="40-关于下列几行c代码说法正确的是-"><a href="#40-%e5%85%b3%e4%ba%8e%e4%b8%8b%e5%88%97%e5%87%a0%e8%a1%8cc%e4%bb%a3%e7%a0%81%e8%af%b4%e6%b3%95%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>40. 关于下列几行C++代码，说法正确的是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：B</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">c1</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">c2</span> <span class="o">=</span> <span class="s">&#34;b&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c3</span> <span class="o">=</span> <span class="sc">&#39;c&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c4</span> <span class="o">=</span> <span class="sc">&#39;d&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li>A. 直接输出c1 + c2的结果是195</li>
+<li><strong>B. 直接输出c3 + c4 的结果是199</strong></li>
+<li>C. 直接输出c1 + c3 的结果是196</li>
+<li>D. 其他选项说法均错误</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>B. 正确。<code>c3</code> 和 <code>c4</code> 的ASCII码分别为99和100，相加结果为199。</li>
+</ul>
+</li>
+</ul>
+<h4 id="41-cstl的核心不包括以下哪个选项-"><a href="#41-cstl%e7%9a%84%e6%a0%b8%e5%bf%83%e4%b8%8d%e5%8c%85%e6%8b%ac%e4%bb%a5%e4%b8%8b%e5%93%aa%e4%b8%aa%e9%80%89%e9%a1%b9-" class="header-anchor"></a>41. C++STL的核心不包括以下哪个选项（ ）。
+</h4><ul>
+<li><strong>答案</strong>：C</li>
+<li>选项
+<ul>
+<li>A. 迭代器</li>
+<li>B. 算法</li>
+<li><strong>C. 指针</strong></li>
+<li>D. 容器</li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>C. 错误。指针不属于STL的核心部分。</li>
+</ul>
+</li>
+</ul>
+<h4 id="42-关于下列c代码的时间复杂度与空间复杂度的说法正确的是-"><a href="#42-%e5%85%b3%e4%ba%8e%e4%b8%8b%e5%88%97c%e4%bb%a3%e7%a0%81%e7%9a%84%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e4%b8%8e%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e7%9a%84%e8%af%b4%e6%b3%95%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-" class="header-anchor"></a>42. 关于下列C++代码的时间复杂度与空间复杂度的说法，正确的是（ ）。
+</h4><ul>
+<li>
+<p><strong>答案</strong>：A</p>
+</li>
+<li>
+<p>代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">node</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">time</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">solve</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">node</span><span class="o">&gt;&amp;</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">node</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">time</span><span class="p">,</span> <span class="n">time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">time</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选项</p>
+<ul>
+<li><strong>A. 时间复杂度为O(N)，空间复杂度为O(N)</strong></li>
+<li>B. 时间复杂度为O(2N)，空间复杂度为O(N)</li>
+<li>C. 时间复杂度为O(N^2)，空间复杂度为O(N/2)</li>
+<li>D. 时间复杂度为O(logN)，空间复杂度为O(N/2)</li>
+</ul>
+</li>
+<li>
+<p>易错解释</p>
+<ul>
+<li>A. 正确。每个元素最多入栈和出栈一次，时间复杂度为O(N)。</li>
+</ul>
+</li>
+</ul>
+<h4 id="43-下列关于c常用标准库的一些说法错误的是哪一项"><a href="#43-%e4%b8%8b%e5%88%97%e5%85%b3%e4%ba%8ec%e5%b8%b8%e7%94%a8%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e4%b8%80%e4%ba%9b%e8%af%b4%e6%b3%95%e9%94%99%e8%af%af%e7%9a%84%e6%98%af%e5%93%aa%e4%b8%80%e9%a1%b9" class="header-anchor"></a>43. 下列关于C++常用标准库的一些说法，错误的是哪一项（）。
+</h4><ul>
+<li><strong>答案</strong>：D</li>
+<li>选项
+<ul>
+<li>A. cout控制输出精度需要使用std::setprecision</li>
+<li>B. 标准错误流cerr属于标准输出流的一部分</li>
+<li>C. 字符串截取函数substr()属于std::string</li>
+<li><strong>D. 一个C++工程里不可以有两个或多个命名空间</strong></li>
+</ul>
+</li>
+<li>易错解释
+<ul>
+<li>D. 错误。一个C++工程中可以有多个命名空间。</li>
+</ul>
+</li>
+</ul>
+<h4 id="44-假定输入的字符串中只包含字母和号请编写程序将字符串中的前导符全部移到字符串的尾部例如字符串中的内容为abcdg移动后字符串中的内容为abcdg在编写程序时不得使用c语言提供的字符串函数输入的字符串不含空格且字符串长度不大于1000"><a href="#44-%e5%81%87%e5%ae%9a%e8%be%93%e5%85%a5%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e5%8f%aa%e5%8c%85%e5%90%ab%e5%ad%97%e6%af%8d%e5%92%8c%e5%8f%b7%e8%af%b7%e7%bc%96%e5%86%99%e7%a8%8b%e5%ba%8f%e5%b0%86%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e5%89%8d%e5%af%bc%e7%ac%a6%e5%85%a8%e9%83%a8%e7%a7%bb%e5%88%b0%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e5%b0%be%e9%83%a8%e4%be%8b%e5%a6%82%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e5%86%85%e5%ae%b9%e4%b8%baabcdg%e7%a7%bb%e5%8a%a8%e5%90%8e%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e5%86%85%e5%ae%b9%e4%b8%baabcdg%e5%9c%a8%e7%bc%96%e5%86%99%e7%a8%8b%e5%ba%8f%e6%97%b6%e4%b8%8d%e5%be%97%e4%bd%bf%e7%94%a8c%e8%af%ad%e8%a8%80%e6%8f%90%e4%be%9b%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%87%bd%e6%95%b0%e8%be%93%e5%85%a5%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%8d%e5%90%ab%e7%a9%ba%e6%a0%bc%e4%b8%94%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6%e4%b8%8d%e5%a4%a7%e4%ba%8e1000" class="header-anchor"></a>44. 假定输入的字符串中只包含字母和@号，请编写程序，将字符串中的前导@符全部移到字符串的尾部。例如：字符串中的内容为：@@@@ab@CD@G@@@,移动后，字符串中的内容为：ab@CD@G@@@@@@@。在编写程序时，不得使用C++语言提供的字符串函数。（输入的字符串不含空格，且字符串长度不大于1000）
+</h4><ul>
+<li>
+<p><strong>答案</strong>：略</p>
+</li>
+<li>
+<p>输入样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">@@@@</span><span class="n">ab</span><span class="err">@</span><span class="n">CD</span><span class="err">@</span><span class="n">G</span><span class="err">@@@</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ab@CD@G@@@@@@@
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输入样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">abc@d
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">abc@d
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="45-编写程序从键盘上输入两个正整数较大的数为m和较小的数为n根据以下公式求p的值并输出m和n为大于0且小于等于30的整数"><a href="#45-%e7%bc%96%e5%86%99%e7%a8%8b%e5%ba%8f%e4%bb%8e%e9%94%ae%e7%9b%98%e4%b8%8a%e8%be%93%e5%85%a5%e4%b8%a4%e4%b8%aa%e6%ad%a3%e6%95%b4%e6%95%b0%e8%be%83%e5%a4%a7%e7%9a%84%e6%95%b0%e4%b8%bam%e5%92%8c%e8%be%83%e5%b0%8f%e7%9a%84%e6%95%b0%e4%b8%ban%e6%a0%b9%e6%8d%ae%e4%bb%a5%e4%b8%8b%e5%85%ac%e5%bc%8f%e6%b1%82p%e7%9a%84%e5%80%bc%e5%b9%b6%e8%be%93%e5%87%bam%e5%92%8cn%e4%b8%ba%e5%a4%a7%e4%ba%8e0%e4%b8%94%e5%b0%8f%e4%ba%8e%e7%ad%89%e4%ba%8e30%e7%9a%84%e6%95%b4%e6%95%b0" class="header-anchor"></a>45. 编写程序，从键盘上输入两个正整数，较大的数为m和较小的数为n,根据以下公式求P的值，并输出。(m和n为大于0且小于等于30的整数）
+</h4><ul>
+<li>
+<p><strong>答案</strong>：略</p>
+</li>
+<li>
+<p>输入样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">12 8
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">495
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输入样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">27 30
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4060
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="46-定义了nn的二维数组数组元素整数通过键盘输入请编写程序求出数组周边元素的和值并输出2n100"><a href="#46-%e5%ae%9a%e4%b9%89%e4%ba%86nn%e7%9a%84%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e6%95%b0%e7%bb%84%e5%85%83%e7%b4%a0%e6%95%b4%e6%95%b0%e9%80%9a%e8%bf%87%e9%94%ae%e7%9b%98%e8%be%93%e5%85%a5%e8%af%b7%e7%bc%96%e5%86%99%e7%a8%8b%e5%ba%8f%e6%b1%82%e5%87%ba%e6%95%b0%e7%bb%84%e5%91%a8%e8%be%b9%e5%85%83%e7%b4%a0%e7%9a%84%e5%92%8c%e5%80%bc%e5%b9%b6%e8%be%93%e5%87%ba2n100" class="header-anchor"></a>46. 定义了N×N的二维数组，数组元素（整数）通过键盘输入，请编写程序，求出数组周边元素的和值，并输出。（2&lt;=N&lt;=100)
+</h4><ul>
+<li>
+<p><strong>答案</strong>：略</p>
+</li>
+<li>
+<p>输入样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5
+</span></span><span class="line"><span class="cl">0 1 2 7 9
+</span></span><span class="line"><span class="cl">1 9 7 4 5
+</span></span><span class="line"><span class="cl">2 3 8 3 1
+</span></span><span class="line"><span class="cl">4 5 6 8 2
+</span></span><span class="line"><span class="cl">5 9 1 4 1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">60
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输入样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3
+</span></span><span class="line"><span class="cl">-3 2 0
+</span></span><span class="line"><span class="cl">1 2 3
+</span></span><span class="line"><span class="cl">-3 -2 -1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>输出样例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<blockquote>
+<p>仅供参考，可能有误</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 算法温故笔记"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">算法温故笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1-stl/stl.12c7a65fbe9f7bb8ae97bfcd96f60753_hu13020793192756337445.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 程序设计艺术(1): STL"
+                        
+                        data-hash="md5-EsemX76fe7iul7/NlvYHUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">程序设计艺术(1): STL</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/">
+        
+        
+            <div class="article-image">
+                <img src="/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python语言与系统设计(1)"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python语言与系统设计(1)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(1): 常用函数"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(1): 常用函数</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2-%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.76b20ae6c770dacc61fed783ea5c8c34_hu17004249647344125996.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 机器人技术(2): 典型决策树学习算法ID3"
+                        
+                        data-hash="md5-drIK5sdw2sxh/teD6lyMNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机器人技术(2): 典型决策树学习算法ID3</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 cita
+    </section>
+    
+    <section class="powerby">
+        
+            Hello World <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3515&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Hugo 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。\n">
 <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(1)</title>
 
-<link rel='canonical' href='http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/'>
+<link rel='canonical' href='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Hugo+Github Pages搭建静态网站作为个人博客(1)">
 <meta property='og:description' content="Hugo 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。\n">
-<meta property='og:url' content='http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/'>
+<meta property='og:url' content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/'>
 <meta property='og:site_name' content='cita的博客__'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='html' /><meta property='article:tag' content='github page' /><meta property='article:published_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='html' /><meta property='article:tag' content='github page' /><meta property='article:published_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
 <meta name="twitter:title" content="Hugo+Github Pages搭建静态网站作为个人博客(1)">
 <meta name="twitter:description" content="Hugo 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:3515/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
+    <meta name="twitter:image" content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A21/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
     </head>
     <body class="
     article-page
@@ -212,9 +212,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:3515/en/" >English</option>
+                                    <option value="http://localhost:1313/en/" >English</option>
                                 
-                                    <option value="http://localhost:3515/" selected>中文</option>
+                                    <option value="http://localhost:1313/" selected>中文</option>
                                 
                             </select>
                         </li>
