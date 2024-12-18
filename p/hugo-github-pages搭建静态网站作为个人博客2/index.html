@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=11263&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。\nStack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features: Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：\nResponsive images support 响应式图像支持 Lazy load images 延迟加载图像 Dark mode 深色模式 Local search 本地搜索 PhotoSwipe integration 照片滑动集成 Archive page template 存档页面模板 Full native JavaScript, no jQuery or any other frameworks are used 完全原生 JavaScript，不使用 jQuery 或任何其他框架 No CSS framework, keep it simple and minimal 没有 CSS 框架，保持简单和最小化 Properly cropped thumbnails 正确裁剪的缩略图 Subsection support 分段支持 Table of contents 目录 ">
 <title>Hugo&#43;Github Pages搭建静态网站作为个人博客(2)</title>
 
-<link rel='canonical' href='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/'>
+<link rel='canonical' href='http://localhost:11263/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Hugo+Github Pages搭建静态网站作为个人博客(2)">
 <meta property='og:description' content="上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。\nStack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features: Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：\nResponsive images support 响应式图像支持 Lazy load images 延迟加载图像 Dark mode 深色模式 Local search 本地搜索 PhotoSwipe integration 照片滑动集成 Archive page template 存档页面模板 Full native JavaScript, no jQuery or any other frameworks are used 完全原生 JavaScript，不使用 jQuery 或任何其他框架 No CSS framework, keep it simple and minimal 没有 CSS 框架，保持简单和最小化 Properly cropped thumbnails 正确裁剪的缩略图 Subsection support 分段支持 Table of contents 目录 ">
-<meta property='og:url' content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/'>
+<meta property='og:url' content='http://localhost:11263/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/'>
 <meta property='og:site_name' content='cita的博客__'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='html' /><meta property='article:tag' content='github page' /><meta property='article:published_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='html' /><meta property='article:tag' content='github page' /><meta property='article:published_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:11263/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
 <meta name="twitter:title" content="Hugo+Github Pages搭建静态网站作为个人博客(2)">
 <meta name="twitter:description" content="上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。\nStack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features: Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：\nResponsive images support 响应式图像支持 Lazy load images 延迟加载图像 Dark mode 深色模式 Local search 本地搜索 PhotoSwipe integration 照片滑动集成 Archive page template 存档页面模板 Full native JavaScript, no jQuery or any other frameworks are used 完全原生 JavaScript，不使用 jQuery 或任何其他框架 No CSS framework, keep it simple and minimal 没有 CSS 框架，保持简单和最小化 Properly cropped thumbnails 正确裁剪的缩略图 Subsection support 分段支持 Table of contents 目录 "><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
+    <meta name="twitter:image" content='http://localhost:11263/p/hugo-github-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E4%BD%9C%E4%B8%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg' />
     </head>
     <body class="
     article-page
@@ -212,9 +212,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:1313/en/" >English</option>
+                                    <option value="http://localhost:11263/en/" >English</option>
                                 
-                                    <option value="http://localhost:1313/" selected>中文</option>
+                                    <option value="http://localhost:11263/" selected>中文</option>
                                 
                             </select>
                         </li>

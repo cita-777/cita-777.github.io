@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>代码规范 on cita的博客__</title>
-        <link>http://localhost:1313/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link>
+        <link>http://localhost:11263/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link>
         <description>Recent content in 代码规范 on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sat, 23 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 23 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:11263/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>华为嵌入式C语言代码简明规范</title>
-        <link>http://localhost:1313/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/</link>
+        <link>http://localhost:11263/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/</link>
         <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post 华为嵌入式C语言代码简明规范" /&gt;&lt;h2 id=&#34;规范制订说明&#34;&gt;&lt;a href=&#34;#%e8%a7%84%e8%8c%83%e5%88%b6%e8%ae%a2%e8%af%b4%e6%98%8e&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;规范制订说明
+        <guid>http://localhost:11263/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/</guid>
+        <description>&lt;img src="http://localhost:11263/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post 华为嵌入式C语言代码简明规范" /&gt;&lt;h2 id=&#34;规范制订说明&#34;&gt;&lt;a href=&#34;#%e8%a7%84%e8%8c%83%e5%88%b6%e8%ae%a2%e8%af%b4%e6%98%8e&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;规范制订说明
 &lt;/h2&gt;&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#%e5%89%8d%e8%a8%80&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;前言
 &lt;/h3&gt;&lt;p&gt;基于华为C语言编程规范 &lt;a class=&#34;link&#34; href=&#34;https://ilcc.gitbooks.io/wiki/content/StyleGuide/Huawei-C/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;在线wiki文档&lt;/a&gt;&lt;/p&gt;
