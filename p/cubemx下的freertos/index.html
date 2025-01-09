@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=11263&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CubeMX使用FreeRTOS编程指南 一、开发前言 CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。\n">
 <title>CubeMX下的freeRTOS</title>
 
-<link rel='canonical' href='http://localhost:11263/p/cubemx%E4%B8%8B%E7%9A%84freertos/'>
+<link rel='canonical' href='http://localhost:1313/p/cubemx%E4%B8%8B%E7%9A%84freertos/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="CubeMX下的freeRTOS">
 <meta property='og:description' content="CubeMX使用FreeRTOS编程指南 一、开发前言 CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。\n">
-<meta property='og:url' content='http://localhost:11263/p/cubemx%E4%B8%8B%E7%9A%84freertos/'>
+<meta property='og:url' content='http://localhost:1313/p/cubemx%E4%B8%8B%E7%9A%84freertos/'>
 <meta property='og:site_name' content='cita的博客__'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='STM32' /><meta property='article:tag' content='cubeMX' /><meta property='article:tag' content='freeRTOS' /><meta property='article:published_time' content='2024-12-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-12-18T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:11263/p/cubemx%E4%B8%8B%E7%9A%84freertos/background.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='STM32' /><meta property='article:tag' content='cubeMX' /><meta property='article:tag' content='freeRTOS' /><meta property='article:published_time' content='2024-12-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-12-18T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/cubemx%E4%B8%8B%E7%9A%84freertos/background.jpg' />
 <meta name="twitter:title" content="CubeMX下的freeRTOS">
 <meta name="twitter:description" content="CubeMX使用FreeRTOS编程指南 一、开发前言 CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:11263/p/cubemx%E4%B8%8B%E7%9A%84freertos/background.jpg' />
+    <meta name="twitter:image" content='http://localhost:1313/p/cubemx%E4%B8%8B%E7%9A%84freertos/background.jpg' />
     </head>
     <body class="
     article-page
@@ -212,9 +212,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:11263/en/" >English</option>
+                                    <option value="http://localhost:1313/en/" >English</option>
                                 
-                                    <option value="http://localhost:11263/" selected>中文</option>
+                                    <option value="http://localhost:1313/" selected>中文</option>
                                 
                             </select>
                         </li>
@@ -388,7 +388,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 23 分钟
+                    阅读时长: 24 分钟
                 </time>
             </div>
         
@@ -409,14 +409,16 @@
 <p>使用 STM32CubeMX 代码生成，在 STM32Cube 固件中，通过 ARM 提供的通用 CMSIS-OS（ cmsis_os.h 和 cmsis_os.c 文件，这两个文件把给 FreeRTOS 封装了一层，调用这其中的各类函数，和直接调用 FreeRTOS 的函数没有区别 ） 封装层，将 FreeRTOS 用作实时操作系统。也就是说在一套代码里有着两套标准，在阅读源码时需要注意区分。大多数教程讲解 FreeRTOS 的函数，此处说明ARM封装后函数。</p>
 <h3 id="二配置界面"><a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae%e7%95%8c%e9%9d%a2" class="header-anchor"></a>二、配置界面
 </h3><p>开启 FreeRTOS 之后，可以看到配置项主要分为以下几个部分</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/c4258287182fb315742dbf4c5aa89eae.png"
-	
-	
-	
+<p><img src="/p/cubemx%E4%B8%8B%E7%9A%84freertos/1.png"
+	width="1430"
+	height="367"
+	srcset="/p/cubemx%E4%B8%8B%E7%9A%84freertos/1_hu16001677282823221343.png 480w, /p/cubemx%E4%B8%8B%E7%9A%84freertos/1_hu4623610250808612853.png 1024w"
 	loading="lazy"
 	
-		alt="20211006100711"
 	
+		class="gallery-image" 
+		data-flex-grow="389"
+		data-flex-basis="935px"
 	
 ></p>
 <p>这几个部分的主要功能如下表：</p>
@@ -469,14 +471,16 @@
 <p>以上各个功能分的很清晰，我们需要配置什么功能就去对应的选项下进行配置，下面根据各个配置项进行详细配置介绍</p>
 <h3 id="三系统设置"><a href="#%e4%b8%89%e7%b3%bb%e7%bb%9f%e8%ae%be%e7%bd%ae" class="header-anchor"></a>三、系统设置
 </h3><p>首先我们先了解一下 Config Parameters，他的配置参数如下</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/4dbe2bf2e593496904a0b60019f88709.png"
-	
-	
-	
+<p><img src="/p/cubemx%E4%B8%8B%E7%9A%84freertos/2.png"
+	width="1931"
+	height="795"
+	srcset="/p/cubemx%E4%B8%8B%E7%9A%84freertos/2_hu8918527371363193659.png 480w, /p/cubemx%E4%B8%8B%E7%9A%84freertos/2_hu16012955993996952945.png 1024w"
 	loading="lazy"
 	
-		alt="20211006181005"
 	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="582px"
 	
 ></p>
 <p>参数功能表：</p>
@@ -494,11 +498,7 @@
       </tr>
       <tr>
           <td><strong>Version</strong></td>
-          <td>显示 FreeRTOS 内核版本</td>
-      </tr>
-      <tr>
-          <td>显示 CMSIS 版本</td>
-          <td></td>
+          <td>显示 FreeRTOS 内核版本，CMSIS 版本</td>
       </tr>
       <tr>
           <td><strong>Kernel Setting</strong></td>
@@ -533,16 +533,7 @@
 <p>API 和 Version 不过多解释，显示版本信息</p>
 <h4 id="21-调度内核设置"><a href="#21-%e8%b0%83%e5%ba%a6%e5%86%85%e6%a0%b8%e8%ae%be%e7%bd%ae" class="header-anchor"></a>2.1 调度内核设置
 </h4><p>Kernel Setting 是 FreeRTOS 的调度内核配置，展开后有下面的配置项，使用时一般保持默认，也可以根据需要修改</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/d00b7ef05fa75a0e5dc37f5e99a7a3e5.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="20211006182448"
-	
-	
-></p>
+<p>![屏幕截图 2024-12-18 114744](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114744.png)</p>
 <ul>
 <li><strong>USE_PREEMPTION</strong></li>
 </ul>
@@ -604,16 +595,7 @@
 <li><strong>USE_TICKLESS_IDLE</strong></li>
 </ul>
 <p>使能后会生成的两个空函数PreSleepProcessing和PostSleepProcessing，用户可以编写代码进入低功耗模式，生成函数如下图</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/7452df99d4195c2026146158d3a89598.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="20211007081241"
-	
-	
-></p>
+<p>![屏幕截图 2024-12-18 114807](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114807.png)</p>
 <ul>
 <li><strong>USE_TASK_NOTIFICATIONS</strong></li>
 </ul>
@@ -625,16 +607,7 @@
 <h4 id="22-内存管理httpseducsdnnetcloudhoujieutm_sourcehighwordspm1001210130017020设置"><a href="#22-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86httpseducsdnnetcloudhoujieutm_sourcehighwordspm1001210130017020%e8%ae%be%e7%bd%ae" class="header-anchor"></a>2.2 <a class="link" href="https://edu.csdn.net/cloud/houjie?utm_source=highword&amp;spm=1001.2101.3001.7020"  target="_blank" rel="noopener"
     >内存管理</a>设置
 </h4><p>内存管理可以看到3个配置参数</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/76585a90b8aec4ceb3ff757ba5e23aae.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="20211006224158"
-	
-	
-></p>
+<p>![屏幕截图 2024-12-18 114823](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114823.png)</p>
 <ul>
 <li><strong>Memory Allocation</strong></li>
 </ul>
@@ -647,8 +620,6 @@
 <li><strong>Memory Management scheme</strong></li>
 </ul>
 <p>内存分配方式，有heap_1.c, heap_2.c, heap_3.c, heap_4.c and heap5.c 5种，其中<strong>1、2、4、5都是先建立一个堆数组，从数组中申请，用完再释放，与C语言中molloc和free使用链表的方式不同，该方式在 MCU 中更安全稳定</strong>，此处默认使用的方式4，具体申请释放方式可以在heap4.c中阅读到</p>
-<p>关于堆和栈的区别，可以阅读我的另外一篇文章进行了解：<a class="link" href="https://blog.csdn.net/qq_45396672/article/details/119155585"  target="_blank" rel="noopener"
-    >C语言：内存四区</a></p>
 <h4 id="23-钩子函数配置"><a href="#23-%e9%92%a9%e5%ad%90%e5%87%bd%e6%95%b0%e9%85%8d%e7%bd%ae" class="header-anchor"></a>2.3 钩子函数配置
 </h4><p><strong>钩子函数是一种回调函数，用于在任务执行一次之后或者某些事件发生后执行的函数</strong>，该配置项里面有五个选项，控制5种不同功能的钩子函数开启，当然用户也可以在代码中自己定义</p>
 <ul>
@@ -3053,6 +3024,30 @@
             
                 
 <article class="has-image">
+    <a href="/p/%E6%B5%85%E6%9E%90pid/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%B5%85%E6%9E%90pid/background.60116b1ccfc8632e9a65f7d51df3efc2_hu2042364712198079406.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 浅析PID"
+                        
+                        data-hash="md5-YBFrHM/IYy6aZffVHfPvwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">浅析PID</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/">
         
         
@@ -3130,7 +3125,9 @@
     <section class="copyright">
         &copy; 
         
-        2024 cita
+            2024 - 
+        
+        2025 cita
     </section>
     
     <section class="powerby">

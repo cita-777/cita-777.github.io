@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>协议 on cita的博客__</title>
-        <link>http://localhost:11263/tags/%E5%8D%8F%E8%AE%AE/</link>
+        <link>http://localhost:1313/tags/%E5%8D%8F%E8%AE%AE/</link>
         <description>Recent content in 协议 on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:11263/tags/%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>PCB设计与立创EDA使用备忘录</title>
-        <link>http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+        <link>http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</link>
         <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
-        <description>&lt;img src="http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/background.jpg" alt="Featured image of post PCB设计与立创EDA使用备忘录" /&gt;&lt;p&gt;本篇课程基于B站UP主&lt;code&gt;Expert电子实验室&lt;/code&gt;的教学视频，同时加上本人思考与总结汇总而成。&lt;/p&gt;
+        <guid>http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+        <description>&lt;img src="http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/background.jpg" alt="Featured image of post PCB设计与立创EDA使用备忘录" /&gt;&lt;p&gt;本篇课程基于B站UP主&lt;code&gt;Expert电子实验室&lt;/code&gt;的教学视频，同时加上本人思考与总结汇总而成。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1At421h7Ui/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;amp;vd_source=c33a47a3f08b3b6b6c1614d37f34903f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;零基础入门PCB设计保姆级教学&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://space.bilibili.com/346179450&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -54,10 +54,10 @@
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;分类&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6.png&#34;
 	width=&#34;1252&#34;
 	height=&#34;656&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu11177614856177748304.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu219592418567601453.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu11177614856177748304.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu219592418567601453.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -69,10 +69,10 @@
 &lt;ul&gt;
 &lt;li&gt;读数以及含义&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872.png&#34;
 	width=&#34;640&#34;
 	height=&#34;271&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872_hu8284289557589686322.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872_hu1304599536010297078.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872_hu8284289557589686322.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%872_hu1304599536010297078.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -81,10 +81,10 @@
 		data-flex-basis=&#34;566px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873.png&#34;
 	width=&#34;640&#34;
 	height=&#34;365&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873_hu5744861166743414919.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873_hu8919924115267769037.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873_hu5744861166743414919.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%873_hu8919924115267769037.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -93,10 +93,10 @@
 		data-flex-basis=&#34;420px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874.png&#34;
 	width=&#34;640&#34;
 	height=&#34;301&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874_hu7292073434556720172.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874_hu1357148087267962453.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874_hu7292073434556720172.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%874_hu1357148087267962453.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -105,10 +105,10 @@
 		data-flex-basis=&#34;510px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875.png&#34;
 	width=&#34;640&#34;
 	height=&#34;307&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875_hu13510441971270726016.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875_hu14587521691220625244.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875_hu13510441971270726016.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%875_hu14587521691220625244.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -134,10 +134,10 @@
 &lt;li&gt;主要功能：滤波，扼流，谐振，储能&lt;/li&gt;
 &lt;li&gt;分类&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6.png&#34;
 	width=&#34;1252&#34;
 	height=&#34;656&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu11177614856177748304.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu219592418567601453.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu11177614856177748304.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/6_hu219592418567601453.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -149,10 +149,10 @@
 &lt;ul&gt;
 &lt;li&gt;读数以及含义&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7.png&#34;
 	width=&#34;1285&#34;
 	height=&#34;754&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7_hu17707074838298918213.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7_hu13746448816796052689.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7_hu17707074838298918213.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/7_hu13746448816796052689.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -161,10 +161,10 @@
 		data-flex-basis=&#34;409px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8.png&#34;
 	width=&#34;1244&#34;
 	height=&#34;1052&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8_hu3365582610749994174.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8_hu11096317691556359452.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8_hu3365582610749994174.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/8_hu11096317691556359452.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -181,10 +181,10 @@
 &lt;ul&gt;
 &lt;li&gt;分类以及简单介绍&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB.png&#34;
 	width=&#34;1270&#34;
 	height=&#34;641&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB_hu2490964502635959609.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB_hu13371694065973595512.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB_hu2490964502635959609.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E4%BA%8C%E6%9E%81%E7%AE%A1%E5%88%86%E7%B1%BB_hu13371694065973595512.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;二极管分类.png&#34;
@@ -202,10 +202,10 @@
 &lt;li&gt;对于直插式发光二极管：长脚为正极，内部小块为正极。&lt;/li&gt;
 &lt;li&gt;一般封装类型的正负极判断&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879.png&#34;
 	width=&#34;1204&#34;
 	height=&#34;318&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879_hu17491268375392457710.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879_hu8469397338006489879.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879_hu17491268375392457710.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%879_hu8469397338006489879.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -236,10 +236,10 @@
 &lt;ul&gt;
 &lt;li&gt;常见封装&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710.png&#34;
 	width=&#34;660&#34;
 	height=&#34;856&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710_hu4738685667943537617.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710_hu13059161516902504884.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710_hu4738685667943537617.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8710_hu13059161516902504884.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -267,10 +267,10 @@
 &lt;ul&gt;
 &lt;li&gt;与三极管的对比&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711.png&#34;
 	width=&#34;640&#34;
 	height=&#34;263&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711_hu8968481966612477841.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711_hu12658031835349600196.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711_hu8968481966612477841.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8711_hu12658031835349600196.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -282,10 +282,10 @@
 &lt;ul&gt;
 &lt;li&gt;封装&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS.png&#34;
 	width=&#34;1085&#34;
 	height=&#34;336&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS_hu8194000924490727192.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS_hu6654305379383910524.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS_hu8194000924490727192.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/MOS_hu6654305379383910524.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -294,10 +294,10 @@
 		data-flex-basis=&#34;775px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712.png&#34;
 	width=&#34;1288&#34;
 	height=&#34;541&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712_hu437792066898597601.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712_hu9111432860874598240.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712_hu437792066898597601.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8712_hu9111432860874598240.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -306,10 +306,10 @@
 		data-flex-basis=&#34;571px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713.png&#34;
 	width=&#34;1982&#34;
 	height=&#34;529&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713_hu4857271370956506442.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713_hu16219221471943648004.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713_hu4857271370956506442.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8713_hu16219221471943648004.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -397,10 +397,10 @@
 &lt;li&gt;==叠层结构布局有讲究==，但是一般的二层板双面都可能需要走底地线和电源。&lt;/li&gt;
 &lt;li&gt;图示&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714.png&#34;
 	width=&#34;1238&#34;
 	height=&#34;657&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714_hu1771015543044786340.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714_hu3748948775054596771.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714_hu1771015543044786340.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8714_hu3748948775054596771.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;图片14.png&#34;
@@ -412,10 +412,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;23-pcb设计流程&#34;&gt;&lt;a href=&#34;#23-pcb%e8%ae%be%e8%ae%a1%e6%b5%81%e7%a8%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;2.3 PCB设计流程
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715.png&#34;
 	width=&#34;631&#34;
 	height=&#34;683&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715_hu7359480896298707448.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715_hu8167649226820923960.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715_hu7359480896298707448.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/%E5%9B%BE%E7%89%8715_hu8167649226820923960.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -493,10 +493,10 @@
 &lt;p&gt;电源线、地线的宽度最好尽可能宽，地线比电源线宽。这些关系为：地线&amp;gt;电源线&amp;gt;信号线，通常信号线的宽度为0.2-0.3mm(8-12mil)，最细的宽度为0.05-0.07mm(2-2.8mil)，电源线为1.2-2.5mm(48-100mil)。(0.025mm=1mil).&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://eda365.com/article-12-1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;PCB走线载流计算器-EDA365电子论坛通信数码-人工智能-计算机-半导体-手机家电消费电子硬件门户网站&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1.png&#34;
 	width=&#34;970&#34;
 	height=&#34;879&#34;
-	srcset=&#34;http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1_hu14476683659147836310.png 480w, http://localhost:11263/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1_hu9036526061882384709.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1_hu14476683659147836310.png 480w, http://localhost:1313/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/1_hu9036526061882384709.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -538,11 +538,11 @@
         </item>
         <item>
         <title>物联网协议基础</title>
-        <link>http://localhost:11263/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</link>
+        <link>http://localhost:1313/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:11263/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;img src="http://localhost:11263/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/background.jpg" alt="Featured image of post 物联网协议基础" /&gt;&lt;h2 id=&#34;mqtt消息队列遥测传输协议&#34;&gt;&lt;a href=&#34;#mqtt%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e9%81%a5%e6%b5%8b%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;MQTT（消息队列遥测传输协议）
+        <guid>http://localhost:1313/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/background.jpg" alt="Featured image of post 物联网协议基础" /&gt;&lt;h2 id=&#34;mqtt消息队列遥测传输协议&#34;&gt;&lt;a href=&#34;#mqtt%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e9%81%a5%e6%b5%8b%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;MQTT（消息队列遥测传输协议）
 &lt;/h2&gt;&lt;p&gt;MQTT是轻量级的消息发布/订阅协议，设计用于资源受限的设备和低带宽、高延迟的网络环境。它已成为物联网领域的事实标准，广泛应用于智能家居、工业自动化等领域。&lt;/p&gt;
 &lt;p&gt;mqtt比较简单，算是我入门物联网使用的第一种方式（协议）。从搭建mqtt服务器，协议原理，连接方式以及mqtt上位机编写，通过实操都有了一定了解了。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://regenm.github.io/2024/02/09/MQTT%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%90%ad%e5%bb%ba%ef%bc%88mosquitto%ef%bc%89/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>单片机 on cita的博客__</title>
+        <link>http://localhost:1313/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+        <description>Recent content in 单片机 on cita的博客__</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>cita</copyright>
+        <lastBuildDate>Sat, 23 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>浅析PID</title>
+        <link>http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/</link>
+        <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/background.jpg" alt="Featured image of post 浅析PID" /&gt;&lt;p&gt;参考学习SUNPLUS &lt;strong&gt;《PID&lt;/strong&gt; **调节控制做电机速度控制》**后总结，在线阅读链接如下：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://u.dianyuan.com/upload/space/2012/07/25/1343214947-695804.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;1343214947-695804.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;浅析pid&#34;&gt;&lt;a href=&#34;#%e6%b5%85%e6%9e%90pid&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;浅析PID
+&lt;/h1&gt;&lt;p&gt;PID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。&lt;/p&gt;
+&lt;h2 id=&#34;1-模拟-pid-控制原理&#34;&gt;&lt;a href=&#34;#1-%e6%a8%a1%e6%8b%9f-pid-%e6%8e%a7%e5%88%b6%e5%8e%9f%e7%90%86&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1 模拟 PID 控制原理
+&lt;/h2&gt;&lt;h3 id=&#34;11-模拟-pid-控制系统的原理框图&#34;&gt;&lt;a href=&#34;#11-%e6%a8%a1%e6%8b%9f-pid-%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%8e%9f%e7%90%86%e6%a1%86%e5%9b%be&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;1.1 模拟 PID 控制系统的原理框图
+&lt;/h3&gt;&lt;p&gt;如图 1-2 所示，模拟 PID 控制系统由 PID 控制器和被控对象（如电机）组成。系统的输入是给定值 ($r(t)$)，输出是实际输出值 ($y(t)$)，偏差 ($e(t) = r(t) - y(t)$) 作为 PID 控制器的输入，控制器的输出 ($u(t)$) 作为被控对象的输入。&lt;/p&gt;
+&lt;p&gt;PID 控制器的控制规律可以用以下公式表示：&lt;/p&gt;
+$$ u(t) = K_p \left[ e(t) + \frac{1}{T_i} \int_0^t e(\tau) d\tau + T_d \frac{de(t)}{dt} \right] $$&lt;p&gt;如何理解呢？&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$K_p$：比例系数，决定比例控制的强度。&lt;/li&gt;
+&lt;li&gt;$T_i$：积分时间，决定积分控制的强度。&lt;/li&gt;
+&lt;li&gt;$T_d$：微分时间，决定微分控制的强度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pid-控制器的三个部分&#34;&gt;&lt;a href=&#34;#pid-%e6%8e%a7%e5%88%b6%e5%99%a8%e7%9a%84%e4%b8%89%e4%b8%aa%e9%83%a8%e5%88%86&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;PID 控制器的三个部分
+&lt;/h3&gt;&lt;h4 id=&#34;比例部分proportion&#34;&gt;&lt;a href=&#34;#%e6%af%94%e4%be%8b%e9%83%a8%e5%88%86proportion&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;比例部分（Proportion）
+&lt;/h4&gt;&lt;p&gt;比例部分的数学表达式为：&lt;/p&gt;
+$$ K_p \cdot e(t) $$&lt;p&gt;作用：比例控制的作用是对偏差瞬间作出反应。偏差一旦产生，控制器立即产生控制作用，使控制量向减少偏差的方向变化。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;比例系数 ($K_p$) 越大，控制作用越强，系统的响应速度越快，静态偏差越小。&lt;/li&gt;
+&lt;li&gt;但 $K_p$ 过大会导致系统振荡，破坏系统的稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：比例控制能够快速响应偏差，但过大的比例系数会导致系统不稳定。&lt;/p&gt;
+&lt;h4 id=&#34;积分部分integral&#34;&gt;&lt;a href=&#34;#%e7%a7%af%e5%88%86%e9%83%a8%e5%88%86integral&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;积分部分（Integral）
+&lt;/h4&gt;&lt;p&gt;积分部分的数学表达式为：&lt;/p&gt;
+$$ \frac{K_p}{T_i} \int_0^t e(\tau) d\tau $$&lt;p&gt;作用：积分控制的作用是消除系统的稳态误差。只要存在偏差，积分控制的作用就会不断增加，直到偏差为零。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;积分时间 ($T_i$) 越大，积分作用越弱，系统的响应速度变慢，但可以减少超调量，提高系统的稳定性。&lt;/li&gt;
+&lt;li&gt;积分时间 ($T_i$) 越小，积分作用越强，系统的响应速度加快，但可能会引起系统振荡。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：积分控制能够消除系统的稳态误差，但会降低系统的响应速度，并可能引起超调。&lt;/p&gt;
+&lt;h4 id=&#34;微分部分differential&#34;&gt;&lt;a href=&#34;#%e5%be%ae%e5%88%86%e9%83%a8%e5%88%86differential&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;微分部分（Differential）
+&lt;/h4&gt;&lt;p&gt;微分部分的数学表达式为：&lt;/p&gt;
+$$ K_p \cdot T_d \cdot \frac{de(t)}{dt} $$&lt;p&gt;作用：微分控制的作用是根据偏差的变化趋势进行控制。它能够在偏差变化的瞬间提前给出控制信号，抑制系统的超调和振荡。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;微分时间 ($T_d$) 越大，微分作用越强，能够有效抑制系统的超调和振荡。&lt;/li&gt;
+&lt;li&gt;但微分控制对噪声敏感，噪声较大的系统中应谨慎使用微分控制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：微分控制能够加快系统的响应速度，减少超调，但对噪声敏感。&lt;/p&gt;
+&lt;h3 id=&#34;pid-控制器的综合作用&#34;&gt;&lt;a href=&#34;#pid-%e6%8e%a7%e5%88%b6%e5%99%a8%e7%9a%84%e7%bb%bc%e5%90%88%e4%bd%9c%e7%94%a8&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;PID 控制器的综合作用
+&lt;/h3&gt;&lt;p&gt;PID 控制器通过比例、积分和微分三个部分的组合，能够实现对系统的快速、稳定和精确控制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;比例控制：快速响应偏差，减少静态误差。&lt;/li&gt;
+&lt;li&gt;积分控制：消除稳态误差，确保系统最终达到期望值。&lt;/li&gt;
+&lt;li&gt;微分控制：抑制系统的超调和振荡，提高系统的稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从模拟 PID 到数字 PID 随着计算机技术的发展，模拟 PID 控制逐渐被数字 PID 控制取代。数字 PID 控制通过将模拟 PID 控制规律进行离散化处理，能够在计算机中实现 PID 控制算法。数字 PID 控制具有以下优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;灵活性：可以通过软件调整 PID 参数，适应不同的控制需求。&lt;/li&gt;
+&lt;li&gt;精度：数字控制能够实现高精度的控制。&lt;/li&gt;
+&lt;li&gt;抗干扰：数字控制对噪声和干扰的抑制能力更强。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;总结&#34;&gt;&lt;a href=&#34;#%e6%80%bb%e7%bb%93&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;总结
+&lt;/h3&gt;&lt;p&gt;PID 控制器通过比例、积分和微分三个部分的组合，能够实现对系统的快速、稳定和精确控制。比例控制负责快速响应偏差，积分控制负责消除稳态误差，微分控制负责抑制系统的超调和振荡。通过合理调整 PID 参数，可以使系统达到最佳的控制效果。&lt;/p&gt;
+&lt;h3 id=&#34;2-数字-pid-控制&#34;&gt;&lt;a href=&#34;#2-%e6%95%b0%e5%ad%97-pid-%e6%8e%a7%e5%88%b6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2. 数字 PID 控制&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;数字 PID 控制是通过计算机实现的 PID 控制算法。与模拟 PID 控制不同，数字 PID 控制是基于离散时间采样的控制方式，因此需要对连续的 PID 控制规律进行离散化处理。数字 PID 控制算法主要分为两种：&lt;strong&gt;位置式 PID&lt;/strong&gt; 和 &lt;strong&gt;增量式 PID&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;21-位置式-全量式pid-算法&#34;&gt;&lt;a href=&#34;#21-%e4%bd%8d%e7%bd%ae%e5%bc%8f-%e5%85%a8%e9%87%8f%e5%bc%8fpid-%e7%ae%97%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.1 位置式 （全量式）PID 算法&lt;/strong&gt;
+&lt;/h4&gt;&lt;h5 id=&#34;211-离散化处理&#34;&gt;&lt;a href=&#34;#211-%e7%a6%bb%e6%95%a3%e5%8c%96%e5%a4%84%e7%90%86&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.1.1 离散化处理&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;由于计算机控制是采样控制，系统只能在每个采样时刻根据当前的偏差计算控制量，而不能像模拟控制那样连续输出控制量。因此，模拟 PID 控制中的积分和微分项需要进行离散化处理。离散化处理的方法为：以&lt;em&gt;T&lt;/em&gt; 作为采样周期， 作为采样序号，则离散采样时间对应着连续时间 ，用矩形法数值积分近似代替积分，用一阶后向差分近似代替微分，可作如下近似变换
+&lt;/p&gt;
+$$
+t \approx kT \qquad (k = 0, 1, 2, \ldots)
+$$$$
+\int_0^t e(t) \, dt \approx T \sum_{j=0}^{k} e(jT) = T \sum_{j=0}^{k} e_j
+$$$$
+\frac{de(t)}{dt} \approx \frac{e(kT) - e[(k-1)T]}{T} = \frac{e_k - e_{k-1}}{T}
+$$&lt;p&gt;容易联想到，这里使用中矩形法和一阶向后差分代替微分，此处的后是后方的意思，对应的是计算方法中的向前差分，那么，是否可以用三点向前公式来提高微分部分或者用牛顿-科特斯等其他方法替代呢？事实上是可以的，大部分比赛使用均为普通PID，下限高上限低，这种方法上限理论上会高一些，但调参压力应该会大很多，有没有必要在比赛中运用，效果有待测试。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ieeexplore.ieee.org/document/9702931&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基于 Runge-Kutta 模型的耦合四水箱系统自适应 PID 控制器应用 | IEEE 会议出版物 | IEEE Xplore &amp;mdash; Runge-Kutta Model-Based Adaptive PID Controller Applied to a 4 Coupled-tank System | IEEE Conference Publication | IEEE Xplore&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;龙格-库塔法 vs 自适应积分法 vs 校正欧拉公式 vs 三点公式 vs 牛顿-科特斯公式&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;特性&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;三点公式（微分）&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;牛顿-科特斯公式（积分）&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;校正欧拉公式（积分）&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;自适应积分法（积分）&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;龙格-库塔法（积分）&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;精度&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（优于一阶差分）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（梯形法和辛普森法优于矩形法）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（接近梯形法，优于矩形法）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（动态调整步长，精度最高）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;非常高（四阶龙格-库塔法误差为 $O(h4)$）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;噪声敏感性&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较低（中心差分对噪声不敏感）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（对噪声敏感，可能需要滤波）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（对噪声敏感，可能需要滤波）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（对噪声敏感，可能需要滤波）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（对噪声敏感，可能需要滤波）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;计算复杂度&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;低（只需当前和前或后两个点的数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（尤其是辛普森法）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;适中（比辛普森法低，比矩形法高）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（动态调整步长，计算量较大）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（每一步需计算多个中间值）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;实时性&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;受限（需要未来数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较好（只需当前和过去数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较好（只需当前和过去数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较差（动态调整步长，计算量大）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较差（计算量大，不适合实时系统）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;存储需求&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;低（只需存储少量数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;较高（尤其是辛普森法需要更多历史数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;适中（需要存储当前和过去数据）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（需要存储中间计算结果）&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高（需要存储中间计算结果）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;适用场景&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;动态变化较快的系统&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;误差变化较平滑的系统&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;实时性要求较高的系统&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高精度要求的复杂系统&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;高精度要求的复杂系统&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;还是先回到最初的地方。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;采样周期 $ T $&lt;/strong&gt;：计算机每隔 $ T $ 时间采样一次系统的偏差。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;采样序号 $ k $&lt;/strong&gt;：表示第 $ k $ 次采样时刻，$ k = 0, 1, 2, \dots $。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;离散时间 $ kT $&lt;/strong&gt;：对应连续时间 $ t $。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过离散化处理，积分和微分项可以近似表示为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;积分项&lt;/strong&gt;：用矩形法数值积分近似代替连续积分。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;微分项&lt;/strong&gt;：用一阶后向差分近似代替连续微分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;离散化后的 PID 控制规律为：&lt;/p&gt;
+$$
+u_k = K_p \left[ e_k + \frac{T}{T_i} \sum_{j=0}^k e_j + T_d \frac{e_k - e_{k-1}}{T} \right]
+$$&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$ u_k $：第 $ k $ 次采样时刻的控制量。&lt;/li&gt;
+&lt;li&gt;$ e_k $：第 $ k $ 次采样时刻的偏差。&lt;/li&gt;
+&lt;li&gt;$ e_{k-1} $：第 $ k-1 $ 次采样时刻的偏差。&lt;/li&gt;
+&lt;li&gt;$ K_p $：比例系数。&lt;/li&gt;
+&lt;li&gt;$ T_i $：积分时间。&lt;/li&gt;
+&lt;li&gt;$ T_d $：微分时间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;212-位置式-全量式-pid-的数学表达式&#34;&gt;&lt;a href=&#34;#212-%e4%bd%8d%e7%bd%ae%e5%bc%8f-%e5%85%a8%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e6%95%b0%e5%ad%a6%e8%a1%a8%e8%be%be%e5%bc%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.1.2 位置式 （全量式） PID 的数学表达式&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;位置式 PID 的数学表达式可以写成：&lt;/p&gt;
+$$
+u_k = K_p e_k + K_i \sum_{j=0}^k e_j + K_d (e_k - e_{k-1})
+$$&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$ K_i = \frac{K_p T}{T_i} $：积分系数。&lt;/li&gt;
+&lt;li&gt;$ K_d = \frac{K_p T_d}{T} $：微分系数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;213-位置式-pid-的特点&#34;&gt;&lt;a href=&#34;#213-%e4%bd%8d%e7%bd%ae%e5%bc%8f-pid-%e7%9a%84%e7%89%b9%e7%82%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.1.3 位置式 PID 的特点&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;如果采样周期足够小，则前面两个公式的近似计算可以获得足够精确的结果，离散控制过程与连续过程十分接近。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;全量输出&lt;/strong&gt;：位置式 PID 直接输出控制量的绝对值，因此每次输出都与过去的状态有关。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算量大&lt;/strong&gt;：由于需要对偏差进行累加，计算量较大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;风险&lt;/strong&gt;：如果计算机出现故障，控制量的突变会导致执行机构的剧烈变化，可能引发生产事故。增量式PID可以避免这种现象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;22-增量式-pid-算法&#34;&gt;&lt;a href=&#34;#22-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%ae%97%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.2 增量式 PID 算法&lt;/strong&gt;
+&lt;/h4&gt;&lt;h5 id=&#34;221-增量式-pid-的定义&#34;&gt;&lt;a href=&#34;#221-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e5%ae%9a%e4%b9%89&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.2.1 增量式 PID 的定义&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;增量式 PID 是指数字控制器的输出是控制量的增量 $ \Delta u_k $，而不是控制量的绝对值。增量式 PID 适用于执行机构需要增量控制的系统。&lt;/p&gt;
+&lt;h5 id=&#34;222-增量式-pid-的推导&#34;&gt;&lt;a href=&#34;#222-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e6%8e%a8%e5%af%bc&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.2.2 增量式 PID 的推导&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;增量式 PID 可以通过位置式 PID 推导出来。首先，写出第 $ k-1 $ 次采样时刻的控制量：&lt;/p&gt;
+$$
+u_{k-1} = K_p e_{k-1} + K_i \sum_{j=0}^{k-1} e_j + K_d (e_{k-1} - e_{k-2})
+$$&lt;p&gt;然后将位置式 PID 的第 $ k $ 次控制量 $ u_k $ 与第 $ k-1 $ 次控制量 $ u_{k-1} $ 相减，得到增量式 PID 的表达式：&lt;/p&gt;
+$$
+\Delta u_k = u_k - u_{k-1} = K_p (e_k - e_{k-1}) + K_i e_k + K_d (e_k - 2e_{k-1} + e_{k-2})
+$$&lt;p&gt;进一步整理后，增量式 PID 的公式为：&lt;/p&gt;
+$$
+\Delta u_k = A e_k + B e_{k-1} + C e_{k-2}
+$$&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$ A = K_p \left(1 + \frac{T}{T_i} + \frac{T_d}{T}\right) $&lt;/li&gt;
+&lt;li&gt;$ B = -K_p \left(1 + \frac{2T_d}{T}\right) $&lt;/li&gt;
+&lt;li&gt;$ C = K_p \frac{T_d}{T} $&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;223-增量式-pid-的特点&#34;&gt;&lt;a href=&#34;#223-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%89%b9%e7%82%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.2.3 增量式 PID 的特点&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;增量输出&lt;/strong&gt;：增量式 PID 输出的是控制量的增量，而不是绝对值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算量小&lt;/strong&gt;：只需要当前和前两次的偏差值和唯一确定的$A$$B$$C$，计算量较小。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安全性高&lt;/strong&gt;：即使计算机出现故障，控制量的变化也不会太大，避免了执行机构的剧烈变化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;224-增量式-pid-的递推公式&#34;&gt;&lt;a href=&#34;#224-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e9%80%92%e6%8e%a8%e5%85%ac%e5%bc%8f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.2.4 增量式 PID 的递推公式&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;增量式 PID 可以通过递推公式实现位置式 PID 的控制：&lt;/p&gt;
+$$
+u_k = u_{k-1} + \Delta u_k
+$$&lt;p&gt;这种递推公式在计算机控制中广泛应用。&lt;/p&gt;
+&lt;h4 id=&#34;总结-1&#34;&gt;&lt;a href=&#34;#%e6%80%bb%e7%bb%93-1&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;总结&lt;/strong&gt;
+&lt;/h4&gt;&lt;h5 id=&#34;为什么增量式-pid-在计算机故障时更稳定&#34;&gt;&lt;a href=&#34;#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e5%9c%a8%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%95%85%e9%9a%9c%e6%97%b6%e6%9b%b4%e7%a8%b3%e5%ae%9a&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;为什么增量式 PID 在计算机故障时更稳定？&lt;/strong&gt;
+&lt;/h5&gt;&lt;h6 id=&#34;1不依赖历史误差的累积&#34;&gt;&lt;a href=&#34;#1%e4%b8%8d%e4%be%9d%e8%b5%96%e5%8e%86%e5%8f%b2%e8%af%af%e5%b7%ae%e7%9a%84%e7%b4%af%e7%a7%af&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;（1）&lt;strong&gt;不依赖历史误差的累积&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在位置式 PID 中，积分项是对历史误差的累积：&lt;/p&gt;
+&lt;p&gt;u(k)=Kpe(k)+Ki∑i=0ke(i)+Kd[e(k)−e(k−1)]&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)=&lt;em&gt;K&lt;strong&gt;p&lt;/strong&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)+&lt;em&gt;K&lt;strong&gt;i&lt;/strong&gt;i&lt;/em&gt;=0∑&lt;em&gt;k**e&lt;/em&gt;(&lt;em&gt;i&lt;/em&gt;)+&lt;em&gt;K**d&lt;/em&gt;[&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)−&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;−1)]&lt;/p&gt;
+&lt;p&gt;如果计算机故障导致历史误差数据丢失，积分项会突然变化，导致控制量 u(k)&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;) 发生剧烈波动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在增量式 PID 中，积分项只依赖于当前误差 e(k)&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)，而不需要累积历史误差：&lt;/p&gt;
+&lt;p&gt;Δu(k)=Kp[e(k)−e(k−1)]+Kie(k)+Kd[e(k)−2e(k−1)+e(k−2)]Δ&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)=&lt;em&gt;K**p&lt;/em&gt;[&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)−&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;−1)]+&lt;em&gt;K&lt;strong&gt;i&lt;/strong&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)+&lt;em&gt;K**d&lt;/em&gt;[&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)−2&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;−1)+&lt;em&gt;e&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;−2)]&lt;/p&gt;
+&lt;p&gt;即使计算机故障导致部分数据丢失，增量式 PID 也只影响当前时刻的控制量增量 Δu(k)Δ&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)，而不会导致控制量 u(k)&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;) 的剧烈变化。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;2增量输出的平滑性&#34;&gt;&lt;a href=&#34;#2%e5%a2%9e%e9%87%8f%e8%be%93%e5%87%ba%e7%9a%84%e5%b9%b3%e6%bb%91%e6%80%a7&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;（2）&lt;strong&gt;增量输出的平滑性&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;增量式 PID 的输出是控制量的增量 Δu(k)Δ&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)，而不是绝对量 u(k)&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;)。即使 Δu(k)Δ&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;) 发生突变，控制量的实际输出 u(k)&lt;em&gt;u&lt;/em&gt;(&lt;em&gt;k&lt;/em&gt;) 也只是在前一时刻的基础上增加或减少一个较小的量，因此不会出现大幅度变化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;3故障恢复能力强&#34;&gt;&lt;a href=&#34;#3%e6%95%85%e9%9a%9c%e6%81%a2%e5%a4%8d%e8%83%bd%e5%8a%9b%e5%bc%ba&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;（3）&lt;strong&gt;故障恢复能力强&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;如果计算机故障后恢复正常，增量式 PID 可以从当前状态继续运行，而不需要重新初始化积分项。这种特性使得增量式 PID 在故障恢复后能够快速回到正常工作状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;增量式-pid-的其他优点&#34;&gt;&lt;a href=&#34;#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e5%85%b6%e4%bb%96%e4%bc%98%e7%82%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;增量式 PID 的其他优点
+&lt;/h5&gt;&lt;p&gt;除了在计算机故障时的稳定性外，增量式 PID 还具有以下优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;无积分饱和问题&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;位置式 PID 的积分项可能会因为误差的长期累积而导致积分饱和，而增量式 PID 的积分项只依赖于当前误差，因此不会出现积分饱和问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;易于实现手动/自动切换&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;增量式 PID 的输出是控制量的增量，因此可以方便地实现手动控制和自动控制之间的切换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;适合执行器带积分特性的系统&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;对于执行器本身具有积分特性（如步进电机）的系统，增量式 PID 更容易实现控制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;特性&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;位置式 PID&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;增量式 PID&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;输出形式&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;控制量的绝对值&lt;/td&gt;
+          &lt;td&gt;控制量的增量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;计算量&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;大（需要累加所有偏差）&lt;/td&gt;
+          &lt;td&gt;小（只需当前和前两次偏差）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;安全性&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;低（故障时控制量突变）&lt;/td&gt;
+          &lt;td&gt;高（故障时控制量变化小）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;适用场景&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;需要精确控制位置的系统&lt;/td&gt;
+          &lt;td&gt;需要增量控制的系统&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;231-凑试法&#34;&gt;&lt;a href=&#34;#231-%e5%87%91%e8%af%95%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2.3.1 凑试法&lt;/strong&gt;
+&lt;/h4&gt;&lt;p&gt;凑试法是一种通过逐步调整控制器参数（比例 $K_p$、积分 $T_i$、微分 $T_d$）来优化控制系统性能的方法。它的特点是按照“先比例（P）、再积分（I）、最后微分（D）”的顺序进行调节。下面我用通俗易懂的语言来解释这个过程：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;1-什么是凑试法&#34;&gt;&lt;a href=&#34;#1-%e4%bb%80%e4%b9%88%e6%98%af%e5%87%91%e8%af%95%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;1. 什么是凑试法？&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;凑试法是通过手动调整控制器的参数，观察系统的响应曲线，逐步找到最佳参数组合的方法。它的核心思想是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先调整比例作用 $K_p$，让系统快速响应。&lt;/li&gt;
+&lt;li&gt;然后加入积分作用 $T_i$，消除系统的稳态误差。&lt;/li&gt;
+&lt;li&gt;最后加入微分作用 $T_d$，抑制系统的超调和振荡。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;2-凑试法的步骤&#34;&gt;&lt;a href=&#34;#2-%e5%87%91%e8%af%95%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2. 凑试法的步骤：&lt;/strong&gt;
+&lt;/h5&gt;&lt;h6 id=&#34;第一步整定比例系数-k_p纯比例控制&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%95%b4%e5%ae%9a%e6%af%94%e4%be%8b%e7%b3%bb%e6%95%b0-k_p%e7%ba%af%e6%af%94%e4%be%8b%e6%8e%a7%e5%88%b6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;第一步：整定比例系数 $K_p$（纯比例控制）&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;将控制器的积分时间 $T_i$ 设为无穷大（$T_i = \infty$），相当于关闭积分作用。&lt;/li&gt;
+&lt;li&gt;将微分时间 $T_d$ 设为零（$T_d = 0$），相当于关闭微分作用。&lt;/li&gt;
+&lt;li&gt;只保留比例作用 $K_p$，并按照经验设置一个初始值。&lt;/li&gt;
+&lt;li&gt;将系统投入运行，观察系统的响应曲线。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;由小到大调整 $K_p$&lt;/strong&gt;，直到系统的过渡过程曲线呈现出&lt;strong&gt;1/4衰减度&lt;/strong&gt;（即每个波峰的幅度是前一个波峰的1/4）。此时的比例系数 $K_p$ 是一个比较合适的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h6 id=&#34;第二步引入积分作用-t_ipi控制&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%bc%95%e5%85%a5%e7%a7%af%e5%88%86%e4%bd%9c%e7%94%a8-t_ipi%e6%8e%a7%e5%88%b6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;第二步：引入积分作用 $T_i$（PI控制）&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;在第一步的基础上，将比例系数 $K_p$ 减小到原来的 &lt;strong&gt;5/6&lt;/strong&gt;（即 $K_p = \frac{5}{6} K_p$）。&lt;/li&gt;
+&lt;li&gt;引入积分作用，将积分时间 $T_i$ 从大到小逐步调整。&lt;/li&gt;
+&lt;li&gt;观察系统的响应曲线，直到系统的稳态误差被消除，同时过渡过程曲线仍然保持较好的动态性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h6 id=&#34;第三步引入微分作用-t_dpid控制&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%bc%95%e5%85%a5%e5%be%ae%e5%88%86%e4%bd%9c%e7%94%a8-t_dpid%e6%8e%a7%e5%88%b6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;第三步：引入微分作用 $T_d$（PID控制）&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;如果需要进一步优化系统性能，可以引入微分作用。&lt;/li&gt;
+&lt;li&gt;微分时间 $T_d$ 可以按照经验值设置，或者根据积分时间 $T_i$ 计算，通常取 $T_d = \left( \frac{1}{3} \sim \frac{1}{4} \right) T_i$。&lt;/li&gt;
+&lt;li&gt;将 $T_d$ 由小到大逐步调整，观察系统的响应曲线，直到系统的超调和振荡被有效抑制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;3-通俗理解&#34;&gt;&lt;a href=&#34;#3-%e9%80%9a%e4%bf%97%e7%90%86%e8%a7%a3&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;3. 通俗理解：&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;你可以把控制系统想象成开车：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;比例作用 $K_p$&lt;/strong&gt;：就像你控制方向盘的力度。如果力度太小，车子会偏离路线；如果力度太大，车子会来回摆动。凑试法就是找到一个合适的力度，让车子既不偏离路线，又不会过度摆动。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;积分作用 $T_i$&lt;/strong&gt;：就像你发现车子总是偏向一边，于是你慢慢调整方向盘，直到车子回到正轨。积分作用就是消除系统的“偏差”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;微分作用 $T_d$&lt;/strong&gt;：就像你提前预判路况，轻轻调整方向盘，防止车子突然转向过度。微分作用就是抑制系统的“振荡”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;4-注意事项&#34;&gt;&lt;a href=&#34;#4-%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;4. 注意事项：&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1/4衰减度&lt;/strong&gt;：这是凑试法的目标，表示系统的响应曲线在每个周期内衰减到前一个周期的1/4。这种响应既快速又稳定，适合大多数工业控制系统。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数调整顺序&lt;/strong&gt;：一定要按照“先P、再I、最后D”的顺序调整，否则可能会导致系统不稳定。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;经验值&lt;/strong&gt;：在实际应用中，初始参数和调整范围可以基于经验或系统特性进行设置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;总结-2&#34;&gt;&lt;a href=&#34;#%e6%80%bb%e7%bb%93-2&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;总结：&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;凑试法是一种简单实用的控制器参数整定方法，通过逐步调整 $K_p$、$T_i$、$T_d$，最终让系统的响应既快速又稳定。虽然需要一定的经验和耐心，但它的灵活性和直观性使其在工业控制中广泛应用。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;临界比例法&#34;&gt;&lt;a href=&#34;#%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;临界比例法&lt;/strong&gt;
+&lt;/h4&gt;&lt;h5 id=&#34;1-什么是临界比例法&#34;&gt;&lt;a href=&#34;#1-%e4%bb%80%e4%b9%88%e6%98%af%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;1. 什么是临界比例法？&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;临界比例法是通过调整控制器的参数（比例系数 $K_p$、积分时间 $T_i$、微分时间 $T_d$），使系统产生等幅振荡，然后根据振荡的特性来计算出最佳的控制器参数。&lt;/p&gt;
+&lt;h5 id=&#34;2-临界比例法的步骤&#34;&gt;&lt;a href=&#34;#2-%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;2. 临界比例法的步骤：&lt;/strong&gt;
+&lt;/h5&gt;&lt;h6 id=&#34;第一步设置初始参数&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e6%ad%a5%e8%ae%be%e7%bd%ae%e5%88%9d%e5%a7%8b%e5%8f%82%e6%95%b0&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一步：设置初始参数
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;将控制器的积分时间 $T_i$ 调到最大（相当于关闭积分作用），微分时间 $T_d$ 设为零（关闭微分作用），只保留比例作用 $K_p$。&lt;/li&gt;
+&lt;li&gt;让系统在自动控制下运行一段时间，确保系统处于稳定状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;第二步增大比例系数-k_p找到临界点&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%a2%9e%e5%a4%a7%e6%af%94%e4%be%8b%e7%b3%bb%e6%95%b0-k_p%e6%89%be%e5%88%b0%e4%b8%b4%e7%95%8c%e7%82%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第二步：增大比例系数 $K_p$，找到临界点
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;逐渐增大比例系数 $K_p$，直到系统开始出现等幅振荡（即系统的输出在某个值附近来回波动，且波动的幅度保持不变）。&lt;/li&gt;
+&lt;li&gt;记录下此时的&lt;strong&gt;临界比例系数 $K_u$&lt;/strong&gt; 和&lt;strong&gt;临界振荡周期 $T_u$&lt;/strong&gt;（即两个波峰之间的时间间隔）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;第三步计算控制器参数&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%89%e6%ad%a5%e8%ae%a1%e7%ae%97%e6%8e%a7%e5%88%b6%e5%99%a8%e5%8f%82%e6%95%b0&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第三步：计算控制器参数
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;根据 $K_u$ 和 $T_u$，使用经验公式计算出控制器的最佳参数 $K_p$、$T_i$ 和 $T_d$。&lt;/li&gt;
+&lt;li&gt;按照“先调 $K_p$，再调 $T_i$，最后调 $T_d$”的顺序，将控制器的参数设置到计算值上。&lt;/li&gt;
+&lt;li&gt;如果效果还不够理想，可以进一步微调。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;3-临界比例法的注意事项&#34;&gt;&lt;a href=&#34;#3-%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;3. 临界比例法的注意事项：&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;临界比例系数过大&lt;/strong&gt;：有些系统的临界比例系数 $K_u$ 可能非常大，导致系统接近“开关控制”（即控制器输出要么最大，要么最小），这对工业生产不利，可能会造成设备频繁启停，影响生产。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无法产生等幅振荡&lt;/strong&gt;：有些系统即使将比例系数 $K_p$ 调到最大，也无法产生等幅振荡。这时，可以将最大刻度值作为临界比例系数 $K_u$ 来进行参数整定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;4-通俗理解&#34;&gt;&lt;a href=&#34;#4-%e9%80%9a%e4%bf%97%e7%90%86%e8%a7%a3&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;4. 通俗理解：&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;你可以把控制系统想象成一个调节水流的阀门。比例系数 $K_p$ 就像是你调节阀门的力度：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果力度太小，水流的变化会很慢，系统反应迟钝。&lt;/li&gt;
+&lt;li&gt;如果力度太大，水流会来回波动，系统不稳定。&lt;/li&gt;
+&lt;li&gt;临界比例法就是找到一个刚好让水流开始等幅波动的力度（$K_u$），然后根据这个力度和波动的频率（$T_u$），计算出最佳的调节力度（$K_p$）、调节速度（$T_i$）和调节的提前量（$T_d$）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过这种方法，你可以让系统既快速响应，又不会过度波动，达到最佳的控制效果。&lt;/p&gt;
+&lt;h4 id=&#34;ziegler-nichols-法进行pid参数整定的基本原理&#34;&gt;&lt;a href=&#34;#ziegler-nichols-%e6%b3%95%e8%bf%9b%e8%a1%8cpid%e5%8f%82%e6%95%b0%e6%95%b4%e5%ae%9a%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;Ziegler-Nichols 法进行PID参数整定的基本原理&lt;/strong&gt;
+&lt;/h4&gt;&lt;hr&gt;
+&lt;h5 id=&#34;临界比例度法的步骤&#34;&gt;&lt;a href=&#34;#%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e5%ba%a6%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;临界比例度法的步骤&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;临界比例度法通过调整比例增益 Kp&lt;em&gt;K**p&lt;/em&gt;，使系统产生等幅振荡（临界振荡），然后根据临界振荡的特性确定 PID 参数。&lt;/p&gt;
+&lt;h6 id=&#34;步骤-1仅使用比例控制&#34;&gt;&lt;a href=&#34;#%e6%ad%a5%e9%aa%a4-1%e4%bb%85%e4%bd%bf%e7%94%a8%e6%af%94%e4%be%8b%e6%8e%a7%e5%88%b6&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;步骤 1：仅使用比例控制&lt;/strong&gt;
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;按临界比例法得到&lt;strong&gt;临界比例系数 $K_u$&lt;/strong&gt; 和&lt;strong&gt;临界振荡周期 $T_u$&lt;/strong&gt;（即两个波峰之间的时间间隔），&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;步骤-2计算-pid-参数&#34;&gt;&lt;a href=&#34;#%e6%ad%a5%e9%aa%a4-2%e8%ae%a1%e7%ae%97-pid-%e5%8f%82%e6%95%b0&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;&lt;strong&gt;步骤 2：计算 PID 参数&lt;/strong&gt;
+&lt;/h6&gt;&lt;p&gt;根据 Z-N 法的推荐公式，计算 PID 控制器的参数：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;控制器类型&lt;/th&gt;
+          &lt;th&gt;$ K_p $&lt;/th&gt;
+          &lt;th&gt;$ T_i $&lt;/th&gt;
+          &lt;th&gt;$ T_d $&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;P&lt;/td&gt;
+          &lt;td&gt;$ 0.5 \cdot K_u $&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PI&lt;/td&gt;
+          &lt;td&gt;$ 0.45 \cdot K_u $&lt;/td&gt;
+          &lt;td&gt;$ 0.85 \cdot T_u $&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PID&lt;/td&gt;
+          &lt;td&gt;$ 0.6 \cdot K_u $&lt;/td&gt;
+          &lt;td&gt;$ 0.5 \cdot T_u $&lt;/td&gt;
+          &lt;td&gt;$ 0.12 \cdot T_u $&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h5 id=&#34;3-z-n-法与增量式-pid-的结合&#34;&gt;&lt;a href=&#34;#3-z-n-%e6%b3%95%e4%b8%8e%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%bb%93%e5%90%88&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;3. &lt;strong&gt;Z-N 法与增量式 PID 的结合&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;增量式 PID 的控制量增量公式为：&lt;/p&gt;
+$$
+\Delta u(k) = K_p[e(k) - e(k-1)] + \frac{K_p}{T_i}e(k) + K_pT_d[e(k) - 2e(k-1) + e(k-2)]
+$$&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$ K_i = \frac{K_p}{T_i} $ 是积分系数。&lt;/li&gt;
+&lt;li&gt;$ K_d = K_pT_d $ 是微分系数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用 Z-N 法整定参数后，可以将 $ K_p $、$ T_i $、$ T_d $ 代入增量式 PID 公式中，实现控制器的设计。&lt;/p&gt;
+&lt;h5 id=&#34;6-z-n-法与增量式-pid-的结合示例&#34;&gt;&lt;a href=&#34;#6-z-n-%e6%b3%95%e4%b8%8e%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%bb%93%e5%90%88%e7%a4%ba%e4%be%8b&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;6. &lt;strong&gt;Z-N 法与增量式 PID 的结合示例&lt;/strong&gt;
+&lt;/h5&gt;&lt;p&gt;假设通过 Z-N 法得到以下参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;临界比例增益 $ K_{cr} = 10 $&lt;/li&gt;
+&lt;li&gt;临界振荡周期 $ T_{cr} = 2 $ 秒&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据 Z-N 法的推荐公式，PID 参数为：&lt;/p&gt;
+$$
+K_p = 0.6K_{u} = 6, \\
+T_i = 0.5T_{u} = 1, \\
+T_d = 0.125T_{u} = 0.25
+$$&lt;p&gt;因此，增量式 PID 的控制量增量公式为：&lt;/p&gt;
+$$
+\Delta u(k) = 6[e(k) - e(k-1)] + \frac{6}{1}e(k) + 6 \cdot 0.25 [e(k) - 2e(k-1) + e(k-2)]
+$$&lt;p&gt;简化后得到：&lt;/p&gt;
+$$
+\Delta u(k) = 6[e(k) - e(k-1)] + 6e(k) + 1.5[e(k) - 2e(k-1) + e(k-2)]
+$$&lt;h5 id=&#34;7-总结&#34;&gt;&lt;a href=&#34;#7-%e6%80%bb%e7%bb%93&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;7. &lt;strong&gt;总结&lt;/strong&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Z-N 法&lt;/strong&gt; 是一种经典的 PID 参数整定方法，通过临界振荡实验确定 $ K_p $、$ T_i $、$ T_d $。&lt;/li&gt;
+&lt;li&gt;Z-N 法假设系统是线性的，对于非线性系统可能不适用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;增量式 PID&lt;/strong&gt; 通过计算控制量的增量来调整输出，具有较强的鲁棒性和抗积分饱和能力。&lt;/li&gt;
+&lt;li&gt;将 Z-N 法与增量式 PID 结合，可以快速整定控制器参数，并提高系统的稳定性和可靠性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;采样周期&#34;&gt;&lt;a href=&#34;#%e9%87%87%e6%a0%b7%e5%91%a8%e6%9c%9f&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;采样周期
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;香农采样定律&lt;/strong&gt;：采样频率必须至少是信号最高频率的两倍，否则信号会失真。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;采样周期的选择&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;响应快的系统（如流量、压力）选择较短的采样周期。&lt;/li&gt;
+&lt;li&gt;响应慢的系统（如温度、成分）选择较长的采样周期。&lt;/li&gt;
+&lt;li&gt;采样周期应远小于干扰信号的周期。&lt;/li&gt;
+&lt;li&gt;执行器响应慢时，采样周期可以适当延长。&lt;/li&gt;
+&lt;li&gt;计算机性能允许时，采样周期越短，控制效果越好。&lt;/li&gt;
+&lt;li&gt;对于滞后大的系统，采样周期通常为滞后时间的1/4～1/8。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

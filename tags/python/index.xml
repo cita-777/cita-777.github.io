@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on cita的博客__</title>
-        <link>http://localhost:11263/tags/python/</link>
+        <link>http://localhost:1313/tags/python/</link>
         <description>Recent content in Python on cita的博客__</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>cita</copyright>
-        <lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:11263/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Python语言与系统设计(1)</title>
-        <link>http://localhost:11263/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</link>
+        <link>http://localhost:1313/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</link>
         <pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:11263/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</guid>
-        <description>&lt;img src="http://localhost:11263/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post Python语言与系统设计(1)" /&gt;&lt;h2 id=&#34;第一章python基础与快速入门&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0python%e5%9f%ba%e7%a1%80%e4%b8%8e%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一章：Python基础与快速入门
+        <guid>http://localhost:1313/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</guid>
+        <description>&lt;img src="http://localhost:1313/p/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png" alt="Featured image of post Python语言与系统设计(1)" /&gt;&lt;h2 id=&#34;第一章python基础与快速入门&#34;&gt;&lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e7%ab%a0python%e5%9f%ba%e7%a1%80%e4%b8%8e%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8&#34; class=&#34;header-anchor&#34;&gt;&lt;/a&gt;第一章：Python基础与快速入门
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Python 是一门跨平台、开源、免费的解释型高级动态编程语言&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;python 同时支持伪编译将 Python 源程序转换为&lt;strong&gt;字节码&lt;/strong&gt;来优化程序和提高运行速度。&lt;/p&gt;
 &lt;p&gt;支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序&lt;strong&gt;转换为二进制可执行文件&lt;/strong&gt;。&lt;/p&gt;

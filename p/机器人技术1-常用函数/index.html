@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=11263&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="相关资料链接: 九月大人的博客\nyikai-blog\nrobocup2D官网\nRoboCup 2D 常用函数简明含义 函数名称 功能说明 dribble(angle, speed) 控制球员带球移动。angle表示带球方向，speed表示带球速度（如DRIBBLE_FAST、DRIBBLE_SLOW等）。 kickTo(targetPosition, speed) 球员向目标位置（targetPosition）踢球，speed指定踢球的速度。 leadingPass(teammate, power) 向最近的队友传球，teammate是要传球的目标队友，power表示传球力度。 getNrInSetInCircle(set, circle) 计算指定半径的圆圈内（circle）特定对象集合（set，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。 getClosestInSetTo(set, position) 获取距离指定位置（position）最近的特定对象集合（set）中的对象，例如找到离当前球员最近的队友或对手。 isOpponentAtAngle(angleMin, angleMax) 判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。 getGlobalPosition(object) 获取场上某个对象（球员、对手、球等）的全局坐标位置（X, Y坐标）。 getBallPos() 获取球的当前位置坐标。 moveToPos(position, speed) 移动球员到指定的position（坐标位置），并以speed指定的速度执行移动。 isBallKickable() 判断当前球是否在球员的控制范围内（即球员是否可以踢球）。 kickBallCloseToBody(angle) 控制球员以指定的angle（角度）把球围绕身体转动。 intercept(timeout) 尝试在指定时间内抢断球（通常用在防守场景）。 turnNeckToObject(object) 让球员将头（视角）转向指定的object（如球或对方球员），通常用于跟踪球的位置。 getPlayerNumber() 返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。 getTeammateNumber() 获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。 getPosOpponentGoal() 获取对方球门的位置，通常用于判断进攻方向或射门目标。 shootToGoalex(object) 指定球员向对方球门射门，通常由接近球门的前锋使用。 getBallSpeedMax() 获取当前球员能踢球的最大速度。 getDirection() 计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。 isInTheirPenaltyArea(position) 判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。 putCommandInQueue(command) 将指令（command）放入执行队列，确保该操作能够在下一次循环中执行。 Circle(center, radius) 创建一个以center为中心，radius为半径的圆，用于计算范围内的球员数量或球的距离。 Line::makeLineFromPositionAndAngle(position, angle) 根据给定的position和angle生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。 isOffsideUs() 判断是否处于本方越位模式，适用于进攻方的越位规则判断。 isCornerKickUs() 判断是否处于本方角球模式。 isOwnSideOpponentMost() 判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。 getSecondClosestInSetTo(set, object) 获取距离指定object最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。 仅供参考，可能有误\n">
 <title>机器人技术(1): 常用函数</title>
 
-<link rel='canonical' href='http://localhost:11263/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/'>
+<link rel='canonical' href='http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="机器人技术(1): 常用函数">
 <meta property='og:description' content="相关资料链接: 九月大人的博客\nyikai-blog\nrobocup2D官网\nRoboCup 2D 常用函数简明含义 函数名称 功能说明 dribble(angle, speed) 控制球员带球移动。angle表示带球方向，speed表示带球速度（如DRIBBLE_FAST、DRIBBLE_SLOW等）。 kickTo(targetPosition, speed) 球员向目标位置（targetPosition）踢球，speed指定踢球的速度。 leadingPass(teammate, power) 向最近的队友传球，teammate是要传球的目标队友，power表示传球力度。 getNrInSetInCircle(set, circle) 计算指定半径的圆圈内（circle）特定对象集合（set，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。 getClosestInSetTo(set, position) 获取距离指定位置（position）最近的特定对象集合（set）中的对象，例如找到离当前球员最近的队友或对手。 isOpponentAtAngle(angleMin, angleMax) 判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。 getGlobalPosition(object) 获取场上某个对象（球员、对手、球等）的全局坐标位置（X, Y坐标）。 getBallPos() 获取球的当前位置坐标。 moveToPos(position, speed) 移动球员到指定的position（坐标位置），并以speed指定的速度执行移动。 isBallKickable() 判断当前球是否在球员的控制范围内（即球员是否可以踢球）。 kickBallCloseToBody(angle) 控制球员以指定的angle（角度）把球围绕身体转动。 intercept(timeout) 尝试在指定时间内抢断球（通常用在防守场景）。 turnNeckToObject(object) 让球员将头（视角）转向指定的object（如球或对方球员），通常用于跟踪球的位置。 getPlayerNumber() 返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。 getTeammateNumber() 获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。 getPosOpponentGoal() 获取对方球门的位置，通常用于判断进攻方向或射门目标。 shootToGoalex(object) 指定球员向对方球门射门，通常由接近球门的前锋使用。 getBallSpeedMax() 获取当前球员能踢球的最大速度。 getDirection() 计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。 isInTheirPenaltyArea(position) 判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。 putCommandInQueue(command) 将指令（command）放入执行队列，确保该操作能够在下一次循环中执行。 Circle(center, radius) 创建一个以center为中心，radius为半径的圆，用于计算范围内的球员数量或球的距离。 Line::makeLineFromPositionAndAngle(position, angle) 根据给定的position和angle生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。 isOffsideUs() 判断是否处于本方越位模式，适用于进攻方的越位规则判断。 isCornerKickUs() 判断是否处于本方角球模式。 isOwnSideOpponentMost() 判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。 getSecondClosestInSetTo(set, object) 获取距离指定object最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。 仅供参考，可能有误\n">
-<meta property='og:url' content='http://localhost:11263/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/'>
+<meta property='og:url' content='http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/'>
 <meta property='og:site_name' content='cita的博客__'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='RoboCup2D' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:published_time' content='2024-10-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:11263/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='RoboCup2D' /><meta property='article:tag' content='c&#43;&#43;' /><meta property='article:published_time' content='2024-10-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
 <meta name="twitter:title" content="机器人技术(1): 常用函数">
 <meta name="twitter:description" content="相关资料链接: 九月大人的博客\nyikai-blog\nrobocup2D官网\nRoboCup 2D 常用函数简明含义 函数名称 功能说明 dribble(angle, speed) 控制球员带球移动。angle表示带球方向，speed表示带球速度（如DRIBBLE_FAST、DRIBBLE_SLOW等）。 kickTo(targetPosition, speed) 球员向目标位置（targetPosition）踢球，speed指定踢球的速度。 leadingPass(teammate, power) 向最近的队友传球，teammate是要传球的目标队友，power表示传球力度。 getNrInSetInCircle(set, circle) 计算指定半径的圆圈内（circle）特定对象集合（set，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。 getClosestInSetTo(set, position) 获取距离指定位置（position）最近的特定对象集合（set）中的对象，例如找到离当前球员最近的队友或对手。 isOpponentAtAngle(angleMin, angleMax) 判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。 getGlobalPosition(object) 获取场上某个对象（球员、对手、球等）的全局坐标位置（X, Y坐标）。 getBallPos() 获取球的当前位置坐标。 moveToPos(position, speed) 移动球员到指定的position（坐标位置），并以speed指定的速度执行移动。 isBallKickable() 判断当前球是否在球员的控制范围内（即球员是否可以踢球）。 kickBallCloseToBody(angle) 控制球员以指定的angle（角度）把球围绕身体转动。 intercept(timeout) 尝试在指定时间内抢断球（通常用在防守场景）。 turnNeckToObject(object) 让球员将头（视角）转向指定的object（如球或对方球员），通常用于跟踪球的位置。 getPlayerNumber() 返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。 getTeammateNumber() 获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。 getPosOpponentGoal() 获取对方球门的位置，通常用于判断进攻方向或射门目标。 shootToGoalex(object) 指定球员向对方球门射门，通常由接近球门的前锋使用。 getBallSpeedMax() 获取当前球员能踢球的最大速度。 getDirection() 计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。 isInTheirPenaltyArea(position) 判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。 putCommandInQueue(command) 将指令（command）放入执行队列，确保该操作能够在下一次循环中执行。 Circle(center, radius) 创建一个以center为中心，radius为半径的圆，用于计算范围内的球员数量或球的距离。 Line::makeLineFromPositionAndAngle(position, angle) 根据给定的position和angle生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。 isOffsideUs() 判断是否处于本方越位模式，适用于进攻方的越位规则判断。 isCornerKickUs() 判断是否处于本方角球模式。 isOwnSideOpponentMost() 判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。 getSecondClosestInSetTo(set, object) 获取距离指定object最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。 仅供参考，可能有误\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:11263/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
+    <meta name="twitter:image" content='http://localhost:1313/p/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-19%20102252.png' />
     </head>
     <body class="
     article-page
@@ -212,9 +212,9 @@
 
                             <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="http://localhost:11263/en/" >English</option>
+                                    <option value="http://localhost:1313/en/" >English</option>
                                 
-                                    <option value="http://localhost:11263/" selected>中文</option>
+                                    <option value="http://localhost:1313/" selected>中文</option>
                                 
                             </select>
                         </li>
@@ -732,7 +732,9 @@
     <section class="copyright">
         &copy; 
         
-        2024 cita
+            2024 - 
+        
+        2025 cita
     </section>
     
     <section class="powerby">

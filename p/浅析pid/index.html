@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="浅析PID 参考学习SUNPLUS 《PID 调节控制做电机速度控制》后总结，在线阅读链接如下：\n1343214947-695804.pdf\nPID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。\n">
+<title>浅析PID</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="浅析PID">
+<meta property='og:description' content="浅析PID 参考学习SUNPLUS 《PID 调节控制做电机速度控制》后总结，在线阅读链接如下：\n1343214947-695804.pdf\nPID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。\n">
+<meta property='og:url' content='http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/'>
+<meta property='og:site_name' content='cita的博客__'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='运动控制' /><meta property='article:tag' content='算法' /><meta property='article:published_time' content='2025-01-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-09T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/background.jpg' />
+<meta name="twitter:title" content="浅析PID">
+<meta name="twitter:description" content="浅析PID 参考学习SUNPLUS 《PID 调节控制做电机速度控制》后总结，在线阅读链接如下：\n1343214947-695804.pdf\nPID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/%E6%B5%85%E6%9E%90pid/background.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu4365964393701153492.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">cita的博客__</a></h1>
+            <h2 class="site-description">hello world!</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cita-777'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>存档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="http://localhost:1313/en/" >English</option>
+                                
+                                    <option value="http://localhost:1313/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-模拟-pid-控制原理">1 模拟 PID 控制原理</a>
+      <ol>
+        <li><a href="#模拟-pid-控制系统的原理框图">模拟 PID 控制系统的原理框图</a></li>
+        <li><a href="#pid-控制器的三个部分">PID 控制器的三个部分</a>
+          <ol>
+            <li><a href="#比例部分proportion">比例部分（Proportion）</a></li>
+            <li><a href="#积分部分integral">积分部分（Integral）</a></li>
+            <li><a href="#微分部分differential">微分部分（Differential）</a></li>
+          </ol>
+        </li>
+        <li><a href="#pid-控制器的综合作用">PID 控制器的综合作用</a></li>
+        <li><a href="#总结">总结</a></li>
+        <li><a href="#2-数字-pid-控制"><strong>2. 数字 PID 控制</strong></a>
+          <ol>
+            <li><a href="#位置式-全量式pid-算法"><strong>位置式 （全量式）PID 算法</strong></a></li>
+            <li><a href="#22-增量式-pid-算法"><strong>2.2 增量式 PID 算法</strong></a></li>
+            <li><a href="#总结-1"><strong>总结</strong></a></li>
+            <li><a href="#231-凑试法"><strong>2.3.1 凑试法</strong></a></li>
+            <li><a href="#临界比例法"><strong>临界比例法</strong></a></li>
+            <li><a href="#ziegler-nichols-法进行pid参数整定的基本原理"><strong>Ziegler-Nichols 法进行PID参数整定的基本原理</strong></a></li>
+            <li><a href="#信号采样周期选择">信号采样周期选择</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%B5%85%E6%9E%90pid/">
+                <img src="/p/%E6%B5%85%E6%9E%90pid/background_hu4784715761958561598.jpg"
+                        srcset="/p/%E6%B5%85%E6%9E%90pid/background_hu4784715761958561598.jpg 800w, /p/%E6%B5%85%E6%9E%90pid/background_hu3085507343512068137.jpg 1600w"
+                        width="800" 
+                        height="566" 
+                        loading="lazy"
+                        alt="Featured image of post 浅析PID" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/mcu/" style="background-color: #1e90ff; color: #ffffff;">
+                MCU
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%B5%85%E6%9E%90pid/">浅析PID</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-01-09</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 15 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="浅析pid"><a href="#%e6%b5%85%e6%9e%90pid" class="header-anchor"></a>浅析PID
+</h1><p>参考学习SUNPLUS <strong>《PID</strong> 调节控制做电机速度控制》后总结，在线阅读链接如下：</p>
+<p><a class="link" href="https://u.dianyuan.com/upload/space/2012/07/25/1343214947-695804.pdf"  target="_blank" rel="noopener"
+    >1343214947-695804.pdf</a></p>
+<p>PID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。</p>
+<h2 id="1-模拟-pid-控制原理"><a href="#1-%e6%a8%a1%e6%8b%9f-pid-%e6%8e%a7%e5%88%b6%e5%8e%9f%e7%90%86" class="header-anchor"></a>1 模拟 PID 控制原理
+</h2><h3 id="模拟-pid-控制系统的原理框图"><a href="#%e6%a8%a1%e6%8b%9f-pid-%e6%8e%a7%e5%88%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%8e%9f%e7%90%86%e6%a1%86%e5%9b%be" class="header-anchor"></a>模拟 PID 控制系统的原理框图
+</h3><p>如图 1-2 所示，模拟 PID 控制系统由 PID 控制器和被控对象（如电机）组成。系统的输入是给定值 ($r(t)$)，输出是实际输出值 ($y(t)$)，偏差 ($e(t) = r(t) - y(t)$) 作为 PID 控制器的输入，控制器的输出 ($u(t)$) 作为被控对象的输入。</p>
+<p>PID 控制器的控制规律可以用以下公式表示：</p>
+$$ u(t) = K_p \left[ e(t) + \frac{1}{T_i} \int_0^t e(\tau) d\tau + T_d \frac{de(t)}{dt} \right] $$<p>如何理解呢？</p>
+<p>其中：</p>
+<ul>
+<li>$K_p$：比例系数，决定比例控制的强度。</li>
+<li>$T_i$：积分时间，决定积分控制的强度。</li>
+<li>$T_d$：微分时间，决定微分控制的强度。</li>
+</ul>
+<h3 id="pid-控制器的三个部分"><a href="#pid-%e6%8e%a7%e5%88%b6%e5%99%a8%e7%9a%84%e4%b8%89%e4%b8%aa%e9%83%a8%e5%88%86" class="header-anchor"></a>PID 控制器的三个部分
+</h3><h4 id="比例部分proportion"><a href="#%e6%af%94%e4%be%8b%e9%83%a8%e5%88%86proportion" class="header-anchor"></a>比例部分（Proportion）
+</h4><p>比例部分的数学表达式为：</p>
+$$ K_p \cdot e(t) $$<p>作用：比例控制的作用是对偏差瞬间作出反应。偏差一旦产生，控制器立即产生控制作用，使控制量向减少偏差的方向变化。</p>
+<p>特点：</p>
+<ul>
+<li>比例系数 ($K_p$) 越大，控制作用越强，系统的响应速度越快，静态偏差越小。</li>
+<li>但 $K_p$ 过大会导致系统振荡，破坏系统的稳定性。</li>
+</ul>
+<p>总结：比例控制能够快速响应偏差，但过大的比例系数会导致系统不稳定。</p>
+<h4 id="积分部分integral"><a href="#%e7%a7%af%e5%88%86%e9%83%a8%e5%88%86integral" class="header-anchor"></a>积分部分（Integral）
+</h4><p>积分部分的数学表达式为：</p>
+$$ \frac{K_p}{T_i} \int_0^t e(\tau) d\tau $$<p>作用：积分控制的作用是消除系统的稳态误差。只要存在偏差，积分控制的作用就会不断增加，直到偏差为零。</p>
+<p>特点：</p>
+<ul>
+<li>积分时间 ($T_i$) 越大，积分作用越弱，系统的响应速度变慢，但可以减少超调量，提高系统的稳定性。</li>
+<li>积分时间 ($T_i$) 越小，积分作用越强，系统的响应速度加快，但可能会引起系统振荡。</li>
+</ul>
+<p>总结：积分控制能够消除系统的稳态误差，但会降低系统的响应速度，并可能引起超调。</p>
+<h4 id="微分部分differential"><a href="#%e5%be%ae%e5%88%86%e9%83%a8%e5%88%86differential" class="header-anchor"></a>微分部分（Differential）
+</h4><p>微分部分的数学表达式为：</p>
+$$ K_p \cdot T_d \cdot \frac{de(t)}{dt} $$<p>作用：微分控制的作用是根据偏差的变化趋势进行控制。它能够在偏差变化的瞬间提前给出控制信号，抑制系统的超调和振荡。</p>
+<p>特点：</p>
+<ul>
+<li>微分时间 ($T_d$) 越大，微分作用越强，能够有效抑制系统的超调和振荡。</li>
+<li>但微分控制对噪声敏感，噪声较大的系统中应谨慎使用微分控制。</li>
+</ul>
+<p>总结：微分控制能够加快系统的响应速度，减少超调，但对噪声敏感。</p>
+<h3 id="pid-控制器的综合作用"><a href="#pid-%e6%8e%a7%e5%88%b6%e5%99%a8%e7%9a%84%e7%bb%bc%e5%90%88%e4%bd%9c%e7%94%a8" class="header-anchor"></a>PID 控制器的综合作用
+</h3><p>PID 控制器通过比例、积分和微分三个部分的组合，能够实现对系统的快速、稳定和精确控制：</p>
+<ul>
+<li>比例控制：快速响应偏差，减少静态误差。</li>
+<li>积分控制：消除稳态误差，确保系统最终达到期望值。</li>
+<li>微分控制：抑制系统的超调和振荡，提高系统的稳定性。</li>
+</ul>
+<p>从模拟 PID 到数字 PID 随着计算机技术的发展，模拟 PID 控制逐渐被数字 PID 控制取代。数字 PID 控制通过将模拟 PID 控制规律进行离散化处理，能够在计算机中实现 PID 控制算法。数字 PID 控制具有以下优点：</p>
+<ul>
+<li>灵活性：可以通过软件调整 PID 参数，适应不同的控制需求。</li>
+<li>精度：数字控制能够实现高精度的控制。</li>
+<li>抗干扰：数字控制对噪声和干扰的抑制能力更强。</li>
+</ul>
+<h3 id="总结"><a href="#%e6%80%bb%e7%bb%93" class="header-anchor"></a>总结
+</h3><p>PID 控制器通过比例、积分和微分三个部分的组合，能够实现对系统的快速、稳定和精确控制。比例控制负责快速响应偏差，积分控制负责消除稳态误差，微分控制负责抑制系统的超调和振荡。通过合理调整 PID 参数，可以使系统达到最佳的控制效果。</p>
+<h3 id="2-数字-pid-控制"><a href="#2-%e6%95%b0%e5%ad%97-pid-%e6%8e%a7%e5%88%b6" class="header-anchor"></a><strong>2. 数字 PID 控制</strong>
+</h3><p>数字 PID 控制是通过计算机实现的 PID 控制算法。与模拟 PID 控制不同，数字 PID 控制是基于离散时间采样的控制方式，因此需要对连续的 PID 控制规律进行离散化处理。数字 PID 控制算法主要分为两种：<strong>位置式 PID</strong> 和 <strong>增量式 PID</strong>。</p>
+<hr>
+<h4 id="位置式-全量式pid-算法"><a href="#%e4%bd%8d%e7%bd%ae%e5%bc%8f-%e5%85%a8%e9%87%8f%e5%bc%8fpid-%e7%ae%97%e6%b3%95" class="header-anchor"></a><strong>位置式 （全量式）PID 算法</strong>
+</h4><h5 id="离散化处理"><a href="#%e7%a6%bb%e6%95%a3%e5%8c%96%e5%a4%84%e7%90%86" class="header-anchor"></a><strong>离散化处理</strong>
+</h5><p>由于计算机控制是采样控制，系统只能在每个采样时刻根据当前的偏差计算控制量，而不能像模拟控制那样连续输出控制量。因此，模拟 PID 控制中的积分和微分项需要进行离散化处理。离散化处理的方法为：以<em>T</em> 作为采样周期， 作为采样序号，则离散采样时间对应着连续时间 ，用矩形法数值积分近似代替积分，用一阶后向差分近似代替微分，可作如下近似变换
+</p>
+$$
+t \approx kT \qquad (k = 0, 1, 2, \ldots)
+$$$$
+\int_0^t e(t) \, dt \approx T \sum_{j=0}^{k} e(jT) = T \sum_{j=0}^{k} e_j
+$$$$
+\frac{de(t)}{dt} \approx \frac{e(kT) - e[(k-1)T]}{T} = \frac{e_k - e_{k-1}}{T}
+$$<p>容易联想到，这里使用中矩形法和一阶向后差分代替微分，此处的后是后方的意思，对应的是计算方法中的向前差分，那么，是否可以用三点向前公式来提高微分部分或者用牛顿-科特斯等其他方法替代呢？事实上是可以的，大部分比赛使用均为普通PID，下限高上限低，这种方法上限理论上会高一些，但调参压力应该会大很多，有没有必要在比赛中运用，效果有待测试。</p>
+<p><a class="link" href="https://ieeexplore.ieee.org/document/9702931"  target="_blank" rel="noopener"
+    >基于 Runge-Kutta 模型的耦合四水箱系统自适应 PID 控制器应用 | IEEE 会议出版物 | IEEE Xplore &mdash; Runge-Kutta Model-Based Adaptive PID Controller Applied to a 4 Coupled-tank System | IEEE Conference Publication | IEEE Xplore</a></p>
+<p><strong>龙格-库塔法 vs 自适应积分法 vs 校正欧拉公式 vs 三点公式 vs 牛顿-科特斯公式</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>特性</strong></th>
+          <th style="text-align: left"><strong>三点公式（微分）</strong></th>
+          <th style="text-align: left"><strong>牛顿-科特斯公式（积分）</strong></th>
+          <th style="text-align: left"><strong>校正欧拉公式（积分）</strong></th>
+          <th style="text-align: left"><strong>自适应积分法（积分）</strong></th>
+          <th style="text-align: left"><strong>龙格-库塔法（积分）</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>精度</strong></td>
+          <td style="text-align: left">高（优于一阶差分）</td>
+          <td style="text-align: left">高（梯形法和辛普森法优于矩形法）</td>
+          <td style="text-align: left">较高（接近梯形法，优于矩形法）</td>
+          <td style="text-align: left">高（动态调整步长，精度最高）</td>
+          <td style="text-align: left">非常高（四阶龙格-库塔法误差为 $O(h4)$）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>噪声敏感性</strong></td>
+          <td style="text-align: left">较低（中心差分对噪声不敏感）</td>
+          <td style="text-align: left">较高（对噪声敏感，可能需要滤波）</td>
+          <td style="text-align: left">较高（对噪声敏感，可能需要滤波）</td>
+          <td style="text-align: left">较高（对噪声敏感，可能需要滤波）</td>
+          <td style="text-align: left">较高（对噪声敏感，可能需要滤波）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>计算复杂度</strong></td>
+          <td style="text-align: left">低（只需当前和前或后两个点的数据）</td>
+          <td style="text-align: left">较高（尤其是辛普森法）</td>
+          <td style="text-align: left">适中（比辛普森法低，比矩形法高）</td>
+          <td style="text-align: left">高（动态调整步长，计算量较大）</td>
+          <td style="text-align: left">高（每一步需计算多个中间值）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>实时性</strong></td>
+          <td style="text-align: left">受限（需要未来数据）</td>
+          <td style="text-align: left">较好（只需当前和过去数据）</td>
+          <td style="text-align: left">较好（只需当前和过去数据）</td>
+          <td style="text-align: left">较差（动态调整步长，计算量大）</td>
+          <td style="text-align: left">较差（计算量大，不适合实时系统）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>存储需求</strong></td>
+          <td style="text-align: left">低（只需存储少量数据）</td>
+          <td style="text-align: left">较高（尤其是辛普森法需要更多历史数据）</td>
+          <td style="text-align: left">适中（需要存储当前和过去数据）</td>
+          <td style="text-align: left">高（需要存储中间计算结果）</td>
+          <td style="text-align: left">高（需要存储中间计算结果）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>适用场景</strong></td>
+          <td style="text-align: left">动态变化较快的系统</td>
+          <td style="text-align: left">误差变化较平滑的系统</td>
+          <td style="text-align: left">实时性要求较高的系统</td>
+          <td style="text-align: left">高精度要求的复杂系统</td>
+          <td style="text-align: left">高精度要求的复杂系统</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>还是先回到最初的地方。</p>
+<ul>
+<li><strong>采样周期 $ T $</strong>：计算机每隔 $ T $ 时间采样一次系统的偏差。</li>
+<li><strong>采样序号 $ k $</strong>：表示第 $ k $ 次采样时刻，$ k = 0, 1, 2, \dots $。</li>
+<li><strong>离散时间 $ kT $</strong>：对应连续时间 $ t $。</li>
+</ul>
+<p>通过离散化处理，积分和微分项可以近似表示为：</p>
+<ul>
+<li><strong>积分项</strong>：用矩形法数值积分近似代替连续积分。</li>
+<li><strong>微分项</strong>：用一阶后向差分近似代替连续微分。</li>
+</ul>
+<p>离散化后的 PID 控制规律为：</p>
+$$
+u_k = K_p \left[ e_k + \frac{T}{T_i} \sum_{j=0}^k e_j + T_d \frac{e_k - e_{k-1}}{T} \right]
+$$<p>其中：</p>
+<ul>
+<li>$ u_k $：第 $ k $ 次采样时刻的控制量。</li>
+<li>$ e_k $：第 $ k $ 次采样时刻的偏差。</li>
+<li>$ e_{k-1} $：第 $ k-1 $ 次采样时刻的偏差。</li>
+<li>$ K_p $：比例系数。</li>
+<li>$ T_i $：积分时间。</li>
+<li>$ T_d $：微分时间。</li>
+</ul>
+<h5 id="位置式-全量式-pid-的数学表达式"><a href="#%e4%bd%8d%e7%bd%ae%e5%bc%8f-%e5%85%a8%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e6%95%b0%e5%ad%a6%e8%a1%a8%e8%be%be%e5%bc%8f" class="header-anchor"></a><strong>位置式 （全量式） PID 的数学表达式</strong>
+</h5><p>位置式 PID 的数学表达式可以写成：</p>
+$$
+u_k = K_p e_k + K_i \sum_{j=0}^k e_j + K_d (e_k - e_{k-1})
+$$<p>其中：</p>
+<ul>
+<li>$ K_i = \frac{K_p T}{T_i} $：积分系数。</li>
+<li>$ K_d = \frac{K_p T_d}{T} $：微分系数。</li>
+</ul>
+<h5 id="位置式-pid-的特点"><a href="#%e4%bd%8d%e7%bd%ae%e5%bc%8f-pid-%e7%9a%84%e7%89%b9%e7%82%b9" class="header-anchor"></a><strong>位置式 PID 的特点</strong>
+</h5><p>如果采样周期足够小，则前面两个公式的近似计算可以获得足够精确的结果，离散控制过程与连续过程十分接近。</p>
+<ul>
+<li><strong>全量输出</strong>：位置式 PID 直接输出控制量的绝对值，因此每次输出都与过去的状态有关。</li>
+<li><strong>计算量大</strong>：由于需要对偏差进行累加，计算量较大。</li>
+<li><strong>风险</strong>：如果计算机出现故障，控制量的突变会导致执行机构的剧烈变化，可能引发生产事故。增量式PID可以避免这种现象。</li>
+</ul>
+<hr>
+<h4 id="22-增量式-pid-算法"><a href="#22-%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%ae%97%e6%b3%95" class="header-anchor"></a><strong>2.2 增量式 PID 算法</strong>
+</h4><h5 id="增量式-pid-的定义"><a href="#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e5%ae%9a%e4%b9%89" class="header-anchor"></a><strong>增量式 PID 的定义</strong>
+</h5><p>增量式 PID 是指数字控制器的输出是控制量的增量 $ \Delta u_k $，而不是控制量的绝对值。增量式 PID 适用于执行机构需要增量控制的系统。</p>
+<h5 id="增量式-pid-的推导"><a href="#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e6%8e%a8%e5%af%bc" class="header-anchor"></a><strong>增量式 PID 的推导</strong>
+</h5><p>增量式 PID 可以通过位置式 PID 推导出来。首先，写出第 $ k-1 $ 次采样时刻的控制量：</p>
+$$
+u_{k-1} = K_p e_{k-1} + K_i \sum_{j=0}^{k-1} e_j + K_d (e_{k-1} - e_{k-2})
+$$<p>然后将位置式 PID 的第 $ k $ 次控制量 $ u_k $ 与第 $ k-1 $ 次控制量 $ u_{k-1} $ 相减，得到增量式 PID 的表达式：</p>
+$$
+\Delta u_k = u_k - u_{k-1} = K_p (e_k - e_{k-1}) + K_i e_k + K_d (e_k - 2e_{k-1} + e_{k-2})
+$$<p>进一步整理后，增量式 PID 的公式为：</p>
+$$
+\Delta u_k = A e_k + B e_{k-1} + C e_{k-2}
+$$<p>其中：</p>
+<ul>
+<li>$ A = K_p \left(1 + \frac{T}{T_i} + \frac{T_d}{T}\right) $</li>
+<li>$ B = -K_p \left(1 + \frac{2T_d}{T}\right) $</li>
+<li>$ C = K_p \frac{T_d}{T} $</li>
+</ul>
+<h5 id="增量式-pid-的特点"><a href="#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%89%b9%e7%82%b9" class="header-anchor"></a><strong>增量式 PID 的特点</strong>
+</h5><ul>
+<li><strong>增量输出</strong>：增量式 PID 输出的是控制量的增量，而不是绝对值。</li>
+<li><strong>计算量小</strong>：只需要当前和前两次的偏差值和唯一确定的$A$$B$$C$，计算量较小。</li>
+<li><strong>安全性高</strong>：即使计算机出现故障，控制量的变化也不会太大，避免了执行机构的剧烈变化。</li>
+</ul>
+<h5 id="增量式-pid-的递推公式"><a href="#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e9%80%92%e6%8e%a8%e5%85%ac%e5%bc%8f" class="header-anchor"></a><strong>增量式 PID 的递推公式</strong>
+</h5><p>增量式 PID 可以通过递推公式实现位置式 PID 的控制：</p>
+$$
+u_k = u_{k-1} + \Delta u_k
+$$<p>这种递推公式在计算机控制中广泛应用。</p>
+<h4 id="总结-1"><a href="#%e6%80%bb%e7%bb%93-1" class="header-anchor"></a><strong>总结</strong>
+</h4><h5 id="为什么增量式-pid-在计算机故障时更稳定"><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e5%9c%a8%e8%ae%a1%e7%ae%97%e6%9c%ba%e6%95%85%e9%9a%9c%e6%97%b6%e6%9b%b4%e7%a8%b3%e5%ae%9a" class="header-anchor"></a><strong>为什么增量式 PID 在计算机故障时更稳定？</strong>
+</h5><h6 id="1不依赖历史误差的累积"><a href="#1%e4%b8%8d%e4%be%9d%e8%b5%96%e5%8e%86%e5%8f%b2%e8%af%af%e5%b7%ae%e7%9a%84%e7%b4%af%e7%a7%af" class="header-anchor"></a>（1）<strong>不依赖历史误差的累积</strong>
+</h6><ul>
+<li>
+<p>在位置式 PID 中，积分项是对历史误差的累积：</p>
+<p>u(k)=Kpe(k)+Ki∑i=0ke(i)+Kd[e(k)−e(k−1)]<em>u</em>(<em>k</em>)=<em>K<strong>p</strong>e</em>(<em>k</em>)+<em>K<strong>i</strong>i</em>=0∑<em>k**e</em>(<em>i</em>)+<em>K**d</em>[<em>e</em>(<em>k</em>)−<em>e</em>(<em>k</em>−1)]</p>
+<p>如果计算机故障导致历史误差数据丢失，积分项会突然变化，导致控制量 u(k)<em>u</em>(<em>k</em>) 发生剧烈波动。</p>
+</li>
+<li>
+<p>在增量式 PID 中，积分项只依赖于当前误差 e(k)<em>e</em>(<em>k</em>)，而不需要累积历史误差：</p>
+<p>Δu(k)=Kp[e(k)−e(k−1)]+Kie(k)+Kd[e(k)−2e(k−1)+e(k−2)]Δ<em>u</em>(<em>k</em>)=<em>K**p</em>[<em>e</em>(<em>k</em>)−<em>e</em>(<em>k</em>−1)]+<em>K<strong>i</strong>e</em>(<em>k</em>)+<em>K**d</em>[<em>e</em>(<em>k</em>)−2<em>e</em>(<em>k</em>−1)+<em>e</em>(<em>k</em>−2)]</p>
+<p>即使计算机故障导致部分数据丢失，增量式 PID 也只影响当前时刻的控制量增量 Δu(k)Δ<em>u</em>(<em>k</em>)，而不会导致控制量 u(k)<em>u</em>(<em>k</em>) 的剧烈变化。</p>
+</li>
+</ul>
+<h6 id="2增量输出的平滑性"><a href="#2%e5%a2%9e%e9%87%8f%e8%be%93%e5%87%ba%e7%9a%84%e5%b9%b3%e6%bb%91%e6%80%a7" class="header-anchor"></a>（2）<strong>增量输出的平滑性</strong>
+</h6><ul>
+<li>增量式 PID 的输出是控制量的增量 Δu(k)Δ<em>u</em>(<em>k</em>)，而不是绝对量 u(k)<em>u</em>(<em>k</em>)。即使 Δu(k)Δ<em>u</em>(<em>k</em>) 发生突变，控制量的实际输出 u(k)<em>u</em>(<em>k</em>) 也只是在前一时刻的基础上增加或减少一个较小的量，因此不会出现大幅度变化。</li>
+</ul>
+<h6 id="3故障恢复能力强"><a href="#3%e6%95%85%e9%9a%9c%e6%81%a2%e5%a4%8d%e8%83%bd%e5%8a%9b%e5%bc%ba" class="header-anchor"></a>（3）<strong>故障恢复能力强</strong>
+</h6><ul>
+<li>如果计算机故障后恢复正常，增量式 PID 可以从当前状态继续运行，而不需要重新初始化积分项。这种特性使得增量式 PID 在故障恢复后能够快速回到正常工作状态。</li>
+</ul>
+<hr>
+<h5 id="增量式-pid-的其他优点"><a href="#%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e5%85%b6%e4%bb%96%e4%bc%98%e7%82%b9" class="header-anchor"></a>增量式 PID 的其他优点
+</h5><p>除了在计算机故障时的稳定性外，增量式 PID 还具有以下优点：</p>
+<ol>
+<li><strong>无积分饱和问题</strong>：
+<ul>
+<li>位置式 PID 的积分项可能会因为误差的长期累积而导致积分饱和，而增量式 PID 的积分项只依赖于当前误差，因此不会出现积分饱和问题。</li>
+</ul>
+</li>
+<li><strong>易于实现手动/自动切换</strong>：
+<ul>
+<li>增量式 PID 的输出是控制量的增量，因此可以方便地实现手动控制和自动控制之间的切换。</li>
+</ul>
+</li>
+<li><strong>适合执行器带积分特性的系统</strong>：
+<ul>
+<li>对于执行器本身具有积分特性（如步进电机）的系统，增量式 PID 更容易实现控制。</li>
+</ul>
+</li>
+</ol>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><strong>特性</strong></th>
+          <th><strong>位置式 PID</strong></th>
+          <th><strong>增量式 PID</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>输出形式</strong></td>
+          <td>控制量的绝对值</td>
+          <td>控制量的增量</td>
+      </tr>
+      <tr>
+          <td><strong>计算量</strong></td>
+          <td>大（需要累加所有偏差）</td>
+          <td>小（只需当前和前两次偏差）</td>
+      </tr>
+      <tr>
+          <td><strong>安全性</strong></td>
+          <td>低（故障时控制量突变）</td>
+          <td>高（故障时控制量变化小）</td>
+      </tr>
+      <tr>
+          <td><strong>适用场景</strong></td>
+          <td>需要精确控制位置的系统</td>
+          <td>需要增量控制的系统</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="231-凑试法"><a href="#231-%e5%87%91%e8%af%95%e6%b3%95" class="header-anchor"></a><strong>2.3.1 凑试法</strong>
+</h4><p>凑试法是一种通过逐步调整控制器参数（比例 $K_p$、积分 $T_i$、微分 $T_d$）来优化控制系统性能的方法。它的特点是按照“先比例（P）、再积分（I）、最后微分（D）”的顺序进行调节。下面我用通俗易懂的语言来解释这个过程：</p>
+<hr>
+<h5 id="什么是凑试法"><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%87%91%e8%af%95%e6%b3%95" class="header-anchor"></a><strong>什么是凑试法？</strong>
+</h5><p>凑试法是通过手动调整控制器的参数，观察系统的响应曲线，逐步找到最佳参数组合的方法。它的核心思想是：</p>
+<ul>
+<li>先调整比例作用 $K_p$，让系统快速响应。</li>
+<li>然后加入积分作用 $T_i$，消除系统的稳态误差。</li>
+<li>最后加入微分作用 $T_d$，抑制系统的超调和振荡。</li>
+</ul>
+<hr>
+<h5 id="凑试法的步骤"><a href="#%e5%87%91%e8%af%95%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4" class="header-anchor"></a><strong>凑试法的步骤：</strong>
+</h5><h6 id="第一步整定比例系数-k_p纯比例控制"><a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e6%95%b4%e5%ae%9a%e6%af%94%e4%be%8b%e7%b3%bb%e6%95%b0-k_p%e7%ba%af%e6%af%94%e4%be%8b%e6%8e%a7%e5%88%b6" class="header-anchor"></a><strong>第一步：整定比例系数 $K_p$（纯比例控制）</strong>
+</h6><ul>
+<li>将控制器的积分时间 $T_i$ 设为无穷大（$T_i = \infty$），相当于关闭积分作用。</li>
+<li>将微分时间 $T_d$ 设为零（$T_d = 0$），相当于关闭微分作用。</li>
+<li>只保留比例作用 $K_p$，并按照经验设置一个初始值。</li>
+<li>将系统投入运行，观察系统的响应曲线。</li>
+<li><strong>由小到大调整 $K_p$</strong>，直到系统的过渡过程曲线呈现出<strong>1/4衰减度</strong>（即每个波峰的幅度是前一个波峰的1/4）。此时的比例系数 $K_p$ 是一个比较合适的值。</li>
+</ul>
+<hr>
+<h6 id="第二步引入积分作用-t_ipi控制"><a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%bc%95%e5%85%a5%e7%a7%af%e5%88%86%e4%bd%9c%e7%94%a8-t_ipi%e6%8e%a7%e5%88%b6" class="header-anchor"></a><strong>第二步：引入积分作用 $T_i$（PI控制）</strong>
+</h6><ul>
+<li>在第一步的基础上，将比例系数 $K_p$ 减小到原来的 <strong>5/6</strong>（即 $K_p = \frac{5}{6} K_p$）。</li>
+<li>引入积分作用，将积分时间 $T_i$ 从大到小逐步调整。</li>
+<li>观察系统的响应曲线，直到系统的稳态误差被消除，同时过渡过程曲线仍然保持较好的动态性能。</li>
+</ul>
+<hr>
+<h6 id="第三步引入微分作用-t_dpid控制"><a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%bc%95%e5%85%a5%e5%be%ae%e5%88%86%e4%bd%9c%e7%94%a8-t_dpid%e6%8e%a7%e5%88%b6" class="header-anchor"></a><strong>第三步：引入微分作用 $T_d$（PID控制）</strong>
+</h6><ul>
+<li>如果需要进一步优化系统性能，可以引入微分作用。</li>
+<li>微分时间 $T_d$ 可以按照经验值设置，或者根据积分时间 $T_i$ 计算，通常取 $T_d = \left( \frac{1}{3} \sim \frac{1}{4} \right) T_i$。</li>
+<li>将 $T_d$ 由小到大逐步调整，观察系统的响应曲线，直到系统的超调和振荡被有效抑制。</li>
+</ul>
+<hr>
+<h5 id="通俗理解"><a href="#%e9%80%9a%e4%bf%97%e7%90%86%e8%a7%a3" class="header-anchor"></a><strong>通俗理解：</strong>
+</h5><p>你可以把控制系统想象成开车：</p>
+<ul>
+<li><strong>比例作用 $K_p$</strong>：就像你控制方向盘的力度。如果力度太小，车子会偏离路线；如果力度太大，车子会来回摆动。凑试法就是找到一个合适的力度，让车子既不偏离路线，又不会过度摆动。</li>
+<li><strong>积分作用 $T_i$</strong>：就像你发现车子总是偏向一边，于是你慢慢调整方向盘，直到车子回到正轨。积分作用就是消除系统的“偏差”。</li>
+<li><strong>微分作用 $T_d$</strong>：就像你提前预判路况，轻轻调整方向盘，防止车子突然转向过度。微分作用就是抑制系统的“振荡”。</li>
+</ul>
+<hr>
+<h5 id="注意事项"><a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="header-anchor"></a><strong>注意事项：</strong>
+</h5><ul>
+<li><strong>1/4衰减度</strong>：这是凑试法的目标，表示系统的响应曲线在每个周期内衰减到前一个周期的1/4。这种响应既快速又稳定，适合大多数工业控制系统。</li>
+<li><strong>参数调整顺序</strong>：一定要按照“先P、再I、最后D”的顺序调整，否则可能会导致系统不稳定。</li>
+<li><strong>经验值</strong>：在实际应用中，初始参数和调整范围可以基于经验或系统特性进行设置。</li>
+</ul>
+<hr>
+<h5 id="总结-2"><a href="#%e6%80%bb%e7%bb%93-2" class="header-anchor"></a><strong>总结：</strong>
+</h5><p>凑试法是一种简单实用的控制器参数整定方法，通过逐步调整 $K_p$、$T_i$、$T_d$，最终让系统的响应既快速又稳定。虽然需要一定的经验和耐心，但它的灵活性和直观性使其在工业控制中广泛应用。</p>
+<hr>
+<h4 id="临界比例法"><a href="#%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95" class="header-anchor"></a><strong>临界比例法</strong>
+</h4><h5 id="1-什么是临界比例法"><a href="#1-%e4%bb%80%e4%b9%88%e6%98%af%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95" class="header-anchor"></a><strong>1. 什么是临界比例法？</strong>
+</h5><p>临界比例法是通过调整控制器的参数（比例系数 $K_p$、积分时间 $T_i$、微分时间 $T_d$），使系统产生等幅振荡，然后根据振荡的特性来计算出最佳的控制器参数。</p>
+<h5 id="2-临界比例法的步骤"><a href="#2-%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4" class="header-anchor"></a><strong>2. 临界比例法的步骤：</strong>
+</h5><h6 id="第一步设置初始参数"><a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e8%ae%be%e7%bd%ae%e5%88%9d%e5%a7%8b%e5%8f%82%e6%95%b0" class="header-anchor"></a>第一步：设置初始参数
+</h6><ul>
+<li>将控制器的积分时间 $T_i$ 调到最大（相当于关闭积分作用），微分时间 $T_d$ 设为零（关闭微分作用），只保留比例作用 $K_p$。</li>
+<li>让系统在自动控制下运行一段时间，确保系统处于稳定状态。</li>
+</ul>
+<h6 id="第二步增大比例系数-k_p找到临界点"><a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%a2%9e%e5%a4%a7%e6%af%94%e4%be%8b%e7%b3%bb%e6%95%b0-k_p%e6%89%be%e5%88%b0%e4%b8%b4%e7%95%8c%e7%82%b9" class="header-anchor"></a>第二步：增大比例系数 $K_p$，找到临界点
+</h6><ul>
+<li>逐渐增大比例系数 $K_p$，直到系统开始出现等幅振荡（即系统的输出在某个值附近来回波动，且波动的幅度保持不变）。</li>
+<li>记录下此时的<strong>临界比例系数 $K_u$</strong> 和<strong>临界振荡周期 $T_u$</strong>（即两个波峰之间的时间间隔）。</li>
+</ul>
+<h6 id="第三步计算控制器参数"><a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e8%ae%a1%e7%ae%97%e6%8e%a7%e5%88%b6%e5%99%a8%e5%8f%82%e6%95%b0" class="header-anchor"></a>第三步：计算控制器参数
+</h6><ul>
+<li>根据 $K_u$ 和 $T_u$，使用经验公式计算出控制器的最佳参数 $K_p$、$T_i$ 和 $T_d$。</li>
+<li>按照“先调 $K_p$，再调 $T_i$，最后调 $T_d$”的顺序，将控制器的参数设置到计算值上。</li>
+<li>如果效果还不够理想，可以进一步微调。</li>
+</ul>
+<h5 id="3-临界比例法的注意事项"><a href="#3-%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e6%b3%95%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="header-anchor"></a><strong>3. 临界比例法的注意事项：</strong>
+</h5><ul>
+<li><strong>临界比例系数过大</strong>：有些系统的临界比例系数 $K_u$ 可能非常大，导致系统接近“开关控制”（即控制器输出要么最大，要么最小），这对工业生产不利，可能会造成设备频繁启停，影响生产。</li>
+<li><strong>无法产生等幅振荡</strong>：有些系统即使将比例系数 $K_p$ 调到最大，也无法产生等幅振荡。这时，可以将最大刻度值作为临界比例系数 $K_u$ 来进行参数整定。</li>
+</ul>
+<h5 id="4-通俗理解"><a href="#4-%e9%80%9a%e4%bf%97%e7%90%86%e8%a7%a3" class="header-anchor"></a><strong>4. 通俗理解：</strong>
+</h5><p>你可以把控制系统想象成一个调节水流的阀门。比例系数 $K_p$ 就像是你调节阀门的力度：</p>
+<ul>
+<li>如果力度太小，水流的变化会很慢，系统反应迟钝。</li>
+<li>如果力度太大，水流会来回波动，系统不稳定。</li>
+<li>临界比例法就是找到一个刚好让水流开始等幅波动的力度（$K_u$），然后根据这个力度和波动的频率（$T_u$），计算出最佳的调节力度（$K_p$）、调节速度（$T_i$）和调节的提前量（$T_d$）。</li>
+</ul>
+<p>通过这种方法，你可以让系统既快速响应，又不会过度波动，达到最佳的控制效果。</p>
+<h4 id="ziegler-nichols-法进行pid参数整定的基本原理"><a href="#ziegler-nichols-%e6%b3%95%e8%bf%9b%e8%a1%8cpid%e5%8f%82%e6%95%b0%e6%95%b4%e5%ae%9a%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" class="header-anchor"></a><strong>Ziegler-Nichols 法进行PID参数整定的基本原理</strong>
+</h4><hr>
+<h5 id="临界比例度法的步骤"><a href="#%e4%b8%b4%e7%95%8c%e6%af%94%e4%be%8b%e5%ba%a6%e6%b3%95%e7%9a%84%e6%ad%a5%e9%aa%a4" class="header-anchor"></a><strong>临界比例度法的步骤</strong>
+</h5><p>临界比例度法通过调整比例增益 Kp<em>K**p</em>，使系统产生等幅振荡（临界振荡），然后根据临界振荡的特性确定 PID 参数。</p>
+<h6 id="步骤-1仅使用比例控制"><a href="#%e6%ad%a5%e9%aa%a4-1%e4%bb%85%e4%bd%bf%e7%94%a8%e6%af%94%e4%be%8b%e6%8e%a7%e5%88%b6" class="header-anchor"></a><strong>步骤 1：仅使用比例控制</strong>
+</h6><ul>
+<li>按临界比例法得到<strong>临界比例系数 $K_u$</strong> 和<strong>临界振荡周期 $T_u$</strong>（即两个波峰之间的时间间隔），</li>
+</ul>
+<h6 id="步骤-2计算-pid-参数"><a href="#%e6%ad%a5%e9%aa%a4-2%e8%ae%a1%e7%ae%97-pid-%e5%8f%82%e6%95%b0" class="header-anchor"></a><strong>步骤 2：计算 PID 参数</strong>
+</h6><p>根据 Z-N 法的推荐公式，计算 PID 控制器的参数：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>控制器类型</th>
+          <th>$ K_p $</th>
+          <th>$ T_i $</th>
+          <th>$ T_d $</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>P</td>
+          <td>$ 0.5 \cdot K_u $</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>PI</td>
+          <td>$ 0.45 \cdot K_u $</td>
+          <td>$ 0.85 \cdot T_u $</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>PID</td>
+          <td>$ 0.6 \cdot K_u $</td>
+          <td>$ 0.5 \cdot T_u $</td>
+          <td>$ 0.12 \cdot T_u $</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h5 id="z-n-法与增量式-pid-的结合"><a href="#z-n-%e6%b3%95%e4%b8%8e%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%bb%93%e5%90%88" class="header-anchor"></a><strong>Z-N 法与增量式 PID 的结合</strong>
+</h5><p>增量式 PID 的控制量增量公式为：</p>
+$$
+\Delta u(k) = K_p[e(k) - e(k-1)] + \frac{K_p}{T_i}e(k) + K_pT_d[e(k) - 2e(k-1) + e(k-2)]
+$$<p>其中：</p>
+<ul>
+<li>$ K_i = \frac{K_p}{T_i} $ 是积分系数。</li>
+<li>$ K_d = K_pT_d $ 是微分系数。</li>
+</ul>
+<p>使用 Z-N 法整定参数后，可以将 $ K_p $、$ T_i $、$ T_d $ 代入增量式 PID 公式中，实现控制器的设计。</p>
+<h5 id="z-n-法与增量式-pid-的结合示例"><a href="#z-n-%e6%b3%95%e4%b8%8e%e5%a2%9e%e9%87%8f%e5%bc%8f-pid-%e7%9a%84%e7%bb%93%e5%90%88%e7%a4%ba%e4%be%8b" class="header-anchor"></a><strong>Z-N 法与增量式 PID 的结合示例</strong>
+</h5><p>假设通过 Z-N 法得到以下参数：</p>
+<ul>
+<li>临界比例增益 $ K_{cr} = 10 $</li>
+<li>临界振荡周期 $ T_{cr} = 2 $ 秒</li>
+</ul>
+<p>根据 Z-N 法的推荐公式，PID 参数为：</p>
+$$
+K_p = 0.6K_{u} = 6, \\
+T_i = 0.5T_{u} = 1, \\
+T_d = 0.125T_{u} = 0.25
+$$<p>因此，增量式 PID 的控制量增量公式为：</p>
+$$
+\Delta u(k) = 6[e(k) - e(k-1)] + \frac{6}{1}e(k) + 6 \cdot 0.25 [e(k) - 2e(k-1) + e(k-2)]
+$$<p>简化后得到：</p>
+$$
+\Delta u(k) = 6[e(k) - e(k-1)] + 6e(k) + 1.5[e(k) - 2e(k-1) + e(k-2)]
+$$<h5 id="总结-3"><a href="#%e6%80%bb%e7%bb%93-3" class="header-anchor"></a><strong>总结</strong>
+</h5><ul>
+<li><strong>Z-N 法</strong> 是一种经典的 PID 参数整定方法，通过临界振荡实验确定 $ K_p $、$ T_i $、$ T_d $。</li>
+<li>Z-N 法假设系统是线性的，对于非线性系统可能不适用。</li>
+<li><strong>增量式 PID</strong> 通过计算控制量的增量来调整输出，具有较强的鲁棒性和抗积分饱和能力。</li>
+<li>将 Z-N 法与增量式 PID 结合，可以快速整定控制器参数，并提高系统的稳定性和可靠性。</li>
+</ul>
+<h4 id="信号采样周期选择"><a href="#%e4%bf%a1%e5%8f%b7%e9%87%87%e6%a0%b7%e5%91%a8%e6%9c%9f%e9%80%89%e6%8b%a9" class="header-anchor"></a>信号采样周期选择
+</h4><ul>
+<li><strong>香农采样定律</strong>：采样频率必须至少是信号最高频率的两倍，否则信号会失真。</li>
+<li><strong>采样周期的选择</strong>：
+<ul>
+<li>响应快的系统（如流量、压力）选择较短的采样周期。</li>
+<li>响应慢的系统（如温度、成分）选择较长的采样周期。</li>
+<li>采样周期应远小于干扰信号的周期。</li>
+<li>执行器响应慢时，采样周期可以适当延长。</li>
+<li>计算机性能允许时，采样周期越短，控制效果越好。</li>
+<li>对于滞后大的系统，采样周期通常为滞后时间的1/4～1/8。</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
+        
+            <a href="/tags/%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6/">运动控制</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/cubemx%E4%B8%8B%E7%9A%84freertos/">
+        
+        
+            <div class="article-image">
+                <img src="/p/cubemx%E4%B8%8B%E7%9A%84freertos/background.60116b1ccfc8632e9a65f7d51df3efc2_hu2042364712198079406.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post CubeMX下的freeRTOS"
+                        
+                        data-hash="md5-YBFrHM/IYy6aZffVHfPvwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CubeMX下的freeRTOS</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pcb%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%AB%8B%E5%88%9Beda%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98%E5%BD%95/background.60116b1ccfc8632e9a65f7d51df3efc2_hu2042364712198079406.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PCB设计与立创EDA使用备忘录"
+                        
+                        data-hash="md5-YBFrHM/IYy6aZffVHfPvwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PCB设计与立创EDA使用备忘录</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%AE%80%E6%98%8E%E8%A7%84%E8%8C%83/background.60116b1ccfc8632e9a65f7d51df3efc2_hu2042364712198079406.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 华为嵌入式C语言代码简明规范"
+                        
+                        data-hash="md5-YBFrHM/IYy6aZffVHfPvwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">华为嵌入式C语言代码简明规范</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/background.60116b1ccfc8632e9a65f7d51df3efc2_hu2042364712198079406.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 物联网协议基础"
+                        
+                        data-hash="md5-YBFrHM/IYy6aZffVHfPvwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">物联网协议基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 cita
+    </section>
+    
+    <section class="powerby">
+        
+            Hello World <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
