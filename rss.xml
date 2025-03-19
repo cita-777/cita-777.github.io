@@ -540,30 +540,9 @@ Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下�
 正确裁剪的缩略图&lt;/li>
 &lt;li>Subsection support 分段支持&lt;/li>
 &lt;li>Table of contents 目录&lt;/li>
-&lt;/ul></description></item><item><title>关于我</title><link>/about.html</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/about.html</guid><description>&lt;p>业余爱好是摄影，是个正常的人🤓&lt;/p>
-&lt;!-- # 我们的愿景
-
-延续 `NexT` 经典的黑白调搭配，保持简单的易用性及强大的功能。
-
-# 使用反馈
-
-- 加入 [GitHub Discussions](https://github.com/hugo-next/hugo-theme-next/discussions) 或 [Gitter](https://gitter.im/hugo-next/community) 在线讨论 :beers:
-- [GitHub Issues](https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Bug&amp;template=bug-report.md) 提交错误报告 :bug:
-- [GitHub Feature](https://github.com/hugo-next/hugo-theme-next/issues/new?labels=Feature+Request&amp;template=feature-request.md) 表新功能的想法 :sparkles: -->
-
-
-
- &lt;div class="post-alert-info">
- &lt;div class="post-alert-title">
- &lt;i class="fa-solid fa-circle-info">&lt;/i>
- &lt;span>
- 
- 信息
- 
- &lt;/span>
- &lt;/div>
- &lt;div class="post-alert-content">
- &lt;p>联系QQ：1467078763&lt;/p></description></item><item><title/><link>/bak/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bak/</guid><description/></item><item><title>常用学习/工具网站</title><link>/flinks.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/flinks.html</guid><description>&lt;p>如想推荐你觉得很棒的学习or工具链接，请在评论区留下站点信息，格式参考如下：&lt;/p>
+&lt;/ul></description></item><item><title>关于我</title><link>/about.html</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/about.html</guid><description>&lt;p>HFUT计算机科学与技术专业，本科在读；&lt;/p>
+&lt;p>tag：嵌入式开发、控制优化、传感器数据融合、路径规划与导航、人工智能；&lt;/p>
+&lt;p>技术栈：ros2、MCU与SBC开发、c/c++、python、slam；&lt;/p></description></item><item><title/><link>/bak/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bak/</guid><description/></item><item><title>常用学习/工具网站</title><link>/flinks.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/flinks.html</guid><description>&lt;p>如想推荐你觉得很棒的学习or工具链接，请在评论区留下站点信息，格式参考如下：&lt;/p>
 
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
