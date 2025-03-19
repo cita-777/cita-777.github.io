@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RoboCup2D on Cita's blog</title><link>/tags/robocup2d/</link><description>Recent content in RoboCup2D on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 19 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/robocup2d/rss.xml" rel="self" type="application/rss+xml"/><item><title>机器人技术(1): 常用函数</title><link>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</link><pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</guid><description>&lt;h2 id="相关资料链接">相关资料链接:
+&lt;a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5">&lt;/a>
+&lt;/h2>&lt;p>
+&lt;a href="https://i.getshell.cn/tags/robocup/" title="九月大人的博客" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 九月大人的博客
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://yikai-coder.github.io/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/" title="yikai-blog" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ yikai-blog
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://ssim.robocup.org/" title="robocup2D官网" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ robocup2D官网
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;h2 id="robocup-2d-常用函数简明含义">RoboCup 2D 常用函数简明含义
+&lt;a class="header-anchor" href="#robocup-2d-%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89">&lt;/a>
+&lt;/h2>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;strong>函数名称&lt;/strong>&lt;/th>
+ &lt;th>&lt;strong>功能说明&lt;/strong>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>dribble(angle, speed)&lt;/code>&lt;/td>
+ &lt;td>控制球员带球移动。&lt;code>angle&lt;/code>表示带球方向，&lt;code>speed&lt;/code>表示带球速度（如&lt;code>DRIBBLE_FAST&lt;/code>、&lt;code>DRIBBLE_SLOW&lt;/code>等）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>kickTo(targetPosition, speed)&lt;/code>&lt;/td>
+ &lt;td>球员向目标位置（&lt;code>targetPosition&lt;/code>）踢球，&lt;code>speed&lt;/code>指定踢球的速度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>leadingPass(teammate, power)&lt;/code>&lt;/td>
+ &lt;td>向最近的队友传球，&lt;code>teammate&lt;/code>是要传球的目标队友，&lt;code>power&lt;/code>表示传球力度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getNrInSetInCircle(set, circle)&lt;/code>&lt;/td>
+ &lt;td>计算指定半径的圆圈内（&lt;code>circle&lt;/code>）特定对象集合（&lt;code>set&lt;/code>，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getClosestInSetTo(set, position)&lt;/code>&lt;/td>
+ &lt;td>获取距离指定位置（&lt;code>position&lt;/code>）最近的特定对象集合（&lt;code>set&lt;/code>）中的对象，例如找到离当前球员最近的队友或对手。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOpponentAtAngle(angleMin, angleMax)&lt;/code>&lt;/td>
+ &lt;td>判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getGlobalPosition(object)&lt;/code>&lt;/td>
+ &lt;td>获取场上某个对象（球员、对手、球等）的全局坐标位置（&lt;code>X, Y&lt;/code>坐标）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getBallPos()&lt;/code>&lt;/td>
+ &lt;td>获取球的当前位置坐标。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>moveToPos(position, speed)&lt;/code>&lt;/td>
+ &lt;td>移动球员到指定的&lt;code>position&lt;/code>（坐标位置），并以&lt;code>speed&lt;/code>指定的速度执行移动。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isBallKickable()&lt;/code>&lt;/td>
+ &lt;td>判断当前球是否在球员的控制范围内（即球员是否可以踢球）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>kickBallCloseToBody(angle)&lt;/code>&lt;/td>
+ &lt;td>控制球员以指定的&lt;code>angle&lt;/code>（角度）把球围绕身体转动。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>intercept(timeout)&lt;/code>&lt;/td>
+ &lt;td>尝试在指定时间内抢断球（通常用在防守场景）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>turnNeckToObject(object)&lt;/code>&lt;/td>
+ &lt;td>让球员将头（视角）转向指定的&lt;code>object&lt;/code>（如球或对方球员），通常用于跟踪球的位置。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getPlayerNumber()&lt;/code>&lt;/td>
+ &lt;td>返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getTeammateNumber()&lt;/code>&lt;/td>
+ &lt;td>获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getPosOpponentGoal()&lt;/code>&lt;/td>
+ &lt;td>获取对方球门的位置，通常用于判断进攻方向或射门目标。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>shootToGoalex(object)&lt;/code>&lt;/td>
+ &lt;td>指定球员向对方球门射门，通常由接近球门的前锋使用。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getBallSpeedMax()&lt;/code>&lt;/td>
+ &lt;td>获取当前球员能踢球的最大速度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getDirection()&lt;/code>&lt;/td>
+ &lt;td>计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isInTheirPenaltyArea(position)&lt;/code>&lt;/td>
+ &lt;td>判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>putCommandInQueue(command)&lt;/code>&lt;/td>
+ &lt;td>将指令（&lt;code>command&lt;/code>）放入执行队列，确保该操作能够在下一次循环中执行。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>Circle(center, radius)&lt;/code>&lt;/td>
+ &lt;td>创建一个以&lt;code>center&lt;/code>为中心，&lt;code>radius&lt;/code>为半径的圆，用于计算范围内的球员数量或球的距离。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>Line::makeLineFromPositionAndAngle(position, angle)&lt;/code>&lt;/td>
+ &lt;td>根据给定的&lt;code>position&lt;/code>和&lt;code>angle&lt;/code>生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOffsideUs()&lt;/code>&lt;/td>
+ &lt;td>判断是否处于本方越位模式，适用于进攻方的越位规则判断。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isCornerKickUs()&lt;/code>&lt;/td>
+ &lt;td>判断是否处于本方角球模式。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOwnSideOpponentMost()&lt;/code>&lt;/td>
+ &lt;td>判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getSecondClosestInSetTo(set, object)&lt;/code>&lt;/td>
+ &lt;td>获取距离指定&lt;code>object&lt;/code>最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+
+ &lt;blockquote>
+ &lt;p>仅供参考，可能有误&lt;/p></description></item><item><title>机器人技术(2): 典型决策树学习算法ID3</title><link>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3%E7%AE%97%E6%B3%95/</link><pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3%E7%AE%97%E6%B3%95/</guid><description>&lt;h2 id="相关资料链接">相关资料链接:
+&lt;a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5">&lt;/a>
+&lt;/h2>&lt;p>
+&lt;a href="https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91" title="决策树-维基百科" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 决策树-维基百科
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://zhuanlan.zhihu.com/p/26703300" title="深入浅出理解决策树算法（一）-核心思想" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 深入浅出理解决策树算法（一）-核心思想
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://zhuanlan.zhihu.com/p/26760551" title="深入浅出理解决策树算法（二）-ID3算法与C4.5算法" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 深入浅出理解决策树算法（二）-ID3算法与C4.5算法
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,655 @@
+<!doctype html><html lang=zh-CN data-theme=light><head><meta charset=UTF-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.145.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="CubeMX下的freeRTOS"><meta itemprop=description content="分享技术与生活的点滴。"><meta name=description content="分享技术与生活的点滴。"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/cita_avatar.jpg"><meta itemprop=keywords content="STM32,cubeMX,freeRTOS"><meta property="og:type" content="article"><meta property="og:title" content="CubeMX下的freeRTOS"><meta property="og:description" content="分享技术与生活的点滴。"><meta property="og:image" content="/imgs/cita_avatar.jpg"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/cubemx%E4%B8%8B%E7%9A%84freertos/"><meta property="og:site_name" content="Cita's blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Cita"><meta property="article:published_time" content="2024-12-18 00:00:00 +0000 UTC"><meta property="article:modified_time" content="2024-12-18 00:00:00 +0000 UTC"><link type=text/css rel=stylesheet href=/js/3rd/font-awesome/6.7.2/css/all.min.css><link type=text/css rel=stylesheet href=/js/3rd/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=/js/3rd/viewerjs/1.11.6/viewer.min.css><link rel=stylesheet href="/css/main.min.css?=1742387916"><style type=text/css>.post-footer hr:after{content:"~ 我可是有底线的哟 ~"}.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>CubeMX下的freeRTOS - Cita's blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Cita's blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Cita 的博客</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-flinks"><a href=/flinks.html class=hvr-icon-pulse rel=section><i class="fa fa-thumbs-up hvr-icon"></i>常用学习/工具网站</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>14</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#cubemx使用freertos编程指南>CubeMX使用FreeRTOS编程指南</a><ul><li><a href=#一开发前言>一、开发前言</a></li><li><a href=#二配置界面>二、配置界面</a></li><li><a href=#三系统设置>三、系统设置</a><ul><li><a href=#21-调度内核设置>2.1 调度内核设置</a></li><li><a href=#22-内存管理设置>2.2 <a href="https://edu.csdn.net/cloud/houjie?utm_source=highword&amp;spm=1001.2101.3001.7020">内存管理</a>设置</a></li><li><a href=#23-钩子函数配置>2.3 钩子函数配置</a></li><li><a href=#25-任务运行追踪配置>2.5 任务运行追踪配置</a></li><li><a href=#26-协程配置>2.6 协程配置</a></li><li><a href=#27-软件定时器配置>2.7 软件定时器配置</a></li><li><a href=#28-中断优先级配置>2.8 中断优先级配置</a></li></ul></li><li><a href=#三内核裁剪>三、内核裁剪</a></li><li><a href=#四创建任务与队列>四、创建任务与队列</a><ul><li><a href=#41-cubemx-下任务创建与配置>4.1 CubeMX 下任务创建与配置</a></li><li><a href=#42-cubemx-下队列的创建与配置>4.2 CubeMX 下队列的创建与配置</a></li></ul></li><li><a href=#五创建定时器和信号量>五、创建定时器和信号量</a><ul><li><a href=#51-cubemx下定时器的创建和配置>5.1 CubeMX下定时器的创建和配置</a></li><li><a href=#52-cubemx下信号量的创建和配置>5.2 CubeMX下信号量的创建和配置</a></li></ul></li><li><a href=#六创建互斥量>六、创建互斥量</a><ul><li><a href=#61-cubemx下互斥量的创建和配置>6.1 CubeMX下互斥量的创建和配置</a></li></ul></li><li><a href=#七创建事件标志组>七、创建事件标志组</a><ul><li><a href=#71-cubemx下事件的创建和配置>7.1 CubeMX下事件的创建和配置</a></li></ul></li><li><a href=#八用户常量>八、用户常量</a></li><li><a href=#九任务通知>九、任务通知</a></li><li><a href=#十系统内核配置>十、系统内核配置</a></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Cita src=/imgs/img-lazy-loading.gif data-src=/imgs/cita_avatar.jpg><p class=site-author-name itemprop=name>Cita</p><div class=site-description itemprop=description>分享技术与生活的点滴。</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>14</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>4</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>26</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/cita-777 title="Github → https://github.com/cita-777" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>
+Github
+</a></span><span class=links-of-social-item><a href=mailto:juricek.chen@gmail.com title="G-Mail → mailto:juricek.chen@gmail.com" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-envelope fa-fw hvr-icon"></i>
+G-Mail</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate="2024-10-06 00:00:00 +0000 UTC"></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=76670></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=161></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate="2025-01-09 00:00:00 +0000 UTC"></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=goto-comments class="button goto-comments" title=直达评论><i class="fas fa-comments"></i></div><div id=goto-i18n-translate class=button title=多语言翻译><i class="fas fa-globe"></i></div><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a><a href=https://github.com/cita-777 rel="noopener external nofollow noreferrer" target=_blank title="Follow me on GitHub" class="exturl github-corner"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentcolor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentcolor" class="octo-body"/></svg></a><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/cubemx%E4%B8%8B%E7%9A%84freertos/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/cita_avatar.jpg"><meta itemprop=name content="Cita"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Cita"><meta itemprop=description content="分享技术与生活的点滴。"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="CubeMX下的freeRTOS"><meta itemprop=description content="CubeMX使用FreeRTOS编程指南
+
+一、开发前言
+
+CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。"></span><header class=post-header><h1 class=post-title itemprop="name headline">CubeMX下的freeRTOS
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/cubeMX%e4%b8%8b%e7%9a%84freeRTOS/index.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="fas fa-solid fa-calendar"></i>
+</span><span class=post-meta-item-text title=发表于>发表于：
+</span><time title="创建时间：2024年12月18日 00:00:00 CST" itemprop="dateCreated datePublished" datetime="2024-12-18 00:00:00 +0000 UTC">2024年12月18日
+</time></span><span class=post-meta-item><span class=post-meta-item-icon><i class="fas fa-solid fa-folder-open"></i>
+</span><span class=post-meta-item-text title=分类于>分类于：
+</span><span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/mcu/ itemprop=url rel=index><span itemprop=name>MCU</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="fas fa-solid fa-file-word"></i>
+</span><span class=post-meta-item-text>字数：</span>
+<span>11622</span>
+</span><span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="fas fa-solid fa-clock"></i>
+</span><span class=post-meta-item-text>阅读：&ap;</span>
+<span>24分钟</span>
+</span><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="fas fa-solid fa-eye"></i>
+</span><span class=post-meta-item-text>浏览：
+</span><span id=pageview-count data-path=/post/cubemx%E4%B8%8B%E7%9A%84freertos/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class=post-body itemprop=articleBody><h2 id=cubemx使用freertos编程指南>CubeMX使用FreeRTOS编程指南
+<a class=header-anchor href=#cubemx%e4%bd%bf%e7%94%a8freertos%e7%bc%96%e7%a8%8b%e6%8c%87%e5%8d%97></a></h2><h3 id=一开发前言>一、开发前言
+<a class=header-anchor href=#%e4%b8%80%e5%bc%80%e5%8f%91%e5%89%8d%e8%a8%80></a></h3><p>CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。</p><a id=more></a><p>使用 STM32CubeMX 代码生成，在 STM32Cube 固件中，通过 ARM 提供的通用 CMSIS-OS（ cmsis_os.h 和 cmsis_os.c 文件，这两个文件把给 FreeRTOS 封装了一层，调用这其中的各类函数，和直接调用 FreeRTOS 的函数没有区别 ） 封装层，将 FreeRTOS 用作实时操作系统。也就是说在一套代码里有着两套标准，在阅读源码时需要注意区分。大多数教程讲解 FreeRTOS 的函数，此处说明ARM封装后函数。</p><h3 id=二配置界面>二、配置界面
+<a class=header-anchor href=#%e4%ba%8c%e9%85%8d%e7%bd%ae%e7%95%8c%e9%9d%a2></a></h3><p>开启 FreeRTOS 之后，可以看到配置项主要分为以下几个部分</p><p><img src=/imgs/img-lazy-loading.gif data-src=1.png alt></p><p>这几个部分的主要功能如下表：</p><table><thead><tr><th style=text-align:center>配置项</th><th style=text-align:center>功能</th></tr></thead><tbody><tr><td style=text-align:center><strong>Tasks and Queues</strong></td><td style=text-align:center>任务与队列，用于配置任务体以及消息队列；</td></tr><tr><td style=text-align:center><strong>Timers and Semaphores</strong></td><td style=text-align:center>软件定时器与信号量，用于配置内核对象 （软件定时器和信号量）；</td></tr><tr><td style=text-align:center><strong>Mutexes</strong></td><td style=text-align:center>互斥量，用于配置内核对象（互斥量）</td></tr><tr><td style=text-align:center><strong>Events</strong></td><td style=text-align:center>事件，配置内核对象（事件）</td></tr><tr><td style=text-align:center><strong>FreeRTOS Heap Usage</strong></td><td style=text-align:center>查看用户任务和系统任务的堆占用</td></tr><tr><td style=text-align:center><strong>Config Parameters</strong></td><td style=text-align:center>系统的参数配置</td></tr><tr><td style=text-align:center><strong>Include Parameters</strong></td><td style=text-align:center>系统的功能裁剪</td></tr><tr><td style=text-align:center><strong>Advanced Settings</strong></td><td style=text-align:center>CubeMX 生成代码预配置项</td></tr><tr><td style=text-align:center><strong>User Constants</strong></td><td style=text-align:center>用户常量定义</td></tr></tbody></table><p>以上各个功能分的很清晰，我们需要配置什么功能就去对应的选项下进行配置，下面根据各个配置项进行详细配置介绍</p><h3 id=三系统设置>三、系统设置
+<a class=header-anchor href=#%e4%b8%89%e7%b3%bb%e7%bb%9f%e8%ae%be%e7%bd%ae></a></h3><p>首先我们先了解一下 Config Parameters，他的配置参数如下</p><p><img src=/imgs/img-lazy-loading.gif data-src=2.png alt></p><p>参数功能表：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td><strong>API</strong></td><td>显示 FreeRTOS API 接口版本</td></tr><tr><td><strong>Version</strong></td><td>显示 FreeRTOS 内核版本，CMSIS 版本</td></tr><tr><td><strong>Kernel Setting</strong></td><td>FreeRTOS 调度内核设置</td></tr><tr><td><strong>Memory management setting</strong></td><td>内存管理设置</td></tr><tr><td><strong>Hook function related definitions</strong></td><td>钩子函数有关定义</td></tr><tr><td><strong>Run time and task stats gathering related definitions</strong></td><td>系统运行时的参数收集配置</td></tr><tr><td><strong>Co-routine related definitions</strong></td><td>协程配置</td></tr><tr><td><strong>Software timer definitons</strong></td><td>软件定时器任务配置</td></tr><tr><td><strong>Interrupt nesting behaviour configuration</strong></td><td>中断优先级配置</td></tr></tbody></table><p>API 和 Version 不过多解释，显示版本信息</p><h4 id=21-调度内核设置>2.1 调度内核设置
+<a class=header-anchor href=#21-%e8%b0%83%e5%ba%a6%e5%86%85%e6%a0%b8%e8%ae%be%e7%bd%ae></a></h4><p>Kernel Setting 是 FreeRTOS 的调度内核配置，展开后有下面的配置项，使用时一般保持默认，也可以根据需要修改</p><p>![屏幕截图 2024-12-18 114744](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114744.png)</p><ul><li><strong>USE_PREEMPTION</strong></li></ul><p>USE_PREEMPTION 是 <strong>RTOS 的调度方式选择，为 1 时使用抢占式调度器，为 0 时使用协程</strong>，如果使用抢占式调度器的话内核会在每个时钟节拍中断中进行任务切换，当使用协程的话会在如下地方进行任务切换</p><ol><li>一个任务调用了函数 taskYIELD()。</li><li>一个任务调用了可以使任务进入阻塞态的 API 函数。</li><li>应用程序明确定义了在中断中执行上下文切换。</li></ol><ul><li><strong>CPU_CLOCK_HZ</strong></li></ul><p>CPU_CLOCK_HZ 是 <strong>CPU 系统时钟频率</strong>，默认使用的是晶振通过时钟树后获得的时钟频率</p><ul><li><strong>TICK_RATE_HZ</strong></li></ul><p>TICK_RATE_HZ 是 <strong>RTOS 的心跳时钟频率</strong>，默认为最大值 1000 ，即心跳时钟 1ms 跳动一次</p><ul><li><strong>MAX_PRIORITIES</strong></li></ul><p>MAX_PRIORITIES 是 <strong>RTOS 任务的最高优先级设置</strong>，默认56级，一般来说一个优先级表是32位，这里用了两个，对应64位，<strong>其中8位用于系统任务的优先级处理</strong></p><ul><li><strong>MINIMAL_STACK_SIZE</strong></li></ul><p>MINIMAL_STACK_SIZE <strong>设置分配给空闲任务的堆栈大小</strong>，该值是用字（32位）指定的，而不是字节，<strong>默认为128个字，如果修改过空闲任务，则根据实际情况修改</strong></p><ul><li><strong>MAX_TASK_NAME_LEN</strong></li></ul><p>MAX_TASK_NAME_LEN 设置<strong>任务名称的最大字符数</strong>，默认16位足够</p><ul><li><strong>USE_16_BIT_TICKS</strong></li></ul><p>USE_16_BIT_TICKS <strong>存放 Tick 周期的计数器的数字位宽</strong>，默认为 Disable 即 16 位</p><ul><li><strong>IDLE_SHOULD_YIELD</strong></li></ul><p>如果IDLE_SHOULD_YIELD <strong>设置为0，则空闲任务永远不会让位于另一个任务</strong>，只在被抢占时才会离开运行状态。如果 IDLE_SHOULD_YIELD <strong>设置为1，那么当有另一个空闲优先级任务处于Ready状态时，空闲任务将不会执行它定义的功能的不止一次迭代，而不会让位于另一个任务</strong>，这确保当应用程序任务处于空闲状态时，在空闲任务中花费的时间最少，即同在空闲优先级下，空闲任务优先级更高，不会被抢占，不会以时间片运行</p><ul><li><strong>USE_MUTEXES、USE_RECURSIVE_MUTEXES、USE_COUNTING_SEMAPHORES</strong></li></ul><p>为 1 则<strong>开启系统构建过程中的互斥量、递归互斥量和信号量</strong>，该值强制为1（ENABLE）</p><ul><li><strong>QUEUE_REGISTRY_SIZE</strong></li></ul><p>队列注册表的大小，可以<strong>用于管理队列名称和队列实体，方便运行中进行查看与管理</strong>，默认为8</p><ul><li><strong>USE_APPLICATION_TASK_TAG</strong></li></ul><p>使能时会给任务一个 TAG 标签，便于用户进行使用</p><ul><li><strong>ENABLE_BACKWARD_COMPATIBILITY</strong></li></ul><p>一个兼容性使能，<strong>使能后， FreeRTOS 8.0.0 之后的版本可以通过宏定义使用 8.0.0 版本之前的函数接口</strong>，默认使能</p><ul><li><strong>USE_PORT_OPTIMISED_TASK_SELECTION</strong></li></ul><p><strong>查找下一个任务方式的选择，查找下一个就绪任务就是查找优先级表，对优先级表进行导0算法</strong>，<strong>分为通用切换或者针对性切换</strong>，一般默认不使能，使用通用切换，通用切换使用C编写，执行效率低，兼容性高；针对性切换使用处理器自带的导0指令，使用汇编编写，切换效率高，但兼容性差</p><ul><li><strong>USE_TICKLESS_IDLE</strong></li></ul><p>使能后会生成的两个空函数PreSleepProcessing和PostSleepProcessing，用户可以编写代码进入低功耗模式，生成函数如下图</p><p>![屏幕截图 2024-12-18 114807](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114807.png)</p><ul><li><strong>USE_TASK_NOTIFICATIONS</strong></li></ul><p>任务通知使能，<strong>每个RTOS任务都有一个32位的通知值，RTOS任务通知是一个直接发送给任务的事件，它可以解除接收任务的阻塞，并可选地更新接收任务的通知值</strong>，为1开启，为0关闭，关闭可以为每个任务节省8个字节的内存空间</p><ul><li><strong>RECORD_STACK_HIGH_ADDRESS</strong></li></ul><p><strong>记录任务的堆栈入口地址到TCB</strong>，为1使能，为0关闭</p><h4 id=22-内存管理设置>2.2
+<a href="https://edu.csdn.net/cloud/houjie?utm_source=highword&amp;spm=1001.2101.3001.7020" title=内存管理 rel="noopener external nofollow noreferrer" target=_blank class=exturl>内存管理
+<i class="fa fa-external-link-alt"></i>
+</a>设置
+<a class=header-anchor href=#22-%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e8%ae%be%e7%bd%ae></a></h4><p>内存管理可以看到3个配置参数</p><p>![屏幕截图 2024-12-18 114823](D:\Desktop\各类工程文件\cita-site\content\post\cubeMX下的freeRTOS\屏幕截图 2024-12-18 114823.png)</p><ul><li><strong>Memory Allocation</strong></li></ul><p>内存分配方式，此处<strong>默认动态和静态都可以</strong></p><ul><li><strong>TOTAL_HEAP_SIZE</strong></li></ul><p><strong>内存堆的分配大小</strong>，堆本质上就是一个数组，此处是设置堆数组的大小，设置时要考虑最小要满足所有任务的使用要求，最大不要超过系统的分配上限</p><ul><li><strong>Memory Management scheme</strong></li></ul><p>内存分配方式，有heap_1.c, heap_2.c, heap_3.c, heap_4.c and heap5.c 5种，其中<strong>1、2、4、5都是先建立一个堆数组，从数组中申请，用完再释放，与C语言中molloc和free使用链表的方式不同，该方式在 MCU 中更安全稳定</strong>，此处默认使用的方式4，具体申请释放方式可以在heap4.c中阅读到</p><h4 id=23-钩子函数配置>2.3 钩子函数配置
+<a class=header-anchor href=#23-%e9%92%a9%e5%ad%90%e5%87%bd%e6%95%b0%e9%85%8d%e7%bd%ae></a></h4><p><strong>钩子函数是一种回调函数，用于在任务执行一次之后或者某些事件发生后执行的函数</strong>，该配置项里面有五个选项，控制5种不同功能的钩子函数开启，当然用户也可以在代码中自己定义</p><ul><li><strong>USE_IDLE_HOOK</strong></li></ul><p>使能后，系统生成一个空回调函数，由用户编写函数主体</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a class=lnlinks href=#hl-0-1>1</a>
+</span><span class=lnt id=hl-0-2><a class=lnlinks href=#hl-0-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vApplicationIdleHook</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>每当空闲任务执行一次，钩子函数都会被执行一次</p><ul><li><strong>USE_TICK_HOOK</strong></li></ul><p>使能后，系统生成一个空回调函数，由用户编写函数主体</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a class=lnlinks href=#hl-1-1>1</a>
+</span><span class=lnt id=hl-1-2><a class=lnlinks href=#hl-1-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vApplicationTickHook</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>每个TICK周期，钩子函数都会执行一次</p><ul><li><strong>USE_MALLOC_FAILED_HOOK</strong></li></ul><p>使能后，系统生成一个空回调函数，由用户编写函数主体</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a class=lnlinks href=#hl-2-1>1</a>
+</span><span class=lnt id=hl-2-2><a class=lnlinks href=#hl-2-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vApplicationMallocFailedHook</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>当申请动态内存失败时，钩子函数会执行一次</p><ul><li><strong>USE_DAEMON_TASK_STARTUP_HOOK</strong></li></ul><p>使能后，系统生成一个空回调函数，由用户编写函数主体</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a class=lnlinks href=#hl-3-1>1</a>
+</span><span class=lnt id=hl-3-2><a class=lnlinks href=#hl-3-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vApplicationDaemonTaskStartupHook</span><span class=p>(</span><span class=kt>void</span><span class=p>).</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>任务刚启动时，钩子函数会执行一次</p><ul><li><strong>CHECK_FOR_STACK_OVERFLOW</strong></li></ul><p>使能后，系统生成一个空回调函数，由用户编写函数主体</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-4-1><a class=lnlinks href=#hl-4-1>1</a>
+</span><span class=lnt id=hl-4-2><a class=lnlinks href=#hl-4-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vApplicationStackOverflowHook</span><span class=p>(</span> <span class=n>xTaskHandle</span> <span class=n>xTask</span><span class=p>,</span> <span class=kt>signed</span> <span class=kt>char</span> <span class=o>*</span><span class=n>pcTaskName</span> <span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p><strong>任务栈溢出时，钩子函数会执行一次，传入任务 TCB 和任务名称</strong></p><p>当我们在 CubeMX 里面开启对应钩子函数，生成代码之后，在FreeRTOS就可以看到自动生成的钩子函数，我们在里面编写相应的功能就行</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/1e78f3a061420b8ed173622095bd7d32.png alt=20211007080910></p><h4 id=25-任务运行追踪配置>2.5 任务运行追踪配置
+<a class=header-anchor href=#25-%e4%bb%bb%e5%8a%a1%e8%bf%90%e8%a1%8c%e8%bf%bd%e8%b8%aa%e9%85%8d%e7%bd%ae></a></h4><p>功能配置项如下：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/6cf405c5a10ed591a52f566776112561.png alt=20211007081447></p><ul><li><strong>GENERATE_RUN_TIME_STATS</strong></li></ul><p>开启时间统计功能，在调用 vTaskGetRunTimeStats() 函数时，<strong>将任务运行时间信息保存到可读列表中</strong></p><ul><li><strong>USE_TRACE_FACILITY</strong></li></ul><p>使能后会包含额外的结构成员和函数以帮助执行可视化和跟踪，<strong>默认开启，方便 MDK 软件工具调试使用</strong></p><ul><li><strong>USE_STATS_FORMATTING_FUNCTIONS</strong></li></ul><p>使能后会<strong>生成 vTaskList() 和 vTaskGetRunTimeStats() 函数用于获取任务运行状态</strong></p><h4 id=26-协程配置>2.6 协程配置
+<a class=header-anchor href=#26-%e5%8d%8f%e7%a8%8b%e9%85%8d%e7%bd%ae></a></h4><p>Co-routine related definitions 是协程的配置项，<strong>两个选项用来配置协程是否开启，以及协程的优先级</strong>，开启后，需要用户手动创建协程，在协程几乎很少用到了，是 FreeRTOS目前还没有把协程移除的计划，但 FreeRTOS是不会再更新和维护协程了，因此大家解一下就行</p><p>协程特点：</p><ol><li>堆栈使用<br>所有的协程使用同一个堆栈(如果是任务的话每个任务都有自己的堆栈)，这样就比使用任务消耗更少的 RAM</li><li>调度器和优先级<br>协程使用合作式的调度器，但是可以在使用抢占式的调度器中使用协程</li><li>宏实现<br>协程是通过宏定义来实现的</li><li>使用限制<br>为了降低对 RAM 的消耗做了很多的限制</li></ol><p>具体 API 接口和调度原理可以参考这篇文章 :
+<a href=https://blog.csdn.net/lushoumin/article/details/88423621 title=FreeRTOS协程 rel="noopener external nofollow noreferrer" target=_blank class=exturl>FreeRTOS协程
+<i class="fa fa-external-link-alt"></i></a></p><h4 id=27-软件定时器配置>2.7 软件定时器配置
+<a class=header-anchor href=#27-%e8%bd%af%e4%bb%b6%e5%ae%9a%e6%97%b6%e5%99%a8%e9%85%8d%e7%bd%ae></a></h4><p>软件定时器配置的一些相关项如下：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/b11299c8e377959b404b6fd3efcb4e9b.png alt=20211007084642></p><p>这四个配置项主要与软件定时器处理任务有关，<strong>软件定时器任务属于系统任务（守护线程）</strong>，开启软件定时器后用于维护软件定时器</p><ul><li><strong>USE_TIMERS</strong></li></ul><p>默认开启软件定时器任务</p><ul><li><strong>TIMER_TASK_PRIORITY</strong></li></ul><p>软件定时器任务优先级</p><ul><li><strong>TIMER_QUEUE_LENGTH</strong></li></ul><p>定时器<strong>任务队列长度</strong>，<strong>FreeRTOS 是通过队列来发送控制命令给定时器任务</strong>，叫做定时器命令队列，此处设置队列长度</p><ul><li><strong>TIMER_TASK_STACK_DEPTH</strong></li></ul><p>软件定时器<strong>任务堆栈大小</strong></p><h4 id=28-中断优先级配置>2.8 中断优先级配置
+<a class=header-anchor href=#28-%e4%b8%ad%e6%96%ad%e4%bc%98%e5%85%88%e7%ba%a7%e9%85%8d%e7%bd%ae></a></h4><ul><li><strong>LIBRARY_LOWEST_INTERRUPT_PRIORITY</strong></li></ul><p>此宏是<strong>用来设置最低优先级</strong>，FreeRTOS 使用的4位优先级，对应16位优先级，对应的最低优先级为15</p><ul><li><strong>LIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</strong></li></ul><p>设置FreeRTOS 系统可管理的最大优先级，也就是<strong>设置阈值优先级</strong>，这个大家可以自由设置，<strong>这里设置为5，也就是高于5 的优先级(优先级数小于5)不归 FreeRTOS 管理</strong></p><h3 id=三内核裁剪>三、内核裁剪
+<a class=header-anchor href=#%e4%b8%89%e5%86%85%e6%a0%b8%e8%a3%81%e5%89%aa></a></h3><p>Include Parameters 下的选项应用于内核裁剪，裁剪不必要的功能，精简系统功能，减少资源占用，主要有以下几个选项：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/cd675f22b3a82b26aee0c648dac42299.png alt=20211007095602></p><p><strong>配置项可裁剪的函数功能如下：</strong></p><table><thead><tr><th>选项</th><th>功能</th></tr></thead><tbody><tr><td>vTaskPrioritySet</td><td>改变某个任务的任务优先级。</td></tr><tr><td>uxTaskPriorityGet</td><td>查询某个任务的优先级。</td></tr><tr><td>vTaskDelete</td><td>删除任务</td></tr><tr><td>vTaskCleanUpResources</td><td>回收任务删除后的资源如RAM等等</td></tr><tr><td>vTaskSuspend</td><td>挂起任务</td></tr><tr><td>vTaskDelayUntil</td><td>阻塞延时一段绝对时间（绝对延时去去除程序执行时间，执行更精准）</td></tr><tr><td>vTaskDelay</td><td>阻塞延时一段相对时间</td></tr><tr><td>xTaskGetSchedulerState</td><td>获取任务调度器的状态，开启或未开启</td></tr><tr><td>xTaskResumeFromISR</td><td>在中断服务函数中恢复一个任务的运行</td></tr><tr><td>xQueueGetMutexHolder</td><td>获取信号量的队列拥有者，返回拥有此信号量的队列</td></tr><tr><td>xSemaphoreGetMutexHolder</td><td>查询拥有互斥锁的任务，返回任务控制块</td></tr><tr><td>pcTaskGetTaskName</td><td>获取任务名称</td></tr><tr><td>uxTaskGetStackHighWaterMark</td><td>获取任务的堆栈的历史剩余最小值，FreeRTOS 中叫做“高水位线”</td></tr><tr><td>xTaskGetCurrentTaskHandle</td><td>此函数用于获取当前任务的任务句柄，就是获取当前任务控制块</td></tr><tr><td>eTaskGetState</td><td>此函数用于查询某个任务的运行壮态，比如：运行态、阻塞态、挂起态、就绪态等</td></tr><tr><td>xEventGroupSetBitFromISR</td><td>在中断服务函数中将指定的事件位清零</td></tr><tr><td>xTimerPendFunctionCall</td><td>定时器守护任务的回调函数（定时器守护任务使用到一个命令队列，只要向队列发送信号就可以执行相应代码，可以实现“中断推迟处理”功能）</td></tr><tr><td>xTaskAbortDelay</td><td>中止延时函数，该函数能立即解除任务的阻塞状态，将任务插入就绪列表中</td></tr><tr><td>xTaskGetHandle</td><td>此函数根据任务名字获取的任务句柄（控制块）</td></tr></tbody></table><h3 id=四创建任务与队列>四、创建任务与队列
+<a class=header-anchor href=#%e5%9b%9b%e5%88%9b%e5%bb%ba%e4%bb%bb%e5%8a%a1%e4%b8%8e%e9%98%9f%e5%88%97></a></h3><h4 id=41-cubemx-下任务创建与配置>4.1 CubeMX 下任务创建与配置
+<a class=header-anchor href=#41-cubemx-%e4%b8%8b%e4%bb%bb%e5%8a%a1%e5%88%9b%e5%bb%ba%e4%b8%8e%e9%85%8d%e7%bd%ae></a></h4><p>任务（线程）是操作系统运行的基本单元，也是资源分配的基本单元， CubeMX 任务的创建基本以图形化进行，配置方式如下</p><p>进入Tashs and Queues 配置，点击 Add 添加新任务</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/dd5dcd50ca389448091ebfd17aed4c7e.png alt=20211008215753></p><p>任务配置参数介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Task Name</td><td>任务名称，保存在 TCB 结构体中，设置时自己起名字</td></tr><tr><td>Priority</td><td>任务优先级，任务的调度等级，根据自己创建任务的紧急程度设定</td></tr><tr><td>比如通信任务不能被打断，可以设计较高优先级</td><td></td></tr><tr><td>Stack Size（Words）</td><td>设定给任务分配的内存大小，单位是字，对于32位单片机来说占4个字节</td></tr><tr><td>Entry Function</td><td>任务实体，即任务的运行函数名</td></tr><tr><td>Code Generation</td><td>代码生成模式</td></tr><tr><td>As weak： 产生一个用 __weak 修饰的弱定义任务函数，用户可自己在进行定义；</td><td></td></tr><tr><td>As external： 产生一个外部引用的任务函数，用户需要自己定义该函数；</td><td></td></tr><tr><td>Default： 产生一个默认格式的任务函数，用户需要在该函数内实现自己的功能</td><td></td></tr><tr><td>Parameter:</td><td>传入的参数，保持默认就行</td></tr><tr><td>Allocation:</td><td>内存分配方式</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>设置完成后点击OK，配置就完成了，之后生成代码，使用 MDK 进一步配置任务的具体信息</p><p>在生成的代码中，我们打开 freertos.c 文件可以在代码中看到任务的配置信息</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/e6ecac30971bf50da693e1080ab6d626.png alt=20211009123942></p><p>在 freertos.c 文件的末尾部分，我们可以看到生成的任务实体</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/0f6e9b3854b47cee14056d8aace2eefe.png alt=20211009124134></p><p>任务实体本身就是一个死循环函数，循环执行程序代码，但循环体代码里面必须要有延时函数，释放当前任务对 MCU 的控制权，使其他低优先级可以执行，此外，关于任务，CubeMX 提供了一系列的用户调用接口函数，具体如下</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osThreadNew</td><td>创建新任务</td></tr><tr><td>*osThreadGetName</td><td>获取任务名称</td></tr><tr><td>osThreadGetId</td><td>获取当前任务的控制块（TCB）</td></tr><tr><td>osThreadGetState</td><td>获取当前任务的运行状态</td></tr><tr><td>osThreadGetStackSize</td><td>获取任务的堆栈大小</td></tr><tr><td>osThreadGetStackSpace</td><td>获取任务剩余的堆栈大小</td></tr><tr><td>osThreadSetPriority</td><td>设定任务优先级</td></tr><tr><td>osThreadGetPriority</td><td>获取任务优先级</td></tr><tr><td>osThreadYield</td><td>切换控制权给下一个任务</td></tr><tr><td>osThreadSuspend</td><td>挂起任务</td></tr><tr><td>osThreadResume</td><td>恢复任务（挂起多少次恢复多少次）</td></tr><tr><td>osThreadDetach</td><td>分离任务，方便任务结束进行回收</td></tr><tr><td>osThreadJoin</td><td>等待指定的任务停止</td></tr><tr><td>osThreadExit</td><td>停止当前任务</td></tr><tr><td>osThreadTerminate</td><td>停止指定任务</td></tr><tr><td>osThreadGetCount</td><td>获取激活的任务数量</td></tr><tr><td>osThreadEnumerate</td><td>列举激活的任务</td></tr></tbody></table><h4 id=42-cubemx-下队列的创建与配置>4.2 CubeMX 下队列的创建与配置
+<a class=header-anchor href=#42-cubemx-%e4%b8%8b%e9%98%9f%e5%88%97%e7%9a%84%e5%88%9b%e5%bb%ba%e4%b8%8e%e9%85%8d%e7%bd%ae></a></h4><p>队列，又称为消息队列，用于任务间的数据通信，传输数据，在操作系统里面，直接使用全局变量传输数据十分危险，看似正常运行，但不知道啥时候就会因为寄存器或者内存等等原因引起崩溃，所以引入消息，队列的概念，任务发送数据到队列，需要接受消息的任务挂起在队列的挂起列表，等待消息的到来，CubeMX 创建队列的步骤如下：</p><p>先点击 Add 添加队列</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/62dc4e476ad69b3d2eb16fc2a5319aad.png alt=20211008221618></p><p>队列配置参数介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Queue Name</td><td>队列名称（自己设定）</td></tr><tr><td>Queue Size</td><td>消息队列大小</td></tr><tr><td>Item Size</td><td>队列传输类型，保持默认16 位就行</td></tr><tr><td>Allocation</td><td>队列内存的分配方式</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>配置需要的参数后，点击OK，然后生成代码</p><p>生成代码后，我们可以在 freertos.c 中系统初始话函数中看到队列的初始化</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/505aa92488c07f23b4e40bf4a076f231.png alt=20211009130435></p><p>初始化函数会在一开始被调用，对 FreeRTOS 系统和内核对象进行初始化，初始化后系统就可以进行调度和使用内核对象，CubeMX 生成的代码自动将创建的内核对象放到初始化函数内，所以我们在任务和中断中直接使用就可以，队列的 FreeRTOS API 接口在CubeMX 内再次进行了封装，使用更加简单，使用方式如下：</p><p>我们使用的 CMSIS 2.0 版本，所以在任务文件中包含调用声明头文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-5-1><a class=lnlinks href=#hl-5-1>1</a>
+</span><span class=lnt id=hl-5-2><a class=lnlinks href=#hl-5-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&#34;cmsis_os2.h&#34;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>在队列头文件内我们可以在 600 多行的位置找到有关队列的 API 函数声明：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/df73383642f6c2623a7797acb95b015e.png alt=20211009131537></p><p>下面介绍一下队列有关接口的函数接口：</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osMessageQueueNew</td><td>创建并初始化一个新的队列</td></tr><tr><td>osMessageQueueGetName</td><td>获取队列的名字</td></tr><tr><td>osMessageQueuePut</td><td>发送一条消息到队列</td></tr><tr><td>osMessageQueueGet</td><td>从队列等待一条消息</td></tr><tr><td>osMessageQueueGetCapacity</td><td>获取队列传输消息的峰值</td></tr><tr><td>osMessageQueueGetMsgSize</td><td>获取队列使用内存池的最大峰值</td></tr><tr><td>osMessageQueueGetCount</td><td>获取队列的消息数量</td></tr><tr><td>osMessageQueueGetSpace</td><td>获取队列剩余的可用空槽</td></tr><tr><td>osMessageQueueReset</td><td>清空队列</td></tr><tr><td>osMessageQueueDelete</td><td>删除队列</td></tr></tbody></table><p>以上的API接口有其对应的传入参数，具体使用方式需要在翻源码的注释，这里我选常用的来介绍一下：</p><p>消息队列常用的是插入与获取消息，初始化系统已经帮助我们完成，在初始化的时候会获取一个队列的句柄，之后对队列的操作都是围绕这个句柄展开，比如上面的代码中，句柄就是 <code>myQueue01Handle</code> ，我们发送一个消息到这个队列，就是调用发送函数，对句柄进行操作，先看一下发送消息的函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-6-1><a class=lnlinks href=#hl-6-1>1</a>
+</span><span class=lnt id=hl-6-2><a class=lnlinks href=#hl-6-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osMessageQueuePut</span> <span class=p>(</span><span class=kt>osMessageQueueId_t</span> <span class=n>mq_id</span><span class=p>,</span> <span class=k>const</span> <span class=kt>void</span> <span class=o>*</span><span class=n>msg_ptr</span><span class=p>,</span> <span class=kt>uint8_t</span> <span class=n>msg_prio</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数的功能</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>mq_id</td><td>传入队列的句柄</td></tr><tr><td>*msg_ptr</td><td>指向需要发送的消息内容的指针</td></tr><tr><td>msg_prio</td><td>本次发送消息的优先级（目前API未加入功能）</td></tr><tr><td>timeout</td><td>发送消息的超时时间（设置为0代表一直等待发送成功）</td></tr><tr><td>osStatus_t（返回值）</td><td>返回执行结果</td></tr></tbody></table><p>返回值的可能</p><table><thead><tr><th>错误</th><th>含义</th></tr></thead><tbody><tr><td>osOK</td><td>执行正常</td></tr><tr><td>osError</td><td>系统错误</td></tr><tr><td>osErrorTimeout</td><td>执行超时</td></tr><tr><td>osErrorResource</td><td>资源不可用</td></tr><tr><td>osErrorParameter</td><td>参数无效</td></tr><tr><td>osErrorNoMemory</td><td>内存不足</td></tr><tr><td>osErrorISR</td><td>不允许在中断调用</td></tr><tr><td>osStatusReserved</td><td>防止编译器优化项，不需要管他</td></tr></tbody></table><p>所以我们发送一个消息到队列，函数用法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-7-1><a class=lnlinks href=#hl-7-1> 1</a>
+</span><span class=lnt id=hl-7-2><a class=lnlinks href=#hl-7-2> 2</a>
+</span><span class=lnt id=hl-7-3><a class=lnlinks href=#hl-7-3> 3</a>
+</span><span class=lnt id=hl-7-4><a class=lnlinks href=#hl-7-4> 4</a>
+</span><span class=lnt id=hl-7-5><a class=lnlinks href=#hl-7-5> 5</a>
+</span><span class=lnt id=hl-7-6><a class=lnlinks href=#hl-7-6> 6</a>
+</span><span class=lnt id=hl-7-7><a class=lnlinks href=#hl-7-7> 7</a>
+</span><span class=lnt id=hl-7-8><a class=lnlinks href=#hl-7-8> 8</a>
+</span><span class=lnt id=hl-7-9><a class=lnlinks href=#hl-7-9> 9</a>
+</span><span class=lnt id=hl-7-10><a class=lnlinks href=#hl-7-10>10</a>
+</span><span class=lnt id=hl-7-11><a class=lnlinks href=#hl-7-11>11</a>
+</span><span class=lnt id=hl-7-12><a class=lnlinks href=#hl-7-12>12</a>
+</span><span class=lnt id=hl-7-13><a class=lnlinks href=#hl-7-13>13</a>
+</span><span class=lnt id=hl-7-14><a class=lnlinks href=#hl-7-14>14</a>
+</span><span class=lnt id=hl-7-15><a class=lnlinks href=#hl-7-15>15</a>
+</span><span class=lnt id=hl-7-16><a class=lnlinks href=#hl-7-16>16</a>
+</span><span class=lnt id=hl-7-17><a class=lnlinks href=#hl-7-17>17</a>
+</span><span class=lnt id=hl-7-18><a class=lnlinks href=#hl-7-18>18</a>
+</span><span class=lnt id=hl-7-19><a class=lnlinks href=#hl-7-19>19</a>
+</span><span class=lnt id=hl-7-20><a class=lnlinks href=#hl-7-20>20</a>
+</span><span class=lnt id=hl-7-21><a class=lnlinks href=#hl-7-21>21</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>uint8_t</span> <span class=n>dat</span><span class=p>[]</span><span class=o>=</span><span class=s>&#34;666</span><span class=se>\r\n</span><span class=s>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span><span class=o>=</span> <span class=nf>osMessageQueuePut</span><span class=p>(</span><span class=n>myQueue01Handle</span><span class=p>,</span><span class=n>dat</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//发送成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//发送失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>1234567891011121314151617181920</span></span></span></code></pre></td></tr></table></div></div><p>发送消息的优先级暂时无用，CubeMX 对 FreeRTOS 的支持还不完善，发送消息里面的优先级未使用到，并且入队方式使用的是发送到队列尾部，没有从头部插入的方式，有需求可以 通过包含 queue.h 文件，调用 FreeRTOS 的官方代码，或者自己修改 生成代码的 API 接口结合优先级使用队列的向前插入和向后插入，丰富系统功能！</p><p>除了发送消息到队列，接受队列的消息 API 接口也经常用到，函数原型如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-8-1><a class=lnlinks href=#hl-8-1>1</a>
+</span><span class=lnt id=hl-8-2><a class=lnlinks href=#hl-8-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osMessageQueueGet</span> <span class=p>(</span><span class=kt>osMessageQueueId_t</span> <span class=n>mq_id</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=n>msg_ptr</span><span class=p>,</span> <span class=kt>uint8_t</span> <span class=o>*</span><span class=n>msg_prio</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数的功能</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>mq_id</td><td>接受队列的句柄</td></tr><tr><td>*msg_ptr</td><td>用于接受消息内容的指针</td></tr><tr><td>msg_prio</td><td>存放接受消息的优先级（目前API未加入功能）</td></tr><tr><td>timeout</td><td>接受消息的超时时间（设置为10代表，当前任务挂起在挂起列表，直到接收成功时恢复，或者10个TICK等待周期到达然后任务强行恢复，不再等待，为0则是不等待，等待期间任务挂起在内核对象的挂起队列）</td></tr><tr><td>osStatus_t（返回值）</td><td>返回执行结果</td></tr></tbody></table><p>函数用法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-9-1><a class=lnlinks href=#hl-9-1> 1</a>
+</span><span class=lnt id=hl-9-2><a class=lnlinks href=#hl-9-2> 2</a>
+</span><span class=lnt id=hl-9-3><a class=lnlinks href=#hl-9-3> 3</a>
+</span><span class=lnt id=hl-9-4><a class=lnlinks href=#hl-9-4> 4</a>
+</span><span class=lnt id=hl-9-5><a class=lnlinks href=#hl-9-5> 5</a>
+</span><span class=lnt id=hl-9-6><a class=lnlinks href=#hl-9-6> 6</a>
+</span><span class=lnt id=hl-9-7><a class=lnlinks href=#hl-9-7> 7</a>
+</span><span class=lnt id=hl-9-8><a class=lnlinks href=#hl-9-8> 8</a>
+</span><span class=lnt id=hl-9-9><a class=lnlinks href=#hl-9-9> 9</a>
+</span><span class=lnt id=hl-9-10><a class=lnlinks href=#hl-9-10>10</a>
+</span><span class=lnt id=hl-9-11><a class=lnlinks href=#hl-9-11>11</a>
+</span><span class=lnt id=hl-9-12><a class=lnlinks href=#hl-9-12>12</a>
+</span><span class=lnt id=hl-9-13><a class=lnlinks href=#hl-9-13>13</a>
+</span><span class=lnt id=hl-9-14><a class=lnlinks href=#hl-9-14>14</a>
+</span><span class=lnt id=hl-9-15><a class=lnlinks href=#hl-9-15>15</a>
+</span><span class=lnt id=hl-9-16><a class=lnlinks href=#hl-9-16>16</a>
+</span><span class=lnt id=hl-9-17><a class=lnlinks href=#hl-9-17>17</a>
+</span><span class=lnt id=hl-9-18><a class=lnlinks href=#hl-9-18>18</a>
+</span><span class=lnt id=hl-9-19><a class=lnlinks href=#hl-9-19>19</a>
+</span><span class=lnt id=hl-9-20><a class=lnlinks href=#hl-9-20>20</a>
+</span><span class=lnt id=hl-9-21><a class=lnlinks href=#hl-9-21>21</a>
+</span><span class=lnt id=hl-9-22><a class=lnlinks href=#hl-9-22>22</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>uint8_t</span> <span class=n>dat</span><span class=p>[</span><span class=mi>10</span><span class=p>]</span><span class=o>=</span><span class=p>{};</span>
+</span></span><span class=line><span class=cl>	<span class=kt>uint8_t</span> <span class=o>*</span><span class=n>pro</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span><span class=o>=</span> <span class=nf>osMessageQueueGet</span><span class=p>(</span><span class=n>myQueue01Handle</span><span class=p>,</span><span class=n>dat</span><span class=p>,</span><span class=n>pro</span><span class=p>,</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//接受成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//接受失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>注意：FreeRTOS 中获取和发送消息的 API 接口函数分为任务中调用和中断中调用，CubeMX 代码接口将两者整合了，调用时自动判断调用环境是在 ISR 还是正常运行环境中</strong></p></blockquote><h3 id=五创建定时器和信号量>五、创建定时器和信号量
+<a class=header-anchor href=#%e4%ba%94%e5%88%9b%e5%bb%ba%e5%ae%9a%e6%97%b6%e5%99%a8%e5%92%8c%e4%bf%a1%e5%8f%b7%e9%87%8f></a></h3><h4 id=51-cubemx下定时器的创建和配置>5.1 CubeMX下定时器的创建和配置
+<a class=header-anchor href=#51-cubemx%e4%b8%8b%e5%ae%9a%e6%97%b6%e5%99%a8%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e9%85%8d%e7%bd%ae></a></h4><p>软件定时器本质上就是设置一段时间，当设置的时间到达之后就执行指定的功能函数，调用的这个函数叫做回调函数。回调函数的两次执行间隔叫做定时器的定时周期，简而言之，当定时器的定时周期到了以后就会执行回调函数，下面介绍一下 CubeMX 中开启定时器的方法：</p><p>在 CubeMX 里面按下面步骤添加定时器</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/13d8411b14380373c90450df4acb0012.png alt=20211009221917></p><p>然后配置具体参数，参数的功能如下：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Timer Name</td><td>设置定时器的名称</td></tr><tr><td>Callback</td><td>设定定时器的回调函数体</td></tr><tr><td>Type</td><td>设定定时器的执行类型</td></tr><tr><td>osTimerPeriodic 定时器周期执行回调函数</td><td></td></tr><tr><td>osTimerOnce 定时器只执行一次回调函数</td><td></td></tr><tr><td>Code Generation Option</td><td>代码生成模式</td></tr><tr><td>As weak： 产生一个用 __weak 修饰的弱定义任务函数，用户可自己在进行定义；</td><td></td></tr><tr><td>As external： 产生一个外部引用的任务函数，用户需要自己定义该函数；</td><td></td></tr><tr><td>Default： 产生一个默认格式的任务函数，用户需要在该函数内实现自己的功能</td><td></td></tr><tr><td>Parameter</td><td>传入参数，保持默认NULL就行</td></tr><tr><td>Allocation</td><td>软件定时器内存的分配方式，一般使用动态</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>参数配置完成后，生成代码，我们可以在 freertos.c 文件里面看到定时器创建后获得的句柄，以及生成的回调函数：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/0d1c239ca1dbf54e70bfeec6e0140e42.png alt=20211010142155></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/5d75eb7a5bcda163a339ad69203dec41.png alt=20211010142213></p><p>有了句柄，我们就可以调用 cmsis_os2.c 里面的定时器接口函数对定时器进行操作，先看一下 CubeMX 提供的定时器接口函数及其功能</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osTimerNew</td><td>新建定时器，返回定时器控制句柄</td></tr><tr><td>osTimerGetName</td><td>获取定时器名称</td></tr><tr><td>osTimerStart</td><td>设置定时器周期，启动定时器</td></tr><tr><td>osTimerStop</td><td>停止定时器</td></tr><tr><td>osTimerIsRunning</td><td>检测定时器是否在运行</td></tr><tr><td>osTimerDelete</td><td>删除定时器</td></tr></tbody></table><p>其中常用的接口是定时器的启动和停止</p><p><strong>定时器启动： <code>osTimerStart</code>，函数原型</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-10-1><a class=lnlinks href=#hl-10-1>1</a>
+</span><span class=lnt id=hl-10-2><a class=lnlinks href=#hl-10-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osTimerStart</span> <span class=p>(</span><span class=kt>osTimerId_t</span> <span class=n>timer_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>ticks</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>timer_id</td><td>需要启动的定时器句柄</td></tr><tr><td>ticks</td><td>设置定时器的运行周期</td></tr></tbody></table><p>此处的 ticks 设定的数字是定时器两次调用回调函数的周期数目，每个 tick 是一个心跳时钟的长度</p><p>使用例程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-11-1><a class=lnlinks href=#hl-11-1> 1</a>
+</span><span class=lnt id=hl-11-2><a class=lnlinks href=#hl-11-2> 2</a>
+</span><span class=lnt id=hl-11-3><a class=lnlinks href=#hl-11-3> 3</a>
+</span><span class=lnt id=hl-11-4><a class=lnlinks href=#hl-11-4> 4</a>
+</span><span class=lnt id=hl-11-5><a class=lnlinks href=#hl-11-5> 5</a>
+</span><span class=lnt id=hl-11-6><a class=lnlinks href=#hl-11-6> 6</a>
+</span><span class=lnt id=hl-11-7><a class=lnlinks href=#hl-11-7> 7</a>
+</span><span class=lnt id=hl-11-8><a class=lnlinks href=#hl-11-8> 8</a>
+</span><span class=lnt id=hl-11-9><a class=lnlinks href=#hl-11-9> 9</a>
+</span><span class=lnt id=hl-11-10><a class=lnlinks href=#hl-11-10>10</a>
+</span><span class=lnt id=hl-11-11><a class=lnlinks href=#hl-11-11>11</a>
+</span><span class=lnt id=hl-11-12><a class=lnlinks href=#hl-11-12>12</a>
+</span><span class=lnt id=hl-11-13><a class=lnlinks href=#hl-11-13>13</a>
+</span><span class=lnt id=hl-11-14><a class=lnlinks href=#hl-11-14>14</a>
+</span><span class=lnt id=hl-11-15><a class=lnlinks href=#hl-11-15>15</a>
+</span><span class=lnt id=hl-11-16><a class=lnlinks href=#hl-11-16>16</a>
+</span><span class=lnt id=hl-11-17><a class=lnlinks href=#hl-11-17>17</a>
+</span><span class=lnt id=hl-11-18><a class=lnlinks href=#hl-11-18>18</a>
+</span><span class=lnt id=hl-11-19><a class=lnlinks href=#hl-11-19>19</a>
+</span><span class=lnt id=hl-11-20><a class=lnlinks href=#hl-11-20>20</a>
+</span><span class=lnt id=hl-11-21><a class=lnlinks href=#hl-11-21>21</a>
+</span><span class=lnt id=hl-11-22><a class=lnlinks href=#hl-11-22>22</a>
+</span><span class=lnt id=hl-11-23><a class=lnlinks href=#hl-11-23>23</a>
+</span><span class=lnt id=hl-11-24><a class=lnlinks href=#hl-11-24>24</a>
+</span><span class=lnt id=hl-11-25><a class=lnlinks href=#hl-11-25>25</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>    <span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint8_t</span> <span class=n>dat</span><span class=p>[</span><span class=mi>10</span><span class=p>]</span><span class=o>=</span><span class=p>{</span><span class=mi>0</span><span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=kt>uint8_t</span> <span class=o>*</span><span class=n>pro</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span><span class=o>=</span> <span class=nf>osTimerStart</span><span class=p>(</span><span class=n>myTimer01Handle</span><span class=p>,</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//启动成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//启动失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021222324</span></span></span></code></pre></td></tr></table></div></div><p>按照例程启动定时器，定时器会以 10个tick 的周期，调用回调函数</p><blockquote><p>回调函数不要放阻塞函数，程序尽可能短</p></blockquote><p><strong>定时器启动： <code>osTimerStop</code>，函数原型</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-12-1><a class=lnlinks href=#hl-12-1>1</a>
+</span><span class=lnt id=hl-12-2><a class=lnlinks href=#hl-12-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osTimerStop</span> <span class=p>(</span><span class=kt>osTimerId_t</span> <span class=n>timer_id</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数只有一个，就是定时器的控制句柄，传入即可停止定时器，例程如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-13-1><a class=lnlinks href=#hl-13-1> 1</a>
+</span><span class=lnt id=hl-13-2><a class=lnlinks href=#hl-13-2> 2</a>
+</span><span class=lnt id=hl-13-3><a class=lnlinks href=#hl-13-3> 3</a>
+</span><span class=lnt id=hl-13-4><a class=lnlinks href=#hl-13-4> 4</a>
+</span><span class=lnt id=hl-13-5><a class=lnlinks href=#hl-13-5> 5</a>
+</span><span class=lnt id=hl-13-6><a class=lnlinks href=#hl-13-6> 6</a>
+</span><span class=lnt id=hl-13-7><a class=lnlinks href=#hl-13-7> 7</a>
+</span><span class=lnt id=hl-13-8><a class=lnlinks href=#hl-13-8> 8</a>
+</span><span class=lnt id=hl-13-9><a class=lnlinks href=#hl-13-9> 9</a>
+</span><span class=lnt id=hl-13-10><a class=lnlinks href=#hl-13-10>10</a>
+</span><span class=lnt id=hl-13-11><a class=lnlinks href=#hl-13-11>11</a>
+</span><span class=lnt id=hl-13-12><a class=lnlinks href=#hl-13-12>12</a>
+</span><span class=lnt id=hl-13-13><a class=lnlinks href=#hl-13-13>13</a>
+</span><span class=lnt id=hl-13-14><a class=lnlinks href=#hl-13-14>14</a>
+</span><span class=lnt id=hl-13-15><a class=lnlinks href=#hl-13-15>15</a>
+</span><span class=lnt id=hl-13-16><a class=lnlinks href=#hl-13-16>16</a>
+</span><span class=lnt id=hl-13-17><a class=lnlinks href=#hl-13-17>17</a>
+</span><span class=lnt id=hl-13-18><a class=lnlinks href=#hl-13-18>18</a>
+</span><span class=lnt id=hl-13-19><a class=lnlinks href=#hl-13-19>19</a>
+</span><span class=lnt id=hl-13-20><a class=lnlinks href=#hl-13-20>20</a>
+</span><span class=lnt id=hl-13-21><a class=lnlinks href=#hl-13-21>21</a>
+</span><span class=lnt id=hl-13-22><a class=lnlinks href=#hl-13-22>22</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>uint8_t</span> <span class=n>dat</span><span class=p>[</span><span class=mi>10</span><span class=p>]</span><span class=o>=</span><span class=p>{</span><span class=mi>0</span><span class=p>};</span>
+</span></span><span class=line><span class=cl>	<span class=kt>uint8_t</span> <span class=o>*</span><span class=n>pro</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span><span class=o>=</span> <span class=nf>osTimerStop</span><span class=p>(</span><span class=n>myTimer01Handle</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//停止成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//停止失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>软件定时器是由软件定时器维护任务进行维护，检测各个定时器的状态，进行处理，回调回调函数，软件定时器维护任务的参数配置在前面的 Config 就已经提到过</strong></p></blockquote><h4 id=52-cubemx下信号量的创建和配置>5.2 CubeMX下信号量的创建和配置
+<a class=header-anchor href=#52-cubemx%e4%b8%8b%e4%bf%a1%e5%8f%b7%e9%87%8f%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e9%85%8d%e7%bd%ae></a></h4><p>信号量是 RTOS 的一个内核对象，该对象有一个队列表示该信号量拥有的信号数目，任何任务都可以对这个信号数目进行获取和释放，获取时信号-1，释放时信号+1，为0时不能继续获取，此时有任务想要继续获取信号量的话，任务会挂起在该内核对象的挂起列表，等到信号可以获取时进行恢复，根据这个特性，<strong>信号量常用于控制对共享资源的访问和任务同步</strong>，下面介绍一下 CubeMX 下信号量的配置：</p><p>点开配置页面，可以看到有两个信号量添加页面，其中 Binary Semaphores 是二值信号量，Counting Semaphores 是计数信号量，二进制信号量，仅有一个队列或者说 token，用于同步一个操作；计数信号量则拥有多个 tokens，可用于同步多个操作，或者管理有限资源</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/f5b5c121e27659737ee3dee5f5e8778c.png alt=20211010153231></p><p><strong>二值信号量创建：</strong></p><p>点击 Add，配置参数</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/cf4eb10549dcde7e1ffd7e3b8ad7078c.png alt=20211010163823></p><p>参数介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Semaphore Name</td><td>信号量名称</td></tr><tr><td>Allocation</td><td>内存分配方式，一般使用动态</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p><strong>计数信号量：</strong></p><p>点击 Add，配置参数</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/c7c6dc536edba5089ff0e2da7e99ba80.png alt=20211010163959></p><p>参数介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Semaphore Name</td><td>信号量名称</td></tr><tr><td>Count</td><td>计数信号量的最大数目</td></tr><tr><td>Allocation</td><td>内存分配方式，一般使用动态</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>配置完成后我们生成代码，在 freertos.c 的初始化代码中可以看到信号量被创建，并且返回了信号量的控制句柄</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/82b2cf49541c6177bef892e5778ed86a.png alt=20211010164347></p><p>下面介绍一下 CubeMX 提供的信号量操作函数接口：</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osSemaphoreNew</td><td>创建新的信号量</td></tr><tr><td>*osSemaphoreGetName</td><td>获取信号量的名称</td></tr><tr><td>osSemaphoreAcquire</td><td>获取信号量</td></tr><tr><td>osSemaphoreRelease</td><td>释放信号量</td></tr><tr><td>osSemaphoreGetCount</td><td>获取当前可用信号量的数目</td></tr><tr><td>osSemaphoreDelete</td><td>删除信号量</td></tr></tbody></table><p>其中常用的函数有获取和释放信号量，下面介绍一下这两个函数的参数和使用方式</p><p><strong>获取信号量 osSemaphoreAcquire</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-14-1><a class=lnlinks href=#hl-14-1>1</a>
+</span><span class=lnt id=hl-14-2><a class=lnlinks href=#hl-14-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osSemaphoreAcquire</span> <span class=p>(</span><span class=kt>osSemaphoreId_t</span> <span class=n>semaphore_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>semaphore_id</td><td>传入要获取信号量的控制句柄</td></tr><tr><td>timeout</td><td>获取等待时间（等待期间任务挂起在内核对象的挂起队列）</td></tr></tbody></table><p>使用例程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-15-1><a class=lnlinks href=#hl-15-1> 1</a>
+</span><span class=lnt id=hl-15-2><a class=lnlinks href=#hl-15-2> 2</a>
+</span><span class=lnt id=hl-15-3><a class=lnlinks href=#hl-15-3> 3</a>
+</span><span class=lnt id=hl-15-4><a class=lnlinks href=#hl-15-4> 4</a>
+</span><span class=lnt id=hl-15-5><a class=lnlinks href=#hl-15-5> 5</a>
+</span><span class=lnt id=hl-15-6><a class=lnlinks href=#hl-15-6> 6</a>
+</span><span class=lnt id=hl-15-7><a class=lnlinks href=#hl-15-7> 7</a>
+</span><span class=lnt id=hl-15-8><a class=lnlinks href=#hl-15-8> 8</a>
+</span><span class=lnt id=hl-15-9><a class=lnlinks href=#hl-15-9> 9</a>
+</span><span class=lnt id=hl-15-10><a class=lnlinks href=#hl-15-10>10</a>
+</span><span class=lnt id=hl-15-11><a class=lnlinks href=#hl-15-11>11</a>
+</span><span class=lnt id=hl-15-12><a class=lnlinks href=#hl-15-12>12</a>
+</span><span class=lnt id=hl-15-13><a class=lnlinks href=#hl-15-13>13</a>
+</span><span class=lnt id=hl-15-14><a class=lnlinks href=#hl-15-14>14</a>
+</span><span class=lnt id=hl-15-15><a class=lnlinks href=#hl-15-15>15</a>
+</span><span class=lnt id=hl-15-16><a class=lnlinks href=#hl-15-16>16</a>
+</span><span class=lnt id=hl-15-17><a class=lnlinks href=#hl-15-17>17</a>
+</span><span class=lnt id=hl-15-18><a class=lnlinks href=#hl-15-18>18</a>
+</span><span class=lnt id=hl-15-19><a class=lnlinks href=#hl-15-19>19</a>
+</span><span class=lnt id=hl-15-20><a class=lnlinks href=#hl-15-20>20</a>
+</span><span class=lnt id=hl-15-21><a class=lnlinks href=#hl-15-21>21</a>
+</span><span class=lnt id=hl-15-22><a class=lnlinks href=#hl-15-22>22</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osSemaphoreAcquire</span><span class=p>(</span><span class=n>myBinarySem01Handle</span><span class=p>,</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//获取成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//获取失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021</span></span></span></code></pre></td></tr></table></div></div><p><strong>释放信号量 osSemaphoreRelease</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-16-1><a class=lnlinks href=#hl-16-1>1</a>
+</span><span class=lnt id=hl-16-2><a class=lnlinks href=#hl-16-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osSemaphoreRelease</span> <span class=p>(</span><span class=kt>osSemaphoreId_t</span> <span class=n>semaphore_id</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>semaphore_id</td><td>传入要释放的信号量控制句柄</td></tr></tbody></table><p>使用例程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-17-1><a class=lnlinks href=#hl-17-1> 1</a>
+</span><span class=lnt id=hl-17-2><a class=lnlinks href=#hl-17-2> 2</a>
+</span><span class=lnt id=hl-17-3><a class=lnlinks href=#hl-17-3> 3</a>
+</span><span class=lnt id=hl-17-4><a class=lnlinks href=#hl-17-4> 4</a>
+</span><span class=lnt id=hl-17-5><a class=lnlinks href=#hl-17-5> 5</a>
+</span><span class=lnt id=hl-17-6><a class=lnlinks href=#hl-17-6> 6</a>
+</span><span class=lnt id=hl-17-7><a class=lnlinks href=#hl-17-7> 7</a>
+</span><span class=lnt id=hl-17-8><a class=lnlinks href=#hl-17-8> 8</a>
+</span><span class=lnt id=hl-17-9><a class=lnlinks href=#hl-17-9> 9</a>
+</span><span class=lnt id=hl-17-10><a class=lnlinks href=#hl-17-10>10</a>
+</span><span class=lnt id=hl-17-11><a class=lnlinks href=#hl-17-11>11</a>
+</span><span class=lnt id=hl-17-12><a class=lnlinks href=#hl-17-12>12</a>
+</span><span class=lnt id=hl-17-13><a class=lnlinks href=#hl-17-13>13</a>
+</span><span class=lnt id=hl-17-14><a class=lnlinks href=#hl-17-14>14</a>
+</span><span class=lnt id=hl-17-15><a class=lnlinks href=#hl-17-15>15</a>
+</span><span class=lnt id=hl-17-16><a class=lnlinks href=#hl-17-16>16</a>
+</span><span class=lnt id=hl-17-17><a class=lnlinks href=#hl-17-17>17</a>
+</span><span class=lnt id=hl-17-18><a class=lnlinks href=#hl-17-18>18</a>
+</span><span class=lnt id=hl-17-19><a class=lnlinks href=#hl-17-19>19</a>
+</span><span class=lnt id=hl-17-20><a class=lnlinks href=#hl-17-20>20</a>
+</span><span class=lnt id=hl-17-21><a class=lnlinks href=#hl-17-21>21</a>
+</span><span class=lnt id=hl-17-22><a class=lnlinks href=#hl-17-22>22</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osSemaphoreRelease</span><span class=p>(</span><span class=n>myBinarySem01Handle</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//释放成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//释放失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>二值信号量和计数信号量的操作基本一致，没用区别，只是用有的信号队列最大数目不同而已</strong></p><p><strong>同时注意信号量在使用过程中会出现优先级反转的Bug，使用时需要注意</strong></p></blockquote><h3 id=六创建互斥量>六、创建互斥量
+<a class=header-anchor href=#%e5%85%ad%e5%88%9b%e5%bb%ba%e4%ba%92%e6%96%a5%e9%87%8f></a></h3><h4 id=61-cubemx下互斥量的创建和配置>6.1 CubeMX下互斥量的创建和配置
+<a class=header-anchor href=#61-cubemx%e4%b8%8b%e4%ba%92%e6%96%a5%e9%87%8f%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e9%85%8d%e7%bd%ae></a></h4><p>互斥量其实就是一个拥有优先级继承的二值信号量，互斥信号量适合用于那些需要互斥访问的应用中，在互斥访问中互斥信号量相当于一个钥匙，当任务想要使用资源的时候就必须先获得这个钥匙，当使用完资源以后就必须归还这个钥匙，这样其他的任务就可以拿着这个钥匙去使用资源，与信号量不同的是，互斥量的释放必须由获取他的任务进行释放，如果不释放，可能会造成死锁</p><blockquote><p><strong>死锁就是两个任务获取对方拥有的锁，各自进入挂起列表，无法释放互斥锁</strong></p></blockquote><p>下面介绍一下 CubeMX 下互斥量的配置，在配置界面我们可用看到两个互斥量配置界面，上面的是普通互斥量，其获取只能获取一次，重复获取是无效的，而第二个则是递归互斥量，递归互斥信号量可以获取多次，但对应的也要释放多次才能让出使用权，比如我获取3次，任务要释放3次才能释放该互斥量的使用权</p><p>使用互斥量，需要点击 Add 然后配置参数</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/18c865980b3defab6043e52b5ff27f30.png alt=20211010173127></p><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Mutex Name</td><td>互斥量名称</td></tr><tr><td>Allocation</td><td>内存分配方式，一般使用动态</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>递归互斥信号量的配置方式与其相同，包括配置参数也相同，两者只是在用法上有些许区别，添加方式如下：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/c6f0a5e73f8dcc04adf62d8bdb57a04c.png alt=20211010173704></p><p>添加配置完成后，点击生成代码，在 freertos.c 文件中我们可以看到互斥量初始化完成，并且生成了对应的控制句柄</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/efee4357f4d68db0727541159149fef4.png alt=20211010174350></p><p>CubeMX 提供的 API 接口函数如下</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osMutexNew</td><td>创建互斥量</td></tr><tr><td>*osMutexGetName</td><td>获取互斥量名称</td></tr><tr><td>osMutexAcquire</td><td>任务获取互斥量</td></tr><tr><td>osMutexRelease</td><td>任务释放互斥量</td></tr><tr><td>osMutexGetOwner</td><td>获取互斥量的拥有任务的任务 TCB</td></tr><tr><td>osMutexDelete</td><td>删除互斥量</td></tr></tbody></table><p>主要使用到的还是互斥量的获取与释放，下面分析一下这两个函数：</p><p><strong>获取互斥量 osMutexAcquire</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-18-1><a class=lnlinks href=#hl-18-1>1</a>
+</span><span class=lnt id=hl-18-2><a class=lnlinks href=#hl-18-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osMutexAcquire</span> <span class=p>(</span><span class=kt>osMutexId_t</span> <span class=n>mutex_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>mutex_id</td><td>互斥量控制句柄</td></tr><tr><td>timeout</td><td>获取互斥量时的等待时间（等待期间任务挂起在内核对象的挂起队列）</td></tr></tbody></table><p>使用方式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-19-1><a class=lnlinks href=#hl-19-1> 1</a>
+</span><span class=lnt id=hl-19-2><a class=lnlinks href=#hl-19-2> 2</a>
+</span><span class=lnt id=hl-19-3><a class=lnlinks href=#hl-19-3> 3</a>
+</span><span class=lnt id=hl-19-4><a class=lnlinks href=#hl-19-4> 4</a>
+</span><span class=lnt id=hl-19-5><a class=lnlinks href=#hl-19-5> 5</a>
+</span><span class=lnt id=hl-19-6><a class=lnlinks href=#hl-19-6> 6</a>
+</span><span class=lnt id=hl-19-7><a class=lnlinks href=#hl-19-7> 7</a>
+</span><span class=lnt id=hl-19-8><a class=lnlinks href=#hl-19-8> 8</a>
+</span><span class=lnt id=hl-19-9><a class=lnlinks href=#hl-19-9> 9</a>
+</span><span class=lnt id=hl-19-10><a class=lnlinks href=#hl-19-10>10</a>
+</span><span class=lnt id=hl-19-11><a class=lnlinks href=#hl-19-11>11</a>
+</span><span class=lnt id=hl-19-12><a class=lnlinks href=#hl-19-12>12</a>
+</span><span class=lnt id=hl-19-13><a class=lnlinks href=#hl-19-13>13</a>
+</span><span class=lnt id=hl-19-14><a class=lnlinks href=#hl-19-14>14</a>
+</span><span class=lnt id=hl-19-15><a class=lnlinks href=#hl-19-15>15</a>
+</span><span class=lnt id=hl-19-16><a class=lnlinks href=#hl-19-16>16</a>
+</span><span class=lnt id=hl-19-17><a class=lnlinks href=#hl-19-17>17</a>
+</span><span class=lnt id=hl-19-18><a class=lnlinks href=#hl-19-18>18</a>
+</span><span class=lnt id=hl-19-19><a class=lnlinks href=#hl-19-19>19</a>
+</span><span class=lnt id=hl-19-20><a class=lnlinks href=#hl-19-20>20</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span><span class=o>=</span> <span class=nf>osMutexAcquire</span><span class=p>(</span><span class=n>myMutex01Handle</span><span class=p>,</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//获取成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//获取失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>12345678910111213141516171819</span></span></span></code></pre></td></tr></table></div></div><p><strong>释放互斥量 osMutexRelease</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-20-1><a class=lnlinks href=#hl-20-1>1</a>
+</span><span class=lnt id=hl-20-2><a class=lnlinks href=#hl-20-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>osStatus_t</span> <span class=nf>osMutexRelease</span> <span class=p>(</span><span class=kt>osMutexId_t</span> <span class=n>mutex_id</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>mutex_id</td><td>互斥量控制句柄</td></tr></tbody></table><p>使用方式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-21-1><a class=lnlinks href=#hl-21-1> 1</a>
+</span><span class=lnt id=hl-21-2><a class=lnlinks href=#hl-21-2> 2</a>
+</span><span class=lnt id=hl-21-3><a class=lnlinks href=#hl-21-3> 3</a>
+</span><span class=lnt id=hl-21-4><a class=lnlinks href=#hl-21-4> 4</a>
+</span><span class=lnt id=hl-21-5><a class=lnlinks href=#hl-21-5> 5</a>
+</span><span class=lnt id=hl-21-6><a class=lnlinks href=#hl-21-6> 6</a>
+</span><span class=lnt id=hl-21-7><a class=lnlinks href=#hl-21-7> 7</a>
+</span><span class=lnt id=hl-21-8><a class=lnlinks href=#hl-21-8> 8</a>
+</span><span class=lnt id=hl-21-9><a class=lnlinks href=#hl-21-9> 9</a>
+</span><span class=lnt id=hl-21-10><a class=lnlinks href=#hl-21-10>10</a>
+</span><span class=lnt id=hl-21-11><a class=lnlinks href=#hl-21-11>11</a>
+</span><span class=lnt id=hl-21-12><a class=lnlinks href=#hl-21-12>12</a>
+</span><span class=lnt id=hl-21-13><a class=lnlinks href=#hl-21-13>13</a>
+</span><span class=lnt id=hl-21-14><a class=lnlinks href=#hl-21-14>14</a>
+</span><span class=lnt id=hl-21-15><a class=lnlinks href=#hl-21-15>15</a>
+</span><span class=lnt id=hl-21-16><a class=lnlinks href=#hl-21-16>16</a>
+</span><span class=lnt id=hl-21-17><a class=lnlinks href=#hl-21-17>17</a>
+</span><span class=lnt id=hl-21-18><a class=lnlinks href=#hl-21-18>18</a>
+</span><span class=lnt id=hl-21-19><a class=lnlinks href=#hl-21-19>19</a>
+</span><span class=lnt id=hl-21-20><a class=lnlinks href=#hl-21-20>20</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartTask02</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartTask02 */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>result</span><span class=o>=</span> <span class=nf>osMutexRelease</span><span class=p>(</span><span class=n>myMutex01Handle</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//释放成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>//释放失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartTask02 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>12345678910111213141516171819</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>使用方式和信号量基本相同，因为互斥量本质上就是信号量的一种</strong></p></blockquote><h3 id=七创建事件标志组>七、创建事件标志组
+<a class=header-anchor href=#%e4%b8%83%e5%88%9b%e5%bb%ba%e4%ba%8b%e4%bb%b6%e6%a0%87%e5%bf%97%e7%bb%84></a></h3><h4 id=71-cubemx下事件的创建和配置>7.1 CubeMX下事件的创建和配置
+<a class=header-anchor href=#71-cubemx%e4%b8%8b%e4%ba%8b%e4%bb%b6%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e9%85%8d%e7%bd%ae></a></h4><p>任务间的同步除了信号量还有时间标志组，信号的同步通常是一对一的同步，有的时候系统需要多对一的同步，比如同时满足5个按键按下时，任务启动，如果使用信号会很占据资源，所以 RTOS 引入了事件标志组来满足这一需求，下面我们看一下 CubeMX 内事件标志组的配置方法：</p><p>点击 Add 创建事件标志组</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/628cf7734f3f2de7e692bcc4194f4d71.png alt=20211010201501></p><p>配置介绍</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>Event flags Name</td><td>事件标志组名称</td></tr><tr><td>Allocation</td><td>内存分配方式，一般使用动态</td></tr><tr><td>Static： 静态方式是直接在RAM占据一个静态空间</td><td></td></tr><tr><td>Dynamic：动态方则是在初始配置的内存池大小数组中动态申请、释放空间</td><td></td></tr></tbody></table><p>配置完成后，生成代码，在系统初始化内，看有没有生成事件标志组控制句柄，可以看到句柄创建完成</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/379dfd171612fcd7d24d9b5d03d808be.png alt=20211010201922></p><p>CubeMX 提供的配置事件标志组的接口 API 如下：</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osEventFlagsNew</td><td>创建事件标志组</td></tr><tr><td>*osEventFlagsGetName</td><td>获取事件标志组名称</td></tr><tr><td>osEventFlagsSet</td><td>设置事件标志组</td></tr><tr><td>osEventFlagsClear</td><td>清除事件标志组</td></tr><tr><td>osEventFlagsGet</td><td>获取当前事件组标志信息</td></tr><tr><td>osEventFlagsWait</td><td>等待事件标志组触发</td></tr><tr><td>osEventFlagsDelete</td><td>删除事件标志组</td></tr></tbody></table><p>常用的 API 接口是设置事件标志组以及等待事件标志组的触发，下面我们分析一下这两个 API</p><p>在了解 API 前我们需要简单了解一下事件的触发原理：首先事件标志组的数据类型为 EventGroupHandle_t，<strong>事件标志组中的所有事件位都存储在一个无符号的 EventBits_t 类型的变量中</strong>，当 configUSE_16_BIT_TICKS 为 1 的时候事件标志组可以存储 8 个事件位，当 configUSE_16_BIT_TICKS 为 0 的时候事件标志组存储 24个事件位，每个事件位其实就是一个0或者1数字，就像下面的24位组成一个事件标志组</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/5cfbdcd0160d44aeb9ba16e0d135affe.png alt=20211010203414></p><p>我们在使用事件API接口函数前<strong>需要先定义我们需要的触发事件位</strong>，比如添加如下的代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-22-1><a class=lnlinks href=#hl-22-1>1</a>
+</span><span class=lnt id=hl-22-2><a class=lnlinks href=#hl-22-2>2</a>
+</span><span class=lnt id=hl-22-3><a class=lnlinks href=#hl-22-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#define event1 1&lt;&lt;1 	</span><span class=c1>//事件1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define event2 1&lt;&lt;2 	</span><span class=c1>//事件2
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=mi>12</span></span></span></code></pre></td></tr></table></div></div><p>编写好触发事件后，我们在看如何使用 API 接口</p><p><strong>设置事件标志 osEventFlagsSet</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-23-1><a class=lnlinks href=#hl-23-1>1</a>
+</span><span class=lnt id=hl-23-2><a class=lnlinks href=#hl-23-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>uint32_t</span> <span class=nf>osEventFlagsSet</span> <span class=p>(</span><span class=kt>osEventFlagsId_t</span> <span class=n>ef_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>flags</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>ef_id</td><td>事件标志组控制句柄</td></tr><tr><td>flags</td><td>事件位</td></tr></tbody></table><p>使用方式：设置事件1和事件2</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-24-1><a class=lnlinks href=#hl-24-1> 1</a>
+</span><span class=lnt id=hl-24-2><a class=lnlinks href=#hl-24-2> 2</a>
+</span><span class=lnt id=hl-24-3><a class=lnlinks href=#hl-24-3> 3</a>
+</span><span class=lnt id=hl-24-4><a class=lnlinks href=#hl-24-4> 4</a>
+</span><span class=lnt id=hl-24-5><a class=lnlinks href=#hl-24-5> 5</a>
+</span><span class=lnt id=hl-24-6><a class=lnlinks href=#hl-24-6> 6</a>
+</span><span class=lnt id=hl-24-7><a class=lnlinks href=#hl-24-7> 7</a>
+</span><span class=lnt id=hl-24-8><a class=lnlinks href=#hl-24-8> 8</a>
+</span><span class=lnt id=hl-24-9><a class=lnlinks href=#hl-24-9> 9</a>
+</span><span class=lnt id=hl-24-10><a class=lnlinks href=#hl-24-10>10</a>
+</span><span class=lnt id=hl-24-11><a class=lnlinks href=#hl-24-11>11</a>
+</span><span class=lnt id=hl-24-12><a class=lnlinks href=#hl-24-12>12</a>
+</span><span class=lnt id=hl-24-13><a class=lnlinks href=#hl-24-13>13</a>
+</span><span class=lnt id=hl-24-14><a class=lnlinks href=#hl-24-14>14</a>
+</span><span class=lnt id=hl-24-15><a class=lnlinks href=#hl-24-15>15</a>
+</span><span class=lnt id=hl-24-16><a class=lnlinks href=#hl-24-16>16</a>
+</span><span class=lnt id=hl-24-17><a class=lnlinks href=#hl-24-17>17</a>
+</span><span class=lnt id=hl-24-18><a class=lnlinks href=#hl-24-18>18</a>
+</span><span class=lnt id=hl-24-19><a class=lnlinks href=#hl-24-19>19</a>
+</span><span class=lnt id=hl-24-20><a class=lnlinks href=#hl-24-20>20</a>
+</span><span class=lnt id=hl-24-21><a class=lnlinks href=#hl-24-21>21</a>
+</span><span class=lnt id=hl-24-22><a class=lnlinks href=#hl-24-22>22</a>
+</span><span class=lnt id=hl-24-23><a class=lnlinks href=#hl-24-23>23</a>
+</span><span class=lnt id=hl-24-24><a class=lnlinks href=#hl-24-24>24</a>
+</span><span class=lnt id=hl-24-25><a class=lnlinks href=#hl-24-25>25</a>
+</span><span class=lnt id=hl-24-26><a class=lnlinks href=#hl-24-26>26</a>
+</span><span class=lnt id=hl-24-27><a class=lnlinks href=#hl-24-27>27</a>
+</span><span class=lnt id=hl-24-28><a class=lnlinks href=#hl-24-28>28</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osEventFlagsSet</span><span class=p>(</span><span class=n>myEvent01Handle</span><span class=p>,</span><span class=n>event1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//事件1设置成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//事件1设置失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osEventFlagsSet</span><span class=p>(</span><span class=n>myEvent01Handle</span><span class=p>,</span><span class=n>event2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//事件2设置成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//事件2设置失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span> 
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>123456789101112131415161718192021222324252627</span></span></span></code></pre></td></tr></table></div></div><p><strong>等待事件标志 osEventFlagsWait</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-25-1><a class=lnlinks href=#hl-25-1>1</a>
+</span><span class=lnt id=hl-25-2><a class=lnlinks href=#hl-25-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>uint32_t</span> <span class=nf>osEventFlagsWait</span> <span class=p>(</span><span class=kt>osEventFlagsId_t</span> <span class=n>ef_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>flags</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>options</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>ef_id</td><td>事件标志组控制句柄</td></tr><tr><td>flags</td><td>等待的事件位</td></tr><tr><td>options</td><td>等待事件位的操作</td></tr><tr><td>osFlagsWaitAny ：等待的事件位有任意一个等到就恢复任务</td><td></td></tr><tr><td>osFlagsWaitAll：等待的事件位全部等到才恢复任务</td><td></td></tr><tr><td>osFlagsNoClear：等待成功后不清楚所等待的标志位（默认清除）</td><td></td></tr><tr><td>timeout</td><td>等待事件组的等待时间（等待期间任务挂起在内核对象的挂起队列）</td></tr></tbody></table><p>使用例子：同时等待事件1和事件2，且等待到不清除</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-26-1><a class=lnlinks href=#hl-26-1> 1</a>
+</span><span class=lnt id=hl-26-2><a class=lnlinks href=#hl-26-2> 2</a>
+</span><span class=lnt id=hl-26-3><a class=lnlinks href=#hl-26-3> 3</a>
+</span><span class=lnt id=hl-26-4><a class=lnlinks href=#hl-26-4> 4</a>
+</span><span class=lnt id=hl-26-5><a class=lnlinks href=#hl-26-5> 5</a>
+</span><span class=lnt id=hl-26-6><a class=lnlinks href=#hl-26-6> 6</a>
+</span><span class=lnt id=hl-26-7><a class=lnlinks href=#hl-26-7> 7</a>
+</span><span class=lnt id=hl-26-8><a class=lnlinks href=#hl-26-8> 8</a>
+</span><span class=lnt id=hl-26-9><a class=lnlinks href=#hl-26-9> 9</a>
+</span><span class=lnt id=hl-26-10><a class=lnlinks href=#hl-26-10>10</a>
+</span><span class=lnt id=hl-26-11><a class=lnlinks href=#hl-26-11>11</a>
+</span><span class=lnt id=hl-26-12><a class=lnlinks href=#hl-26-12>12</a>
+</span><span class=lnt id=hl-26-13><a class=lnlinks href=#hl-26-13>13</a>
+</span><span class=lnt id=hl-26-14><a class=lnlinks href=#hl-26-14>14</a>
+</span><span class=lnt id=hl-26-15><a class=lnlinks href=#hl-26-15>15</a>
+</span><span class=lnt id=hl-26-16><a class=lnlinks href=#hl-26-16>16</a>
+</span><span class=lnt id=hl-26-17><a class=lnlinks href=#hl-26-17>17</a>
+</span><span class=lnt id=hl-26-18><a class=lnlinks href=#hl-26-18>18</a>
+</span><span class=lnt id=hl-26-19><a class=lnlinks href=#hl-26-19>19</a>
+</span><span class=lnt id=hl-26-20><a class=lnlinks href=#hl-26-20>20</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osEventFlagsWait</span><span class=p>(</span><span class=n>myEvent01Handle</span><span class=p>,</span><span class=n>event1</span><span class=o>|</span><span class=n>event2</span><span class=p>,</span><span class=n>osFlagsWaitAll</span><span class=o>|</span><span class=n>osFlagsNoClear</span><span class=p>,</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//等待成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//等待失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>12345678910111213141516171819</span></span></span></code></pre></td></tr></table></div></div><h3 id=八用户常量>八、用户常量
+<a class=header-anchor href=#%e5%85%ab%e7%94%a8%e6%88%b7%e5%b8%b8%e9%87%8f></a></h3><p>User Constants 用于添加用户常量，将不变的量转化为常量保存，可以节省 RAM 资源空间，因为常量和变量的保存位置不同，详细了解可以参考这篇文章：
+<a href=https://blog.csdn.net/qq_45396672/article/details/119155585 title=C语言：内存四区 rel="noopener external nofollow noreferrer" target=_blank class=exturl>C语言：内存四区
+<i class="fa fa-external-link-alt"></i></a></p><h3 id=九任务通知>九、任务通知
+<a class=header-anchor href=#%e4%b9%9d%e4%bb%bb%e5%8a%a1%e9%80%9a%e7%9f%a5></a></h3><p>FreeRTOS 的每个任务都<strong>有一个 32 位的通知值</strong>，任务控制块中的成员变量 ulNotifiedValue 就是这个通知值。任务通知是一个事件，假如某个任务通知的接收任务因为等待任务通知而阻塞的话，向这个接收任务发送任务通知以后就会解除这个任务的阻塞状态，CubeMX内没有提供相关的配置项，但在其生成的 FreeRTOS 接口里面有相关函数进行配置，函数位置如下：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i-blog.csdnimg.cn/blog_migrate/db70d19d1e96d6e01f7a947a738bee3f.png alt=1></p><p>接口函数功能：</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osThreadFlagsSet</td><td>设置任务的通知标志</td></tr><tr><td>osThreadFlagsClear</td><td>清除任务通知</td></tr><tr><td>osThreadFlagsGet</td><td>获取任务标志</td></tr><tr><td>osThreadFlagsWait</td><td>等待特定的任务标志</td></tr></tbody></table><p>常用的两个 API 就是设置任务通知和等待任务通知函数</p><p><strong>设置通知 osThreadFlagsSet</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-27-1><a class=lnlinks href=#hl-27-1>1</a>
+</span><span class=lnt id=hl-27-2><a class=lnlinks href=#hl-27-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>uint32_t</span> <span class=nf>osThreadFlagsSet</span> <span class=p>(</span><span class=kt>osThreadId_t</span> <span class=n>thread_id</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>flags</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>thread_id</td><td>任务控制块</td></tr><tr><td>flags</td><td>设置的标志</td></tr></tbody></table><p>使用方式</p><p>先定义一个事件标志</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-28-1><a class=lnlinks href=#hl-28-1>1</a>
+</span><span class=lnt id=hl-28-2><a class=lnlinks href=#hl-28-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#define  event1 1&lt;&lt;1 	//事件1
+</span></span><span class=line><span class=cl>1</span></span></code></pre></td></tr></table></div></div><p>然后调用 API 通知对应任务事件发生</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-29-1><a class=lnlinks href=#hl-29-1> 1</a>
+</span><span class=lnt id=hl-29-2><a class=lnlinks href=#hl-29-2> 2</a>
+</span><span class=lnt id=hl-29-3><a class=lnlinks href=#hl-29-3> 3</a>
+</span><span class=lnt id=hl-29-4><a class=lnlinks href=#hl-29-4> 4</a>
+</span><span class=lnt id=hl-29-5><a class=lnlinks href=#hl-29-5> 5</a>
+</span><span class=lnt id=hl-29-6><a class=lnlinks href=#hl-29-6> 6</a>
+</span><span class=lnt id=hl-29-7><a class=lnlinks href=#hl-29-7> 7</a>
+</span><span class=lnt id=hl-29-8><a class=lnlinks href=#hl-29-8> 8</a>
+</span><span class=lnt id=hl-29-9><a class=lnlinks href=#hl-29-9> 9</a>
+</span><span class=lnt id=hl-29-10><a class=lnlinks href=#hl-29-10>10</a>
+</span><span class=lnt id=hl-29-11><a class=lnlinks href=#hl-29-11>11</a>
+</span><span class=lnt id=hl-29-12><a class=lnlinks href=#hl-29-12>12</a>
+</span><span class=lnt id=hl-29-13><a class=lnlinks href=#hl-29-13>13</a>
+</span><span class=lnt id=hl-29-14><a class=lnlinks href=#hl-29-14>14</a>
+</span><span class=lnt id=hl-29-15><a class=lnlinks href=#hl-29-15>15</a>
+</span><span class=lnt id=hl-29-16><a class=lnlinks href=#hl-29-16>16</a>
+</span><span class=lnt id=hl-29-17><a class=lnlinks href=#hl-29-17>17</a>
+</span><span class=lnt id=hl-29-18><a class=lnlinks href=#hl-29-18>18</a>
+</span><span class=lnt id=hl-29-19><a class=lnlinks href=#hl-29-19>19</a>
+</span><span class=lnt id=hl-29-20><a class=lnlinks href=#hl-29-20>20</a>
+</span><span class=lnt id=hl-29-21><a class=lnlinks href=#hl-29-21>21</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osThreadFlagsSet</span><span class=p>(</span><span class=n>myTask02Handle</span><span class=p>,</span><span class=n>event1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//设置成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//设置失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>1234567891011121314151617181920</span></span></span></code></pre></td></tr></table></div></div><p><strong>等待通知 osThreadFlagsWait</strong></p><p>函数原型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-30-1><a class=lnlinks href=#hl-30-1>1</a>
+</span><span class=lnt id=hl-30-2><a class=lnlinks href=#hl-30-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>uint32_t</span> <span class=nf>osThreadFlagsWait</span> <span class=p>(</span><span class=kt>uint32_t</span> <span class=n>flags</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>options</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>timeout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span></span></span></code></pre></td></tr></table></div></div><p>参数介绍：</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>flags</td><td>设置的标志</td></tr><tr><td>options</td><td>设置功能</td></tr><tr><td>timeout</td><td>超时时间</td></tr></tbody></table><p>options参数</p><table><thead><tr><th>参数</th><th>功能</th></tr></thead><tbody><tr><td>osFlagsWaitAny</td><td>等待32位通知值任意一位触发后恢复任务（默认）</td></tr><tr><td>osFlagsWaitAll</td><td>等待指定的任务通知值全部触发后再恢复任务</td></tr><tr><td>osFlagsNoClear</td><td>恢复任务后不清除任务标志（默认清除）</td></tr></tbody></table><p>使用方式</p><p>调用 API 等待对应的任务通知就绪，当其他任务设置到对应的通知后，任务恢复运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-31-1><a class=lnlinks href=#hl-31-1> 1</a>
+</span><span class=lnt id=hl-31-2><a class=lnlinks href=#hl-31-2> 2</a>
+</span><span class=lnt id=hl-31-3><a class=lnlinks href=#hl-31-3> 3</a>
+</span><span class=lnt id=hl-31-4><a class=lnlinks href=#hl-31-4> 4</a>
+</span><span class=lnt id=hl-31-5><a class=lnlinks href=#hl-31-5> 5</a>
+</span><span class=lnt id=hl-31-6><a class=lnlinks href=#hl-31-6> 6</a>
+</span><span class=lnt id=hl-31-7><a class=lnlinks href=#hl-31-7> 7</a>
+</span><span class=lnt id=hl-31-8><a class=lnlinks href=#hl-31-8> 8</a>
+</span><span class=lnt id=hl-31-9><a class=lnlinks href=#hl-31-9> 9</a>
+</span><span class=lnt id=hl-31-10><a class=lnlinks href=#hl-31-10>10</a>
+</span><span class=lnt id=hl-31-11><a class=lnlinks href=#hl-31-11>11</a>
+</span><span class=lnt id=hl-31-12><a class=lnlinks href=#hl-31-12>12</a>
+</span><span class=lnt id=hl-31-13><a class=lnlinks href=#hl-31-13>13</a>
+</span><span class=lnt id=hl-31-14><a class=lnlinks href=#hl-31-14>14</a>
+</span><span class=lnt id=hl-31-15><a class=lnlinks href=#hl-31-15>15</a>
+</span><span class=lnt id=hl-31-16><a class=lnlinks href=#hl-31-16>16</a>
+</span><span class=lnt id=hl-31-17><a class=lnlinks href=#hl-31-17>17</a>
+</span><span class=lnt id=hl-31-18><a class=lnlinks href=#hl-31-18>18</a>
+</span><span class=lnt id=hl-31-19><a class=lnlinks href=#hl-31-19>19</a>
+</span><span class=lnt id=hl-31-20><a class=lnlinks href=#hl-31-20>20</a>
+</span><span class=lnt id=hl-31-21><a class=lnlinks href=#hl-31-21>21</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>StartDefaultTask</span><span class=p>(</span><span class=kt>void</span> <span class=o>*</span><span class=n>argument</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE BEGIN StartDefaultTask */</span>
+</span></span><span class=line><span class=cl>	<span class=kt>osStatus_t</span> <span class=n>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* Infinite loop */</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(;;)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>		
+</span></span><span class=line><span class=cl>		<span class=n>result</span> <span class=o>=</span> <span class=nf>osThreadFlagsWait</span><span class=p>(</span><span class=n>myTask02Handle</span><span class=p>,</span><span class=n>osFlagsWaitAll</span><span class=p>,</span><span class=n>event1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span><span class=p>(</span><span class=n>result</span> <span class=o>==</span> <span class=n>osOK</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//等待成功
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span><span class=k>else</span>
+</span></span><span class=line><span class=cl>		<span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=c1>//等待失败
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nf>osDelay</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=cm>/* USER CODE END StartDefaultTask */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=mi>1234567891011121314151617181920</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>任务通知其实个任务事件标志组使用上没有多大的区别，但他们两个的实现原理不同，同时任务通知对资源的占用更少</strong></p><p><strong>根据 FreeRTOS 官方的统计，使用任务通知替代二值信号量的时候任务解除阻 塞的时间要快 45%，并且需要的 RAM 也更少</strong></p></blockquote><h3 id=十系统内核配置>十、系统内核配置
+<a class=header-anchor href=#%e5%8d%81%e7%b3%bb%e7%bb%9f%e5%86%85%e6%a0%b8%e9%85%8d%e7%bd%ae></a></h3><p>CubeMX 生成的代码中封装了一系列内核配置函数，有些函数也经常使用到，比如获取时间戳和调度器管理的函数，这里不做过多解释，简单的介绍一下函数的功能</p><table><thead><tr><th>函数</th><th>功能</th></tr></thead><tbody><tr><td>osKernelInitialize</td><td>初始化RTOS的内核</td></tr><tr><td>osKernelGetInfo</td><td>获取RTOS的信息</td></tr><tr><td>osKernelGetState</td><td>获取当前内核的运行状态</td></tr><tr><td>osKernelStart</td><td>启动内核调度</td></tr><tr><td>osKernelLock</td><td>锁内核调度器</td></tr><tr><td>osKernelUnlock</td><td>解锁内核调度器</td></tr><tr><td>osKernelRestoreLock</td><td>恢复RTOS内核调度器锁状态</td></tr><tr><td>osKernelSuspend</td><td>挂起任务</td></tr><tr><td>osKernelResume</td><td>恢复任务</td></tr><tr><td>osKernelGetTickCount</td><td>用于获取系统当前运行的时钟节拍数</td></tr><tr><td>osKernelGetTickFreq</td><td>用于获取系统当前运行的时钟节拍的分频频率</td></tr><tr><td>osKernelGetSysTimerCount</td><td>获取系统时钟（SysTick）的计数值</td></tr><tr><td>osKernelGetSysTimerFreq</td><td>获取系统时钟（SysTick）的频率</td></tr></tbody></table><blockquote><p>仅供参考，可能有误</p></blockquote></div><footer class=post-footer><div class=post-tags><a href=/tags/stm32/>STM32
+</a><a href=/tags/cubemx/>cubeMX
+</a><a href=/tags/freertos/>freeRTOS</a></div><div class=post-share-tools><div class=post-share-loading><i class="fa-solid fa-ellipsis fa-spin"></i></div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class=a2a_dd href=https://www.addtoany.com/share></a><a class=a2a_button_wechat></a><a class=a2a_button_qzone></a><a class=a2a_button_sina_weibo></a><a class=a2a_button_douban></a><a class=a2a_button_facebook></a><a class=a2a_button_x></a><a class=a2a_button_email></a><a class=a2a_button_printfriendly></a></div></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right alt=共享知识><ul><li class=post-copyright-title><strong>文章标题：</strong>
+CubeMX下的freeRTOS</li><li class=post-copyright-author><strong>本文作者： </strong>Cita</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/cubemx%E4%B8%8B%E7%9A%84freertos/ title=CubeMX下的freeRTOS>/post/cubemx%E4%B8%8B%E7%9A%84freertos/</a></li><li class=post-copyright-license><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/%E6%B5%85%E6%9E%90pid/ rel=next title=浅析PID><i class="fa fa-chevron-left"></i> 浅析PID</a></div><div class="post-nav-prev post-nav-item"><a href=/post/pcb%E8%AE%BE%E8%AE%A1%E5%A4%87%E5%BF%98%E5%BD%95/ rel=prev title=PCB设计与立创EDA使用备忘录>PCB设计与立创EDA使用备忘录
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><div id=comments class=post-comments><div class=comment-head><div class=comment-headline><i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span></div></div><div class=comment-wrap><div><div class=comment-loading><i class="fa fa-sync fa-spin"></i></div><div class=waline3-container></div></div></div></div></div></main><footer class=footer><div class=footer-inner><div id=i18n-translate class=i18n-translate><i class="fa fa-language"></i><div id=lang-select class=lang-select><div id=lang-selected class=selected-option><span class="flag-icon flag-icon-zh-cn"></span>
+<span class=selected-language>简体中文</span>
+<i class="fa fa-chevron-down"></i></div><div id=lang-options class=lang-options><div class=lang-option lang-code=zh-cn lang-name=简体中文 lang-url=/post/cubemx%E4%B8%8B%E7%9A%84freertos/><span class="flag-icon flag-icon-zh-cn"></span>
+<span class=lang-name>简体中文</span></div></div></div></div><div class=copyright>&copy;
+<span itemprop=copyrightYear>2024 - 2025
+</span><span class=with-love><i class="fa fa-heart"></i>
+</span><span class=author itemprop=copyrightHolder>Cita</span></div><div class=vendors-list><a target=_blank href=https://github.com title=Github><img src=/imgs/img-lazy-loading.gif data-src=/imgs/vendors/github.svg alt=Github>
+</a><span>提供CDN/云资源支持</span></div></div></footer><script class=next-config data-name=page type=application/json>{"clipboard":{"js":{"file":"dist/clipboard.min.js","name":"clipboard","version":"2.0.11"}},"comments":true,"expired":false,"isHome":false,"isPage":true,"math":{"js":{"file":"es5/tex-mml-svg.js","name":"mathjax","version":"3.2.2"},"render":"mathjax"},"path":"cubemx%E4%B8%8B%E7%9A%84freertos","permalink":"/post/cubemx%E4%B8%8B%E7%9A%84freertos/","title":"CubeMX下的freeRTOS","toc":true,"waline3":{"pagecnt":{"alias":"@waline/client","alias_name":"waline","file":"dist/pageview.js","name":"pageview","version":"3.3.0"}}}</script><script type=text/javascript src=/js/3rd/animejs/3.2.2/anime.min.js crossorigin=anonymous defer></script><script type=text/javascript src=/js/3rd/viewerjs/1.11.6/viewer.min.js crossorigin=anonymous defer></script><script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"manual"},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"找到 ${hits} 个搜索结果","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"isMultiLang":true,"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"limit":1e3,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"postmeta":{"comments":{"enable":false,"plugin":"waline3"},"views":{"enable":true,"plugin":"waline3"}},"root":"/","scheme":"Gemini","share":{"addtoany":{"js":"https://static.addtoany.com/menu/page.js","locale":"zh-CN","num":8},"enable":true},"sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"local","router":{"name":"local","type":"modern","url":"/js/3rd"}},"version":"4.7.2","waline3":{"cfg":{"emoji":false,"imguploader":false,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o 可用快捷键选取表情符号：😀😄😁🥳👻👽👀🚄 (Window系统：Win+.，Mac系统：Control+Command+Space)","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"search":true,"serverurl":"https://walinejs.comment.lithub.cc","sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"@waline/client","file":"dist/waline.min.css","name":"waline","version":"3.3.0"},"js":{"alias":"@waline/client","file":"dist/waline.js","name":"waline","version":"3.3.0"}}}</script><script type=text/javascript src="/js/main.min.js?=1742387916" defer></script><script type=text/javascript src="/js/clipboard.min.js?=1742387916" defer></script><script type=text/javascript src="/js/math.min.js?=1742387916" defer></script></body></html>

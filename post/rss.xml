@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Cita's blog</title><link>/post/</link><description>Recent content in Posts on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 09 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/post/rss.xml" rel="self" type="application/rss+xml"/><item><title>浅析PID</title><link>/post/%E6%B5%85%E6%9E%90pid/</link><pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate><guid>/post/%E6%B5%85%E6%9E%90pid/</guid><description>&lt;h1 id="浅析pid">浅析PID
+&lt;a class="header-anchor" href="#%e6%b5%85%e6%9e%90pid">&lt;/a>
+&lt;/h1>&lt;p>参考学习SUNPLUS &lt;strong>《PID&lt;/strong> 调节控制做电机速度控制》后总结，在线阅读链接如下：&lt;/p>
+&lt;p>
+&lt;a href="https://u.dianyuan.com/upload/space/2012/07/25/1343214947-695804.pdf" title="1343214947-695804.pdf" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 1343214947-695804.pdf
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>PID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。&lt;/p></description></item><item><title>CubeMX下的freeRTOS</title><link>/post/cubemx%E4%B8%8B%E7%9A%84freertos/</link><pubDate>Wed, 18 Dec 2024 00:00:00 +0000</pubDate><guid>/post/cubemx%E4%B8%8B%E7%9A%84freertos/</guid><description>&lt;h2 id="cubemx使用freertos编程指南">CubeMX使用FreeRTOS编程指南
+&lt;a class="header-anchor" href="#cubemx%e4%bd%bf%e7%94%a8freertos%e7%bc%96%e7%a8%8b%e6%8c%87%e5%8d%97">&lt;/a>
+&lt;/h2>&lt;h3 id="一开发前言">一、开发前言
+&lt;a class="header-anchor" href="#%e4%b8%80%e5%bc%80%e5%8f%91%e5%89%8d%e8%a8%80">&lt;/a>
+&lt;/h3>&lt;p>CMSIS是一种接口标准，目的是屏蔽软硬件差异以提高软件的兼容性。RTOS v1使得软件能够在不同的实时操作系统下运行（屏蔽不同RTOS提供的API的差别)，而RTOS v2则是拓展了RTOS v1，兼容更多的CPU架构和实时操作系统。因此我们在使用时可以根据实际情况选择，如果学习过程中使用STM32F1、F4等单片机时没必要选择RTOS v2，更高的兼容性背后时更加冗余的代码，理解起来比较困难。&lt;/p></description></item><item><title>PCB设计与立创EDA使用备忘录</title><link>/post/pcb%E8%AE%BE%E8%AE%A1%E5%A4%87%E5%BF%98%E5%BD%95/</link><pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate><guid>/post/pcb%E8%AE%BE%E8%AE%A1%E5%A4%87%E5%BF%98%E5%BD%95/</guid><description>&lt;p>本篇课程基于B站UP主&lt;code>Expert电子实验室&lt;/code>的教学视频，同时加上本人思考与总结汇总而成。&lt;/p>
+&lt;p>
+&lt;a href="https://www.bilibili.com/video/BV1At421h7Ui/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;amp;vd_source=c33a47a3f08b3b6b6c1614d37f34903f" title="零基础入门PCB设计保姆级教学" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 零基础入门PCB设计保姆级教学
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://space.bilibili.com/346179450" title="Expert电子实验室" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ Expert电子实验室
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p></description></item><item><title>华为嵌入式C语言代码简明规范</title><link>/post/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E8%A7%84%E8%8C%83%E7%B2%BE%E7%AE%80/</link><pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate><guid>/post/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E8%A7%84%E8%8C%83%E7%B2%BE%E7%AE%80/</guid><description>&lt;h2 id="规范制订说明">规范制订说明
+&lt;a class="header-anchor" href="#%e8%a7%84%e8%8c%83%e5%88%b6%e8%ae%a2%e8%af%b4%e6%98%8e">&lt;/a>
+&lt;/h2>&lt;h3 id="前言">前言
+&lt;a class="header-anchor" href="#%e5%89%8d%e8%a8%80">&lt;/a>
+&lt;/h3>&lt;p>基于华为C语言编程规范 
+&lt;a href="https://ilcc.gitbooks.io/wiki/content/StyleGuide/Huawei-C/index.html" title="在线wiki文档" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 在线wiki文档
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;h3 id="代码总体原则">代码总体原则
+&lt;a class="header-anchor" href="#%e4%bb%a3%e7%a0%81%e6%80%bb%e4%bd%93%e5%8e%9f%e5%88%99">&lt;/a>
+&lt;/h3>&lt;h4 id="清晰第一">清晰第一
+&lt;a class="header-anchor" href="#%e6%b8%85%e6%99%b0%e7%ac%ac%e4%b8%80">&lt;/a>
+&lt;/h4>&lt;p>&lt;strong>代码的可阅读性高于性能，只有确定性能是瓶颈时，才应该主动优化&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>优秀的代码可以自我解释（以我的水平可能做到比较难）&lt;/li>
+&lt;li>常写注释，并且注释写的清晰&lt;/li>
+&lt;/ul>
+&lt;h4 id="简洁为美">简洁为美
+&lt;a class="header-anchor" href="#%e7%ae%80%e6%b4%81%e4%b8%ba%e7%be%8e">&lt;/a>
+&lt;/h4>&lt;p>&lt;strong>写的代码越多，意味着出错的地方越多，也就意味着代码的可靠性越低。&lt;/strong>&lt;/p></description></item><item><title>物联网协议基础</title><link>/post/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</link><pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate><guid>/post/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="mqtt消息队列遥测传输协议">MQTT（消息队列遥测传输协议）
+&lt;a class="header-anchor" href="#mqtt%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e9%81%a5%e6%b5%8b%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae">&lt;/a>
+&lt;/h2>&lt;p>MQTT是轻量级的消息发布/订阅协议，设计用于资源受限的设备和低带宽、高延迟的网络环境。它已成为物联网领域的事实标准，广泛应用于智能家居、工业自动化等领域。&lt;/p></description></item><item><title>Python语言与系统设计(1)</title><link>/post/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</link><pubDate>Sat, 02 Nov 2024 00:00:00 +0000</pubDate><guid>/post/python%E8%AF%AD%E8%A8%80%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A11/</guid><description>&lt;h2 id="第一章python基础与快速入门">第一章：Python基础与快速入门
+&lt;a class="header-anchor" href="#%e7%ac%ac%e4%b8%80%e7%ab%a0python%e5%9f%ba%e7%a1%80%e4%b8%8e%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8">&lt;/a>
+&lt;/h2>&lt;p>&lt;strong>Python 是一门跨平台、开源、免费的解释型高级动态编程语言&lt;/strong>。&lt;/p>
+&lt;p>python 同时支持伪编译将 Python 源程序转换为&lt;strong>字节码&lt;/strong>来优化程序和提高运行速度。&lt;/p>
+&lt;p>支持使用 py2exe、pyinstaller 或 cx_Freeze 工具将 Python 程序&lt;strong>转换为二进制可执行文件&lt;/strong>。&lt;/p></description></item><item><title>算法温故笔记</title><link>/post/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="动态规划dynamic-programming">动态规划（Dynamic Programming）
+&lt;a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92dynamic-programming">&lt;/a>
+&lt;/h2>&lt;p>&lt;strong>动态规划问题的一般形式就是求最值&lt;/strong>。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。&lt;/p></description></item><item><title>机器人技术(1): 常用函数</title><link>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</link><pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF1%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</guid><description>&lt;h2 id="相关资料链接">相关资料链接:
+&lt;a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5">&lt;/a>
+&lt;/h2>&lt;p>
+&lt;a href="https://i.getshell.cn/tags/robocup/" title="九月大人的博客" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 九月大人的博客
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://yikai-coder.github.io/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/" title="yikai-blog" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ yikai-blog
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://ssim.robocup.org/" title="robocup2D官网" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ robocup2D官网
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;h2 id="robocup-2d-常用函数简明含义">RoboCup 2D 常用函数简明含义
+&lt;a class="header-anchor" href="#robocup-2d-%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89">&lt;/a>
+&lt;/h2>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;strong>函数名称&lt;/strong>&lt;/th>
+ &lt;th>&lt;strong>功能说明&lt;/strong>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>dribble(angle, speed)&lt;/code>&lt;/td>
+ &lt;td>控制球员带球移动。&lt;code>angle&lt;/code>表示带球方向，&lt;code>speed&lt;/code>表示带球速度（如&lt;code>DRIBBLE_FAST&lt;/code>、&lt;code>DRIBBLE_SLOW&lt;/code>等）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>kickTo(targetPosition, speed)&lt;/code>&lt;/td>
+ &lt;td>球员向目标位置（&lt;code>targetPosition&lt;/code>）踢球，&lt;code>speed&lt;/code>指定踢球的速度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>leadingPass(teammate, power)&lt;/code>&lt;/td>
+ &lt;td>向最近的队友传球，&lt;code>teammate&lt;/code>是要传球的目标队友，&lt;code>power&lt;/code>表示传球力度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getNrInSetInCircle(set, circle)&lt;/code>&lt;/td>
+ &lt;td>计算指定半径的圆圈内（&lt;code>circle&lt;/code>）特定对象集合（&lt;code>set&lt;/code>，如对手或队友）的数量。例如用来判断7米范围内是否有对手球员。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getClosestInSetTo(set, position)&lt;/code>&lt;/td>
+ &lt;td>获取距离指定位置（&lt;code>position&lt;/code>）最近的特定对象集合（&lt;code>set&lt;/code>）中的对象，例如找到离当前球员最近的队友或对手。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOpponentAtAngle(angleMin, angleMax)&lt;/code>&lt;/td>
+ &lt;td>判断在给定的角度范围内是否有对方球员。常用于决定是否在某个方向射门或传球。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getGlobalPosition(object)&lt;/code>&lt;/td>
+ &lt;td>获取场上某个对象（球员、对手、球等）的全局坐标位置（&lt;code>X, Y&lt;/code>坐标）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getBallPos()&lt;/code>&lt;/td>
+ &lt;td>获取球的当前位置坐标。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>moveToPos(position, speed)&lt;/code>&lt;/td>
+ &lt;td>移动球员到指定的&lt;code>position&lt;/code>（坐标位置），并以&lt;code>speed&lt;/code>指定的速度执行移动。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isBallKickable()&lt;/code>&lt;/td>
+ &lt;td>判断当前球是否在球员的控制范围内（即球员是否可以踢球）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>kickBallCloseToBody(angle)&lt;/code>&lt;/td>
+ &lt;td>控制球员以指定的&lt;code>angle&lt;/code>（角度）把球围绕身体转动。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>intercept(timeout)&lt;/code>&lt;/td>
+ &lt;td>尝试在指定时间内抢断球（通常用在防守场景）。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>turnNeckToObject(object)&lt;/code>&lt;/td>
+ &lt;td>让球员将头（视角）转向指定的&lt;code>object&lt;/code>（如球或对方球员），通常用于跟踪球的位置。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getPlayerNumber()&lt;/code>&lt;/td>
+ &lt;td>返回当前球员的编号（如2号、10号等），不同球员编号对应不同策略。例如10号通常为前锋，会有更多进攻行为。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getTeammateNumber()&lt;/code>&lt;/td>
+ &lt;td>获取指定队友的编号，用于传球决策时判断目标球员是否为特定队友。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getPosOpponentGoal()&lt;/code>&lt;/td>
+ &lt;td>获取对方球门的位置，通常用于判断进攻方向或射门目标。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>shootToGoalex(object)&lt;/code>&lt;/td>
+ &lt;td>指定球员向对方球门射门，通常由接近球门的前锋使用。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getBallSpeedMax()&lt;/code>&lt;/td>
+ &lt;td>获取当前球员能踢球的最大速度。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getDirection()&lt;/code>&lt;/td>
+ &lt;td>计算某个目标相对于当前球员的方向（角度），例如计算球门方向或队友位置的方向。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isInTheirPenaltyArea(position)&lt;/code>&lt;/td>
+ &lt;td>判断某个位置是否位于对方禁区内，常用于决定射门或传球策略。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>putCommandInQueue(command)&lt;/code>&lt;/td>
+ &lt;td>将指令（&lt;code>command&lt;/code>）放入执行队列，确保该操作能够在下一次循环中执行。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>Circle(center, radius)&lt;/code>&lt;/td>
+ &lt;td>创建一个以&lt;code>center&lt;/code>为中心，&lt;code>radius&lt;/code>为半径的圆，用于计算范围内的球员数量或球的距离。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>Line::makeLineFromPositionAndAngle(position, angle)&lt;/code>&lt;/td>
+ &lt;td>根据给定的&lt;code>position&lt;/code>和&lt;code>angle&lt;/code>生成一条直线，通常用于计算球的运动轨迹或球员的移动路径。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOffsideUs()&lt;/code>&lt;/td>
+ &lt;td>判断是否处于本方越位模式，适用于进攻方的越位规则判断。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isCornerKickUs()&lt;/code>&lt;/td>
+ &lt;td>判断是否处于本方角球模式。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>isOwnSideOpponentMost()&lt;/code>&lt;/td>
+ &lt;td>判断己方半场的对手人数是否多于对方半场的对手人数。常用于判断防守或进攻策略。&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;code>getSecondClosestInSetTo(set, object)&lt;/code>&lt;/td>
+ &lt;td>获取距离指定&lt;code>object&lt;/code>最近的第二个对象（通常是球员），用于策略决策，例如传球或防守。&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+
+ &lt;blockquote>
+ &lt;p>仅供参考，可能有误&lt;/p></description></item><item><title>机器人技术(2): 典型决策树学习算法ID3</title><link>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3%E7%AE%97%E6%B3%95/</link><pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF2%E5%85%B8%E5%9E%8B%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95id3%E7%AE%97%E6%B3%95/</guid><description>&lt;h2 id="相关资料链接">相关资料链接:
+&lt;a class="header-anchor" href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e9%93%be%e6%8e%a5">&lt;/a>
+&lt;/h2>&lt;p>
+&lt;a href="https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91" title="决策树-维基百科" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 决策树-维基百科
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://zhuanlan.zhihu.com/p/26703300" title="深入浅出理解决策树算法（一）-核心思想" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 深入浅出理解决策树算法（一）-核心思想
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://zhuanlan.zhihu.com/p/26760551" title="深入浅出理解决策树算法（二）-ID3算法与C4.5算法" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 深入浅出理解决策树算法（二）-ID3算法与C4.5算法
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p></description></item><item><title>c++基础</title><link>/post/c++%E5%9F%BA%E7%A1%80/</link><pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate><guid>/post/c++%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="c基础题目1">c++基础题目（1）
+&lt;a class="header-anchor" href="#c%e5%9f%ba%e7%a1%80%e9%a2%98%e7%9b%ae1">&lt;/a>
+&lt;/h2>&lt;h3 id="题目列表">题目列表
+&lt;a class="header-anchor" href="#%e9%a2%98%e7%9b%ae%e5%88%97%e8%a1%a8">&lt;/a>
+&lt;/h3>&lt;h4 id="1-以下说法中正确的是-">1. 以下说法中正确的是（ ）。
+&lt;a class="header-anchor" href="#1-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间&lt;/li>
+&lt;li>B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理&lt;/li>
+&lt;li>&lt;strong>C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用&lt;/strong>&lt;/li>
+&lt;li>D. 多态性指的是对象的状态会根据运行时要求自动变化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。&lt;/li>
+&lt;li>B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。&lt;/li>
+&lt;li>D. 错误。多态性指的是同一接口可以有不同的实现形式。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="2-执行以下程序后输出的结果是-">2. 执行以下程序后，输出的结果是（ ）。
+&lt;a class="header-anchor" href="#2-%e6%89%a7%e8%a1%8c%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e5%90%8e%e8%be%93%e5%87%ba%e7%9a%84%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-0-1">&lt;a class="lnlinks" href="#hl-0-1">1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-2">&lt;a class="lnlinks" href="#hl-0-2">2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-3">&lt;a class="lnlinks" href="#hl-0-3">3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-4">&lt;a class="lnlinks" href="#hl-0-4">4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-5">&lt;a class="lnlinks" href="#hl-0-5">5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-6">&lt;a class="lnlinks" href="#hl-0-6">6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-7">&lt;a class="lnlinks" href="#hl-0-7">7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-8">&lt;a class="lnlinks" href="#hl-0-8">8&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">float&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：D&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 1.25&lt;/li>
+&lt;li>B. 0&lt;/li>
+&lt;li>C. 1.3&lt;/li>
+&lt;li>&lt;strong>D. 1&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。&lt;code>b/a&lt;/code> 是整数除法，结果为1，再转换为浮点数仍然是1.0。&lt;/li>
+&lt;li>B. 错误。整数除法的结果不可能是0。&lt;/li>
+&lt;li>C. 错误。&lt;code>b/a&lt;/code> 的结果为1，而不是1.3。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="3-以下描述不正确的是-">3. 以下描述不正确的是（ ）。
+&lt;a class="header-anchor" href="#3-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：B&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. break语句在一层循环体中可出现多次&lt;/li>
+&lt;li>&lt;strong>B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句&lt;/strong>&lt;/li>
+&lt;li>C. break语句可用在循环体中，它将是执行的流程跳出本层循环&lt;/li>
+&lt;li>D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>B. 错误。&lt;code>break&lt;/code> 语句不能用于跳出 &lt;code>if&lt;/code> 语句，只能用于跳出循环或 &lt;code>switch&lt;/code> 语句。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="4-以下描述不正确的是-">4. 以下描述不正确的是（ ）。**
+&lt;a class="header-anchor" href="#4-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：A&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 相同类型的指针之间可以相互赋值&lt;/li>
+&lt;li>B. 指针中存放的实际上是内存单元的地址&lt;/li>
+&lt;li>C. 可以在指针定义的同时对其进行初始化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="5-以下说法中正确的是-">5. 以下说法中正确的是（ ）。
+&lt;a class="header-anchor" href="#5-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new&lt;/li>
+&lt;li>B. C++语言只能用new和delete用于动态内存分配和释放的函数&lt;/li>
+&lt;li>&lt;strong>C. 动态分配的内存空间也可以被初始化&lt;/strong>&lt;/li>
+&lt;li>D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。动态分配内存失败时，&lt;code>new&lt;/code> 会抛出异常或返回 &lt;code>nullptr&lt;/code>，但不会导致系统崩溃。&lt;/li>
+&lt;li>B. 错误。C++ 中除了 &lt;code>new&lt;/code> 和 &lt;code>delete&lt;/code>，还可以使用 &lt;code>malloc&lt;/code> 和 &lt;code>free&lt;/code> 进行动态内存管理。&lt;/li>
+&lt;li>D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="6-以下说法中不正确的是-">6. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#6-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 构造函数可以对静态数据成员进行初始化&lt;/li>
+&lt;li>B. 构造函数可以重载&lt;/li>
+&lt;li>&lt;strong>C. 构造函数不可以设置默认参数&lt;/strong>&lt;/li>
+&lt;li>D. 构造函数可以在说明类变量时自动执行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>C. 错误。构造函数可以设置默认参数，这样在创建对象时可以&lt;strong>省略部分参数&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="7-以下说法中不正确的是-">7. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#7-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：A&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>&lt;strong>A. 公有继承时基类中的private成员在派生类中仍是private的&lt;/strong>&lt;/li>
+&lt;li>B. 保护继承时基类中的public成员在派生类中是protected的&lt;/li>
+&lt;li>C. 公有继承时基类中的public成员在派生类中仍是public的&lt;/li>
+&lt;li>D. 私有继承时基类中的public成员在派生类中是private的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。公有继承时，基类中的 &lt;code>private&lt;/code> 成员&lt;strong>在派生类中不可访问&lt;/strong>，而不是保持 &lt;code>private&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="8-以下说法中不正确的是-">8. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#8-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：B&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元&lt;/li>
+&lt;li>&lt;strong>B. 如果类A是类B的友元，那么类B也是类A的友元&lt;/strong>&lt;/li>
+&lt;li>C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员&lt;/li>
+&lt;li>D. 友元关系不能被继承&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="9-以下程序的输出结果是-">9. 以下程序的输出结果是（ ）。
+&lt;a class="header-anchor" href="#9-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-1-1">&lt;a class="lnlinks" href="#hl-1-1"> 1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-2">&lt;a class="lnlinks" href="#hl-1-2"> 2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-3">&lt;a class="lnlinks" href="#hl-1-3"> 3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-4">&lt;a class="lnlinks" href="#hl-1-4"> 4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-5">&lt;a class="lnlinks" href="#hl-1-5"> 5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-6">&lt;a class="lnlinks" href="#hl-1-6"> 6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-7">&lt;a class="lnlinks" href="#hl-1-7"> 7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-8">&lt;a class="lnlinks" href="#hl-1-8"> 8&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-9">&lt;a class="lnlinks" href="#hl-1-9"> 9&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-10">&lt;a class="lnlinks" href="#hl-1-10">10&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pa&lt;/span>&lt;span class="o">=&amp;amp;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">pa&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">++&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 7&lt;/li>
+&lt;li>B. 5&lt;/li>
+&lt;li>&lt;strong>C. 6&lt;/strong>&lt;/li>
+&lt;li>D. 8&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6，然后 &lt;code>a&lt;/code> 的值变为7。&lt;/li>
+&lt;li>B. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6。&lt;/li>
+&lt;li>D. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6，然后 &lt;code>a&lt;/code> 的值变为7。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="10-以下程序的输出结果是-">10. 以下程序的输出结果是（ ）。
+&lt;a class="header-anchor" href="#10-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-2-1">&lt;a class="lnlinks" href="#hl-2-1"> 1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-2">&lt;a class="lnlinks" href="#hl-2-2"> 2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-3">&lt;a class="lnlinks" href="#hl-2-3"> 3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-4">&lt;a class="lnlinks" href="#hl-2-4"> 4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-5">&lt;a class="lnlinks" href="#hl-2-5"> 5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-6">&lt;a class="lnlinks" href="#hl-2-6"> 6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-7">&lt;a class="lnlinks" href="#hl-2-7"> 7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-8">&lt;a class="lnlinks" href="#hl-2-8"> 8&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-9">&lt;a class="lnlinks" href="#hl-2-9"> 9&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-10">&lt;a class="lnlinks" href="#hl-2-10">10&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-11">&lt;a class="lnlinks" href="#hl-2-11">11&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-12">&lt;a class="lnlinks" href="#hl-2-12">12&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="nf">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">142&lt;/span>&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="s">&amp;#34;,&amp;#34;&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>答案&lt;/strong>：D&lt;/p></description></item><item><title>程序设计艺术(1): STL</title><link>/post/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1stl/</link><pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%89%BA%E6%9C%AF1stl/</guid><description>&lt;h2 id="stl常用算法函数及其参数简明含义">#STL常用算法函数及其参数简明含义
+&lt;a class="header-anchor" href="#stl%e5%b8%b8%e7%94%a8%e7%ae%97%e6%b3%95%e5%87%bd%e6%95%b0%e5%8f%8a%e5%85%b6%e5%8f%82%e6%95%b0%e7%ae%80%e6%98%8e%e5%90%ab%e4%b9%89">&lt;/a>
+&lt;/h2>&lt;h3 id="供快速回顾常用函数摘自hfut-icpc讲义p21">供快速回顾（常用函数摘自HFUT ICPC讲义P21）
+&lt;a class="header-anchor" href="#%e4%be%9b%e5%bf%ab%e9%80%9f%e5%9b%9e%e9%a1%be%e5%b8%b8%e7%94%a8%e5%87%bd%e6%95%b0%e6%91%98%e8%87%aahfut-icpc%e8%ae%b2%e4%b9%89p21">&lt;/a>
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>find&lt;/code>&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>功能&lt;/strong>：在范围 &lt;code>[first, last)&lt;/code> 中查找值为 &lt;code>val&lt;/code> 的第一个元素。&lt;/li>
+&lt;li>&lt;strong>参数&lt;/strong>：
+&lt;ul>
+&lt;li>&lt;code>InIt first, InIt last&lt;/code>：输入迭代器，指定搜索范围。&lt;/li>
+&lt;li>&lt;code>const T&amp;amp; val&lt;/code>：需要查找的值。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;code>find_if&lt;/code>&lt;/strong>&lt;/p></description></item><item><title>Hugo+Github Pages搭建静态网站作为个人博客(1)</title><link>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</guid><description>&lt;p>
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a> 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。&lt;/p></description></item><item><title>Hugo+Github Pages搭建静态网站作为个人博客(2)</title><link>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page2/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page2/</guid><description>&lt;p>上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。&lt;/p>
+&lt;p>Stack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features:
+Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：&lt;/p>
+&lt;ul>
+&lt;li>Responsive images support
+响应式图像支持&lt;/li>
+&lt;li>Lazy load images 延迟加载图像&lt;/li>
+&lt;li>Dark mode 深色模式&lt;/li>
+&lt;li>Local search 本地搜索&lt;/li>
+&lt;li>
+&lt;a href="https://photoswipe.com/" title="PhotoSwipe" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ PhotoSwipe
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a> integration
+
+&lt;a href="https://photoswipe.com/" title="照片滑动" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 照片滑动
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>集成&lt;/li>
+&lt;li>Archive page template 存档页面模板&lt;/li>
+&lt;li>Full native JavaScript, no jQuery or any other frameworks are used
+完全原生 JavaScript，不使用 jQuery 或任何其他框架&lt;/li>
+&lt;li>No CSS framework, keep it simple and minimal
+没有 CSS 框架，保持简单和最小化&lt;/li>
+&lt;li>Properly cropped thumbnails
+正确裁剪的缩略图&lt;/li>
+&lt;li>Subsection support 分段支持&lt;/li>
+&lt;li>Table of contents 目录&lt;/li>
+&lt;/ul></description></item><item><title>TIM -> CNT= -1</title><link>/post/tim-_count-1/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/post/tim-_count-1/</guid><description/></item></channel></rss>

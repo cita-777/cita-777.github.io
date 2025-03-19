@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github Page on Cita's blog</title><link>/tags/github-page/</link><description>Recent content in Github Page on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/github-page/rss.xml" rel="self" type="application/rss+xml"/><item><title>Hugo+Github Pages搭建静态网站作为个人博客(1)</title><link>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page1/</guid><description>&lt;p>
+&lt;a href="https://gohugo.io/" title="Hugo" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ Hugo
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a> 是用 Go 实现的博客工具，采用 Markdown 进行文章编辑，自动生成静态站点文件，支持丰富的主题配置，也可以通过 js 嵌入像是评论系统等插件，高度定制化。除了 Hugo 外， 还有 Jekyll(github page默认)、Gatsby、Hexo、Ghost 等选择，实现和使用都差不多，可以根据自己的偏好进行选择。&lt;/p></description></item><item><title>Hugo+Github Pages搭建静态网站作为个人博客(2)</title><link>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page2/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><guid>/post/hugo%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E4%BA%8Egithub-page2/</guid><description>&lt;p>上一篇博客中重点于Hugo的使用，这一篇着重于以Stack主题为例进行博客撰写。&lt;/p>
+&lt;p>Stack is a simple card-style Hugo theme designed for Bloggers. Here are some of the features:
+Stack 是一个简单的卡片式 Hugo 主题，专为 Blogger 设计。以下是一些功能：&lt;/p>
+&lt;ul>
+&lt;li>Responsive images support
+响应式图像支持&lt;/li>
+&lt;li>Lazy load images 延迟加载图像&lt;/li>
+&lt;li>Dark mode 深色模式&lt;/li>
+&lt;li>Local search 本地搜索&lt;/li>
+&lt;li>
+&lt;a href="https://photoswipe.com/" title="PhotoSwipe" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ PhotoSwipe
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a> integration
+
+&lt;a href="https://photoswipe.com/" title="照片滑动" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 照片滑动
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>集成&lt;/li>
+&lt;li>Archive page template 存档页面模板&lt;/li>
+&lt;li>Full native JavaScript, no jQuery or any other frameworks are used
+完全原生 JavaScript，不使用 jQuery 或任何其他框架&lt;/li>
+&lt;li>No CSS framework, keep it simple and minimal
+没有 CSS 框架，保持简单和最小化&lt;/li>
+&lt;li>Properly cropped thumbnails
+正确裁剪的缩略图&lt;/li>
+&lt;li>Subsection support 分段支持&lt;/li>
+&lt;li>Table of contents 目录&lt;/li>
+&lt;/ul></description></item></channel></rss>

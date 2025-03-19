@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>代码规范 on Cita's blog</title><link>/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link><description>Recent content in 代码规范 on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/rss.xml" rel="self" type="application/rss+xml"/><item><title>华为嵌入式C语言代码简明规范</title><link>/post/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E8%A7%84%E8%8C%83%E7%B2%BE%E7%AE%80/</link><pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate><guid>/post/%E5%8D%8E%E4%B8%BA%E5%B5%8C%E5%85%A5%E5%BC%8Fc%E8%AF%AD%E8%A8%80%E8%A7%84%E8%8C%83%E7%B2%BE%E7%AE%80/</guid><description>&lt;h2 id="规范制订说明">规范制订说明
+&lt;a class="header-anchor" href="#%e8%a7%84%e8%8c%83%e5%88%b6%e8%ae%a2%e8%af%b4%e6%98%8e">&lt;/a>
+&lt;/h2>&lt;h3 id="前言">前言
+&lt;a class="header-anchor" href="#%e5%89%8d%e8%a8%80">&lt;/a>
+&lt;/h3>&lt;p>基于华为C语言编程规范 
+&lt;a href="https://ilcc.gitbooks.io/wiki/content/StyleGuide/Huawei-C/index.html" title="在线wiki文档" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 在线wiki文档
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;h3 id="代码总体原则">代码总体原则
+&lt;a class="header-anchor" href="#%e4%bb%a3%e7%a0%81%e6%80%bb%e4%bd%93%e5%8e%9f%e5%88%99">&lt;/a>
+&lt;/h3>&lt;h4 id="清晰第一">清晰第一
+&lt;a class="header-anchor" href="#%e6%b8%85%e6%99%b0%e7%ac%ac%e4%b8%80">&lt;/a>
+&lt;/h4>&lt;p>&lt;strong>代码的可阅读性高于性能，只有确定性能是瓶颈时，才应该主动优化&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>优秀的代码可以自我解释（以我的水平可能做到比较难）&lt;/li>
+&lt;li>常写注释，并且注释写的清晰&lt;/li>
+&lt;/ul>
+&lt;h4 id="简洁为美">简洁为美
+&lt;a class="header-anchor" href="#%e7%ae%80%e6%b4%81%e4%b8%ba%e7%be%8e">&lt;/a>
+&lt;/h4>&lt;p>&lt;strong>写的代码越多，意味着出错的地方越多，也就意味着代码的可靠性越低。&lt;/strong>&lt;/p></description></item></channel></rss>

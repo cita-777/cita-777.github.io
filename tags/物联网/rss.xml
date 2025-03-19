@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>物联网 on Cita's blog</title><link>/tags/%E7%89%A9%E8%81%94%E7%BD%91/</link><description>Recent content in 物联网 on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/rss.xml" rel="self" type="application/rss+xml"/><item><title>PCB设计与立创EDA使用备忘录</title><link>/post/pcb%E8%AE%BE%E8%AE%A1%E5%A4%87%E5%BF%98%E5%BD%95/</link><pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate><guid>/post/pcb%E8%AE%BE%E8%AE%A1%E5%A4%87%E5%BF%98%E5%BD%95/</guid><description>&lt;p>本篇课程基于B站UP主&lt;code>Expert电子实验室&lt;/code>的教学视频，同时加上本人思考与总结汇总而成。&lt;/p>
+&lt;p>
+&lt;a href="https://www.bilibili.com/video/BV1At421h7Ui/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;amp;vd_source=c33a47a3f08b3b6b6c1614d37f34903f" title="零基础入门PCB设计保姆级教学" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 零基础入门PCB设计保姆级教学
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;a href="https://space.bilibili.com/346179450" title="Expert电子实验室" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ Expert电子实验室
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p></description></item><item><title>物联网协议基础</title><link>/post/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</link><pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate><guid>/post/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="mqtt消息队列遥测传输协议">MQTT（消息队列遥测传输协议）
+&lt;a class="header-anchor" href="#mqtt%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e9%81%a5%e6%b5%8b%e4%bc%a0%e8%be%93%e5%8d%8f%e8%ae%ae">&lt;/a>
+&lt;/h2>&lt;p>MQTT是轻量级的消息发布/订阅协议，设计用于资源受限的设备和低带宽、高延迟的网络环境。它已成为物联网领域的事实标准，广泛应用于智能家居、工业自动化等领域。&lt;/p></description></item></channel></rss>

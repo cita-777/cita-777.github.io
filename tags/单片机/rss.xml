@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>单片机 on Cita's blog</title><link>/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link><description>Recent content in 单片机 on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 09 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/rss.xml" rel="self" type="application/rss+xml"/><item><title>浅析PID</title><link>/post/%E6%B5%85%E6%9E%90pid/</link><pubDate>Thu, 09 Jan 2025 00:00:00 +0000</pubDate><guid>/post/%E6%B5%85%E6%9E%90pid/</guid><description>&lt;h1 id="浅析pid">浅析PID
+&lt;a class="header-anchor" href="#%e6%b5%85%e6%9e%90pid">&lt;/a>
+&lt;/h1>&lt;p>参考学习SUNPLUS &lt;strong>《PID&lt;/strong> 调节控制做电机速度控制》后总结，在线阅读链接如下：&lt;/p>
+&lt;p>
+&lt;a href="https://u.dianyuan.com/upload/space/2012/07/25/1343214947-695804.pdf" title="1343214947-695804.pdf" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
+ 1343214947-695804.pdf
+ 
+ &lt;i class="fa fa-external-link-alt">&lt;/i>
+ 
+&lt;/a>&lt;/p>
+&lt;p>PID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据结构 on Cita's blog</title><link>/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link><description>Recent content in 数据结构 on Cita's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/rss.xml" rel="self" type="application/rss+xml"/><item><title>算法温故笔记</title><link>/post/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/</link><pubDate>Sat, 26 Oct 2024 00:00:00 +0000</pubDate><guid>/post/%E7%AE%97%E6%B3%95%E6%B8%A9%E6%95%85%E7%AC%94%E8%AE%B0/</guid><description>&lt;h2 id="动态规划dynamic-programming">动态规划（Dynamic Programming）
+&lt;a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92dynamic-programming">&lt;/a>
+&lt;/h2>&lt;p>&lt;strong>动态规划问题的一般形式就是求最值&lt;/strong>。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。&lt;/p></description></item><item><title>c++基础</title><link>/post/c++%E5%9F%BA%E7%A1%80/</link><pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate><guid>/post/c++%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="c基础题目1">c++基础题目（1）
+&lt;a class="header-anchor" href="#c%e5%9f%ba%e7%a1%80%e9%a2%98%e7%9b%ae1">&lt;/a>
+&lt;/h2>&lt;h3 id="题目列表">题目列表
+&lt;a class="header-anchor" href="#%e9%a2%98%e7%9b%ae%e5%88%97%e8%a1%a8">&lt;/a>
+&lt;/h3>&lt;h4 id="1-以下说法中正确的是-">1. 以下说法中正确的是（ ）。
+&lt;a class="header-anchor" href="#1-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 基类的私有成员在派生类的对象中不可访问，也不占内存空间&lt;/li>
+&lt;li>B. 封装性指的是将不同类型的相关数据组合在一起，作为一个整体进行处理&lt;/li>
+&lt;li>&lt;strong>C. 在面向对象的程序设计中，结构化程序设计方法仍有着重要作用&lt;/strong>&lt;/li>
+&lt;li>D. 多态性指的是对象的状态会根据运行时要求自动变化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。基类的私有成员在派生类中不可访问，但仍然占用内存空间。&lt;/li>
+&lt;li>B. 错误。封装性指的是将数据和操作数据的方法绑定在一起，形成一个独立的单位。&lt;/li>
+&lt;li>D. 错误。多态性指的是同一接口可以有不同的实现形式。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="2-执行以下程序后输出的结果是-">2. 执行以下程序后，输出的结果是（ ）。
+&lt;a class="header-anchor" href="#2-%e6%89%a7%e8%a1%8c%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e5%90%8e%e8%be%93%e5%87%ba%e7%9a%84%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-0-1">&lt;a class="lnlinks" href="#hl-0-1">1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-2">&lt;a class="lnlinks" href="#hl-0-2">2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-3">&lt;a class="lnlinks" href="#hl-0-3">3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-4">&lt;a class="lnlinks" href="#hl-0-4">4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-5">&lt;a class="lnlinks" href="#hl-0-5">5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-6">&lt;a class="lnlinks" href="#hl-0-6">6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-7">&lt;a class="lnlinks" href="#hl-0-7">7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-0-8">&lt;a class="lnlinks" href="#hl-0-8">8&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">float&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：D&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 1.25&lt;/li>
+&lt;li>B. 0&lt;/li>
+&lt;li>C. 1.3&lt;/li>
+&lt;li>&lt;strong>D. 1&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。&lt;code>b/a&lt;/code> 是整数除法，结果为1，再转换为浮点数仍然是1.0。&lt;/li>
+&lt;li>B. 错误。整数除法的结果不可能是0。&lt;/li>
+&lt;li>C. 错误。&lt;code>b/a&lt;/code> 的结果为1，而不是1.3。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="3-以下描述不正确的是-">3. 以下描述不正确的是（ ）。
+&lt;a class="header-anchor" href="#3-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：B&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. break语句在一层循环体中可出现多次&lt;/li>
+&lt;li>&lt;strong>B. break语句可用在if语句中，它可使执行的流程跳出当前的if语句&lt;/strong>&lt;/li>
+&lt;li>C. break语句可用在循环体中，它将是执行的流程跳出本层循环&lt;/li>
+&lt;li>D. break语句可用在switch语句中，它使执行的流程跳出当前switch语句&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>B. 错误。&lt;code>break&lt;/code> 语句不能用于跳出 &lt;code>if&lt;/code> 语句，只能用于跳出循环或 &lt;code>switch&lt;/code> 语句。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="4-以下描述不正确的是-">4. 以下描述不正确的是（ ）。**
+&lt;a class="header-anchor" href="#4-%e4%bb%a5%e4%b8%8b%e6%8f%8f%e8%bf%b0%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：A&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 相同类型的指针之间可以相互赋值&lt;/li>
+&lt;li>B. 指针中存放的实际上是内存单元的地址&lt;/li>
+&lt;li>C. 可以在指针定义的同时对其进行初始化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。相同类型的指针之间可以相互赋值，但不同类型的指针之间不能直接赋值，需要进行类型转换。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="5-以下说法中正确的是-">5. 以下说法中正确的是（ ）。
+&lt;a class="header-anchor" href="#5-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 当动态分配内存失败时，系统会立刻崩溃，因此一定要慎用new&lt;/li>
+&lt;li>B. C++语言只能用new和delete用于动态内存分配和释放的函数&lt;/li>
+&lt;li>&lt;strong>C. 动态分配的内存空间也可以被初始化&lt;/strong>&lt;/li>
+&lt;li>D. 当系统内存不够时，会自动回收不再使用的内存单元，因此程序中不必用delete释放内存空间&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。动态分配内存失败时，&lt;code>new&lt;/code> 会抛出异常或返回 &lt;code>nullptr&lt;/code>，但不会导致系统崩溃。&lt;/li>
+&lt;li>B. 错误。C++ 中除了 &lt;code>new&lt;/code> 和 &lt;code>delete&lt;/code>，还可以使用 &lt;code>malloc&lt;/code> 和 &lt;code>free&lt;/code> 进行动态内存管理。&lt;/li>
+&lt;li>D. 错误。C++ 不提供自动垃圾回收机制，必须手动释放内存。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="6-以下说法中不正确的是-">6. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#6-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 构造函数可以对静态数据成员进行初始化&lt;/li>
+&lt;li>B. 构造函数可以重载&lt;/li>
+&lt;li>&lt;strong>C. 构造函数不可以设置默认参数&lt;/strong>&lt;/li>
+&lt;li>D. 构造函数可以在说明类变量时自动执行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>C. 错误。构造函数可以设置默认参数，这样在创建对象时可以&lt;strong>省略部分参数&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="7-以下说法中不正确的是-">7. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#7-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：A&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>&lt;strong>A. 公有继承时基类中的private成员在派生类中仍是private的&lt;/strong>&lt;/li>
+&lt;li>B. 保护继承时基类中的public成员在派生类中是protected的&lt;/li>
+&lt;li>C. 公有继承时基类中的public成员在派生类中仍是public的&lt;/li>
+&lt;li>D. 私有继承时基类中的public成员在派生类中是private的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。公有继承时，基类中的 &lt;code>private&lt;/code> 成员&lt;strong>在派生类中不可访问&lt;/strong>，而不是保持 &lt;code>private&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="8-以下说法中不正确的是-">8. 以下说法中不正确的是（ ）。
+&lt;a class="header-anchor" href="#8-%e4%bb%a5%e4%b8%8b%e8%af%b4%e6%b3%95%e4%b8%ad%e4%b8%8d%e6%ad%a3%e7%a1%ae%e7%9a%84%e6%98%af-">&lt;/a>
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：B&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 如果类A是类B的友元，那么类A的所有成员函数都是类B的友元&lt;/li>
+&lt;li>&lt;strong>B. 如果类A是类B的友元，那么类B也是类A的友元&lt;/strong>&lt;/li>
+&lt;li>C. 如果函数fun()被说明为类A的友元，那么在fun()中可以访问类A的私有成员&lt;/li>
+&lt;li>D. 友元关系不能被继承&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>B. 错误。友元关系是单向的，类A是类B的友元，并不意味着类B也是类A的友元。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="9-以下程序的输出结果是-">9. 以下程序的输出结果是（ ）。
+&lt;a class="header-anchor" href="#9-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-1-1">&lt;a class="lnlinks" href="#hl-1-1"> 1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-2">&lt;a class="lnlinks" href="#hl-1-2"> 2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-3">&lt;a class="lnlinks" href="#hl-1-3"> 3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-4">&lt;a class="lnlinks" href="#hl-1-4"> 4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-5">&lt;a class="lnlinks" href="#hl-1-5"> 5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-6">&lt;a class="lnlinks" href="#hl-1-6"> 6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-7">&lt;a class="lnlinks" href="#hl-1-7"> 7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-8">&lt;a class="lnlinks" href="#hl-1-8"> 8&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-9">&lt;a class="lnlinks" href="#hl-1-9"> 9&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-1-10">&lt;a class="lnlinks" href="#hl-1-10">10&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pa&lt;/span>&lt;span class="o">=&amp;amp;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">pa&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">++&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>&lt;strong>答案&lt;/strong>：C&lt;/li>
+&lt;li>选项
+&lt;ul>
+&lt;li>A. 7&lt;/li>
+&lt;li>B. 5&lt;/li>
+&lt;li>&lt;strong>C. 6&lt;/strong>&lt;/li>
+&lt;li>D. 8&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>易错解释
+&lt;ul>
+&lt;li>A. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6，然后 &lt;code>a&lt;/code> 的值变为7。&lt;/li>
+&lt;li>B. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6。&lt;/li>
+&lt;li>D. 错误。&lt;code>b++&lt;/code> 后 &lt;code>a&lt;/code> 的值变为6，&lt;code>(*pa)++&lt;/code> 输出6，然后 &lt;code>a&lt;/code> 的值变为7。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="10-以下程序的输出结果是-">10. 以下程序的输出结果是（ ）。
+&lt;a class="header-anchor" href="#10-%e4%bb%a5%e4%b8%8b%e7%a8%8b%e5%ba%8f%e7%9a%84%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c%e6%98%af-">&lt;/a>
+&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt" id="hl-2-1">&lt;a class="lnlinks" href="#hl-2-1"> 1&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-2">&lt;a class="lnlinks" href="#hl-2-2"> 2&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-3">&lt;a class="lnlinks" href="#hl-2-3"> 3&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-4">&lt;a class="lnlinks" href="#hl-2-4"> 4&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-5">&lt;a class="lnlinks" href="#hl-2-5"> 5&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-6">&lt;a class="lnlinks" href="#hl-2-6"> 6&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-7">&lt;a class="lnlinks" href="#hl-2-7"> 7&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-8">&lt;a class="lnlinks" href="#hl-2-8"> 8&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-9">&lt;a class="lnlinks" href="#hl-2-9"> 9&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-10">&lt;a class="lnlinks" href="#hl-2-10">10&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-11">&lt;a class="lnlinks" href="#hl-2-11">11&lt;/a>
+&lt;/span>&lt;span class="lnt" id="hl-2-12">&lt;a class="lnlinks" href="#hl-2-12">12&lt;/a>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="nf">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">y&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">142&lt;/span>&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fun&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cout&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="s">&amp;#34;,&amp;#34;&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">&amp;lt;&amp;lt;&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>答案&lt;/strong>：D&lt;/p></description></item></channel></rss>
