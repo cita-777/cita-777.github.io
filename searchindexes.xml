@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>TIM -> CNT= -1</title><url>/post/tim-_count-1/</url><categories><category>生活</category></categories><tags><tag>摄影</tag></tags><content type="html">  长沙 宣城 合肥 桂林   </content></entry><entry><title>浅析PID</title><url>/post/%E6%B5%85%E6%9E%90pid/</url><categories><category>MCU</category></categories><tags><tag>单片机</tag><tag>运动控制</tag><tag>算法</tag></tags><content type="html">  浅析PID 参考学习SUNPLUS 《PID 调节控制做电机速度控制》后总结，在线阅读链接如下：
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>TIM -> CNT= -1</title><url>/post/tim-_count-1/</url><categories><category>生活</category></categories><tags><tag>摄影</tag></tags><content type="html">  长沙 宣城 合肥 桂林   </content></entry><entry><title>TIM -> CNT= -1</title><url>/post/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E5%8C%96%E4%B8%8E%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</url><categories><category>工程数学</category></categories><tags><tag>傅里叶变化</tag><tag>微分方程</tag><tag>卷积</tag></tags><content type="html">  前言 傅里叶变换求解偏微分方程 傅里叶变换的核心作用在于将偏微分方程转换为更简单的形式，从而简化求解过程。下面将详细介绍其主要应用方式。
+3.1 从偏微分方程到常微分方程 通过对空间变量应用傅里叶变换，偏微分方程中的空间导数可转换为代数项，将偏微分方程简化为关于时间变量的常微分方程（ODEs）。
+以热传导方程为例：
+[ \frac{\partial u}{\partial t} = \alpha \frac{\partial^2 u}{\partial x^2} ]
+对空间变量 (x) 进行傅里叶变换，定义
+[ \hat{u}(\xi,t) = \int_{-\infty}^{\infty} u(x,t)e^{-2\pi i \xi x} , dx, ]
+则原方程变为
+[ \frac{\partial \hat{u}}{\partial t} = \alpha \frac{\partial^2 \hat{u}}{\partial x^2}. ]
+利用傅里叶变换的性质，空间二阶导数转换为
+[ \frac{\partial^2 \hat{u}}{\partial x^2} = -4\pi^2 \xi^2 \hat{u}(\xi,t), ]
+从而原方程可写为
+[ \frac{\partial \hat{u}}{\partial t} = -4\pi^2 \alpha \xi^2 \hat{u}. ]
+该方程关于 (t) 的解为
+[ \hat{u}(\xi,t) = \hat{u}(\xi,0)e^{-4\pi^2 \alpha \xi^2 t}, ]
+其中 (\hat{u}(\xi,0)) 为初始条件 (u(x,0)) 的傅里叶变换。通过反傅里叶变换，即可求得原始解 (u(x,t))：
+[ u(x,t) = \int_{-\infty}^{\infty} \hat{u}(\xi,0)e^{-4\pi^2 \alpha \xi^2 t}e^{2\pi i \xi x} , d\xi. ]
+3.2 处理初始条件与边界条件 傅里叶变换特别适用于无限域问题，因为它天然适应无限边界。例如，在热传导方程中，假设初始条件为
+[ u(x,0) = f(x), ]
+则有
+[ \hat{u}(\xi,0) = \hat{f}(\xi). ]
+代入上式得到
+[ u(x,t) = \int_{-\infty}^{\infty} \hat{f}(\xi)e^{-4\pi^2 \alpha \xi^2 t}e^{2\pi i \xi x} , d\xi. ]
+对于有限域问题，可以采用傅里叶级数来处理边界条件。
+3.3 卷积定理的妙用 傅里叶变换的卷积定理表明，两个函数的卷积在频域中对应于它们傅里叶变换的乘积：
+[ \widehat{f * g} = \hat{f} \cdot \hat{g}. ]
+在热传导方程中，解 (u(x,t)) 可表示为初始条件 (f(x)) 与一个高斯核（基本解）的卷积：
+[ u(x,t) = \int_{-\infty}^{\infty} f(y)G(x-y,t) , dy, ]
+其中
+[ G(x,t) = \frac{1}{\sqrt{4\pi \alpha t}}e^{-\frac{x^2}{4\alpha t}} ]
+为热传导方程的格林函数。这种形式直观地展示了热量如何从初始分布中扩散。
+3.4 非齐次方程的求解 对于非齐次偏微分方程，例如：
+[ \frac{\partial u}{\partial t} = \alpha \frac{\partial^2 u}{\partial x^2} + q(x,t), ]
+应用傅里叶变换后，方程变为
+[ \frac{\partial \hat{u}}{\partial t} = -4\pi^2 \alpha \xi^2 \hat{u} + \hat{q}(\xi,t). ]
+这是一个非齐次常微分方程，可以利用常数变易法或格林函数法求解，最后再通过反变换得到 (u(x,t)) 的解。
+  </content></entry><entry><title>浅析PID</title><url>/post/%E6%B5%85%E6%9E%90pid/</url><categories><category>MCU</category></categories><tags><tag>单片机</tag><tag>运动控制</tag><tag>算法</tag></tags><content type="html">  浅析PID 参考学习SUNPLUS 《PID 调节控制做电机速度控制》后总结，在线阅读链接如下：
 1343214947-695804.pdf PID 控制器是一种广泛应用于工业控制系统的控制器，它通过将偏差的比例（Proportion）、积分（Integral）和微分（Differential）三个部分进行线性组合，生成控制量，从而对被控对象进行控制。PID 控制器的核心思想是通过对系统偏差的实时调整，使系统的输出尽可能接近期望值。
 1 模拟 PID 控制原理 模拟 PID 控制系统的原理框图 如图 1-2 所示，模拟 PID 控制系统由 PID 控制器和被控对象（如电机）组成。系统的输入是给定值 ($r(t)$)，输出是实际输出值 ($y(t)$)，偏差 ($e(t) = r(t) - y(t)$) 作为 PID 控制器的输入，控制器的输出 ($u(t)$) 作为被控对象的输入。
 PID 控制器的控制规律可以用以下公式表示：
